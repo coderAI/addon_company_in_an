@@ -17,7 +17,7 @@
         # 'views/region_type_view.xml',
         # 'views/shift_time_view.xml',
         # 'views/fleet_vehicle_view.xml',
-        # 'views/sale_order_view.xml',
+        'views/sale_order_view.xml',
         # 'views/transfer_order_view.xml',
     ],
     'installable': True,
