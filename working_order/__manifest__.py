@@ -4,10 +4,8 @@
 {
     'name': 'Working order',
     'author': 'Snow',
-    'license': 'SH-1',
-    'website': '',
     'category': 'sale',
-    'version': '11.0',
+    'version': '1.0',
     'depends': [
         'base','sale','stock',
     ],
