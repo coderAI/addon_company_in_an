@@ -7,12 +7,14 @@ from odoo import api, fields, models, _
 class sale_order(models.Model):
     _inherit = "sale.order"
 
-    coupon_code = fields.Char('Car code')
+    coupon_code = fields.Char('Coupon Code')
+    # orther information
     payment_menthod = fields.Char('Payment Menthod')
     transaction_id = fields.Char('Transaction Id')
     order_ip = fields.Char('Order Ip')
     tracking_number = fields.Char('Tracking Number')
     order_shipping_location = fields.Char('Order Shipping Location')
+    #
     store_id = fields.Many2one('store.info', string='Store')
     market_place_id = fields.Many2one('market.place', string='Market Place')
     delivery_method_id = fields.Many2one('delivery.method', string='Delivery Method')

@@ -51,6 +51,9 @@ class work_order_line(models.Model):
     sale_order_id = fields.Many2one('sale.order', string='Sale Order')
     sale_order_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
     reason_cancel_id = fields.Many2one('reason.cancel', string='Sale Order')
+    stock_move_line_ids = fields.Many2many('stock.move.line', 'stock_move_work_order_rel', 'work_order_id','stock_move_id',
+                                      string='Work Order')
+
     state = fields.Selection([
         ('draft', 'Draft'),
         ('done', 'Done'),

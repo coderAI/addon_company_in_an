@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <openerp>
 	<data>
 		<record id="sale_order_extend_form" model="ir.ui.view">
@@ -7,34 +6,39 @@
 			<field name="model">sale.order</field>
 			<field name="inherit_id" ref="sale.view_order_form" />
 			<field name="arch" type="xml">
-
-				<xpath expr="//field[@name='user_id']" position="after">
-					<field name="lat"/>
-					<field name="lng"/>
-					<field name="region_type_id"/>
-					<field name="request_date"/>
-					<field name="shift_time_id"/>
-
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="coupon_code"/>
+					<field name="store_id"/>
+					<field name="market_place_id"/>
+					<field name="delivery_method_id"/>
+					<field name="platfrom_id"/>
 				</xpath>
-
+				<xpath expr="//group[@name='sales_person']" position="before">
+					<group string="Special Information" name="special_information">
+						<field name="payment_menthod"/>
+						<field name="transaction_id"/>
+						<field name="order_ip"/>
+						<field name="tracking_number"/>
+						<field name="order_shipping_location"/>
+					</group>
+				</xpath>
 			</field>
 		</record>
 
-        <record id="res_partner_form_inherit" model="ir.ui.view">
-            <field name="name">res.partner.form.inherit</field>
-            <field name="model">res.partner</field>
-            <field name="priority">20</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                 <xpath expr="//field[@name='vat']" position="after">
-                    <field name="region_type_id"/>
-                    <field name="fleet_vehicle_id"/>
-                    <field name="driver_license"/>
-                    <field name="shift_time_id" widget="many2many_tags"/>
-                 </xpath>
-
-
-			</field></record>
+<!--		<record id="res_partner_form_inherit" model="ir.ui.view">-->
+<!--			<field name="name">res.partner.form.inherit</field>-->
+<!--			<field name="model">res.partner</field>-->
+<!--			<field name="priority">20</field>-->
+<!--			<field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--			<field name="arch" type="xml">-->
+<!--				<xpath expr="//field[@name='vat']" position="after">-->
+<!--					<field name="region_type_id"/>-->
+<!--					<field name="fleet_vehicle_id"/>-->
+<!--					<field name="driver_license"/>-->
+<!--					<field name="shift_time_id" widget="many2many_tags"/>-->
+<!--				</xpath>-->
+<!--			</field>-->
+<!--		</record>-->
 
 	</data>
 </openerp>
