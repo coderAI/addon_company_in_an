@@ -22,12 +22,9 @@
 						<field name="order_shipping_location"/>
 					</group>
 				</xpath>
-				<xpath expr="//field[@name='order_line']/tree/price_tax" position="before">
+				<xpath expr="//field[@name='order_line']/tree/field[@name='price_tax']" position="before">
 					<button class="oe_highlight" name="btn_img" type="object" string="Input Image"/>
 				</xpath>
-
-
-
 			</field>
 		</record>
 
