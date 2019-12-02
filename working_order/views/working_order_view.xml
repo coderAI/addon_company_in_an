@@ -7,8 +7,9 @@
             <field name="model">work.order</field>
             <field name="arch" type="xml">
                 <tree string="Work Order Info">
-                    <field name="name"/>
-                    <field name="active"/>
+                    <field name="work_order_code"/>
+                    <field name="user_id"/>
+                    <field name="create_order_time"/>
                 </tree>
             </field>
         </record>
