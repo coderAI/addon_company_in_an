@@ -2,8 +2,8 @@
 
 from odoo import fields, models
 
-class Partner(models.Model):
 
+class Partner(models.Model):
     _inherit = 'res.partner'
 
     customer_type = fields.Selection([('personal', 'Personal'), ('acgency', 'Acgency')], default='personal')

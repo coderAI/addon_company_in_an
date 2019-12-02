@@ -35,8 +35,9 @@ class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
     attachment_ids = fields.Many2many('ir.attachment', 'sale_order_line_ir_attachments_rel',
-        'order_line', 'attachment_id', string='Attachments')
+                                      'order_line', 'attachment_id', string='Attachments')
     description = fields.Char('Description')
+
 
 
     @api.multi

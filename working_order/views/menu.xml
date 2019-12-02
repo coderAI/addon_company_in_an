@@ -3,18 +3,16 @@
     <data>
 
 
-        <menuitem name="Transfer" id="menu_root_transfer" sequence="70"/>
+        <menuitem name="Working Order" id="menu_root_transfer" sequence="70"/>
 
         <menuitem id="menu_transfer"
-                  name="Transfer"
+                  name="Working Order"
                   parent="menu_root_transfer"
-                  sequence="7"
-        />
+                  sequence="7"   />
         <menuitem id="menu_config"
                   name="Config"
                   parent="menu_root_transfer"
-                  sequence="77"
-        />
+                  sequence="77"   />
 
 
 
