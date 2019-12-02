@@ -40,7 +40,6 @@
                                 <field name="work_order_code"/>
                                 <field name="user_id"/>
                                 <field name="sale_order_ids" widget="many2many_tags"/>
-                                <field name="picking_id"/>
                             </group>
                             <group>
                                 <field name="create_order_time"/>
