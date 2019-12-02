@@ -37,7 +37,7 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="work_order_code"/>
+                                <field name="name"/>
                                 <field name="user_id"/>
                                 <field name="sale_order_ids" widget="many2many_tags"/>
                             </group>

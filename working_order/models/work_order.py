@@ -33,6 +33,7 @@ class platfrom_list(models.Model):
 class work_order(models.Model):
     _name = "work.order"
 
+    name = fields.Char('Work Order Name')
     create_order_time = fields.Datetime('Work Order Time', readonly=True)
     done_order_time = fields.Datetime('Work Order Done', readonly=True)
     work_order_code = fields.Char('Work Order Code')
@@ -56,7 +57,7 @@ class work_order(models.Model):
         for so in self.sale_order_ids:
             for sol in so.order_line:
                 if sol.product_id.type == 'product':
-                    for i in range(1,sol.product_uom_qty):
+                    for i in range(1,int(sol.product_uom_qty)):
                         work_order_line_obj.create({
                             'sale_order_line_id':sol.id,
                             'sale_order_id':so.id,
