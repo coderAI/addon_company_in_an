@@ -49,14 +49,6 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Sale order line">
-                                <field name="work_order_line_ids">
-                                    <tree string="Line">
-                                        <field name="name"/>
-                                        <field name="product_uom_qty"/>
-                                    </tree>
-                                </field>
-                            </page>
                             <page string="Working order line">
                                 <field name="work_order_line_ids">
                                     <tree string="Line">
