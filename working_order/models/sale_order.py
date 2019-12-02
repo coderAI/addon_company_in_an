@@ -37,3 +37,17 @@ class sale_order_line(models.Model):
     attachment_ids = fields.Many2many('ir.attachment', 'sale_order_line_ir_attachments_rel',
         'order_line', 'attachment_id', string='Attachments')
     description = fields.Char('Description')
+
+
+    @api.multi
+    def btn_img(self):
+        view_id = self.env.ref('working_order.view_sale_order_line_imgae_from', False)
+        return {
+            'name': _('Image From'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.order.line',
+            'view_id': view_id.id,
+            'target': 'new',
+            'type': 'ir.actions.act_window',
+        }

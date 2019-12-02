@@ -23,25 +23,47 @@
 					</group>
 				</xpath>
 				<xpath expr="//field[@name='order_line']/tree/field[@name='price_tax']" position="before">
-					<button class="oe_highlight" name="btn_img" type="object" string="Input Image"/>
+					<button class="oe_highlight" name="btn_img" type="object" string="Image"/>
 				</xpath>
 			</field>
 		</record>
 
-		<!--		<record id="res_partner_form_inherit" model="ir.ui.view">-->
-		<!--			<field name="name">res.partner.form.inherit</field>-->
-		<!--			<field name="model">res.partner</field>-->
-		<!--			<field name="priority">20</field>-->
-		<!--			<field name="inherit_id" ref="base.view_partner_form"/>-->
-		<!--			<field name="arch" type="xml">-->
-		<!--				<xpath expr="//field[@name='vat']" position="after">-->
-		<!--					<field name="region_type_id"/>-->
-		<!--					<field name="fleet_vehicle_id"/>-->
-		<!--					<field name="driver_license"/>-->
-		<!--					<field name="shift_time_id" widget="many2many_tags"/>-->
-		<!--				</xpath>-->
-		<!--			</field>-->
-		<!--		</record>-->
+
+
+		<record id="view_sale_order_line_imgae_from" model="ir.ui.view">
+			<field name="name">sale.order.line.image.from</field>
+			<field name="model">sale.order.line</field>
+			<field name="arch" type="xml">
+				<form string="Image info">
+					<field name="attachment_ids" widget="many2many_kanban" options="{'not_delete': True}">
+						<kanban quick_create="false" create="true" delete="true">
+							<templates>
+								<t t-name="kanban-box">
+									<div class="oe_kanban_global_click" style="position: relative">
+										<a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
+										<div class="oe_module_vignette">
+											<img t-att-src="kanban_image('ir.attachment', 'image_small', datas)" class="oe_avatar oe_kanban_avatar_smallbox"/>
+<!--											<div class="oe_module_desc">-->
+<!--												<field name="name"/>											-->
+<!--											</div>-->
+										</div>
+									</div>
+								</t>
+							</templates>
+						</kanban>
+					</field>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="action_sale_order_line_image" model="ir.actions.act_window">
+			<field name="name">Image</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">sale.order.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+		</record>
 
 	</data>
 </openerp>
