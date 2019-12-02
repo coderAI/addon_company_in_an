@@ -39,7 +39,6 @@ class sale_order_line(models.Model):
     description = fields.Char('Description')
 
 
-
     @api.multi
     def btn_img(self):
         view_id = self.env.ref('working_order.view_sale_order_line_imgae_from', False)
