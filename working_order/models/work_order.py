@@ -36,8 +36,12 @@ class work_order(models.Model):
     create_order_time = fields.Datetime('Work Order Time', readonly=True)
     done_order_time = fields.Datetime('Work Order Done', readonly=True)
     work_order_code = fields.Char('Work Order Code')
+    work_order_line_ids = fields.One2many('work.order.line', 'work_order_id')
     user_id = fields.Many2one('res.users', string='User', ondelete='cascade', default=lambda self: self._uid)
     picking_id = fields.Many2one('stock.picking', string='Piking')
+    sale_order_ids = fields.Many2many('sale.order', 'work_order_sale_order_rel', 'work_order_id',
+                                           'sale_order_id',
+                                           string='Sale Order')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('in progress', 'In Progress'),
@@ -45,6 +49,23 @@ class work_order(models.Model):
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
+
+    @api.multi
+    def btn_map_sale_order(self):
+        work_order_line_obj = self.env['work.order.line']
+        for so in self.sale_order_ids:
+            for sol in so.order_line:
+                if sol.product_id.type == 'product':
+                    for i in range(1,sol.product_uom_qty):
+                        work_order_line_obj.create({
+                            'sale_order_line_id':sol.id,
+                            'sale_order_id':so.id,
+                            'work_order_id': self.id,
+                            'name': (self.name or '')+(so.name or '')+str(i),
+                        })
+        self.state='in progress'
+
+        return
 
 class work_order_line(models.Model):
     _name = "work.order.line"
@@ -64,3 +85,5 @@ class work_order_line(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+
+
