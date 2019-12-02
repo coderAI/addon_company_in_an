@@ -14,13 +14,16 @@ class store_info(models.Model):
     _name = 'store.info'
     _inherit = 'reason.cancel'
 
+
 class market_place(models.Model):
     _name = 'market.place'
     _inherit = 'reason.cancel'
 
+
 class delivery_method(models.Model):
     _name = 'delivery.method'
     _inherit = 'reason.cancel'
+
 
 class platfrom_list(models.Model):
     _name = 'platfrom.list'
@@ -40,7 +43,8 @@ class work_order(models.Model):
         ('in progress', 'In Progress'),
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
-        ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+
 
 class work_order_line(models.Model):
     _name = "work.order.line"
@@ -51,13 +55,12 @@ class work_order_line(models.Model):
     sale_order_id = fields.Many2one('sale.order', string='Sale Order')
     sale_order_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
     reason_cancel_id = fields.Many2one('reason.cancel', string='Sale Order')
-    stock_move_line_ids = fields.Many2many('stock.move.line', 'stock_move_work_order_rel', 'work_order_id','stock_move_id',
-                                      string='Work Order')
+    stock_move_line_ids = fields.Many2many('stock.move.line', 'stock_move_work_order_rel', 'work_order_id',
+                                           'stock_move_id',
+                                           string='Work Order')
 
     state = fields.Selection([
         ('draft', 'Draft'),
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
-        ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
-
-
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')

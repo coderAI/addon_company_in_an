@@ -1,3 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-access_transfer_order,access_transfer_order,model_transfer_order,,1,1,1,1
+
+access_reason_cancel,access_reason_cancel,model_reason_cancel,,1,1,1,1
+access_store_info,access_store_info,model_store_info,,1,1,1,1
+access_market_place,access_market_place,model_market_place,,1,1,1,1
+access_delivery_method,access_delivery_method,model_delivery_method,,1,1,1,1
+access_platfrom_list,access_platfrom_list,model_platfrom_list,,1,1,1,1
+access_work_order,access_work_order,model_work_order,,1,1,1,1
+access_work_order_line,access_work_order_line,model_work_order_line,,1,1,1,1

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
-
-
 from odoo import api, fields, models, _
+
 
 class sale_order(models.Model):
     _inherit = "sale.order"
@@ -29,11 +28,12 @@ class sale_order(models.Model):
         ('to delivery', 'To Delivery'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
-        ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+
 
 class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
     attachment_ids = fields.Many2many('ir.attachment', 'sale_order_line_ir_attachments_rel',
-        'order_line', 'attachment_id', string='Attachments')
+                                      'order_line', 'attachment_id', string='Attachments')
     description = fields.Char('Description')

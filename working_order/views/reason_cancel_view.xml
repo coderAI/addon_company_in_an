@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_reason_cancel_tree" model="ir.ui.view">
+            <field name="name">view.reason.cancel.form</field>
+            <field name="model">reason.cancel</field>
+            <field name="arch" type="xml">
+                <tree string="Reason Cancel">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_reason_cancel_filter" model="ir.ui.view">
+            <field name="name">view.reason.cancel.filter</field>
+            <field name="model">reason.cancel</field>
+            <field name="arch" type="xml">
+                <search string="Reason Cancel">
+                    <field name="name"/>
+                    <field name="active"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_reason_cancel_form" model="ir.ui.view">
+            <field name="name">view.reason.cancel.form</field>
+            <field name="model">reason.cancel</field>
+            <field name="arch" type="xml">
+                <form string="Reason Cancel">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="action_view_reason_cancel_tree" model="ir.actions.act_window">
+            <field name="name">Reason Cancel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">reason.cancel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_reason_cancel_tree"/>
+        </record>
+
+        <menuitem id="menu_view_reason_cancel_tree" name="Reason Cancel"
+                  action="action_view_reason_cancel_tree"
+                  parent="menu_config"
+                  sequence="6"/>
+    </data>
+</odoo>
+
