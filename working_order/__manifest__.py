@@ -19,6 +19,7 @@
         # 'views/fleet_vehicle_view.xml',
         'views/sale_order_view.xml',
         # 'views/transfer_order_view.xml',
+        'views/working_order_view.xml',
         #### Config
         'views/reason_cancel_view.xml',
         'views/store_info_view.xml',
