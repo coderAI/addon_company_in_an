@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_check_product_tree" model="ir.ui.view">
+            <field name="name">view.check.product.tree</field>
+            <field name="model">check.product</field>
+            <field name="arch" type="xml">
+                <tree string="Check Product Info">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="maximum_sale_order_line"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_check_product_filter" model="ir.ui.view">
+            <field name="name">view.check.product.filter</field>
+            <field name="model">check.product</field>
+            <field name="arch" type="xml">
+                <search string="Check Product Info">
+                    <field name="user_id"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_check_product_form" model="ir.ui.view">
+            <field name="name">view.check.product.form</field>
+            <field name="model">check.product</field>
+            <field name="arch" type="xml">
+                <form string="Check Product Info">
+                    <header>
+                        <button class="oe_highlight" name="btn_map_sale_order_line" type="object" string="Map Sale Order line"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="active"/>
+                                <field name="maximum_sale_order_line"/>
+                        </group>
+                        <notebook>
+                            <page string="Sale order line">
+                                <field name="sale_order_line_ids" readonly="1">
+                                    <tree string="Line">
+                                        <field name="name"/>
+                                        <field name="product_id"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="product_uom"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="action_view_check_product_tree" model="ir.actions.act_window">
+            <field name="name">Check Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">check.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_view_check_product_tree" name="Check Product"
+                  action="action_view_check_product_tree"
+                  parent="sale.sale_order_menu"
+                  sequence="6"/>
+    </data>
+</odoo>
+

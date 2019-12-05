@@ -35,19 +35,19 @@
 			<field name="model">sale.order.line</field>
 			<field name="arch" type="xml">
 				<form string="Image info">
-					<field name="attachment_ids" widget="many2many_kanban" options="{'not_delete': True}">
-						<kanban quick_create="false" create="true" delete="true">
-							<templates>
-								<t t-name="kanban-box">
-									<div class="oe_kanban_global_click" style="position: relative">
-										<a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>
-										<div class="oe_module_vignette">
-											<img t-att-src="kanban_image('ir.attachment', 'image_small', datas)" class="oe_avatar oe_kanban_avatar_smallbox"/>
-										</div>
-									</div>
-								</t>
-							</templates>
-						</kanban>
+					<field name="attachment_ids" widget="many2many_kanban" options="{'not_delete': True}" edit="false" create="true" delete="true">
+						<!--						<kanban quick_create="false" create="true" delete="true">-->
+						<!--							<templates>-->
+						<!--								<t t-name="kanban-box">-->
+						<!--									<div class="oe_kanban_global_click" style="position: relative">-->
+						<!--										<a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; diplay: inline-block">X</a>-->
+						<!--										<div class="oe_module_vignette">-->
+						<!--											<img t-att-src="kanban_image('ir.attachment', 'image_small', datas)" class="oe_avatar oe_kanban_avatar_smallbox"/>-->
+						<!--										</div>-->
+						<!--									</div>-->
+						<!--								</t>-->
+						<!--							</templates>-->
+						<!--						</kanban>-->
 					</field>
 				</form>
 			</field>
@@ -62,5 +62,51 @@
 			<field name="view_mode">form</field>
 		</record>
 
+
+		<record id="view_sale_order_line_from" model="ir.ui.view">
+			<field name="name">sale.order.line.from</field>
+			<field name="model">sale.order.line</field>
+			<field name="arch" type="xml">
+				<form string="Sale Order Views">
+					<header>
+						<field name="state" widget="statusbar" nolabel="1"/>
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="product_id"/>
+								<field name="product_uom_qty"/>
+								<field name="product_uom"/>
+							</group>
+							<group>
+								<field name="discount"/>
+								<field name="price_unit"/>
+								<field name="price_tax"/>
+								<field name="price_total"/>
+								<field name="price_subtotal"/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Attachment Image">
+								<field name="attachment_ids" widget="many2many_kanban" options="{'not_delete': True}" edit="false" create="true" delete="true"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_sale_order_line" model="ir.actions.act_window">
+			<field name="name">Sale Order Line</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">sale.order.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="menu_sale_order_line"
+				  name="Sale Order Line"
+				  action="action_sale_order_line"
+				  parent="sale.sale_order_menu"/>
 	</data>
 </openerp>

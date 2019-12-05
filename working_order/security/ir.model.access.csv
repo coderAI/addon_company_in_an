@@ -8,3 +8,4 @@ access_delivery_method,access_delivery_method,model_delivery_method,,1,1,1,1
 access_platfrom_list,access_platfrom_list,model_platfrom_list,,1,1,1,1
 access_work_order,access_work_order,model_work_order,,1,1,1,1
 access_work_order_line,access_work_order_line,model_work_order_line,,1,1,1,1
+access_check_product,access_check_product,model_check_product,,1,1,1,1
