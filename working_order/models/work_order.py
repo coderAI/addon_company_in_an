@@ -57,7 +57,7 @@ class work_order(models.Model):
         for so in self.sale_order_ids:
             for sol in so.order_line:
                 if sol.product_id.type == 'product':
-                    for i in range(1,int(sol.product_uom_qty)):
+                    for i in range(0,int(sol.product_uom_qty)):
                         work_order_line_obj.create({
                             'sale_order_line_id':sol.id,
                             'sale_order_id':so.id,
