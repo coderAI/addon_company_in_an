@@ -26,7 +26,7 @@
         'views/store_info_view.xml',
         'views/market_place_view.xml',
         'views/delivery_method_view.xml',
-        'views/platfrom_list_view.xml',
+        'views/platform_list_view.xml',
     ],
     'installable': True,
 }

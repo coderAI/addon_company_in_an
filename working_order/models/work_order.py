@@ -26,7 +26,7 @@ class delivery_method(models.Model):
 
 
 class platfrom_list(models.Model):
-    _name = 'platfrom.list'
+    _name = 'platform.list'
     _inherit = 'reason.cancel'
 
 

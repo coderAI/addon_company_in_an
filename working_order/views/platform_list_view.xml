@@ -2,31 +2,31 @@
 <odoo>
     <data>
 
-        <record id="view_platfrom_list_tree" model="ir.ui.view">
-            <field name="name">view.platfrom.list.form</field>
-            <field name="model">platfrom.list</field>
+        <record id="view_platform_list_tree" model="ir.ui.view">
+            <field name="name">view.platform.list.form</field>
+            <field name="model">platform.list</field>
             <field name="arch" type="xml">
-                <tree string="Platfrom List">
+                <tree string="Platform List">
                     <field name="name"/>
                     <field name="active"/>
                 </tree>
             </field>
         </record>
 
-        <record id="view_platfrom_list_filter" model="ir.ui.view">
-            <field name="name">view.platfrom.list.filter</field>
-            <field name="model">platfrom.list</field>
+        <record id="view_platform_list_filter" model="ir.ui.view">
+            <field name="name">view.platform.list.filter</field>
+            <field name="model">platform.list</field>
             <field name="arch" type="xml">
-                <search string="Platfrom List">
+                <search string="Platform List">
                     <field name="name"/>
                     <field name="active"/>
                 </search>
             </field>
         </record>
 
-        <record id="view_platfrom_list_form" model="ir.ui.view">
-            <field name="name">view.platfrom.list.form</field>
-            <field name="model">platfrom.list</field>
+        <record id="view_platform_list_form" model="ir.ui.view">
+            <field name="name">view.platform.list.form</field>
+            <field name="model">platform.list</field>
             <field name="arch" type="xml">
                 <form string="Platfrom List">
                     <header>
@@ -48,17 +48,17 @@
 
 
 
-        <record id="action_view_platfrom_list_tree" model="ir.actions.act_window">
-            <field name="name">Platfrom List</field>
+        <record id="action_view_platform_list_tree" model="ir.actions.act_window">
+            <field name="name">Platform List</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">platfrom.list</field>
+            <field name="res_model">platform.list</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_platfrom_list_tree"/>
         </record>
 
-        <menuitem id="menu_view_platfrom_list_tree" name="Platfrom List"
-                  action="action_view_platfrom_list_tree"
+        <menuitem id="menu_view_platform_list_tree" name="Platform List"
+                  action="action_view_platform_list_tree"
                   parent="menu_config"
                   sequence="6"/>
     </data>

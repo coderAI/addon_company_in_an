@@ -12,7 +12,7 @@
 					<field name="store_id"/>
 					<field name="market_place_id"/>
 					<field name="delivery_method_id"/>
-					<field name="platfrom_id"/>
+					<field name="platform_id"/>
 				</xpath>
 				<xpath expr="//group[@name='sales_person']" position="before">
 					<group string="Special Information" name="special_information">
