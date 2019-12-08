@@ -9,7 +9,8 @@ class sale_order(models.Model):
 
     coupon_code = fields.Char('Coupon Code')
     # orther information
-    payment_menthod = fields.Char('Payment Menthod')
+    payment_method = fields.Char('Payment Method')
+    order_date = fields.Datetime('Order Date')
     transaction_id = fields.Char('Transaction ID')
     order_ip = fields.Char('Order IP')
     tracking_number = fields.Char('Tracking Number')
