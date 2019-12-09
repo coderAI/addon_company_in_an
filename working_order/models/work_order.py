@@ -33,7 +33,7 @@ class platfrom_list(models.Model):
 class work_order(models.Model):
     _name = "work.order"
 
-    name = fields.Char('Work Order Name')
+    name = fields.Char('Work Order Name', default=lambda self: _('New'))
     create_order_time = fields.Datetime('Work Order Time', readonly=True)
     done_order_time = fields.Datetime('Work Order Done', readonly=True)
     work_order_code = fields.Char('Work Order Code')
@@ -41,8 +41,8 @@ class work_order(models.Model):
     user_id = fields.Many2one('res.users', string='User', ondelete='cascade', default=lambda self: self._uid)
     picking_id = fields.Many2one('stock.picking', string='Piking')
     sale_order_ids = fields.Many2many('sale.order', 'work_order_sale_order_rel', 'work_order_id',
-                                           'sale_order_id',
-                                           string='Sale Order')
+                                      'sale_order_id',
+                                      string='Sale Order')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('in progress', 'In Progress'),
@@ -50,23 +50,32 @@ class work_order(models.Model):
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
-
     @api.multi
     def btn_map_sale_order(self):
         work_order_line_obj = self.env['work.order.line']
         for so in self.sale_order_ids:
             for sol in so.order_line:
                 if sol.product_id.type == 'product':
-                    for i in range(0,int(sol.product_uom_qty)):
+                    for i in range(0, int(sol.product_uom_qty)):
                         work_order_line_obj.create({
-                            'sale_order_line_id':sol.id,
-                            'sale_order_id':so.id,
+                            'sale_order_line_id': sol.id,
+                            'sale_order_id': so.id,
                             'work_order_id': self.id,
-                            'name': (self.name or '')+(so.name or '')+str(i),
+                            'name': (self.name or '') + (so.name or '') + str(i),
                         })
-        self.state='in progress'
-
+        self.state = 'in progress'
         return
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('work.order') or _('New')
+        result = super(work_order, self).create(vals)
+        return result
+
+
+
+
 
 class work_order_line(models.Model):
     _name = "work.order.line"
@@ -86,5 +95,3 @@ class work_order_line(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
-
-

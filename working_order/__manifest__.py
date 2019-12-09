@@ -12,6 +12,8 @@
     'data': [
         # 'security/kop_security.xml',
         'security/ir.model.access.csv',
+        # data
+        'data/ir_sequence_data.xml',
         #
         'views/menu.xml',
         # 'views/region_type_view.xml',
