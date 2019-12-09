@@ -72,7 +72,7 @@
 
         <menuitem id="menu_view_check_product_tree" name="Check Product"
                   action="action_view_check_product_tree"
-                  parent="sale.sale_order_menu"
+                  parent="menu_transfer"
                   sequence="6"/>
     </data>
 </odoo>

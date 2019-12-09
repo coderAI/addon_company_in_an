@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 
 class reason_cancel(models.Model):
     _name = 'reason.cancel'
-
+    _description = 'Reason Cancel'
     name = fields.Char('Name')
     active = fields.Boolean('Active', default=True)
 
