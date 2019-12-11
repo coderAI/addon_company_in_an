@@ -7,8 +7,16 @@ class check_product(models.Model):
     _name = 'check.product'
     _description = 'Check Product'
 
+
+    def _default_sale_order_ids(self):
+        sale_order_data = self.env['sale.order'].sudo().search([('state','in',['sale','paid','done','product hold'])])
+        return sale_order_data.ids
+
     name = fields.Char('Name', default=lambda self: _('New'))
     active = fields.Boolean('Active', default=True)
+    sale_order_ids = fields.Many2many('sale.order', column1 = 'check_product_id',
+    column2 = 'sale_order_id', string = 'Sale order', default=_default_sale_order_ids)
+
     sale_order_line_ids = fields.One2many('sale.order.line', 'check_product_id')
     user_id = fields.Many2one('res.users', 'User', default=lambda self: self.env.user)
     maximum_sale_order_line = fields.Integer('Limit Sale Order Line')
@@ -33,9 +41,12 @@ class check_product(models.Model):
         sale_order_obj = self.env['sale.order']
         quant_obj = self.env['stock.quant']
         product_obj = self.env['product.product']
-        sale_order_line = sale_order_line_obj.search([('order_id.state', 'in', ['paid','done','sale']),
-                                                      ('check_maped', '=', False)],
-                                                     order="id asc")
+        sale_order_line = []
+        for so in self.sale_order_ids:
+            sale_order_line+=so.order_line.ids
+            # sale_order_line_obj.search([('order_id.state', 'in', ['paid','done','sale']),
+            #                                           ('check_maped', '=', False)],
+            #                                          order="id asc")
         sale_order = sale_order_obj.search([('state', 'in', ['paid','done','sale']),
                                             ],
                                            order="order_date asc")
@@ -43,7 +54,7 @@ class check_product(models.Model):
             # tổng số lượng product cần cho đợt checking này
             if sale_order_line:
                 sql = '''select product_id as product_id, sum(product_uom_qty) as total from sale_order_line 
-                         where id in %s   group by product_id''' % (str(tuple(sale_order_line.ids)))
+                         where id in %s   group by product_id''' % (str(tuple(sale_order_line)))
                 self._cr.execute(sql)
                 product_sol_checking = self._cr.dictfetchall()
 
@@ -81,7 +92,7 @@ class check_product(models.Model):
                             break
                     # nếu toàn bộ sol không nằm trong danh sách đen trực tiếp cập nhật luôn so state
                     if so_id_skip:
-                        checking_so.state = 'product hold'
+                        checking_so.state = 'in product'
                     else:
                         so_pass_second_check = True
                         for sol in checking_so.order_line:
@@ -90,14 +101,14 @@ class check_product(models.Model):
                                 # nếu số lượng đang có không đủ cung cấp cho 1
                                 # trong các sol line lập tức dừng check cập nhật trạng thái so
                                 if sol.product_uom_qty > convet_second_checking_list.get(sol.product_id.id):
-                                    checking_so.state = 'in product'
+                                    checking_so.state = 'product hold'
                                     so_pass_second_check = False
                                     break
                                 else:
                                     sol_checking_list.update({sol.product_id.id: sol.product_uom_qty})
                         # mấy thằng nằm trong back list nhưng được cái số hưởng vì mua sơm nên vẫng đủ cung cấp
                         if so_pass_second_check:
-                            checking_so.state = 'product hold'
+                            checking_so.state = 'in product'
                             # cấp nhật lại tổng số lượng đem check của backlist
                             for item_sale in sol_checking_list:
                                 total_product_check = convet_second_checking_list.get(item_sale) - sol_checking_list.get(
@@ -107,5 +118,5 @@ class check_product(models.Model):
                 sql_sale_order_line_ids = """
                                         UPDATE sale_order_line SET check_product_id = %s 
                                             WHERE id in %s
-                                     """ % (cp.id, str(tuple(sale_order_line.ids)))
+                                     """ % (cp.id, str(tuple(sale_order_line)))
                 self._cr.execute(sql_sale_order_line_ids)

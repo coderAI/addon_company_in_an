@@ -30,18 +30,17 @@
             <field name="model">check.product</field>
             <field name="arch" type="xml">
                 <form string="Check Product Info">
-                    <header>
-                        <button class="oe_highlight" name="btn_map_sale_order_line" type="object" string="Map Sale Order line"/>
-                        <field name="state" widget="statusbar"/>
-                    </header>
                     <sheet>
-                        <group>
-                                <field name="name"/>
-                                <field name="user_id"/>
-                                <field name="active"/>
-                                <field name="maximum_sale_order_line"/>
-                        </group>
+                        <button class="oe_highlight" name="btn_map_sale_order_line" type="object" string="Map Sale Order line"/>
                         <notebook>
+                            <page string="Sale order">
+                                <field name="sale_order_ids" readonly="1">
+                                    <tree string="Line">
+                                        <field name="name"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
                             <page string="Sale order line">
                                 <field name="sale_order_line_ids" readonly="1">
                                     <tree string="Line">
@@ -67,7 +66,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">check.product</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
         </record>
 
         <menuitem id="menu_view_check_product_tree" name="Check Product"
