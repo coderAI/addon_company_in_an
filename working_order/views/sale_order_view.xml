@@ -10,11 +10,9 @@
 					<field name="order_date"/>
 					<field name="coupon_code"/>
 					<field name="store_id"/>
-					<field name="platform_id"/>
-				</xpath>
-				<xpath expr="//field[@name='currency_id']" position="after">
 					<field name="market_place_id"/>
-					<!--					<field name="delivery_method_id"/>-->
+					<field name="delivery_method_id"/>
+					<field name="platform_id"/>
 				</xpath>
 				<xpath expr="//group[@name='sales_person']" position="before">
 					<group string="Special Information" name="special_information">
