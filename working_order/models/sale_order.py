@@ -4,6 +4,7 @@
 
 from odoo import api, fields, models, _
 
+
 class sale_order(models.Model):
     _inherit = "sale.order"
 
@@ -30,17 +31,19 @@ class sale_order(models.Model):
         ('to delivery', 'To Delivery'),
         ('done', 'Locked'),
         ('cancel', 'Cancelled'),
-        ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+
 
 class ir_attachment(models.Model):
     _inherit = "ir.attachment"
     sale_order_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
 
+
 class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
     attachment_ids = fields.One2many('ir.attachment', 'sale_order_line_id',
-                                      string='Attachments')
+                                     string='Attachments')
     check_product_id = fields.Many2one('check.product', string='check product')
     check_maped = fields.Boolean(string='Map Check Product', default=False)
     description = fields.Char('Description')

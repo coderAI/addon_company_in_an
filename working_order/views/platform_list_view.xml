@@ -54,7 +54,7 @@
             <field name="res_model">platform.list</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_platfrom_list_tree"/>
+            <field name="view_id" ref="view_platform_list_tree"/>
         </record>
 
         <menuitem id="menu_view_platform_list_tree" name="Platform List"

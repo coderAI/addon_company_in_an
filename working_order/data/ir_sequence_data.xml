@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for check.product -->
+        <record id="seq_check_product" model="ir.sequence">
+            <field name="name">Check Product</field>
+            <field name="code">check.product</field>
+            <field name="prefix">CP</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for work.order -->
+        <record id="seq_work_order" model="ir.sequence">
+            <field name="name">Work Order</field>
+            <field name="code">work.order</field>
+            <field name="prefix">WO</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
