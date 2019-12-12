@@ -3,6 +3,7 @@
 
 
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class sale_order(models.Model):
@@ -33,6 +34,37 @@ class sale_order(models.Model):
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
+
+    @api.multi
+    def action_confirm(self):
+        if self._get_forbidden_state_confirm() & set(self.mapped('state')):
+            raise UserError(_(
+                'It is not allowed to confirm an order in the following states: %s'
+            ) % (', '.join(self._get_forbidden_state_confirm())))
+
+        for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
+            order.message_subscribe([order.partner_id.id])
+        self.write({
+            'state': 'sale',
+            'confirmation_date': fields.Datetime.now()
+        })
+        # self._action_confirm()
+        # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+        #     self.action_done()
+        return True
+
+    @api.multi
+    def action_set_to_paid(self):
+        for so in self:
+            so.write({'state': 'paid'})
+
+    @api.multi
+    def action_set_to_delivery(self):
+        for so in self:
+            so.write({'state': 'to delivery'})
+            self._action_confirm()
+            if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+                self.action_done()
 
 class ir_attachment(models.Model):
     _inherit = "ir.attachment"
