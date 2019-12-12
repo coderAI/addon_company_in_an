@@ -11,6 +11,7 @@
 					<field name="coupon_code"/>
 					<field name="store_id"/>
 					<field name="market_place_id"/>
+					<field name="delivery_method_id" invisible="1"/>
 
 					<field name="platform_id"/>
 				</xpath>
@@ -70,17 +71,20 @@
 			<field name="arch" type="xml">
 				<form string="Sale Order Views">
 					<header>
+
 						<field name="state" widget="statusbar" nolabel="1" readonly="1"/>
 					</header>
 					<sheet>
 						<group>
 							<group>
+
 								<field name="name" readonly="1"/>
 								<field name="product_id" readonly="1"/>
 								<field name="product_uom_qty" readonly="1"/>
 								<field name="product_uom" readonly="1"/>
 							</group>
 							<group>
+
 								<field name="discount" readonly="1"/>
 								<field name="price_unit" readonly="1"/>
 								<field name="price_tax" readonly="1"/>
@@ -99,6 +103,7 @@
 		</record>
 
 		<record id="action_sale_order_line" model="ir.actions.act_window">
+
 			<field name="name">Sale Order - Image</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">sale.order.line</field>
@@ -106,6 +111,7 @@
 			<field name="view_mode">tree,form</field>
 		</record>
 		<menuitem id="menu_sale_order_line"
+
 				  name="Sale Order - Image"
 				  action="action_sale_order_line"
 				  parent="sale.sale_order_menu"/>
