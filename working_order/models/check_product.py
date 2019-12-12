@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 from odoo import api, fields, models, _
-
+import logging
+_logger = logging.getLogger(__name__)
 
 class check_product(models.Model):
     _name = 'check.product'
@@ -9,7 +10,7 @@ class check_product(models.Model):
 
 
     def _default_sale_order_ids(self):
-        sale_order_data = self.env['sale.order'].sudo().search([('state','in',['sale','paid','done','product hold'])])
+        sale_order_data = self.env['sale.order'].sudo().search([('state','in',['sale','paid','done','product hold'])],order="order_date asc")
         return sale_order_data.ids
 
     name = fields.Char('Name', default=lambda self: _('New'))
@@ -47,9 +48,7 @@ class check_product(models.Model):
             # sale_order_line_obj.search([('order_id.state', 'in', ['paid','done','sale']),
             #                                           ('check_maped', '=', False)],
             #                                          order="id asc")
-        sale_order = sale_order_obj.search([('state', 'in', ['paid','done','sale']),
-                                            ],
-                                           order="order_date asc")
+        sale_order = self.sale_order_ids
         for cp in self:
             # tổng số lượng product cần cho đợt checking này
             if sale_order_line:
@@ -66,7 +65,9 @@ class check_product(models.Model):
                 convet_sol_state_data = {}
                 for row in product_sol_state_in_product:
                     convet_sol_state_data.update({row.get('product_id'): row.get('total')})
-
+                _logger.info("----------convet_sol_state_data-----------")
+                _logger.info(convet_sol_state_data)
+                _logger.info("---------------------")
                 back_list_product = []
                 wite_list_product = []
                 convet_checking_list = {}
@@ -75,13 +76,23 @@ class check_product(models.Model):
                     sol_in_product = 0
                     if convet_sol_state_data.get(int(row.get('product_id'))):
                         sol_in_product = convet_sol_state_data.get(int(row.get('product_id')))
-                    virtual_available = int(product_obj.browse(int(row.get('product_id'))).virtual_available) - sol_in_product
+
+                    virtual_available = int(product_obj.browse(int(row.get('product_id'))).qty_available) - sol_in_product
+                    _logger.info("----------virtual_available-----------")
+                    _logger.info(virtual_available)
+                    _logger.info(sol_in_product)
+                    _logger.info(int(product_obj.browse(int(row.get('product_id'))).virtual_available))
+                    _logger.info(int(product_obj.browse(int(row.get('product_id'))).qty_available))
+                    _logger.info("---------------------")
                     if virtual_available >= int(row.get('total')):
                         wite_list_product.append(int(row.get('product_id')))
                         convet_checking_list.update({row.get('product_id'): int(virtual_available)})
                     else:
                         back_list_product.append(int(row.get('product_id')))
                         convet_second_checking_list.update({int(row.get('product_id')): int(virtual_available)})
+                _logger.info("----------convet_second_checking_list-----------")
+                _logger.info(convet_second_checking_list)
+                _logger.info("---------------------")
                 so_id_checking = False
                 for checking_so in sale_order:
                     so_id_skip = True
@@ -92,14 +103,24 @@ class check_product(models.Model):
                             break
                     # nếu toàn bộ sol không nằm trong danh sách đen trực tiếp cập nhật luôn so state
                     if so_id_skip:
+                        _logger.info("----------vào----------")
                         checking_so.state = 'in product'
                     else:
+                        _logger.info("----------back_list_product-----------")
+                        _logger.info(back_list_product)
+                        _logger.info("---------------------")
                         so_pass_second_check = True
                         for sol in checking_so.order_line:
+                            _logger.info("----------sol-----------")
+                            _logger.info(sol.product_id.id)
+                            _logger.info(sol.product_uom_qty)
+                            _logger.info("---------------------")
                             sol_checking_list = {}
                             if sol.product_id.id in back_list_product:
                                 # nếu số lượng đang có không đủ cung cấp cho 1
                                 # trong các sol line lập tức dừng check cập nhật trạng thái so
+                                _logger.info(sol.product_uom_qty)
+                                _logger.info(convet_second_checking_list.get(sol.product_id.id))
                                 if sol.product_uom_qty > convet_second_checking_list.get(sol.product_id.id):
                                     checking_so.state = 'product hold'
                                     so_pass_second_check = False
