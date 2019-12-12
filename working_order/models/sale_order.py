@@ -57,7 +57,7 @@ class sale_order_line(models.Model):
             'view_mode': 'form',
             'res_model': 'sale.order.line',
             'view_id': view_id.id,
-            'target': 'inline',
+            'target': 'new',
             'res_id': self.id,
             'type': 'ir.actions.act_window',
         }
