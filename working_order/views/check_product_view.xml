@@ -30,13 +30,16 @@
             <field name="model">check.product</field>
             <field name="arch" type="xml">
                 <form string="Check Product Info">
-                    <sheet>
-                        <button class="oe_highlight" name="btn_map_sale_order_line" type="object" string="Map Sale Order line"/>
+
+                        <button class="oe_highlight" name="btn_map_sale_order_line" type="object" string="Check Product"/>
                         <notebook>
                             <page string="Sale order">
                                 <field name="sale_order_ids" readonly="1">
                                     <tree string="Line">
                                         <field name="name"/>
+                                        <field name="order_date"/>
+                                        <field name="team_id"/>
+                                        <field name="user_id"/>
                                         <field name="state"/>
                                     </tree>
                                 </field>
@@ -53,7 +56,7 @@
                                 </field>
                             </page>
                         </notebook>
-                    </sheet>
+
                 </form>
             </field>
         </record>
