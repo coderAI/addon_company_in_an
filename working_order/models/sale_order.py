@@ -19,12 +19,12 @@ class sale_order(models.Model):
     #
     store_id = fields.Many2one('store.info', string='Store')
     market_place_id = fields.Many2one('market.place', string='Market Place')
-    delivery_method_id = fields.Many2one('delivery.method', string='Delivery Method')
+    # delivery_method_id = fields.Many2one('delivery.method', string='Delivery Method') # remove
     platform_id = fields.Many2one('platform.list', string='Platform')
     state = fields.Selection([
         ('draft', 'Quotation'),
         ('sent', 'Quotation Sent'),
-        ('sale', 'Sales Order'),
+        ('sale', 'Confirm'),
         ('paid', 'Paid'),
         ('product hold', 'Product Hold'),
         ('in product', 'In Product'),
