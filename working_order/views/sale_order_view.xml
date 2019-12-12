@@ -11,7 +11,7 @@
 					<field name="coupon_code"/>
 					<field name="store_id"/>
 					<field name="market_place_id"/>
-					<field name="delivery_method_id" invisible="1"/>
+<!--					<field name="delivery_method_id" invisible="1"/>-->
 					<field name="platform_id"/>
 				</xpath>
 				<xpath expr="//group[@name='sales_person']" position="before">

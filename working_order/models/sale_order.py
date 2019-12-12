@@ -24,7 +24,7 @@ class sale_order(models.Model):
     state = fields.Selection([
         ('draft', 'Quotation'),
         ('sent', 'Quotation Sent'),
-        ('sale', 'Confirm'),
+        ('sale', 'Confirm Sale'),
         ('paid', 'Paid'),
         ('product hold', 'Product Hold'),
         ('in product', 'In Product'),
