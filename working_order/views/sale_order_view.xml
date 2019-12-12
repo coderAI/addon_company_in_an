@@ -1,22 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
+		<record id="view_order_form_inherit_sale_stock_inherit_carrier_id" model="ir.ui.view">
+			<field name="name">sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+			<field name="arch" type="xml">
+				<xpath expr="//group[@name='sale_shipping']" position="inside">
+					<field name="carrier_id" />
+					<div name="carrier_selection" modifiers="{}">
+						<div modifiers="{}">
+							<i class="fa fa-check text-success" aria-hidden="true" attrs="{'invisible':['|','|',('carrier_id','=',False),('state','not in',('draft','sent')),('delivery_rating_success','=',False)]}" modifiers="{'invisible':['|','|',['carrier_id','=',false],['state','not in',['draft','sent']],['delivery_rating_success','=',false]]}"/>
+						</div>
+						<div modifiers="{}">
+							<field name="delivery_price" widget="monetary" class="oe_inline" options="{'currency_field': 'currency_id'}" nolabel="1" attrs="{'invisible': [('carrier_id','=', False)]}" force_save="1" modifiers="{'readonly':true,'invisible':[['carrier_id','=',false]]}"/>
+							<button name="get_delivery_price" string="Check price" type="object" class="oe_inline fa fa-arrow-right oe_link" attrs="{'invisible':['|',('carrier_id','=',False),('state','not in',('draft','sent'))]}" modifiers="{'invisible':['|',['carrier_id','=',false],['state','not in',['draft','sent']]]}" options="{}"/>
+							<button name="set_delivery_line" string="Set price" type="object" class="oe_inline fa fa-arrow-right oe_link" attrs="{'invisible':['|','|',('carrier_id','=',False),('state','not in',('draft','sent')),('delivery_rating_success','=',False)]}" modifiers="{'invisible':['|','|',['carrier_id','=',false],['state','not in',['draft','sent']],['delivery_rating_success','=',false]]}" options="{}"/>
+							<field name="delivery_rating_success" invisible="1" force_save="1" modifiers="{'invisible':true}"/>
+						</div>
+						<div class="alert alert-info" role="alert" attrs="{'invisible': ['|',('carrier_id','=', False),('delivery_message','=',False)]}" modifiers="{'invisible':['|',['carrier_id','=',false],['delivery_message','=',false]]}">
+							<field name="delivery_message" force_save="1" modifiers="{'readonly':true}"/>
+						</div>
+					</div>
+
+				</xpath>
+			</field>
+		</record>
+
+
 		<record id="sale_order_extend_form" model="ir.ui.view">
 			<field name="name">sale.order.form</field>
 			<field name="model">sale.order</field>
 			<field name="inherit_id" ref="sale.view_order_form" />
 			<field name="arch" type="xml">
 				<xpath expr="//field[@name='partner_id']" position="after">
-					<field name="order_date"/>
-					<field name="coupon_code"/>
-					<field name="store_id"/>
-					<field name="market_place_id"/>
-					<field name="delivery_method_id" invisible="1"/>
-
-					<field name="platform_id"/>
+					<field name="team_id"/>
+					<field name="user_id"/>
 				</xpath>
+				<xpath expr="//field[@name='validity_date']" position="replace">
+					<field name="validity_date" invisible="1"/>
+				</xpath>
+				<xpath expr="//field[@name='confirmation_date']" position="before">
+					<field name="create_date"/>
+				</xpath>
+				<xpath expr="//field[@name='confirmation_date']" position="after">
+					<field name="order_date"/>
+				</xpath>
+				<xpath expr="//group[@name='sales_person']/field[@name='user_id']" position="replace">
+				</xpath>
+
+				<xpath expr="//group[@name='sales_person']/field[@name='team_id']" position="replace">
+				</xpath>
+				<xpath expr="//div[@name='carrier_selection']" position="replace">
+				</xpath>
+				<xpath expr="//label[@for='carrier_id']" position="replace">
+				</xpath>
+
 				<xpath expr="//group[@name='sales_person']" position="before">
 					<group string="Special Information" name="special_information">
+						<field name="coupon_code"/>
+						<field name="store_id"/>
+						<field name="market_place_id"/>
+						<field name="platform_id"/>
 						<field name="payment_method"/>
 						<field name="transaction_id"/>
 						<field name="order_ip"/>
