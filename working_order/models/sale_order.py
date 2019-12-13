@@ -30,7 +30,7 @@ class sale_order(models.Model):
         ('product hold', 'Product Hold'),
         ('in product', 'In Product'),
         ('to delivery', 'To Delivery'),
-        ('done', 'Locked'),
+        ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 

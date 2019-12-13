@@ -7,7 +7,7 @@
     'category': 'sale',
     'version': '1.0',
     'depends': [
-        'base', 'sale', 'stock','sale_stock',
+        'base', 'sale','account', 'stock','sale_stock',
     ],
     'data': [
         # 'security/kop_security.xml',
