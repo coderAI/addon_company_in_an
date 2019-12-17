@@ -9,7 +9,7 @@
                 <from string="Payslip Import">
                     <sheet>
                         <group>
-                            <field name="sale_order">
+                            <field name="sale_order_ids">
                                 <tree>
                                     <field name="name"/>
                                     <field name="order_date"/>
