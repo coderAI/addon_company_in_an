@@ -24,6 +24,6 @@ class loading_sale_order(models.TransientModel):
                         'sale_order_id': so.id,
                         'work_order_id': self.env.context.get('res_id'),
                         'product_id': sol.product_id.id,
-                        'name': str(i)+'/'+str(int(sol.product_uom_qty)),
+                        'name': str(i+1)+'/'+str(int(sol.product_uom_qty)),
                     })
 
