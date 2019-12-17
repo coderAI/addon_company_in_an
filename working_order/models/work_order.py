@@ -79,6 +79,19 @@ class work_order(models.Model):
         result = super(work_order, self).create(vals)
         return result
 
+    @api.multi
+    def button_open_loading_sale_order(self):
+        view_id = self.env.ref('working_order.view_loading_sale_order_from').id
+        return {'type': 'ir.actions.act_window',
+                'name': _('Loading Data'),
+                'res_model': 'loading.sale.order',
+                'target': 'new',
+                'view_mode': 'form',
+                'context': {
+                    'res_id': self.id,
+                },
+                'views': [[view_id, 'form']],
+        }
 
 class work_order_line(models.Model):
     _name = "work.order.line"
@@ -102,16 +115,3 @@ class work_order_line(models.Model):
 
 
 
-    @api.multi
-    def button_open_loading_sale_order(self):
-        view_id = self.env.ref('working_order.view_loading_sale_order_from').id
-        return {'type': 'ir.actions.act_window',
-                'name': _('Loading Data'),
-                'res_model': 'loading.sale.order',
-                'target': 'new',
-                'view_mode': 'form',
-                'context': {
-                    'res_id': self.id,
-                },
-                'views': [[view_id, 'form']],
-        }
