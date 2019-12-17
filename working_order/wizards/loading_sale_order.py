@@ -17,12 +17,13 @@ class loading_sale_order(models.TransientModel):
     def button_add_sale_order(self):
         work_order_line_obj= self.env['work.order.line']
         for so in self.sale_order_ids:
-            for sol in so:
+            for sol in so.order_line:
                 for i in range(0, int(sol.product_uom_qty)):
                     work_order_line_obj.create({
                         'sale_order_line_id': sol.id,
                         'sale_order_id': so.id,
-                        'work_order_id': self.id,
+                        'work_order_id': self.env.context.get('res_id'),
+                        'product_id': sol.product_id.id,
                         'name': str(i)+'/'+str(int(sol.product_uom_qty)),
                     })
 
