@@ -10,7 +10,7 @@ class check_product(models.Model):
 
 
     def _default_sale_order_ids(self):
-        sale_order_data = self.env['sale.order'].sudo().search([('state','in',['sale','paid','done','product hold'])],order="order_date asc")
+        sale_order_data = self.env['sale.order'].sudo().search([('state','in',['paid','product hold'])],order="order_date asc")
         return sale_order_data.ids
 
     name = fields.Char('Name', default=lambda self: _('New'))

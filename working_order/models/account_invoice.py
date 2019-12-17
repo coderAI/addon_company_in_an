@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models, api
-
+from odoo.exceptions import Warning
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
