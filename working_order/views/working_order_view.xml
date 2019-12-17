@@ -31,7 +31,7 @@
             <field name="arch" type="xml">
                 <form string="Work Order Info">
                     <header>
-                        <button class="oe_highlight" name="btn_map_sale_order" type="object" string="Map Sale Order"/>
+<!--                        <button class="oe_highlight" name="btn_map_sale_order" type="object" string="Map Sale Order"/>-->
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -49,6 +49,7 @@
                         </group>
                         <notebook>
                             <page string="Working order line">
+                                 <button name="button_open_loading_sale_order" string="ADD Order Line" type="object" class="btn-primary"/>
                                 <field name="work_order_line_ids">
                                     <tree string="Line">
                                         <field name="product_id"/>

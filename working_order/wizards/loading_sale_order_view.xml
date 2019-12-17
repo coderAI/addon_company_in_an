@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_loading_sale_order_from" model="ir.ui.view">
+            <field name="name">Loading</field>
+            <field name="model">loading.sale.order</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <from string="Payslip Import">
+                    <sheet>
+                        <group>
+                            <field name="sale_order">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="order_date"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_add_sale_order" string="ADD" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </from>
+            </field>
+        </record>
+
+        <record id="action_loading_sale_order" model="ir.actions.act_window">
+            <field name="name">Loading</field>
+            <field name="res_model">loading.sale.order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>
+
