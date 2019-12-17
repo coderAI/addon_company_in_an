@@ -51,9 +51,10 @@
                             <page string="Working order line">
                                 <field name="work_order_line_ids">
                                     <tree string="Line">
-                                        <field name="bar_code"/>
+                                        <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="state"/>
+                                        <field name="bar_code"/>
                                     </tree>
                                 </field>
                             </page>

@@ -34,14 +34,14 @@ class work_order(models.Model):
     _name = "work.order"
 
     name = fields.Char('Work Order Name', default=lambda self: _('New'))
-    create_order_time = fields.Datetime('Work Order Time', readonly=True)
-    done_order_time = fields.Datetime('Work Order Done', readonly=True)
-    work_order_code = fields.Char('Work Order Code')
+    create_order_time = fields.Datetime('Work Order Time',track_visibility='onchange', readonly=True)
+    done_order_time = fields.Datetime('Work Order Done',track_visibility='onchange', readonly=True)
+    work_order_code = fields.Char('Work Order Code',track_visibility='onchange')
     work_order_line_ids = fields.One2many('work.order.line', 'work_order_id')
-    user_id = fields.Many2one('res.users', string='User', ondelete='cascade', default=lambda self: self._uid)
-    picking_id = fields.Many2one('stock.picking', string='Piking')
+    user_id = fields.Many2one('res.users', string='User', ondelete='cascade',track_visibility='onchange', default=lambda self: self._uid)
+    picking_id = fields.Many2one('stock.picking',track_visibility='onchange', string='Piking')
     sale_order_ids = fields.Many2many('sale.order', 'work_order_sale_order_rel', 'work_order_id',
-                                      'sale_order_id',
+                                      'sale_order_id',track_visibility='onchange',
                                       string='Sale Order')
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -80,14 +80,15 @@ class work_order(models.Model):
 class work_order_line(models.Model):
     _name = "work.order.line"
 
-    name = fields.Char('Number Order item')
-    bar_code = fields.Char('Barcode')
-    work_order_id = fields.Many2one('work.order', string='Work Order')
-    sale_order_id = fields.Many2one('sale.order', string='Sale Order')
-    sale_order_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
+    name = fields.Char('Number Order item',track_visibility='onchange')
+    bar_code = fields.Char('Barcode',track_visibility='onchange')
+    work_order_id = fields.Many2one('work.order',track_visibility='onchange', string='Work Order')
+    sale_order_id = fields.Many2one('sale.order',track_visibility='onchange', string='Sale Order')
+    sale_order_line_id = fields.Many2one('sale.order.line',track_visibility='onchange', string='Sale Order Line')
+    product_id = fields.Many2one('product.product',track_visibility='onchange', string='Product')
     reason_cancel_id = fields.Many2one('reason.cancel', string='Sale Order')
     stock_move_line_ids = fields.Many2many('stock.move.line', 'stock_move_work_order_rel', 'work_order_id',
-                                           'stock_move_id',
+                                           'stock_move_id',track_visibility='onchange',
                                            string='Work Order')
 
     state = fields.Selection([

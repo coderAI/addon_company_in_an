@@ -71,6 +71,7 @@ class ir_attachment(models.Model):
     sale_order_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
 
 
+
 class sale_order_line(models.Model):
     _inherit = "sale.order.line"
 
@@ -79,6 +80,11 @@ class sale_order_line(models.Model):
     check_product_id = fields.Many2one('check.product', string='check product')
     check_maped = fields.Boolean(string='Map Check Product', default=False)
     description = fields.Char('Description')
+    state_new = fields.Selection([
+        ('draft', 'Draft'),
+        ('in process', 'In Process'),
+        ('done', 'Done')
+    ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
     @api.multi
     def btn_img(self):
