@@ -110,7 +110,7 @@
 
         <menuitem id="menu_view_work_order_tree" name="Work Order"
                   action="action_view_work_order_tree"
-                  parent="menu_transfer"
+                  parent="sale.sale_order_menu"
                   sequence="6"/>
     </data>
 </odoo>

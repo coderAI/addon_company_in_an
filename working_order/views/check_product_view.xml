@@ -73,10 +73,10 @@
             <field name="target">inline</field>
         </record>
 
-        <menuitem id="menu_view_check_product_tree" name="Check Product"
-                  action="action_view_check_product_tree"
-                  parent="menu_transfer"
-                  sequence="6"/>
+<!--        <menuitem id="menu_view_check_product_tree" name="Check Product"-->
+<!--                  action="action_view_check_product_tree"-->
+<!--                  parent="menu_transfer"-->
+<!--                  sequence="6"/>-->
 
         <menuitem id="menu_view_sale_check_product_tree" name="Check Product"
                   action="action_view_check_product_tree"
