@@ -34,14 +34,14 @@
                 <form string="Work Order Info">
                     <header>
                         <!--                        <button name="btn_map_sale_order" type="object" string="Map Sale Order" class="oe_highlight"/>-->
-                        <button name="set_to_in_process" type="object" string="In Process" class="oe_highlight"/>
-                        <button name="create_picking" type="object" string="Create Picking" class="oe_highlight"/>
-                        <button name="set_to_draft" type="object" string="Set to Draft" class="oe_highlight"/>
+                        <button name="set_to_in_process" type="object" string="In Process" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <button name="create_picking" type="object" string="Create Picking" class="oe_highlight" attrs="{'invisible':[('state','!=','cancel')]}"/>
+                        <button name="set_to_draft" type="object" string="Set to Draft" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="761" class="oe_stat_button" icon="fa-money" type="action">
+                            <button name="open_picking" class="oe_stat_button" type="object">
                                 <field name="picking_count" widget="statinfo" string="Picking" modifiers="{'readonly': true}"/>
                             </button>
                         </div>

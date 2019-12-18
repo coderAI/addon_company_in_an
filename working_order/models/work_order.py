@@ -177,6 +177,12 @@ class work_order(models.Model):
 
         return
 
+    @api.multi
+    def open_picking(self):
+        action = self.env.ref('stock.action_picking_tree_all').read()[0]
+        action['context'] = {}
+        action['domain'] = [('id', 'in', self.picking_ids.ids)]
+        return action
 
 class work_order_line(models.Model):
     _name = "work.order.line"
