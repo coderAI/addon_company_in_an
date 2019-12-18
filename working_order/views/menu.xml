@@ -7,7 +7,7 @@
 
         <menuitem id="menu_transfer"
                   name="Working Order"
-                  parent="menu_root_transfer"
+                  parent="sale.sale_order_menu"
                   sequence="7"   />
 
         <menuitem id="menu_config"

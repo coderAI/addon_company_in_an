@@ -54,10 +54,16 @@ class work_order(models.Model):
     work_order_line_ids = fields.One2many('work.order.line', 'work_order_id')
     user_id = fields.Many2one('res.users', string='User', ondelete='cascade', track_visibility='onchange',
                               default=lambda self: self._uid)
-    picking_id = fields.Many2one('stock.picking', track_visibility='onchange', string='Piking')
+    picking_ids = fields.Many2many('stock.picking', 'work_order_picking_rel', 'work_order_id',
+                                      'picking_id', track_visibility='onchange',
+                                      string='Picking')
+    picking_count = fields.Integer(compute='_compute_picking_count', string="Picking Computation Details")
     sale_order_ids = fields.Many2many('sale.order', 'work_order_sale_order_rel', 'work_order_id',
                                       'sale_order_id', track_visibility='onchange',
                                       string='Sale Order')
+    sale_order_line_ids = fields.Many2many('sale.order.line', 'work_order_sale_order_line_rel', 'work_order_id',
+                                      'sale_order_line_id', track_visibility='onchange',
+                                      string='Sale Order Line')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('in progress', 'In Progress'),
@@ -70,7 +76,10 @@ class work_order(models.Model):
     picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type', required=True,
                                       default=_default_picking_type,
                                       help="This will determine picking type of incoming shipment")
-
+    @api.multi
+    def _compute_picking_count(self):
+        for wo in self:
+            wo.picking_count = len(wo.picking_ids)
 
     @api.multi
     def btn_map_sale_order(self):
@@ -78,6 +87,7 @@ class work_order(models.Model):
         for so in self.sale_order_ids:
             for sol in so.order_line:
                 if sol.product_id.type == 'product':
+                    sol.state_new = 'in progress'
                     for i in range(0, int(sol.product_uom_qty)):
                         work_order_line_obj.create({
                             'sale_order_line_id': sol.id,
@@ -85,7 +95,8 @@ class work_order(models.Model):
                             'work_order_id': self.id,
                             'name': (self.name or '') + (so.name or '') + str(i),
                         })
-        self.state = 'in progress'
+					
+        
         return
 
     @api.model
@@ -108,9 +119,8 @@ class work_order(models.Model):
                 },
                 'views': [[view_id, 'form']],
         }
-
     @api.multi
-    def set_to_in_process(self):
+    def create_picking(self):
         for wo in self.filtered(lambda m: m.state == 'draft'):
             # Get data line
             product_val = {}
@@ -123,12 +133,12 @@ class work_order(models.Model):
             # Create picking
             company_id = wo.company_id.id
             pick = {
-                    'picking_type_id': wo.picking_type_id.id,
-                    'origin': wo.name,
-                    'location_dest_id': wo.picking_type_id.default_location_dest_id.id,
-                    'location_id': wo.picking_type_id.default_location_src_id.id,
-                    'company_id': company_id,
-                }
+                'picking_type_id': wo.picking_type_id.id,
+                'origin': wo.name,
+                'location_dest_id': wo.picking_type_id.default_location_dest_id.id,
+                'location_id': wo.picking_type_id.default_location_src_id.id,
+                'company_id': company_id,
+            }
             picking = self.env['stock.picking'].create(pick)
             wo.picking_id = picking.id
             product_obj = self.env['product.product']
@@ -149,8 +159,22 @@ class work_order(models.Model):
                     'warehouse_id': picking.picking_type_id.warehouse_id.id,
                 }
                 move_obj.create(template)
+    @api.multi
+    def set_to_draft(self):
+        self.state = 'draft'
+        for i in self.work_order_line_ids:
+            if i.state != 'draft':
+                raise Warning('You can not set to draft this work order')
+        self.sale_order_i_line_ids.state_new = 'draft'
 
-            # wo.write({'state': 'in progress'})
+
+    @api.multi
+    def set_to_in_process(self):
+        for wo in self.filtered(lambda m: m.state == 'draft'):
+            # Get data line
+            wo.state= 'in progress'
+            wo.sale_order_i_line_ids.state_new = 'in progress'
+
         return
 
 
@@ -169,7 +193,7 @@ class work_order_line(models.Model):
                                            string='Work Order')
 
     state = fields.Selection([
-        ('draft', 'Draft'),
+        ('draft', 'Draft'),		
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
