@@ -64,7 +64,8 @@
                         </group>
                         <notebook>
                             <page string="Working order line">
-                                <button name="button_open_loading_sale_order" string="ADD Order Line" type="object" class="btn-primary oe_edit_only"/>
+                                <button name="button_open_loading_sale_order" string="ADD Order Line" type="object" class="btn-primary oe_edit_only"
+                                        attrs="{'invisible':[('state','!=','draft')]}"/>
                                 <field name="work_order_line_ids" readonly="1">
                                     <tree string="Line">
                                         <field name="product_id"/>
