@@ -37,6 +37,15 @@ class work_order(models.Model):
     def _get_wo_name(self):
         return self.env['ir.sequence'].next_by_code('work.order') or _('New')
 
+    @api.model
+    def _default_picking_type(self):
+        type_obj = self.env['stock.picking.type']
+        company_id = self.env.context.get('company_id') or self.env.user.company_id.id
+        types = type_obj.search([('code', '=', 'internal'), ('warehouse_id.company_id', '=', company_id)], limit=1)
+        if not types:
+            types = type_obj.search([('code', '=', 'internal'), ('warehouse_id', '=', False)])
+        return types[:1]
+
     name = fields.Char('Work Order Name', default=_get_wo_name)
     create_order_time = fields.Datetime('Work Order Time', track_visibility='onchange', readonly=True,
                                         default=fields.Datetime.now)
@@ -55,6 +64,13 @@ class work_order(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+    # for create picking
+    company_id = fields.Many2one('res.company', 'Company',
+                                 default=lambda self: self.env['res.company']._company_default_get('sale.order'))
+    picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type', required=True,
+                                      default=_default_picking_type,
+                                      help="This will determine picking type of incoming shipment")
+
 
     @api.multi
     def btn_map_sale_order(self):
@@ -92,6 +108,51 @@ class work_order(models.Model):
                 },
                 'views': [[view_id, 'form']],
         }
+
+    @api.multi
+    def set_to_in_process(self):
+        for wo in self.filtered(lambda m: m.state == 'draft'):
+            # Get data line
+            product_val = {}
+            for sol in wo.work_order_line_ids.mapped('sale_order_line_id'):
+                product_id = sol.product_id.id
+                if product_id not in product_val:
+                    product_val.update({product_id: sol.product_uom_qty or 0.0})
+                else:
+                    product_val[product_id] += sol.product_uom_qty
+            # Create picking
+            company_id = wo.company_id.id
+            pick = {
+                    'picking_type_id': wo.picking_type_id.id,
+                    'origin': wo.name,
+                    'location_dest_id': wo.picking_type_id.default_location_dest_id.id,
+                    'location_id': wo.picking_type_id.default_location_src_id.id,
+                    'company_id': company_id,
+                }
+            picking = self.env['stock.picking'].create(pick)
+            wo.picking_id = picking.id
+            product_obj = self.env['product.product']
+            move_obj = self.env['stock.move']
+            for product_id in product_val:
+                product = product_obj.browse(product_id)
+                template = {
+                    'name': product.name or '',
+                    'product_id': product_id,
+                    'product_uom_qty': product_val[product_id] or 0.0,
+                    'product_uom': product.uom_id.id,
+                    'location_dest_id': wo.picking_type_id.default_location_dest_id.id,
+                    'location_id': wo.picking_type_id.default_location_src_id.id,
+                    'picking_id': picking.id,
+                    'state': 'draft',
+                    'company_id': company_id,
+                    'picking_type_id': picking.picking_type_id.id,
+                    'warehouse_id': picking.picking_type_id.warehouse_id.id,
+                }
+                move_obj.create(template)
+
+            # wo.write({'state': 'in progress'})
+        return
+
 
 class work_order_line(models.Model):
     _name = "work.order.line"
