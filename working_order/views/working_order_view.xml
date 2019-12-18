@@ -52,8 +52,7 @@
                                 <field name="create_order_time"/>
                                 <field name="done_order_time"/>
                                 <field name="picking_id"/>
-                                <field name="company_id"/>
-                                <field name="picking_type_id"/>
+
                             </group>
                         </group>
                         <notebook>
@@ -67,6 +66,19 @@
                                     </tree>
                                 </field>
                             </page>
+
+                            <page string="Others">
+                                <group>
+                                    <group>
+                                        <field name="company_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="picking_type_id"/>
+                                    </group>
+                                </group>
+                            </page>
+
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
