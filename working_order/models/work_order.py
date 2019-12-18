@@ -166,10 +166,10 @@ class work_order(models.Model):
         self.state = 'draft'
         for i in self.picking_ids:
             if i.state != 'cancel':
-                raise Warning('You can not set to draft this work order')
+                raise Warning('You can not set to draft this work order because picking')
         for i in self.work_order_line_ids:
             if i.state != 'draft':
-                raise Warning('You can not set to draft this work order')
+                raise Warning('You can not set to draft this work order because work order line')
         for wol in self.work_order_line_ids:
             for sol in wol.sale_order_line_id:
                 sol.state_new = 'draft'
