@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 from odoo import api, fields, models, _
-
+from odoo.exceptions import Warning
 
 class reason_cancel(models.Model):
     _name = 'reason.cancel'
@@ -121,7 +121,7 @@ class work_order(models.Model):
         }
     @api.multi
     def create_picking(self):
-        for wo in self.filtered(lambda m: m.state == 'draft'):
+        for wo in self:
             # Get data line
             product_val = {}
             for sol in wo.work_order_line_ids.mapped('sale_order_line_id'):
@@ -140,7 +140,8 @@ class work_order(models.Model):
                 'company_id': company_id,
             }
             picking = self.env['stock.picking'].create(pick)
-            wo.picking_id = picking.id
+            wo.picking_ids =  [(6, 0, [picking.id])]
+
             product_obj = self.env['product.product']
             move_obj = self.env['stock.move']
             for product_id in product_val:
@@ -158,23 +159,29 @@ class work_order(models.Model):
                     'picking_type_id': picking.picking_type_id.id,
                     'warehouse_id': picking.picking_type_id.warehouse_id.id,
                 }
+
                 move_obj.create(template)
     @api.multi
     def set_to_draft(self):
         self.state = 'draft'
+        for i in self.picking_ids:
+            if i.state != 'cancel':
+                raise Warning('You can not set to draft this work order')
         for i in self.work_order_line_ids:
             if i.state != 'draft':
                 raise Warning('You can not set to draft this work order')
-        self.sale_order_i_line_ids.state_new = 'draft'
+        for wol in self.work_order_line_ids:
+            for sol in wol.sale_order_line_id:
+                sol.state_new = 'draft'
 
 
     @api.multi
     def set_to_in_process(self):
         for wo in self.filtered(lambda m: m.state == 'draft'):
-            # Get data line
             wo.state= 'in progress'
-            wo.sale_order_i_line_ids.state_new = 'in progress'
-
+            for wol in self.work_order_line_ids:
+                for sol in wol.sale_order_line_id:
+                    sol.state_new = 'in process'
         return
 
     @api.multi
@@ -204,5 +211,10 @@ class work_order_line(models.Model):
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
-
+    # @api.model
+    # def create(self, vals):
+    #
+    #     vals['bar_code'] = self.env['ir.sequence'].next_by_code('work.order.line') or _('New')
+    #     result = super(work_order, self).create(vals)
+    #     return result
 
