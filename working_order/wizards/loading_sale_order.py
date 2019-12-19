@@ -8,9 +8,19 @@ _logger = logging.getLogger(__name__)
 class loading_sale_order(models.TransientModel):
     _name = 'loading.sale.order'
 
+    def default_sale_order_line_ids(self):
+        sale_order_data = self.env['sale.order.line'].sudo().search(
+            [
+                # ('state_new', '=', 'draft'),  # tam thơi # de co data
+             ('order_id.state', '=', 'in product')])
+        return sale_order_data.ids
 
-    sale_order_ids = fields.Many2many('sale.order', 'sale_order_rel', 'loading_id', 'so_id',string="Sale Order", domain=[('state', '=', 'in product')])
-    sale_order_line_ids = fields.Many2many('sale.order.line', 'sale_order_line_rel', 'loading_id', 'so_line_id',string="Sale Order Line", domain=[('state_new','=','draft'),('order_id.state', '=', 'in product')])
+    sale_order_ids = fields.Many2many('sale.order', 'sale_order_rel', 'loading_id', 'so_id', string="Sale Order",
+                                      domain=[('state', '=', 'in product')])
+    sale_order_line_ids = fields.Many2many('sale.order.line', 'sale_order_line_rel', 'loading_id', 'so_line_id',
+                                           string="Sale Order Lines",
+                                           default=default_sale_order_line_ids,
+                                           domain=[('state_new', '=', 'draft'), ('order_id.state', '=', 'in product')])
     log = fields.Text()
 
 
