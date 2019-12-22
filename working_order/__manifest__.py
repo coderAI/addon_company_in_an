@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         # data
         'data/ir_sequence_data.xml',
+        'views/web_assets.xml',
         #
         'views/menu.xml',
         # 'views/region_type_view.xml',
@@ -30,6 +31,10 @@
         'views/market_place_view.xml',
         'views/delivery_method_view.xml',
         'views/platform_list_view.xml',
+
+    ],
+    "qweb": [
+        'static/src/xml/widget_view.xml',
     ],
     'installable': True,
 }

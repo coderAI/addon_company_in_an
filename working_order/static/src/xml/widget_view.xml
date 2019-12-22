@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="X2ManySelectable">
+     	<div class="ep_button_array">
+	        <div>
+	            <button icon="gtk-yes" 
+	            		class="ep_button_confirm oe_button oe_highlight" 
+	            		href="javascript:void(0)">
+            		Next state
+           		</button>
+				<button icon="gtk-yes"
+	            		class="ep_button_confirms oe_button oe_highlight"
+	            		href="javascript:void(0)">
+            		Back to Return state
+           		</button>
+
+	        </div>
+        </div>
+    </t>
+    
+</templates>

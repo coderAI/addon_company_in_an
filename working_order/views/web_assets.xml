@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_o2m_checkbox" name="one2many checkbox assets" inherit_id="web.assets_backend">
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/working_order/static/src/js/widgets.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

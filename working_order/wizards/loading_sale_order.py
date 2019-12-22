@@ -27,9 +27,9 @@ class loading_sale_order(models.TransientModel):
     @api.multi
     def button_add_sale_order(self):
         work_order_line_obj= self.env['work.order.line']
-        work_order_obj= self.env['work.order.line']
+        work_order_obj= self.env['work.order']
 
-        for sol in self.sale_order_line_ids:
+        for sol in self._context['o2m_selection']:
             old_total = len(work_order_line_obj.search([('sale_order_line_id','=',sol.id),('state','=','cancel')]))
             for i in range(old_total, int(sol.product_uom_qty)):
                 work_order_line_obj.create({
