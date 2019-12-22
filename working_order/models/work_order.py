@@ -109,6 +109,9 @@ class work_order(models.Model):
     @api.multi
     def button_open_loading_sale_order(self):
         view_id = self.env.ref('working_order.view_loading_sale_order_from').id
+        old_work_order_line_ids = []
+        for i in self.work_order_line_ids:
+            old_work_order_line_ids.append(i.sale_order_line_id.id)
         return {'type': 'ir.actions.act_window',
                 'name': _('Loading Data'),
                 'res_model': 'loading.sale.order',
@@ -116,6 +119,7 @@ class work_order(models.Model):
                 'view_mode': 'form',
                 'context': {
                     'res_id': self.id,
+                    'old_work_order_line_ids': old_work_order_line_ids,
                 },
                 'views': [[view_id, 'form']],
         }
