@@ -5,6 +5,18 @@ import logging
 from odoo.exceptions import UserError, Warning
 _logger = logging.getLogger(__name__)
 
+class cancel_work_order(models.TransientModel):
+    _name = 'cancel.work.order'
+    reason_cancel_id = fields.Many2one('reason.cancel', string='Reason Cancel')
+
+    @api.multi
+    def button_confrim(self):
+        work_order_obj = self.env['work.order']
+        work_order = work_order_obj.browse(self._context['res_id'])
+        work_order.reason_cancel_id = self.reason_cancel_id.id
+        work_order.state = 'cancel'
+
+
 class loading_sale_order(models.TransientModel):
     _name = 'loading.sale.order'
 

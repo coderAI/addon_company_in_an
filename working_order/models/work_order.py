@@ -54,6 +54,7 @@ class work_order(models.Model):
     work_order_line_ids = fields.One2many('work.order.line', 'work_order_id')
     user_id = fields.Many2one('res.users', string='User', ondelete='cascade', track_visibility='onchange',
                               default=lambda self: self._uid)
+    reason_cancel_id = fields.Many2one('reason.cancel', string='Reason Cancel')
     picking_ids = fields.Many2many('stock.picking', 'work_order_picking_rel', 'work_order_id',
                                       'picking_id', track_visibility='onchange',
                                       string='Picking')
@@ -123,6 +124,23 @@ class work_order(models.Model):
                 },
                 'views': [[view_id, 'form']],
         }
+
+    @api.multi
+    def button_open_cancel_work_order(self):
+        view_id = self.env.ref('working_order.view_cancel_work_order_from').id
+        return {'type': 'ir.actions.act_window',
+                'name': _('Cancel Work Order'),
+                'res_model': 'cancel.work.order',
+                'target': 'new',
+                'view_mode': 'form',
+                'context': {
+                    'res_id': self.id,
+                },
+                'views': [[view_id, 'form']],
+        }
+
+
+
     @api.multi
     def create_picking(self):
         for wo in self:
@@ -203,6 +221,7 @@ class work_order_line(models.Model):
     work_order_id = fields.Many2one('work.order', track_visibility='onchange', string='Work Order')
     sale_order_id = fields.Many2one('sale.order', track_visibility='onchange', string='Sale Order')
     sale_order_line_id = fields.Many2one('sale.order.line', track_visibility='onchange', string='Sale Order Line')
+    sale_order_line_id_show = fields.Integer(related='sale_order_line_id.id', string="Order Line Id")
     product_id = fields.Many2one('product.product', track_visibility='onchange', string='Product')
     reason_cancel_id = fields.Many2one('reason.cancel', string='Sale Order')
     stock_move_line_ids = fields.Many2many('stock.move.line', 'stock_move_work_order_rel', 'work_order_id',

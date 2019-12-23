@@ -8,17 +8,17 @@
             <field name="arch" type="xml">
                 <from string="Payslip Import">
                     <sheet>
-                        <group>
-                            <field name="sale_order_line_ids" widget="one2many_checkbox" readonly="1" nolabel="1" options="{'no_quick_create':True,'no_create_edit':True, 'no_create': True, 'no_open': True}">
-                                <tree>
-                                    <field name="name" invisible="1"/>
-                                    <field name="product_id"/>
-                                    <field name="product_uom_qty"/>
-                                    <field name="order_id" invisible="1"/>
-                                    <field name="state_new"/>
-                                </tree>
-                            </field>
-                        </group>
+
+                        <field name="sale_order_line_ids" widget="one2many_checkbox" readonly="1" nolabel="1" options="{'no_quick_create':True,'no_create_edit':True, 'no_create': True, 'no_open': True}">
+                            <tree>
+                                <field name="name" invisible="1"/>
+                                <field name="order_id"/>
+                                <field name="product_id"/>
+                                <field name="product_uom_qty"/>
+                                <field name="state_new"/>
+                            </tree>
+                        </field>
+
                     </sheet>
                     <footer>
                         <button name="button_add_sale_order" string="ADD" type="object" class="btn-primary"/>
@@ -37,6 +37,34 @@
             <field name="target">current</field>
         </record>
 
+
+        <record id="view_cancel_work_order_from" model="ir.ui.view">
+            <field name="name">Cancel Work Order</field>
+            <field name="model">cancel.work.order</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <from string="Choose Reason">
+                    <sheet>
+                        <group>
+                            <field name="reason_cancel_id"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_confrim" string="Confrim" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </from>
+            </field>
+        </record>
+
+        <record id="action_cancel_work_order_from" model="ir.actions.act_window">
+            <field name="name">Cancel Work Order</field>
+            <field name="res_model">cancel.work.order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
     </data>
 </odoo>
 

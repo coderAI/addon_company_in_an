@@ -37,6 +37,7 @@
                         <button name="set_to_in_process" type="object" string="In Process" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
                         <button name="create_picking" type="object" string="Create Picking" class="oe_highlight" attrs="{'invisible':[('state','!=','in progress')]}"/>
                         <button name="set_to_draft" type="object" string="Set to Draft" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>
+                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
@@ -53,6 +54,7 @@
                         <group>
                             <group>
                                 <field name="user_id"/>
+                                <field name="reason_cancel_id" readonly="1" attrs="{'invisible':[('state','!=','cancel')]}"/>
                                 <field name="sale_order_ids" widget="many2many_tags" invisible="1"/>
                             </group>
                             <group>
@@ -68,6 +70,9 @@
                                         attrs="{'invisible':[('state','!=','draft')]}"/>
                                 <field name="work_order_line_ids" readonly="1">
                                     <tree string="Line">
+                                        <field name="sale_order_id"/>
+                                        <field name="sale_order_line_id" invisible="1"/>
+                                        <field name="sale_order_line_id_show"/>
                                         <field name="product_id"/>
                                         <field name="name"/>
                                         <field name="state"/>
