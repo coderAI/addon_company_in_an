@@ -13,9 +13,9 @@ class APISaleOrder(http.Controller):
     def api_create_so(self, **kw):
         # data = {
         #   'reference':'KH001'  ,
-        #   'order_lines':[{'product_code': 'sp1', 'qty': 2 },
-        #                   {'product_code': 'sp2', 'qty': 4},
-        #                   {'product_code': 'sp3', 'qty': 6},
+        #   'order_lines':[{'product_code': 'SP01', 'qty': 2, 'price_unit': 1000 },
+        #                   {'product_code': 'SP03', 'qty': 4, 'price_unit': 2000 },
+        #                   {'product_code': 'SP04', 'qty': 6, 'price_unit': 3000 },
         #   ],
         # }
         partner_obj = request.env['res.partner'].sudo()
@@ -45,11 +45,14 @@ class APISaleOrder(http.Controller):
                     'product_id': product.id,
                     'product_uom_qty': line.get('qty', 0.0),
                     'product_uom': product.uom_id.id,
+                    'price_unit': line.get('price_unit', 0.0),
+                    'tax_id': [(6, 0, [])],
                 }), )
 
         if data_error:
             return data_error
-
+        inv = False
+        so_id = False
         so_id = sale_obj.create({'partner_id': partner.id,
                                  'order_line': data_product
                                  })
@@ -59,4 +62,4 @@ class APISaleOrder(http.Controller):
             for inv in request.env['account.invoice'].sudo().browse(lst_invoice):
                 inv.action_invoice_open()
                 inv.generate_payments()
-        return {"result": True, 'SO': so_id.name or '', 'INV': inv.number or ''}
+        return {"result": True, 'SO': so_id.name or '', 'INV': inv and inv.number or ''}
