@@ -11,10 +11,11 @@ class cancel_work_order(models.TransientModel):
 
     @api.multi
     def button_confrim(self):
-        work_order_obj = self.env['work.order']
-        work_order = work_order_obj.browse(self._context['res_id'])
-        work_order.reason_cancel_id = self.reason_cancel_id.id
-        work_order.state = 'cancel'
+        work_order_line_obj = self.env['work.order.line']
+        work_order_line = work_order_line_obj.browse(self._context['res_id'])
+        work_order_line.reason_cancel_id = self.reason_cancel_id.id
+        work_order_line.sale_order_line_id.state_new = 'draft'
+        work_order_line.state = 'cancel'
 
 
 class loading_sale_order(models.TransientModel):

@@ -125,19 +125,7 @@ class work_order(models.Model):
                 'views': [[view_id, 'form']],
         }
 
-    @api.multi
-    def button_open_cancel_work_order(self):
-        view_id = self.env.ref('working_order.view_cancel_work_order_from').id
-        return {'type': 'ir.actions.act_window',
-                'name': _('Cancel Work Order'),
-                'res_model': 'cancel.work.order',
-                'target': 'new',
-                'view_mode': 'form',
-                'context': {
-                    'res_id': self.id,
-                },
-                'views': [[view_id, 'form']],
-        }
+
 
 
 
@@ -146,12 +134,12 @@ class work_order(models.Model):
         for wo in self:
             # Get data line
             product_val = {}
-            for sol in wo.work_order_line_ids.mapped('sale_order_line_id'):
-                product_id = sol.product_id.id
+            for wol in wo.work_order_line_ids.filtered(lambda r: r.state != 'cancel'):#.mapped('sale_order_line_id'):
+                product_id = wol.product_id.id
                 if product_id not in product_val:
-                    product_val.update({product_id: sol.product_uom_qty or 0.0})
+                    product_val.update({product_id: 1})
                 else:
-                    product_val[product_id] += sol.product_uom_qty
+                    product_val[product_id] += 1
             # Create picking
             company_id = wo.company_id.id
             pick = {
@@ -241,3 +229,16 @@ class work_order_line(models.Model):
     #     result = super(work_order, self).create(vals)
     #     return result
 
+    @api.multi
+    def button_open_cancel_work_order(self):
+        view_id = self.env.ref('working_order.view_cancel_work_order_from').id
+        return {'type': 'ir.actions.act_window',
+                'name': _('Cancel Work Order'),
+                'res_model': 'cancel.work.order',
+                'target': 'new',
+                'view_mode': 'form',
+                'context': {
+                    'res_id': self.id,
+                },
+                'views': [[view_id, 'form']],
+        }

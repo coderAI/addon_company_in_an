@@ -37,12 +37,12 @@
                         <button name="set_to_in_process" type="object" string="In Process" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
                         <button name="create_picking" type="object" string="Create Picking" class="oe_highlight" attrs="{'invisible':[('state','!=','in progress')]}"/>
                         <button name="set_to_draft" type="object" string="Set to Draft" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>
-                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>
+<!--                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>-->
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="open_picking" class="oe_stat_button" type="object">
+                            <button name="open_picking" icon="fa-pencil-square-o" class="oe_stat_button" type="object">
                                 <field name="picking_count" widget="statinfo" string="Picking" modifiers="{'readonly': true}"/>
                             </button>
                         </div>
@@ -77,6 +77,7 @@
                                         <field name="name"/>
                                         <field name="state"/>
                                         <field name="bar_code"/>
+                                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight"/>
                                     </tree>
                                 </field>
                             </page>
