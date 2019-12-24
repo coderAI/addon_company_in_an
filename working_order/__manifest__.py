@@ -25,6 +25,7 @@
         # 'views/transfer_order_view.xml',
         'views/working_order_view.xml',
         'views/check_product_view.xml',
+        'views/res_partner_view.xml',
         #### Config
         'views/reason_cancel_view.xml',
         'views/store_info_view.xml',

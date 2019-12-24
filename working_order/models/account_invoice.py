@@ -19,7 +19,6 @@ class AccountInvoice(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-
     @api.multi
     def remove_move_reconcile(self):
         if self.env.context.get('invoice_id'):
