@@ -19,25 +19,26 @@ class AccountInvoice(models.Model):
         return res
 
     @api.model
-    def generate_payments(self):
-        payment_obj = self.env['account.payment'].sudo()
-        journal_obj = self.env['account.journal'].sudo()
-        account_payment_method_obj = self.env['account.payment.method'].sudo()
-        payment_method_id = account_payment_method_obj.search([('code', '=', 'manual'),
-                                                               ('payment_type', '=', 'inbound')])[0]
-        journal_id = journal_obj.search([('type', '=', 'cash')])[0]
-        payment_val = {
-            'partner_id': self.partner_id.id,
-            'payment_type': 'inbound',
-            'partner_type': 'customer',
-            'payment_method_id': payment_method_id.id,
-            'journal_id': journal_id.id,
-            'amount': self.amount_total,
-            'payment_date': self.date_invoice,
-        }
-        payment = payment_obj.create(payment_val)
-        payment.invoice_ids = [self.id]
-        payment.post()
+    def generate_payments(self, journal):
+        if journal:
+            payment_obj = self.env['account.payment'].sudo()
+            journal_obj = self.env['account.journal'].sudo()
+            account_payment_method_obj = self.env['account.payment.method'].sudo()
+            payment_method_id = account_payment_method_obj.search([('code', '=', 'manual'),
+                                                                   ('payment_type', '=', 'inbound')])[0]
+            journal_id = journal_obj.search([('type', '=', 'cash')])[0]
+            payment_val = {
+                'partner_id': self.partner_id.id,
+                'payment_type': 'inbound',
+                'partner_type': 'customer',
+                'payment_method_id': payment_method_id.id,
+                'journal_id': journal.id,
+                'amount': self.amount_total,
+                'payment_date': self.date_invoice,
+            }
+            payment = payment_obj.create(payment_val)
+            payment.invoice_ids = [self.id]
+            payment.post()
 
 
 class AccountMoveLine(models.Model):
