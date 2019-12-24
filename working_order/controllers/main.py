@@ -59,4 +59,4 @@ class APISaleOrder(http.Controller):
             for inv in request.env['account.invoice'].sudo().browse(lst_invoice):
                 inv.action_invoice_open()
                 inv.generate_payments()
-        return {"result": True, }
+        return {"result": True, 'SO': so_id.name or '', 'INV': inv.number or ''}
