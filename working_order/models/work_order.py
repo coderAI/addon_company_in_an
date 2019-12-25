@@ -204,6 +204,9 @@ class work_order(models.Model):
 class work_order_line(models.Model):
     _name = "work.order.line"
 
+
+
+
     name = fields.Char('Number Order item', track_visibility='onchange')
     bar_code = fields.Char('Barcode', track_visibility='onchange')
     work_order_id = fields.Many2one('work.order', track_visibility='onchange', string='Work Order')
@@ -216,11 +219,44 @@ class work_order_line(models.Model):
                                            'stock_move_id', track_visibility='onchange',
                                            string='Work Order')
 
+    support_barcode_print_color = fields.Char('color', compute='_compute_support_barcode_print')
+    support_barcode_print_size = fields.Char('size', compute='_compute_support_barcode_print')
+    support_barcode_print_order_date = fields.Char('order_date', compute='_compute_support_barcode_print')
+    support_barcode_print_product_code = fields.Char('product_code', compute='_compute_support_barcode_print')
+    support_barcode_print_m = fields.Char('M', compute='_compute_support_barcode_print')
+
+
     state = fields.Selection([
         ('draft', 'Draft'),		
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
+
+    @api.multi
+    @api.depends('sale_order_line_id', 'sale_order_id', 'product_id')
+    def _compute_support_barcode_print(self):
+
+        for line in self:
+            color = 'Null'
+            size = 'Null'
+            for i in line.product_id.attribute_value_ids:
+                if i.attribute_id.name == 'Color':
+                    color = i.name
+                elif i.attribute_id.name == 'Size':
+                    size = i.name
+            if line.sale_order_id.order_date:
+                order_date = str(line.sale_order_id.order_date).split(' ')
+                order_date = order_date[0].split('-')
+                order_date = order_date[1]+'/'+order_date[2]
+            else:
+                order_date = 'mm/dd'
+            line.support_barcode_print_color = color
+            line.support_barcode_print_size = size
+            line.support_barcode_print_order_date = order_date
+            line.support_barcode_print_product_code = line.product_id.default_code
+            line.support_barcode_print_m = line.product_id
+
+        return
 
     # @api.model
     # def create(self, vals):

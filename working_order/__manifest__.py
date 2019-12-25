@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         # data
         'data/ir_sequence_data.xml',
+
         'views/web_assets.xml',
         #
         'views/menu.xml',
@@ -32,7 +33,7 @@
         'views/market_place_view.xml',
         'views/delivery_method_view.xml',
         'views/platform_list_view.xml',
-
+        'report/work_order_barcode_report.xml',
     ],
     "qweb": [
         'static/src/xml/widget_view.xml',
