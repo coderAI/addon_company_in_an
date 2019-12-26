@@ -14,6 +14,7 @@ class APISaleOrder(http.Controller):
         # data = {
         #   'reference':'KH001',
         #   'journal_code': 'BNK1',
+        #   'tax_code': [],
         #   'order_lines':[{'product_code': 'SP01', 'qty': 2, 'price_unit': 1000 },
         #                   {'product_code': 'SP03', 'qty': 4, 'price_unit': 2000 },
         #                   {'product_code': 'SP04', 'qty': 6, 'price_unit': 3000 },
@@ -24,11 +25,15 @@ class APISaleOrder(http.Controller):
         sale_obj = request.env['sale.order'].sudo()
         payments = request.env['account.payment'].sudo()
         journal_obj = request.env['account.journal'].sudo()
+        tax_obj = request.env['account.tax'].sudo()
         params = request.params.copy()
         data = request.jsonrequest
+        # Get data from request
         reference = data.get('reference', '')
         order_lines = data.get('order_lines', [])
         journal_code = data.get('journal_code', '')
+        tax_code = data.get('tax_code', False)
+
         data_error = []
         data_product = []
         # Check data and update for data_error
@@ -39,6 +44,11 @@ class APISaleOrder(http.Controller):
             data_error.append({'partner': 'No Customer with reference %s' % reference})
 
         journal = journal_obj.search([('code', '=', journal_code)], limit=1)
+        if not journal:
+            data_error.append({'journal': 'No journal with reference %s' % journal_code})
+
+
+
         for line in order_lines:
             product = product_obj.search([('default_code', '=', line.get('product_code', ''))], limit=1)
             if not product:

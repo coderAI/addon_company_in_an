@@ -3,6 +3,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning
 
+
 class reason_cancel(models.Model):
     _name = 'reason.cancel'
     _description = 'Reason Cancel'
@@ -56,15 +57,15 @@ class work_order(models.Model):
                               default=lambda self: self._uid)
     reason_cancel_id = fields.Many2one('reason.cancel', string='Reason Cancel')
     picking_ids = fields.Many2many('stock.picking', 'work_order_picking_rel', 'work_order_id',
-                                      'picking_id', track_visibility='onchange',
-                                      string='Picking')
+                                   'picking_id', track_visibility='onchange',
+                                   string='Picking')
     picking_count = fields.Integer(compute='_compute_picking_count', string="Picking Computation Details")
     sale_order_ids = fields.Many2many('sale.order', 'work_order_sale_order_rel', 'work_order_id',
                                       'sale_order_id', track_visibility='onchange',
                                       string='Sale Order')
     sale_order_line_ids = fields.Many2many('sale.order.line', 'work_order_sale_order_line_rel', 'work_order_id',
-                                      'sale_order_line_id', track_visibility='onchange',
-                                      string='Sale Order Line')
+                                           'sale_order_line_id', track_visibility='onchange',
+                                           string='Sale Order Line')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('in progress', 'In Progress'),
@@ -77,6 +78,7 @@ class work_order(models.Model):
     picking_type_id = fields.Many2one('stock.picking.type', 'Picking Type', required=True,
                                       default=_default_picking_type,
                                       help="This will determine picking type of incoming shipment")
+
     @api.multi
     def _compute_picking_count(self):
         for wo in self:
@@ -96,8 +98,7 @@ class work_order(models.Model):
                             'work_order_id': self.id,
                             'name': (self.name or '') + (so.name or '') + str(i),
                         })
-					
-        
+
         return
 
     @api.model
@@ -123,18 +124,14 @@ class work_order(models.Model):
                     'old_work_order_line_ids': old_work_order_line_ids,
                 },
                 'views': [[view_id, 'form']],
-        }
-
-
-
-
+                }
 
     @api.multi
     def create_picking(self):
         for wo in self:
             # Get data line
             product_val = {}
-            for wol in wo.work_order_line_ids.filtered(lambda r: r.state != 'cancel'):#.mapped('sale_order_line_id'):
+            for wol in wo.work_order_line_ids.filtered(lambda r: r.state != 'cancel'):  # .mapped('sale_order_line_id'):
                 product_id = wol.product_id.id
                 if product_id not in product_val:
                     product_val.update({product_id: 1})
@@ -150,7 +147,7 @@ class work_order(models.Model):
                 'company_id': company_id,
             }
             picking = self.env['stock.picking'].create(pick)
-            wo.picking_ids =  [(6, 0, [picking.id])]
+            wo.picking_ids = [(6, 0, [picking.id])]
 
             product_obj = self.env['product.product']
             move_obj = self.env['stock.move']
@@ -171,6 +168,7 @@ class work_order(models.Model):
                 }
 
                 move_obj.create(template)
+
     @api.multi
     def set_to_draft(self):
         self.state = 'draft'
@@ -184,11 +182,10 @@ class work_order(models.Model):
             for sol in wol.sale_order_line_id:
                 sol.state_new = 'draft'
 
-
     @api.multi
     def set_to_in_process(self):
         for wo in self.filtered(lambda m: m.state == 'draft'):
-            wo.state= 'in progress'
+            wo.state = 'in progress'
             for wol in self.work_order_line_ids:
                 for sol in wol.sale_order_line_id:
                     sol.state_new = 'in process'
@@ -201,11 +198,9 @@ class work_order(models.Model):
         action['domain'] = [('id', 'in', self.picking_ids.ids)]
         return action
 
+
 class work_order_line(models.Model):
     _name = "work.order.line"
-
-
-
 
     name = fields.Char('Number Order item', track_visibility='onchange')
     bar_code = fields.Char('Barcode', track_visibility='onchange')
@@ -225,9 +220,8 @@ class work_order_line(models.Model):
     support_barcode_print_product_code = fields.Char('product_code', compute='_compute_support_barcode_print')
     support_barcode_print_m = fields.Char('M', compute='_compute_support_barcode_print')
 
-
     state = fields.Selection([
-        ('draft', 'Draft'),		
+        ('draft', 'Draft'),
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
@@ -235,7 +229,6 @@ class work_order_line(models.Model):
     @api.multi
     @api.depends('sale_order_line_id', 'sale_order_id', 'product_id')
     def _compute_support_barcode_print(self):
-
         for line in self:
             color = 'Null'
             size = 'Null'
@@ -247,7 +240,7 @@ class work_order_line(models.Model):
             if line.sale_order_id.order_date:
                 order_date = str(line.sale_order_id.order_date).split(' ')
                 order_date = order_date[0].split('-')
-                order_date = order_date[1]+'/'+order_date[2]
+                order_date = order_date[1] + '/' + order_date[2]
             else:
                 order_date = 'mm/dd'
             line.support_barcode_print_color = color
@@ -277,4 +270,4 @@ class work_order_line(models.Model):
                     'res_id': self.id,
                 },
                 'views': [[view_id, 'form']],
-        }
+                }

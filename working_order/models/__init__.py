@@ -5,3 +5,4 @@ from . import sale_order
 from . import res_partner
 from . import picking
 from . import account_invoice
+from . import account_tax
