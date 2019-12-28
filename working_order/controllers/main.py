@@ -33,8 +33,7 @@ class APISaleOrder(http.Controller):
                 if not check_wol_another_in_same_sol:
                     sol.write({'state_new': 'done'})
                     so = sol.order_id
-
-                    check_sol_in_same_so = so.order_line.filtered(lambda r: r.state == 'draft')
+                    check_sol_in_same_so = so.order_line.filtered(lambda r: r.state_new in ['draft'])
                     if not check_sol_in_same_so:
                         so.write({'state': 'to delivery'})
 
@@ -63,7 +62,7 @@ class APISaleOrder(http.Controller):
         reference = data.get('reference', '')
         order_lines = data.get('order_lines', [])
         journal_code = data.get('journal_code', '')
-        tax_code = data.get('tax_code', False)
+        tax_code = data.get('tax_code')
 
         data_error = []
         data_product = []
