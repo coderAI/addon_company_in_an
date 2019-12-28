@@ -28,7 +28,7 @@ class APISaleOrder(http.Controller):
             if not check_wol_another_in_same_wo:
                 wo.write({'state': 'done'})
                 sol = wol.sale_order_line_id.sudo()
-                check_wol_another_in_same_sol = wol_obj.search([('sale_order_line_id', '=', sol.od),
+                check_wol_another_in_same_sol = wol_obj.search([('sale_order_line_id', '=', sol.id),
                                                                 ('state', '=', 'draft'), ])
                 if not check_wol_another_in_same_sol:
                     sol.write({'state_new': 'done'})
