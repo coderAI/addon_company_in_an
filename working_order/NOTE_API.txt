@@ -1,0 +1,43 @@
+
+
+
+
+
+---------------Note API System
+Api Create SO
+- url api = (domain):(port)/web/api/create_so
+- methods = post
+- value = json
+Example data ={	"reference": "your_customer_code_001",
+				"journal_code": "your_short_code",
+				"order_lines": [
+					{
+						"product_code": "your_product_code_001",
+						"qty": 2,
+						"price_unit": 1000
+					},
+					{
+						"product_code": "your_product_code_002",
+						"qty": 4,
+						"price_unit": 2000
+					},
+					{
+						"product_code": "your_product_code_003",
+						"qty": 6,
+						"price_unit": 3000
+					}
+				]
+			}
+Funtion note:			
+This API action Will help you create the SO to your odoo system and run odoo 
+workflow function for help Your SO change state to paid. 
+End then it will create the invoice and help you validate it.
+
+-------------------------
+Api check product
+- url api = (domain):(port)/check-product-and-map-sale-order/call
+- methods = None
+- value = None
+Funtion note:			
+This API action Will help you change state so anh check product quantity in you warehouse
+
