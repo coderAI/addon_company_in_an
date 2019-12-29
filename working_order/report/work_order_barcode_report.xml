@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template id="report_work_order_barcode">
+        <template id="template_edit_report_work_order_barcode" name="Barcode Template Edit Support">
+            <t t-call="website.layout">
+                <t t-call="working_order.report_work_order_barcode"/>
+            </t>
+        </template>
+
+        <template id="report_work_order_barcode" name="Barcode">
             <t t-call="web.basic_layout">
                 <div class="page">
-                    Barcode List
-                    <t t-foreach="docs" t-as="doc">
-                        <div class="page">
-                            <table>
-                                <t t-foreach="doc.work_order_line_ids" t-as="wol">
-                                    <tr style="width:300px">
-                                        <td>
-                                            <div style="width:200px; display: inline;">
-                                                <t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/>
-
-                                            </div>
-                                            <div style="width:100px;text-align: right; display: inline;float: right;">
-                                                <t t-esc="wol.name"/>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr style="width:300px">
-
-                                        <td>
-                                            <div style="width:300px;height:50px">
-                                                <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', wol.bar_code, 600, 100)" style="width:300px;height:50px"/>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr style="width:300px">
-                                        <td>
-                                            <div style="width:100px; display: inline;">
-                                                <t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/>
-                                            </div>
-                                            <div style='text-align: right;width:200px; display: inline;float: right;'>
-                                                CERAMIC MUG 110
-                                            </div>
-                                        </td>
-                                        <p/>
-                                    </tr>
-                                </t>
-
-                            </table>
+                    <div class="wrap">
+                        <div class="container">
+                            <t t-foreach="docs" t-as="doc">
+                                <table>
+                                    <t t-foreach="doc.work_order_line_ids" t-as="wol">
+                                        <tr style="width:258px">
+                                            <td>
+                                                <div style="width:200px; display: inline;"><t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/></div>
+                                                <div style="width:100px;text-align: right; display: inline;float: right;">
+                                                    <t t-esc="wol.name"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:258px">
+                                            <td>
+                                                <div style="width:250px;height:50px">
+                                                    <h1 style="display: inline;">
+                                                        <b>F</b>
+                                                    </h1>
+                                                    <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code11', wol.bar_code, 600, 100)" style="display: inline; width:200px;height:50px; margin: 0px;"/>
+                                                    <div style="margin-left: -15px;display: inline;vertical-align: bottom;">M</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="width:258px">
+                                            <td>
+                                                <div style="width:100px; display: inline;"><t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/><div style="text-align: right;width:200px; display: inline;float: right;">For Example Texts</div></div>
+                                                <div>
+                                                    <br/><br/>
+                                                </div>
+                                            </td>
+                                            <p/>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </t>
                         </div>
-                    </t>
+                    </div>
                 </div>
             </t>
         </template>
@@ -56,7 +59,7 @@
                 report_type="qweb-pdf"
                 name="working_order.report_work_order_barcode"
                 file="working_order.report_work_order_barcode"
-                print_report_name="'Report barcode - %s' % (object.name)"
+                print_report_name="'Report Barcode'"
         />
     </data>
 

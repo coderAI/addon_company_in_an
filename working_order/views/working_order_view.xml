@@ -37,6 +37,8 @@
                         <button name="set_to_in_process" type="object" string="In Process" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
                         <button name="create_picking" type="object" string="Create Picking" class="oe_highlight" attrs="{'invisible':[('state','!=','in progress')]}"/>
                         <button name="set_to_draft" type="object" string="Set to Draft" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>
+                        <button name="btn_print_barcode" type="object" string="Print" class="oe_highlight"/>
+                        <button name="btn_show_barcode_template" type="object" string="View Template" class="oe_highlight"/>
 <!--                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight" attrs="{'invisible':[('state','=','draft')]}"/>-->
                         <field name="state" widget="statusbar"/>
                     </header>
@@ -77,7 +79,7 @@
                                         <field name="name"/>
                                         <field name="state"/>
                                         <field name="bar_code"/>
-                                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight"/>
+                                        <button name="button_open_cancel_work_order" type="object" string="Cancel" class="oe_highlight" attrs="{'invisible':[('state','=','cancel')]}"/>
                                     </tree>
                                 </field>
                             </page>

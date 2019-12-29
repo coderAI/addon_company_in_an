@@ -1,13 +1,34 @@
 # -*- coding: utf-8 -*-
 import logging
-
+from odoo import SUPERUSER_ID
 from odoo import http
 from odoo.http import request
-
+import json
 _logger = logging.getLogger(__name__)
 
 
+
+
 class APISaleOrder(http.Controller):
+
+    @http.route('/check-product-and-map-sale-order/call',
+                type='http', auth='public', website=True)
+    def start_check_product_and_map_so(self,**kw):
+        work_order_data = request.env['check.product'].create({'user_id':SUPERUSER_ID})
+        work_order_data.btn_map_sale_order_line()
+        res={'code':200,'message':'successful','data':True}
+        return json.dumps(res)
+
+
+    @http.route('/template_barcode/<int:work_order_id>',
+                type='http', auth='public', website=True)
+    def edit_template_barcode(self,work_order_id=None,**post):
+        work_order_data = request.env['work.order'].browse(work_order_id)
+        vals = {'docs': [work_order_data]}
+        return request.render('working_order.template_edit_report_work_order_barcode',vals)
+
+
+
     @http.route('/web/api/paid_so', type='json', auth='none', methods=['post'], csrf=False)
     def api_paid_so(self, **kw):
         # data = {
@@ -16,11 +37,9 @@ class APISaleOrder(http.Controller):
         wol_obj = request.env['work.order.line'].sudo()
         so_obj = request.env['sale.order'].sudo()
         sol_obj = request.env['sale.order.line'].sudo()
-        ###############
         params = request.params.copy()
         data = request.jsonrequest
         barcode = data.get('barcode', '')
-
         for wol in wol_obj.search([('bar_code', '=', barcode)], limit=1):
             wol.write({'state': 'done'})
             wo = wol.work_order_id.sudo()
@@ -101,7 +120,6 @@ class APISaleOrder(http.Controller):
         if data_error:
             return data_error
         inv = False
-        so_id = False
         so_id = sale_obj.create({'partner_id': partner.id,
                                  'order_line': data_product
                                  })

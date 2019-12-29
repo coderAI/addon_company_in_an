@@ -80,6 +80,23 @@ class work_order(models.Model):
                                       help="This will determine picking type of incoming shipment")
 
     @api.multi
+    def btn_print_barcode(self):
+        return self.env.ref('working_order.report_work_order').report_action(self)    \
+
+    @api.multi
+    def btn_show_barcode_template(self):
+        self.ensure_one()
+        base_url = '/' if self.env.context.get('relative_url') else \
+                   self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        return {
+            'type': 'ir.actions.act_url',
+            'name': "Results of the Survey",
+            'target': 'self',
+            'url': base_url + "/template_barcode/"+str(self.id)
+        }
+
+
+    @api.multi
     def _compute_picking_count(self):
         for wo in self:
             wo.picking_count = len(wo.picking_ids)
@@ -251,12 +268,7 @@ class work_order_line(models.Model):
 
         return
 
-    # @api.model
-    # def create(self, vals):
-    #
-    #     vals['bar_code'] = self.env['ir.sequence'].next_by_code('work.order.line') or _('New')
-    #     result = super(work_order, self).create(vals)
-    #     return result
+
 
     @api.multi
     def button_open_cancel_work_order(self):
