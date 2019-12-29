@@ -32,11 +32,11 @@ class APISaleOrder(http.Controller):
     @http.route('/web/api/paid_so', type='json', auth='none', methods=['post'], csrf=False)
     def api_paid_so(self, **kw):
         # data = {
-        #     'barcode' : '112233'
+        #     'barcode' : '0000001'
         # }
         wol_obj = request.env['work.order.line'].sudo()
-        so_obj = request.env['sale.order'].sudo()
-        sol_obj = request.env['sale.order.line'].sudo()
+        # so_obj = request.env['sale.order'].sudo()
+        # sol_obj = request.env['sale.order.line'].sudo()
         params = request.params.copy()
         data = request.jsonrequest
         barcode = data.get('barcode', '')
@@ -81,7 +81,7 @@ class APISaleOrder(http.Controller):
         reference = data.get('reference', '')
         order_lines = data.get('order_lines', [])
         journal_code = data.get('journal_code', '')
-        tax_code = data.get('tax_code')
+
 
         data_error = []
         data_product = []
@@ -96,10 +96,15 @@ class APISaleOrder(http.Controller):
         if not journal:
             data_error.append({'journal': 'No journal with reference %s' % journal_code})
 
-        if tax_code:
-            tax = tax_code.search([('code', '=', tax_code)], limit=1)
-            if not tax:
-                data_error.append({'tax_code': 'No tax code with  %s' % journal_code})
+        tax_ids = False
+        if 'tax_code' in data:
+            tax_code = data.get('tax_code', '')
+            if tax_code:
+                tax = tax_obj.search([('code', '=', tax_code)], limit=1)
+                if not tax:
+                    data_error.append({'tax_code': 'No tax code with  %s' % journal_code})
+            elif tax_code == '':
+                tax_ids = []
 
         for line in order_lines:
             product = product_obj.search([('default_code', '=', line.get('product_code', ''))], limit=1)
@@ -113,8 +118,11 @@ class APISaleOrder(http.Controller):
                     'product_uom_qty': line.get('qty', 0.0),
                     'product_uom': product.uom_id.id,
                     'price_unit': line.get('price_unit', 0.0),
-                    'tax_id': [(6, 0, [])],
                 }
+                if tax_ids:
+                    vals_product.update({'tax_id': [(6, 0, tax_ids)], })
+                elif tax_ids == []:
+                    vals_product.update({'tax_id': [(6, 0, [])], })
                 data_product.append((0, 0, vals_product), )
 
         if data_error:
