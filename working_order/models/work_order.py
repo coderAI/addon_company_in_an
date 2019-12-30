@@ -231,6 +231,7 @@ class work_order_line(models.Model):
                                            'stock_move_id', track_visibility='onchange',
                                            string='Work Order')
 
+    support_barcode_print_side_to_print = fields.Char('Side to print', compute='_compute_support_barcode_print')
     support_barcode_print_color = fields.Char('color', compute='_compute_support_barcode_print')
     support_barcode_print_size = fields.Char('size', compute='_compute_support_barcode_print')
     support_barcode_print_order_date = fields.Char('order_date', compute='_compute_support_barcode_print')
@@ -249,6 +250,12 @@ class work_order_line(models.Model):
         for line in self:
             color = 'Null'
             size = 'Null'
+            if line.sale_order_line_id.side_to_print == 'front':
+                print_side_to_print = 'F'
+            elif line.sale_order_line_id.side_to_print == 'backside':
+                print_side_to_print = 'B'
+            else:
+                print_side_to_print = 'I'
             for i in line.product_id.attribute_value_ids:
                 if i.attribute_id.name == 'Color':
                     color = i.name
@@ -260,6 +267,7 @@ class work_order_line(models.Model):
                 order_date = order_date[1] + '/' + order_date[2]
             else:
                 order_date = 'mm/dd'
+            line.support_barcode_print_side_to_print = print_side_to_print
             line.support_barcode_print_color = color
             line.support_barcode_print_size = size
             line.support_barcode_print_order_date = order_date

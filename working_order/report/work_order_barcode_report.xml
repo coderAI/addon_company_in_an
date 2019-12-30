@@ -9,46 +9,146 @@
 
         <template id="report_work_order_barcode" name="Barcode">
             <t t-call="web.basic_layout">
-                <div class="page">
+
+                                <div class="page">
                     <div class="wrap">
                         <div class="container">
                             <t t-foreach="docs" t-as="doc">
-                                <table>
+
                                     <t t-foreach="doc.work_order_line_ids" t-as="wol">
-                                        <tr style="width:258px">
-                                            <td>
-                                                <div style="width:200px; display: inline;"><t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/></div>
-                                                <div style="width:100px;text-align: right; display: inline;float: right;">
+                                        <div style="width:200px; margin-bottom: -12px;">
+                                                <div style="width:150px; display: inline;">
+                                                    <t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/>
+                                                </div>
+                                                <div style="width:20px;text-align: right; display: inline;float: right;">
                                                     <t t-esc="wol.name"/>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr style="width:258px">
-                                            <td>
-                                                <div style="width:250px;height:50px">
-                                                    <h1 style="display: inline;">
-                                                        <b>F</b>
-                                                    </h1>
-                                                    <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code11', wol.bar_code, 600, 100)" style="display: inline; width:200px;height:50px; margin: 0px;"/>
-                                                    <div style="margin-left: -15px;display: inline;vertical-align: bottom;">M</div>
+                                        </div>
+
+
+                                                <div style="width:200px; height:50px">
+                                                    <b style="display: inline; font-size: 56px;">
+                                                        <t t-esc="wol.support_barcode_print_side_to_print"/>
+                                                    </b>
+                                                  </div>
+                                                  <div style="margin-left: 31px;margin-top: -15px; display: inline;">
+                                                    <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', wol.bar_code, 600, 100)" style="vertical-align: top; display: inline; width:150px;height: 44px;margin-top: -33px;"/>
+                                                   </div>
+                                                   <div style="margin-left: 175px;margin-top: -24px;text-align: left;">M</div>
+
+
+
+
+                                                <div style="width:200px;">
+                                                  <div style="width:100px; display: inline;">
+                                                    <t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/>
+                                                  </div>
+                                                    <div style="text-align: right;width:100px; float: right;">
+                                                        <t t-esc="wol.product_id.name"/>
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                        <tr style="width:258px">
-                                            <td>
-                                                <div style="width:100px; display: inline;"><t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/><div style="text-align: right;width:200px; display: inline;float: right;">For Example Texts</div></div>
-                                                <div>
-                                                    <br/><br/>
-                                                </div>
-                                            </td>
+
+
                                             <p/>
-                                        </tr>
+
                                     </t>
-                                </table>
+
                             </t>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+<!--                <div class="page">-->
+<!--                    <div class="wrap">-->
+<!--                        <div class="container">-->
+<!--                            <t t-foreach="docs" t-as="doc">-->
+<!--&lt;!&ndash;                                <table style="height: 178px; width: 350px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <t t-foreach="doc.work_order_line_ids" t-as="wol">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td colspan="2">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width: 10px; text-align: right; height: 33.4006px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <t t-esc="wol.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width: 10px; text-align: right; height: 11px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <strong style="font-size: 56px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <t t-esc="wol.support_barcode_print_side_to_print"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width:200px; height: 11px; vertical-align: top;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', wol.bar_code, 600, 100)" style="display: inline; width:200px;height:50px; margin: 0px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width: 10px; text-align: left; height: 11px;">M</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr style="height: 34px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width: 618.599px; height: 34px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td style="width: 10px; height: 34px; text-align: right;" colspan="2">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <t t-esc="wol.product_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </table>&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;                                <table>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <t t-foreach="doc.work_order_line_ids" t-as="wol">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr style="width:258px">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div style="width:200px; display: inline;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <t t-esc="wol.support_barcode_print_product_code"/>|<t t-esc="wol.support_barcode_print_color"/>|<t t-esc="wol.support_barcode_print_size"/>-<t t-esc="wol.support_barcode_print_order_date"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div style="width:100px;text-align: right; display: inline;float: right;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <t t-esc="wol.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr style="width:258px">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div style="width:250px;height:50px">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                                    <b style="display: inline; text-align: right; font-size: 56px; vertical-align: bottom;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <t t-esc="wol.support_barcode_print_side_to_print"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </b>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                                    <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', wol.bar_code, 600, 100)" style="display: inline; width:200px;height:50px; margin: 0px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div style="margin-left: -15px; display: inline; vertical-align: bottom; text-align: left;">M</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr style="width:258px">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div style="width:100px; display: inline;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <t t-esc="wol.sale_order_id.name"/>-<t t-esc="wol.sale_order_line_id.id"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <div style="text-align: right;width:200px; display: inline;float: right;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <t t-esc="wol.product_id.name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <br/><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <p/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </t>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </table>&ndash;&gt;-->
+<!--                            </t>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </t>
         </template>
 

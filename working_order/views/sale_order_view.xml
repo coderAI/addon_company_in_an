@@ -83,6 +83,7 @@
 					</group>
 				</xpath>
 				<xpath expr="//field[@name='order_line']/tree/field[@name='price_tax']" position="before">
+					<field name="side_to_print"/>
 					<button class="oe_highlight" name="btn_img" type="object" string="Image"/>
 				</xpath>
 			</field>

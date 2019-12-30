@@ -80,6 +80,11 @@ class sale_order_line(models.Model):
     check_product_id = fields.Many2one('check.product', string='check product')
     check_maped = fields.Boolean(string='Map Check Product', default=False)
     description = fields.Char('Description')
+    side_to_print = fields.Selection([
+        ('front', 'Front'),
+        ('backside', 'Backside'),
+        ('in both sides', 'In Both Sides')
+    ], string='Side to Print', track_visibility='onchange', default='front')
     state_new = fields.Selection([
         ('draft', 'Draft'),
         ('in process', 'In Process'),
