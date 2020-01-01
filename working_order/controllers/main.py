@@ -29,7 +29,7 @@ class APISaleOrder(http.Controller):
 
 
 
-    @http.route('/web/api/paid_so', type='json', auth='none', methods=['post'], csrf=False)
+    @http.route('/web/api/change-status-orders', type='json', auth='none', methods=['post'], csrf=False)
     def api_paid_so(self, **kw):
         # data = {
         #     'barcode' : '0000001'
@@ -46,19 +46,19 @@ class APISaleOrder(http.Controller):
             check_wol_another_in_same_wo = wo.work_order_line_ids.filtered(lambda r: r.state == 'draft')
             if not check_wol_another_in_same_wo:
                 wo.write({'state': 'done'})
-                sol = wol.sale_order_line_id.sudo()
-                check_wol_another_in_same_sol = wol_obj.search([('sale_order_line_id', '=', sol.id),
-                                                                ('state', '=', 'draft'), ])
-                if not check_wol_another_in_same_sol:
-                    sol.write({'state_new': 'done'})
-                    so = sol.order_id
-                    check_sol_in_same_so = so.order_line.filtered(lambda r: r.state_new in ['draft'])
-                    if not check_sol_in_same_so:
-                        so.write({'state': 'to delivery'})
+            sol = wol.sale_order_line_id.sudo()
+            check_wol_another_in_same_sol = wol_obj.search([('sale_order_line_id', '=', sol.id),
+                                                            ('state', '=', 'draft'), ])
+            if not check_wol_another_in_same_sol:
+                sol.write({'state_new': 'done'})
+                so = sol.order_id
+                check_sol_in_same_so = so.order_line.filtered(lambda r: r.state_new in ['draft'])
+                if not check_sol_in_same_so:
+                    so.write({'state': 'to delivery'})
 
         return True
 
-    @http.route('/web/api/create_so', type='json', auth='none', methods=['post'], csrf=False)
+    @http.route('/web/api/create-so', type='json', auth='none', methods=['post'], csrf=False)
     def api_create_so(self, **kw):
         # data = {
         #   'reference':'KH001',
