@@ -39,6 +39,12 @@
 <!--						   statusbar_visible="draft,sale,paid,product hold,in product,to delivery,done"/>-->
 <!--				</xpath>-->
 
+				<xpath expr="//field[@name='order_line']" position="attributes">
+					<attribute name="attrs">{'readonly': [('state', 'in',
+						['done','cancel','sale','paid','product hold','in product','to delivery'])]}
+					</attribute>
+				</xpath>
+
 				<xpath expr="//button[@name='action_cancel']" position="before">
 					<button name="action_set_to_paid" type="object" string="To Paid"
 							class="oe_highlight" invisible="1"/>
