@@ -54,7 +54,8 @@ class APISaleOrder(http.Controller):
                 so = sol.order_id
                 check_sol_in_same_so = so.order_line.filtered(lambda r: r.state_new in ['draft'])
                 if not check_sol_in_same_so:
-                    so.write({'state': 'to delivery'})
+                    # so.write({'state': 'to delivery'})
+                    so.action_set_to_delivery()
 
         return True
 
