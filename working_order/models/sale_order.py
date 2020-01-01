@@ -59,6 +59,11 @@ class sale_order(models.Model):
             so.write({'state': 'paid'})
 
     @api.multi
+    def action_set_to_done(self):
+        for so in self:
+            so.write({'state': 'done'})
+
+    @api.multi
     def action_set_to_delivery(self):
         for so in self:
             so.write({'state': 'to delivery'})

@@ -26,7 +26,7 @@
                                         <t t-esc="wol.support_barcode_print_side_to_print"/>
                                     </div>
                                     <div style="margin-left: 31px;margin-top: -15px; display: inline;">
-                                        <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', wol.bar_code, 600, 100)" style="vertical-align: top; display: inline; width:150px;height: 47px;margin-top: -66px;"/>
+                                        <img t-if="wol.bar_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', wol.bar_code, 600, 100)" style="vertical-align: top; display: inline; width:150px;height: 47px;margin-top: -66px;"/>
                                     </div>
                                     <div style="margin-left: 175px;margin-top: -54px;text-align: left;">M</div>
                                     <br/>

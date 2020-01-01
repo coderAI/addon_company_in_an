@@ -41,9 +41,12 @@
 
 				<xpath expr="//button[@name='action_cancel']" position="before">
 					<button name="action_set_to_paid" type="object" string="To Paid"
-							class="oe_highlight"/>
+							class="oe_highlight" invisible="1"/>
 					<button name="action_set_to_delivery" type="object" string="To Delivery"
-							class="oe_highlight"/>
+							class="oe_highlight" invisible="1"/>
+					<button name="action_set_to_done" type="object" string="Complete"
+							attrs="{'invisible': [('state','!=', 'to delivery')]}"
+							class="oe_highlight" />
 				</xpath>
 
 				<xpath expr="//field[@name='partner_id']" position="after">

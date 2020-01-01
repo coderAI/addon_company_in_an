@@ -3,7 +3,7 @@
     <data>
 
 
-        <menuitem name="Working Order" id="menu_root_transfer" sequence="70"/>
+<!--        <menuitem name="Working Order" id="menu_root_transfer" sequence="70"/>-->
 
 <!--        <menuitem id="menu_transfer"-->
 <!--                  name="Working Order"-->
@@ -12,7 +12,7 @@
 
         <menuitem id="menu_config"
                   name="Config"
-                  parent="menu_root_transfer"
+                  parent="sale.menu_sale_config"
                   sequence="77"   />
 
 
