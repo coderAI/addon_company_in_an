@@ -66,8 +66,8 @@ class sale_order(models.Model):
     @api.multi
     def action_set_to_delivery(self):
         for so in self:
-            so.write({'state': 'to delivery'})
             self._action_confirm()
+            so.write({'state': 'to delivery'})
             if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
                 self.action_done()
 
