@@ -68,8 +68,8 @@ class sale_order(models.Model):
         for so in self:
             self._action_confirm()
             so.write({'state': 'to delivery'})
-            if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
-                self.action_done()
+            # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+            self.action_done()
 
 class ir_attachment(models.Model):
     _inherit = "ir.attachment"
