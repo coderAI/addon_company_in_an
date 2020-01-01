@@ -8,26 +8,35 @@
 - url api = (domain):(port)/web/api/create-so
 - methods = post
 - value = json
-Example data ={	"reference": "your_customer_code_001",
-				"journal_code": "your_short_code",
-				"order_lines": [
-					{
-						"product_code": "your_product_code_001",
-						"qty": 2,
-						"price_unit": 1000
-					},
-					{
-						"product_code": "your_product_code_002",
-						"qty": 4,
-						"price_unit": 2000
-					},
-					{
-						"product_code": "your_product_code_003",
-						"qty": 6,
-						"price_unit": 3000
-					}
-				]
-			}
+Example data =       {
+          "reference":"KH001",
+          "journal_code": "BNK1",
+          "user_id": 1,
+          "team_id": 1,
+          "store_id": 1,
+          "market_place_id": 1,
+          "platform_id": 1,
+          "carrier_id": 1,
+          "coupon_code": "your code",
+          "payment_method": "bank payment code",
+          "transaction_id": "bank payment transaction id",
+          "order_ip": "your order ip",
+          "tracking_number": "your Tracking Number",
+          "order_shipping_location": "your Order Shipping Location",
+          "order_line":[
+		                      [0,0,{"product_id": 3,
+		                          "qty": 2,
+		                          "tax_id": [[4,1]],
+		                          "price_unit": 1000}],
+
+		                      [0,0,
+		                         {"product_id": 5,
+		                          "qty": 4,
+		                           "tax_id": [[4,2]],
+		                          "price_unit": 2000}]
+
+        				]}
+
 Function note:
 This API action will help you create the SO to your odoo system and run odoo
 workflow function for help Your SO change state to paid. 

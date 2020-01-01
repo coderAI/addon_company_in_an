@@ -60,15 +60,34 @@ class APISaleOrder(http.Controller):
 
     @http.route('/web/api/create-so', type='json', auth='none', methods=['post'], csrf=False)
     def api_create_so(self, **kw):
-        # data = {
-        #   'reference':'KH001',
-        #   'journal_code': 'BNK1',
-        #   'tax_code': [],
-        #   'order_lines':[{'product_code': 'SP01', 'qty': 2, 'price_unit': 1000 },
-        #                   {'product_code': 'SP03', 'qty': 4, 'price_unit': 2000 },
-        #                   {'product_code': 'SP04', 'qty': 6, 'price_unit': 3000 },
-        #   ],
-        # }
+        # {
+        #     "reference": "KH001",
+        #     "journal_code": "BNK1",
+        #     "user_id": 1,
+        #     "team_id": 1,
+        #     "store_id": 1,
+        #     "market_place_id": 1,
+        #     "platform_id": 1,
+        #     "carrier_id": 1,
+        #     "coupon_code": "your code",
+        #     "payment_method": "bank payment code",
+        #     "transaction_id": "bank payment transaction id",
+        #     "order_ip": "your order ip",
+        #     "tracking_number": "your Tracking Number",
+        #     "order_shipping_location": "your Order Shipping Location",
+        #     "order_line": [
+        #         [0, 0, {"product_id": 3,
+        #                 "qty": 2,
+        #                 "tax_id": [[4, 1]],
+        #                 "price_unit": 1000}],
+        #
+        #         [0, 0,
+        #          {"product_id": 5,
+        #           "qty": 4,
+        #           "tax_id": [[4, 2]],
+        #           "price_unit": 2000}]
+        #
+        #     ]}
         partner_obj = request.env['res.partner'].sudo()
         product_obj = request.env['product.product'].sudo()
         sale_obj = request.env['sale.order'].sudo()
@@ -79,14 +98,12 @@ class APISaleOrder(http.Controller):
         data = request.jsonrequest
         # Get data from request
         reference = data.get('reference', '')
-        order_lines = data.get('order_lines', [])
+        order_line = data.get('order_line', [])
         journal_code = data.get('journal_code', '')
-
-
         data_error = []
         data_product = []
         # Check data and update for data_error
-        if not reference or not order_lines or not journal_code:
+        if not reference or not order_line or not journal_code:
             return {"result": False}
         partner = partner_obj.search([('reference', '=', reference)], limit=1)
         if not partner:
@@ -95,42 +112,14 @@ class APISaleOrder(http.Controller):
         journal = journal_obj.search([('code', '=', journal_code)], limit=1)
         if not journal:
             data_error.append({'journal': 'No journal with reference %s' % journal_code})
-
-        tax_ids = False
-        if 'tax_code' in data:
-            tax_code = data.get('tax_code', '')
-            if tax_code:
-                tax = tax_obj.search([('code', '=', tax_code)], limit=1)
-                if not tax:
-                    data_error.append({'tax_code': 'No tax code with  %s' % journal_code})
-            elif tax_code == '':
-                tax_ids = []
-
-        for line in order_lines:
-            product = product_obj.search([('default_code', '=', line.get('product_code', ''))], limit=1)
-            if not product:
-                data_error.append({'product': 'No Product with default_code %s' % line.get('product_code', '')})
-            else:
-                line.update({'product': product})
-                vals_product = {
-                    'name': product.name,
-                    'product_id': product.id,
-                    'product_uom_qty': line.get('qty', 0.0),
-                    'product_uom': product.uom_id.id,
-                    'price_unit': line.get('price_unit', 0.0),
-                }
-                if tax_ids:
-                    vals_product.update({'tax_id': [(6, 0, tax_ids)], })
-                elif tax_ids == []:
-                    vals_product.update({'tax_id': [(6, 0, [])], })
-                data_product.append((0, 0, vals_product), )
-
-        if data_error:
-            return data_error
-        inv = False
-        so_id = sale_obj.create({'partner_id': partner.id,
-                                 'order_line': data_product
-                                 })
+        data.update({
+            'partner_id': partner.id,
+        })
+        _logger.info(data)
+        del data['journal_code']
+        del data['reference']
+        _logger.info(data)
+        so_id = sale_obj.create(data)
         if so_id:
             so_id.action_confirm()
             lst_invoice = so_id.action_invoice_create(final=True)
