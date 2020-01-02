@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import logging
+import copy
 from odoo import SUPERUSER_ID
 from odoo import http
 from odoo.http import request
 import json
 _logger = logging.getLogger(__name__)
-
 
 
 
@@ -63,6 +63,23 @@ class APISaleOrder(http.Controller):
     def api_create_so(self, **kw):
         # {
         #     "reference": "KH001",
+        #     "customer_info":{
+        #                         "name": "jack the Ripper",
+        #                         "company_type": "person" or "company",
+        #                         "vat": "e.g. BE0477472701",
+        #                         "street": "Street 1...",
+        #                         "street2": "Street 2...",
+        #                         "city": "City ...",
+        #                         "state_id": 2,
+        #                         "zip": "00215",
+        #                         "country_id": 1,
+        #                         "phone": "+84 93xxxxx",
+        #                         "mobile": "+01 415 xxx xxx",
+        #                         "email": "sub@domain.com",
+        #                         "title": 1,
+        #                         "website": "www.facebook.com",
+        #                         "customer": True,
+        #                       }
         #     "journal_code": "BNK1",
         #     "user_id": 1,
         #     "team_id": 1,
@@ -77,36 +94,45 @@ class APISaleOrder(http.Controller):
         #     "tracking_number": "your Tracking Number",
         #     "order_shipping_location": "your Order Shipping Location",
         #     "order_line": [
-        #         [0, 0, {"product_id": 3,
+        #         {"product_id": 3,
         #                 "qty": 2,
         #                 "tax_id": [[4, 1]],
-        #                 "price_unit": 1000}],
-        #
-        #         [0, 0,
+        #                 "price_unit": 1000}
+        #                 ,
         #          {"product_id": 5,
         #           "qty": 4,
         #           "tax_id": [[4, 2]],
-        #           "price_unit": 2000}]
+        #           "price_unit": 2000}
         #
         #     ]}
         partner_obj = request.env['res.partner'].sudo()
         product_obj = request.env['product.product'].sudo()
         sale_obj = request.env['sale.order'].sudo()
-        payments = request.env['account.payment'].sudo()
         journal_obj = request.env['account.journal'].sudo()
-        tax_obj = request.env['account.tax'].sudo()
-        params = request.params.copy()
-        data = request.jsonrequest
         # Get data from request
+        data = request.jsonrequest
+        partner =False
+        #check or create customer
+        if data.get('reference'):
+            partner = partner_obj.search([('reference', '=', data.get('reference'))], limit=1)
+        if not partner:
+            if data.get('customer_info'):
+
+                customer_info = copy.deepcopy(data.get('customer_info'))
+                customer_info.update({"customer":True})
+                partner = partner_obj.create(customer_info)
+                del data['customer_info']
+
+
         reference = data.get('reference', '')
         order_line = data.get('order_line', [])
         journal_code = data.get('journal_code', '')
         data_error = []
-        data_product = []
+
         # Check data and update for data_error
-        if not reference or not order_line or not journal_code:
+        if not order_line or not journal_code:
             return {"result": False}
-        partner = partner_obj.search([('reference', '=', reference)], limit=1)
+
         if not partner:
             data_error.append({'partner': 'No Customer with reference %s' % reference})
 
@@ -116,9 +142,22 @@ class APISaleOrder(http.Controller):
         data.update({
             'partner_id': partner.id,
         })
-        _logger.info(data)
+        order_line_convert =[]
+        for i_line in data.get('order_line'):
+
+            if i_line.get('tax_id'):
+                i_line_copy = copy.deepcopy(i_line)
+                i_line_copy.update({"tax_id":[4,i_line.get('tax_id')]})
+                order_line_convert.append([0, 0,i_line_copy])
+            else:
+                order_line_convert.append([0, 0,i_line])
+        data.update({'order_line':order_line_convert})
+
         del data['journal_code']
-        del data['reference']
+        if data.get('reference'):
+            del data['reference']
+        if data.get('customer_info'):
+            del data['customer_info']
         _logger.info(data)
         so_id = sale_obj.create(data)
         if so_id:
