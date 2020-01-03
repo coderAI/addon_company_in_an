@@ -74,12 +74,13 @@ class sale_order(models.Model):
             if not types:
                 types = type_obj.search([('code', '=', 'outgoing'), ('warehouse_id', '=', False)])
             picking_type = types[:1]
+            location_dest_id = picking_type.default_location_dest_id.id or so.partner_id.property_stock_customer and so.partner_id.property_stock_customer.id or False
             pick = {
                 'partner_id': so.partner_id.id,
                 'picking_type_id': picking_type.id,
                 'origin': so.name,
                 'sale_id': so.id,
-                'location_dest_id': picking_type.default_location_dest_id.id,
+                'location_dest_id': location_dest_id,
                 'location_id': picking_type.default_location_src_id.id,
                 'company_id': company_id,
             }
@@ -94,8 +95,8 @@ class sale_order(models.Model):
                     'product_id': product.id,
                     'product_uom_qty': so_line.product_uom_qty or 0.0,
                     'product_uom': product.uom_id.id,
-                    'location_dest_id': picking_type.default_location_dest_id.id,
-                    'location_id': picking_type.default_location_src_id.id,
+                    'location_dest_id': location_dest_id,
+                    'location_id': picking_type.default_location_src_id.id or False,
                     'sale_line_id': so_line.id,
                     'picking_id': picking.id,
                     'state': 'draft',
