@@ -51,7 +51,6 @@ class sale_order(models.Model):
         # self._action_confirm()
         # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
         #     self.action_done()
-        self.with_context(planned_picking=True).action_set_to_delivery()
         return True
 
     @api.multi
