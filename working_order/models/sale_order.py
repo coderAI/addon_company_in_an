@@ -94,6 +94,7 @@ class sale_order(models.Model):
                     'product_uom': product.uom_id.id,
                     'location_dest_id': picking_type.default_location_dest_id.id,
                     'location_id': picking_type.default_location_src_id.id,
+                    'sale_line_id':so_line.id,
                     'picking_id': picking.id,
                     'state': 'draft',
                     'company_id': company_id,
