@@ -51,6 +51,7 @@ class sale_order(models.Model):
         # self._action_confirm()
         # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
         #     self.action_done()
+        self.with_context(planned_picking=True).action_set_to_delivery()
         return True
 
     @api.multi
@@ -73,20 +74,21 @@ class sale_order(models.Model):
             types = type_obj.search([('code', '=', 'internal'), ('warehouse_id.company_id', '=', company_id)], limit=1)
             if not types:
                 types = type_obj.search([('code', '=', 'internal'), ('warehouse_id', '=', False)])
-            picking_type =  types[:1]
+            picking_type = types[:1]
             pick = {
                 'picking_type_id': picking_type.id,
                 'origin': so.name,
+                'sale_id': so.id,
                 'location_dest_id': picking_type.default_location_dest_id.id,
                 'location_id': picking_type.default_location_src_id.id,
                 'company_id': company_id,
             }
             picking = self.env['stock.picking'].create(pick)
-            so.picking_ids = [(6, 0, [picking.id])]
+
             product_obj = self.env['product.product']
             move_obj = self.env['stock.move']
             for so_line in so.order_line:
-                product =   so_line.product_id
+                product = so_line.product_id
                 template = {
                     'name': product.name or '',
                     'product_id': product.id,
@@ -94,7 +96,7 @@ class sale_order(models.Model):
                     'product_uom': product.uom_id.id,
                     'location_dest_id': picking_type.default_location_dest_id.id,
                     'location_id': picking_type.default_location_src_id.id,
-                    'sale_line_id':so_line.id,
+                    'sale_line_id': so_line.id,
                     'picking_id': picking.id,
                     'state': 'draft',
                     'company_id': company_id,
@@ -106,9 +108,10 @@ class sale_order(models.Model):
 
             #####
             so.write({'state': 'to delivery'})
+            so.picking_ids = [(6, 0, [picking.id])]
             # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
             # self.action_done()
-
+        return True
 
 
 class ir_attachment(models.Model):
