@@ -75,6 +75,7 @@ class sale_order(models.Model):
                 types = type_obj.search([('code', '=', 'internal'), ('warehouse_id', '=', False)])
             picking_type = types[:1]
             pick = {
+                'partner_id': so.partner_id.id,
                 'picking_type_id': picking_type.id,
                 'origin': so.name,
                 'sale_id': so.id,
