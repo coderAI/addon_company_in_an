@@ -70,9 +70,9 @@ class sale_order(models.Model):
             # create picking
             type_obj = self.env['stock.picking.type']
             company_id = so.company_id.id
-            types = type_obj.search([('code', '=', 'internal'), ('warehouse_id.company_id', '=', company_id)], limit=1)
+            types = type_obj.search([('code', '=', 'outgoing'), ('warehouse_id.company_id', '=', company_id)], limit=1)
             if not types:
-                types = type_obj.search([('code', '=', 'internal'), ('warehouse_id', '=', False)])
+                types = type_obj.search([('code', '=', 'outgoing'), ('warehouse_id', '=', False)])
             picking_type = types[:1]
             pick = {
                 'partner_id': so.partner_id.id,
