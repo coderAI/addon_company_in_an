@@ -66,10 +66,49 @@ class sale_order(models.Model):
     @api.multi
     def action_set_to_delivery(self):
         for so in self:
-            self._action_confirm()
+            # self._action_confirm()
+            # create picking
+            type_obj = self.env['stock.picking.type']
+            company_id = so.company_id.id
+            types = type_obj.search([('code', '=', 'internal'), ('warehouse_id.company_id', '=', company_id)], limit=1)
+            if not types:
+                types = type_obj.search([('code', '=', 'internal'), ('warehouse_id', '=', False)])
+            picking_type =  types[:1]
+            pick = {
+                'picking_type_id': picking_type.id,
+                'origin': so.name,
+                'location_dest_id': picking_type.default_location_dest_id.id,
+                'location_id': picking_type.default_location_src_id.id,
+                'company_id': company_id,
+            }
+            picking = self.env['stock.picking'].create(pick)
+            so.picking_ids = [(6, 0, [picking.id])]
+            product_obj = self.env['product.product']
+            move_obj = self.env['stock.move']
+            for so_line in so.order_line:
+                product =   so_line.product_id
+                template = {
+                    'name': product.name or '',
+                    'product_id': product.id,
+                    'product_uom_qty': so_line.product_uom_qty or 0.0,
+                    'product_uom': product.uom_id.id,
+                    'location_dest_id': picking_type.default_location_dest_id.id,
+                    'location_id': picking_type.default_location_src_id.id,
+                    'picking_id': picking.id,
+                    'state': 'draft',
+                    'company_id': company_id,
+                    'picking_type_id': picking.picking_type_id.id,
+                    'warehouse_id': picking.picking_type_id.warehouse_id.id,
+                }
+
+                move_obj.create(template)
+
+            #####
             so.write({'state': 'to delivery'})
             # if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
             # self.action_done()
+
+
 
 class ir_attachment(models.Model):
     _inherit = "ir.attachment"
