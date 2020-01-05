@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from odoo import api, fields, models, _
 from odoo import fields, models
 
 
@@ -11,3 +11,9 @@ class Partner(models.Model):
     # tax_code = fields.Char('Tax Code')
     # job_title = fields.Char('Tax Code')
     # sub_name = fields.Char('Tax Code')
+    @api.model
+    def create(self, vals):
+        vals['reference'] = self.env['ir.sequence'].next_by_code('res.partner') or _('New')
+            
+        result = super(Partner, self).create(vals)
+        return result

@@ -57,10 +57,7 @@
             <field name="view_id" ref="view_delivery_method_tree"/>
         </record>
 
-        <menuitem id="menu_view_delivery_method_tree" name="Delivery Method"
-                  action="action_view_delivery_method_tree"
-                  parent="menu_config"
-                  sequence="6"/>
+
     </data>
 </odoo>
 

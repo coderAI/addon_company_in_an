@@ -19,7 +19,15 @@
             <field name="padding">6</field>
             <field name="company_id" eval="False"/>
         </record>
-
+		
+        <!-- Sequences for res.partner -->
+        <record id="seq_res_partner" model="ir.sequence">
+            <field name="name">Customer Code</field>
+            <field name="code">res.partner</field>
+            <field name="prefix">CUTS</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
 
     </data>
 </odoo>

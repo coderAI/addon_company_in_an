@@ -42,14 +42,15 @@ class check_product(models.Model):
         sale_order_obj = self.env['sale.order']
         quant_obj = self.env['stock.quant']
         product_obj = self.env['product.product']
-        sale_order_line = []
+        sale_order_line = [000000]
         for so in self.sale_order_ids:
             sale_order_line+=so.order_line.ids
             # sale_order_line_obj.search([('order_id.state', 'in', ['paid','done','sale']),
             #                                           ('check_maped', '=', False)],
             #                                          order="id asc")
         sale_order = self.sale_order_ids
-        for cp in self:
+        if len(sale_order_line)>1:
+          for cp in self:
             # tổng số lượng product cần cho đợt checking này
             if sale_order_line:
                 sql = '''select product_id as product_id, sum(product_uom_qty) as total from sale_order_line 
