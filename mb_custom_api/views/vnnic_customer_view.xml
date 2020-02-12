@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="view_vnnic_customer_graph" model="ir.ui.view">
+        <field name="name">vnnic.customer.graph</field>
+        <field name="model">vnnic.customer</field>
+        <field name="arch" type="xml">
+            <graph string="Vinnic Lists">
+                <field name="date" type="col" modifiers="{}"/>
+                <field name="partner_id" type="row" modifiers="{}"/>
+                <field name="quantity_month" type="measure" modifiers="{}"/>
+                <field name="quantity_year" type="measure" modifiers="{}"/>
+                <field name="rank" type="measure" modifiers="{}"/>
+                <field name="percent" type="measure" modifiers="{}"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_vnnic_customer_pivot" model="ir.ui.view">
+        <field name="name">vnnic.customer.pivot</field>
+        <field name="model">vnnic.customer</field>
+        <field name="arch" type="xml">
+            <pivot string="Vinnic Lists">
+                <field name="date" interval="month" type="col"/>
+                <field name="quantity_month" type="measure"/>
+                <field name="quantity_year" type="measure"/>
+                <field name="percent" type="measure"/>
+                <field name="rank" type="measure"/>
+                <field name="partner_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_vnnic_customer_tree">
+        <field name="name">vnnic.customer.tree</field>
+        <field name="model">vnnic.customer</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree string="Vinnic Lists">
+                <field name="date"/>
+                <field name="quantity_month"/>
+                <field name="quantity_year"/>
+                <field name="partner_id"/>
+                <field name="quantity"/>
+                <field name="rank"/>
+                <field name="percent"/>
+                <field name="partner_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_vnnic_customer">
+        <field name="name">Views vnnic</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vnnic.customer</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_id" ref="view_vnnic_customer_pivot"/>
+    </record>
+
+
+
+    <menuitem name="Vnnic" action="action_vnnic_customer" id="menu_vnnic_customer" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
+
+
+</odoo>

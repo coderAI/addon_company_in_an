@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <!--    <record id="view_system_api_history_line_graph" model="ir.ui.view">-->
+    <!--        <field name="name">system.api.history.line.graph</field>-->
+    <!--        <field name="model">system.api.history.line</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <graph string="Vinnic Lists">-->
+    <!--                <field name="date" type="col" modifiers="{}"/>-->
+    <!--                <field name="partner_id" type="row" modifiers="{}"/>-->
+    <!--                <field name="quantity_month" type="measure" modifiers="{}"/>-->
+    <!--                <field name="quantity_year" type="measure" modifiers="{}"/>-->
+    <!--                <field name="rank" type="measure" modifiers="{}"/>-->
+    <!--                <field name="percent" type="measure" modifiers="{}"/>-->
+    <!--            </graph>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <record id="view_system_api_history_line_pivot" model="ir.ui.view">-->
+    <!--        <field name="name">system.api.history.line.pivot</field>-->
+    <!--        <field name="model">system.api.history.line</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <pivot string="Vinnic Lists">-->
+    <!--                <field name="date" interval="month" type="col"/>-->
+    <!--                <field name="quantity_month" type="measure"/>-->
+    <!--                <field name="quantity_year" type="measure"/>-->
+    <!--                <field name="percent" type="measure"/>-->
+    <!--                <field name="rank" type="measure"/>-->
+    <!--                <field name="partner_id" type="row"/>-->
+    <!--            </pivot>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record model="ir.ui.view" id="view_system_api_history_line_tree">
+        <field name="name">system.api.history.line.tree</field>
+        <field name="model">system.api.history.line</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree string="API Call">
+                <field name="user_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="is_checking"/>
+                <field name="is_error"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_system_api_history_line">
+        <field name="name">system api history line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">system.api.history.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_summary_system_api_tree">
+        <field name="name">summary.system.api.tree</field>
+        <field name="model">summary.system.api</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <tree string="API">
+                <field name="summary_day"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="summary_system_api_form" model="ir.ui.view">
+        <field name="name">summary.system.api.form</field>
+        <field name="model">summary.system.api</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="btn_summary" type="object" string="Summary" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="summary_day"/>
+                        <field name="system_api_action_history_ids">
+                            <tree string="Lines">
+                                <field name="name"/>
+                                <field name="maximun_time"/>
+                                <field name="minimun_time"/>
+                                <field name="total_call"/>
+                                <field name="total_error_call"/>
+                                <button name="view_detail" class="oe_link" icon="fa-eye-slash" string="view" type="object"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_summary_system_api">
+        <field name="name">Summary System Api</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">summary.system.api</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!--            ,pivot,graph</field>-->
+        <!--        <field name="view_id" ref="view_system_api_history_line_pivot"/>-->
+
+
+    </record>
+
+
+    <record id="view_system_api_config" model="ir.ui.view">
+        <field name="name">system.api.config.view</field>
+        <field name="model">system.api.config</field>
+        <field name="arch" type="xml">
+            <form string="Configure Purchases" class="oe_form_configuration">
+                <header>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                    <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                </header>
+                <group string="Account Can Call Api Action">
+                    <field name="account_ids" widget="many2many_tags"/>
+                </group>
+                <!--                    <div>-->
+                <!--                        <span>(*) This configuration is related to the company you're logged into.</span>-->
+                <!--                    </div>-->
+            </form>
+        </field>
+    </record>
+    <record id="action_api_config" model="ir.actions.act_window">
+        <field name="name">Configure API</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">system.api.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+
+    <menuitem id="api_main_menu" name="API" parent="mb_manage_server.menu_main_servers" sequence="18"/>
+    <menuitem name="System Api" action="action_summary_system_api" id="menu_system_api_history_line" parent="api_main_menu" sequence="10" groups="base.group_no_one"/>
+    <menuitem id="menu_api_config" name="Settings" parent="api_main_menu"
+              sequence="0" action="action_api_config" groups="base.group_system"/>
+
+
+</odoo>

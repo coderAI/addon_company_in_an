@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_partner_category_list_inherit" model="ir.ui.view">
+        <field name="name">Contact Tags</field>
+        <field name="model">res.partner.category</field>
+        <field name="inherit_id" ref="base.view_partner_category_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="after">
+                <field name='sequence' widget='handle' groups="base.group_system,sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">mb.sale.order.overdue.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="mb_cs_bugs.mb_view_mb_sale_order_form_inherit2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="customer_source" readonly="1" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    <record id="view_res_partner_category_inherit" model="ir.ui.view">
+        <field name="name">res.partner.category.form</field>
+        <field name="model">res.partner.category</field>
+        <field name="inherit_id" ref="base.view_partner_category_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Contact Tag">
+                    <sheet>
+                        <button class="oe_stat_button" type="object" name="btn_view_partner" icon="fa-star">
+                            <field string="Customer" name="customer_count" widget="statinfo"/>
+                        </button>
+                        <group col="4">
+                            <field name="name" modifiers="{'required': true}"/>
+                            <field name="active" modifiers="{}"/>
+                            <field name="parent_id" can_create="true" can_write="true" modifiers="{}"/>
+                            <field name="is_career" on_change="1" modifiers="{}"/>
+                        </group>
+                    </sheet>
+                </form>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_res_partner_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="matbao_module.view_res_partner_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="replace">
+                <field name="category_2_id" widget="many2many_tags" placeholder="tags about career..." options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True, 'no_open': True}" domain="[('is_career','=',True)]" required="1"/>
+                <field name="category_id" widget="many2many_tags" placeholder="tags about service..." options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True, 'no_open': True}" domain="[('is_career','!=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

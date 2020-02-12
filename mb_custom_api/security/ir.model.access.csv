@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+vnnic_customer_manager,vnnic.customer.manager,model_vnnic_customer,sales_team.group_sale_manager,1,0,0,0
+system_api_config_rule,system_api_config,model_system_api_config,,1,1,1,1
+system_api_action_history_rule,system_api_action_history,model_system_api_action_history,,1,1,1,1
+system_api_action_rule,system_api_action,model_system_api_action,,1,1,1,1
+system_api_history_line_rule,system_api_history_line,model_system_api_history_line,,1,1,1,1
+
+
+

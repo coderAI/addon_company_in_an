@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_mb_crm_lead_form_leads_inherit">
+		<field name="name">view.mb.crm.lead.form.leads.inherit</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+		<field name="arch" type="xml">
+			<field name="user_id" position="replace">
+				<field name="user_id" domain="[('sale_team_id','=', team_id)]" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"/>
+			</field>
+			<field name="team_id" position="replace">
+				<field name="team_id" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"/>
+			</field>
+		</field>
+	</record>
+
+
+
+
+</odoo>
