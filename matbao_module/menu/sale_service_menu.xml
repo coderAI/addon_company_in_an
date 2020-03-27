@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="service_menu"
+            parent="sales_team.menu_sales"
+            sequence="18"
+            action="action_view_service"
+            />
+    </data>
+</odoo>

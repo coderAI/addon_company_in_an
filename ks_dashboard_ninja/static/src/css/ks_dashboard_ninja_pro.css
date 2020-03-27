@@ -1,0 +1,194 @@
+.ks_dashboard_item{
+    padding: 8px 15px 25px 15px;
+    /*border : 1px solid #CDD1D9;*/
+    color : black;
+    margin-top: 15px;
+    height: 132px;
+    border-radius : 6px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.ks_item_click{
+    cursor:pointer;
+}
+
+.ks_chart_card_body{
+-webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+        position: absolute;
+    top: 50px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+}
+.ks_card-body{
+-webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+
+}
+
+
+.ks_pro_item_header{
+    padding: 1rem!important;
+    align-items: center !important;
+    flex-direction: row !important;
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+.ks_card{
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 3px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    padding-right:0;
+}
+}
+
+.ks_dashboard_item_domain_count_l2{
+    font-size: 50px;
+    margin-left: 20px;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Chart No Content Css */
+.ks_chart_nocontent_form{
+    display: inherit !important;
+}
+
+.ks_pie_chart_nocontent{
+    background : transparent url(/web/static/src/img/graph_background.png) no-repeat 0 0;
+    color: #777777;
+    background-size: 100% 100%;
+}
+
+.ks_pie_chart_nocontent > .nv-noData {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 125%;
+}
+
+.ks_pie_chart_nocontent > .ksChartTitle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.ks_line_bar_chart_nocontent{
+    background: transparent url(/web/static/src/img/graph_background.png) no-repeat 0 0;
+    color: #777777;
+    font-size: 125%;
+    background-size: 100% 100%;
+}
+
+/* Form pie chart no data */
+.ks_dn_graph_preview > .nv-noData > .ks_pie_chart_nocontent{
+    padding: 100px 0 0 137px;
+    min-height: 327px;
+    font-size: 125%;
+}
+
+.ks_item_pro{
+overflow : visible !important;
+color : black;
+}
+
+.ks_color_menu{
+    position: absolute;
+    will-change: transform;
+    top: 36px;
+    left: auto;
+    bottom: auto;
+    margin-right: 15px;
+    min-width : 118px;
+}
+
+
+.ks_chart_color_options{
+    display: block;
+    padding: 3px 10px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    cursor: pointer;
+    margin-left: 24px;
+    text-transform: capitalize;
+
+}
+
+/*Export menu css*/
+ .ks_chart_export_menu{
+    padding: 6px 0 6px 0;
+
+}
+
+.ks_chart_export_menu_header{
+    font-weight: 600;
+    padding: 0 14px 10px 14px;
+}
+
+.ks_chart_export_menu_item{
+    padding: 5px 14px 5px 14px;
+    cursor : pointer;
+}
+
+.ks_chart_image_export{
+    line-height: 29.5px;
+    padding-top: 7.5px;
+    padding-bottom: 7px;
+}
+.ks_chart_export_menu_item{
+    color: #4c4c4c;;
+}
+
+
+.ks_chart_export_menu_item:hover{
+    color: #4d4c4c;
+    background-color: #f5f5f5;
+}
+
+.ks_dashboard_more_action{
+position : relative;
+}
+
+.ks_dashboard_kpi{
+    overflow-y : auto !important;
+}
+
+@media (max-width: 1024px) {
+    .ks_dashboard_edit_layout {
+        display: none;
+    }
+}
+
+
+.ksMaxTableContent{
+    max-height: 350px;
+}

@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Odoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+<!-- odoo description page css -->
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+        color: #21272b;
+    }
+
+    ul {
+        color: #222020;
+    }
+
+    * {
+        font-family: "Montserrat", sans-serif;
+    }
+
+
+
+
+</style>
+
+<body>
+<!-- Use Odd and even section for repeating sections (on line no. 224 and 275)
+    and ask sukhjinder singh to fix down arrow image on last section
+-->
+<div class="pt-4">
+    <div class="container">
+        <!-- Header -->
+        <div class="row mb-sm-4 mb-3 pb-3 justify-content-md-between justify-content-center border-bottom">
+            <div class="text-center mr-5">
+                <a href="https://ksolves.com/">
+                    <img src="images/ksolves-logo.png" alt="ksolves-logo">
+                </a>
+                <div class="mt-3" style="font-size: 10px;">
+                    <a href="https://www.facebook.com/Ksolves.India" class="text-dark ml-3"> <i
+                            class="fa fa-facebook fa-2x"></i> </a>
+                    <a href="https://www.linkedin.com/company/ksolves" class="text-dark ml-3"> <i
+                            class="fa fa-linkedin fa-2x"></i> </a>
+                    <a href="https://www.youtube.com/channel/UCplv9V47g9VidekGN6Wp1ew" class="text-dark ml-3"> <i
+                            class="fa fa-youtube-play fa-2x"></i> </a>
+                    <a href="https://twitter.com/ksolves_india" class="text-dark ml-3"> <i
+                            class="fa fa-twitter fa-2x"></i> </a>
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary"
+                   style="width: auto;font-weight: bold;font-size: 21px;background: linear-gradient(to right, #F27E00, #F29500);box-shadow: 0px 0px 6px 3px #d7e5f1;padding-top: 12px;padding-bottom: 12px;padding-left: 60px;padding-right: 60px;border-radius: 28px; color: white; border: none;"
+                   href="https://dashboardninja10.kappso.com" target="_blank">Free Demo
+                </a>
+                <div class="mt-1 mb-4"><span
+                        style="color: #616161;font-size: 12px;"> User - demo | Password - demo</span></div>
+            </div>
+            <div class="mt-md-0 mt-3">
+                <div class="d-flex align-items-center ">
+                    <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Community: </h6>
+                    <div class="row mx-0">
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 13.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+
+                         <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                                background-color: #875A7B !important;
+                                                font-size: 10px;
+                                                border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                                background-color: #875A7B !important;
+                                                font-size: 10px;
+                                                border-radius: 2px;">
+                                <b> v 10.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center  mt-1">
+                    <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Enterprise:</h6>
+                    <div class="row mx-0">
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 13.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 10.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Description  -->
+        <div class="text-center py-4">
+            <!-- <div class="border mx-5 col-7 mx-auto"></div> -->
+            <p style="font-size: 18px;border-width: 3px;border-style: solid;border-image: linear-gradient( to bottom, red, rgba(0, 0, 0, 0) ) 1 100%;"
+               class="px-sm-4 p-2 pt-4">
+                Dashboard Ninja helps create <b>beautiful, customized and robust dashboards</b> for your different
+                departments. With this easy to use app, you will be able to save your precious business hours and take
+                major business decisions quickly by overseeing important stats on your self-configured dashboards.
+            </p>
+        </div>
+
+        <!-- Video Link-->
+        <div class="text-center">
+            <div class="s_panel_video" data-video-id="UxTB6LEO6Fk?rel=0" style="cursor:pointer;">
+                <img class="img-fluid s_tooltip_tabs_tooltip_image s_figure_link pb0"
+                     src="images/app_screen/video_cover.png" alt="Ksolves Cover Video" style="max-width:100%;">
+            </div>
+
+        </div>
+
+
+        <!--  Video Demo Button-->
+        <div class="text-center">
+            <div class="mt-5 mb-4">
+                <a class="btn btn-primary"
+                   style="width: auto;font-weight: bold;font-size: 21px;background: linear-gradient(to right, #F27E00, #F29500);box-shadow: 0px 0px 6px 3px #d7e5f1;padding-top: 12px;padding-bottom: 12px;padding-left: 60px;padding-right: 60px;border-radius: 28px; color: white; border: none;"
+                   href="https://www.youtube.com/watch?v=vWjKCwlyMdE" target="_blank">Demo Video
+                </a>
+            </div>
+        </div>
+
+        <br class="row  py-sm-5 px-1">
+            <h2 class="w-100 text-center mb-3">Pre-configured Dashboard Ninja Apps</h2>
+            <h6 class="w-100 text-center mb-3">Dashboard ninja is a base app that allow you to create dashboard of any odoo business model. We are also providing some free apps with pre-configured dashboard, that are listed below.</h6>
+
+        <div class="text-center">
+                <ul class="list-unstyled" style="font-size: 15px;display: inline-block;margin-top: 20px;">
+                    <li class="d-flex align-items-baseline mb-2">
+                        <img src="images/forward-arrow.svg" alt="arrow"
+                             style="width:15px;margin-right:10px">
+                            <a href="https://apps.odoo.com/apps/modules/10.0/ks_sale_dashboard_ninja/">Sales Dashboard Ninja</a>&nbsp; <b>FREE</b></br>
+                    </li>
+                    <li class="d-flex align-items-baseline mb-2">
+                        <img src="images/forward-arrow.svg" alt="arrow"
+                             style="width:15px;margin-right:10px">
+                            <a href="https://apps.odoo.com/apps/modules/10.0/ks_inventory_dashboard/">Inventory Dashboard Ninja</a>&nbsp; <b>FREE</b> </br>
+                    </li>
+                    <li class="d-flex align-items-baseline mb-2">
+                        <img src="images/forward-arrow.svg" alt="arrow"
+                             style="width:15px;margin-right:10px">
+                        <a href="https://apps.odoo.com/apps/modules/10.0/ks_account_dashboard/">Account Dashboard Ninja</a>&nbsp;  <b>FREE</b> </br>
+                    </li>
+                    <li class="d-flex align-items-baseline mb-2">
+                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                        <a href="https://apps.odoo.com/apps/modules/13.0/ks_crm_dashboard_ninja/">CRM Dashboard Ninja</a>&nbsp;  <b>FREE</b>
+                    </li>
+                </ul>
+            </div>
+            </div>
+
+        <div class="row py-4 px-3">
+            <div class="w-100" style="padding-bottom:45px;border-radius: 10px;">
+                <ul role="tablist" class="nav nav-pills justify-content-center" data-tabs="tabs" id="pills-tab"
+                    role="tablist" style="border: none;background: unset;">
+                    <li class="nav-item mr-1 mb-3"
+                        style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                        <a id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                           aria-controls="pills-home" aria-selected="true" class="nav-link active"
+                           style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">Features
+                        </a>
+                    </li>
+                    <li class="nav-item mr-1 mb-3"
+                        style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                        <a id="pills-releases-tab" data-toggle="pill" href="#pills-releases" role="tab"
+                           aria-controls="pills-releases" aria-selected="true" class="nav-link"
+                           style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">Releases
+                        </a>
+                    </li>
+                    <li class="nav-item mr-1 mb-3"
+                        style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                           aria-controls="pills-profile" aria-selected="false"
+                           style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">User Guide
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3"
+                        style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+                           aria-controls="pills-contact" aria-selected="false"
+                           style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">FAQs
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="px-3 pt-1 tab-pane fade show active" id="pills-home" role="tabpanel"
+                         aria-labelledby="pills-home-tab">
+
+                        <div class="tab-pane">
+                                <div>
+                                    <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                        <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold" style="border-radius: 10px;font-size: 16px;">
+                                            <span class="text-center " style="font-size: 40px;font-weight: 400;color: #8482b2;" >Dashboard Screen
+                                            <img src="preview_images/dashboard_screen.png" alt="arrow" style="max-width:100%;" class="my-4">
+                                        </span>
+                                        </li>
+                                    </ul>
+
+                                     <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                        <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold" style="border-radius: 10px;font-size: 16px;">
+                                            <span>
+                                            <img src="preview_images/dashboard_item.png" alt="arrow" style="max-width:100%;" class="my-4">
+                                        </span>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                        <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold" style="border-radius: 10px;font-size: 16px;">
+                                            <span class="text-center " style="font-size: 40px;font-weight: 400;color: #8482b2;">Dashboard List & Configuration
+                                            <img src="preview_images/dashboard_configuration.png" alt="arrow" style="max-width:100%;" class="my-4">
+                                        </span>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                        <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold" style="border-radius: 10px;font-size: 16px;">
+
+                                            <span class="text-center " style="font-size: 40px;font-weight: 400;color: #8482b2;">User Settings - Dashboard Ninja Rights
+                                            <img src="preview_images/user_setting.png" alt="arrow" style="max-width:100%;" class="my-4">
+                                        </span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/flame.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Hot Features</h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Multi Company</b> support</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Move or duplicate</b> your dashboard item within the same or another dashboard</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Auto refresh dashboard data</b> after configured period of time (None, 15 sec, 30 sec, 45 sec, 1 min, 2 min, 5 min, 10 min)</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Target feature</b> provided to set targets as line/bar on Bar Chart, Area Chart, Line Chart, & Horizontal Chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Export any chart item</b> as Excel, CSV, PDF, PNG</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Export and Import complete dashboards</b> between different databases</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>List View</b> dashboard item, which is easily configurable with any of the selected columns and Model</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Easy Layout Configuration</b> with resize and reposition items using drag and drop from Edit layout button at top right of header.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;">Key Features</h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fully configurable Dynamic Dashboards with animated charts</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>8 Chart Types supported <b>Tile, Line chart, Bar chart(Stacked, Vertical, Horizontal), Pie chart(Semi/Full), Doughnut chart, Area chart, Polar Area chart, List view</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Full Configuration of Tiles</b> - (predefined font awesome icons or upload your icon), font color, background color, 6 predefined layouts, size</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Click tiles to view details in list view</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Target feature</b> provided to set targets as line/bar on Bar Chart, Area Chart, Line Chart, & Horizontal Chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Auto refresh dashboard data</b> after configured period of time (None, 15 sec, 30 sec, 45 sec, 1 min, 2 min, 5 min, 10 min)</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Click info icon on charts or section of charts to view details in list view</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Multi Company support</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>New Dashboard Item type - <b>KPI card with comparison to Target & Previous period</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Option on KPI tiles for <b>Comparison of two query in Sum, Ratio or Percentage</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>New Axis for line chart</b> if used with Bar chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Configuration menu provided to <b>create multiple dashboards under any Menu</b> supporting Odoo’s default Access permissions</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Easy configuration of items using Odoo models, fields, domains</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Responsive design</b> for Desktop, Tablet, and Mobile phones</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Limit your records to see limited records in any dashboard items like <b>Top 10 products</b> etc</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>3 predefined dashboard layout templates</b> provided during creation of a new dashboard</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Ability to select Sort By Field, Sort Order and Record Limit options while creating each dashboard item</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Ability to change the <b>color scheme for charts</b> easily</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>20 Date filter</b> options provided like Last 7 Days, Last 30 Days, Last 90 Days, Last 365 Days, This Month, This year, Custom Dates etc.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Move or duplicate your dashboard item</b> within the same or another dashboard</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Export and Import complete dashboards</b> between different databases</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Export any chart item</b> as Excel, CSV, PDF, PNG</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Line Measure</b> option that will show line in bar chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Two list view types</b>: Grouped, Ungrouped</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span><b>Filter logged in user data</b> using %UID in domain filter</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Available for <b>Community and Enterprise Edition in versions 10, 11, 12</b></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--  Support 90 days-->
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px; margin-bottom : 10px;">
+                            <div class="text-center p-3" style="background: linear-gradient(to top, #a1c4fd, #c2e9fb);border-radius: 10px;">
+                                <h3 class="font-weight-bold">Free 90 Days Support</h3>
+                                <h5 class="m-auto w-75" style="line-height: 1.5;font-weight: bold;">Ksolves will provide
+                                    FREE 90
+                                    days support for any doubt, queries, and bug fixing
+                                    (excluding data recovery) or any type of issues related to this module. This is
+                                    applicable from the date of purchase.
+                                </h5>
+                            </div>
+                        </div>
+
+                        <!--  Note -->
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px; margin-bottom : 10px;">
+                            <div class="text-center p-3" style="background: linear-gradient(to top, #a1c4fd, #c2e9fb);border-radius: 10px;">
+                                <h3 class="font-weight-bold">Note</h3>
+                                <h5 class="m-auto w-75" style="line-height: 1.5;font-weight: bold;">
+                                    Ideally we have only made our module compatible with standard Odoo 10, 11 and 12 versions and Community and Enterprise Editions UI.
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+<div class="px-3 pt-1 tab-pane fade" id="pills-releases" role="tabpanel" aria-labelledby="pills-releases-tab">
+
+
+<!--    <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">-->
+                            <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+
+                                <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                                 alt="arrow"
+                                                                                                 style="width:35px;margin-right:2px">
+                                   Latest Release  8.0.2 - <span style="font-size:12px;vertical-align: middle;"> 27th February 2020</span>
+                                </h5>
+                                <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span> Minor UI fix related to List View.</span>
+                                        </li>
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span> Minor fix related to web responsiveness.</span>
+                                        </li>
+                                </ul>
+                            </div>
+                            <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                               Release  8.0.1 - <span style="font-size:12px;vertical-align: middle;"> 22nd February 2020</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+
+                                    <li class="d-flex align-items-baseline mb-3">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                         <span> Minor fix related to the Dashboard Ninja Date Filters.</span>
+                                    </li>
+
+                            </ul>
+                            </div>
+                            <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                                 alt="arrow"
+                                                                                                 style="width:35px;margin-right:2px">
+                                   Release  8.0.0 - <span style="font-size:12px;vertical-align: middle;"> 21st February 2020</span>
+                                </h5>
+                                <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Added New date filters (Past Till Now, Past Excluding Today, Future Starting Now, Future Starting Tomorrow).</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Configuration For Hiding and Showing Legends on Chart Items.</span>
+                                        </li>
+
+                                </ul>
+                            </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release  7.0.0 - <span style="font-size:12px;vertical-align: middle;"> 8th January 2020</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+<!--                                <li class="d-flex align-items-baseline mb-2">-->
+<!--                                    <img src="images/forward-arrow.svg" alt="arrow"-->
+<!--                                         style="width:15px;margin-right:10px">-->
+<!--                                    <span>Fix - Minor bug fix related to translation.</span>-->
+<!--                                </li>-->
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Drill down feature in grouped list view.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Sorting and record limit in drill down.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature -  Allow users to Include/Compare their data with Previous Years by Same Period Previous Years option of all item.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature -  Use of %MYCOMPANY in domain filter to filter logged in user company data.</span>
+                                        </li>
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Pagination in ungrouped list View.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Option to enable and disable data for items.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Feature - Allow user to export and import each item.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Improvement - Computed Fields in ungrouped List View.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Improvement - Add <b>Drill Up </b>text and increase size of drill up button.</span>
+                                        </li>
+
+
+                                        <li class="d-flex align-items-baseline mb-3">
+                                            <img src="images/forward-arrow.svg" alt="arrow"
+                                                 style="width:15px;margin-right:10px">
+                                             <span>Improvement - List view row alternate colors.</span>
+                                        </li>
+
+                            </ul>
+                        </div>
+
+<!--                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">-->
+<!--                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"-->
+<!--                                                                                             alt="arrow"-->
+<!--                                                                                             style="width:35px;margin-right:2px">-->
+<!--                               Release  6.3.3 - <span style="font-size:12px;vertical-align: middle;"> 20th November 2019</span>-->
+<!--                            </h5>-->
+<!--                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">-->
+<!--                                <li class="d-flex align-items-baseline mb-2">-->
+<!--                                    <img src="images/forward-arrow.svg" alt="arrow"-->
+<!--                                         style="width:15px;margin-right:10px">-->
+<!--                                    <span>Fix - Minor bug fix related to translation.</span>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">Release  6.3.3 - <span style="font-size:12px;vertical-align: middle;"> 20th November 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Minor bug fix related to translation.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release  6.3.2 - <span style="font-size:12px;vertical-align: middle;"> 15th November 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Minor bug fix related to refresh interval.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release  6.3.1 - <span style="font-size:12px;vertical-align: middle;"> 7th November 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Mobile view UI issue.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Item position issue when changing company.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Reset item update interval issue when saving layout.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - Minor bug fix related to drill down.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release  6.3.0 - <span style="font-size:12px;vertical-align: middle;"> 31st October 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix - "Send by Email" issue in Safari browser.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release 6.1.0 - <span style="font-size:12px;vertical-align: middle;"> 23th October 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - Ability to add custom <b>unit</b> and <b>currency symbol</b> on tooltip and legends.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature -Target and deviation in grouped list view item.</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                Release 6.0.1 - <span style="font-size:12px;vertical-align: middle;"> 9th October 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix- Minor bug fix related to custom date filter.</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                6.0.0 - <span style="font-size:12px;vertical-align: middle;"> 25th September 2019</span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - <b>Drill down</b> on <b>Chart</b> Items.</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - <b>Item Action</b> to open particular view after viewing item information (can select any particular action).</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - <b>Show Data Value</b> Option for charts items (Data values) to show data values permanently.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - <b>Date filter</b> show changes on the fly.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Show all possible field types in Group By and Subgroup By field selection for items.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - Added two more date filter aggregation in <b>Group by Date</b> and <b>Sub Group By Date</b> : <b>Hour and Minute.</b></span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Now user can set <b>Single Item Refresh Interval</b> instead of Dashboard in item configuration.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - Easily re-arrange dashboard menu using <b>Menu Sequence</b> from Dashboard Configuration.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Removed the dependency of <b>Sales Module</b> from our app.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Now using <b>Odoo default Date-picker</b> in Dashboard Date Custom Filter Selection.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Now user can view <b>item list</b> of Dashboard/Dashboards and can <b>delete/move/duplicate</b> group of items at Once using List Action.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - Allow users to <b>Include/Compare</b> their data with Previous Period by <b>Include Period</b> option.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature - Allow users to <b>Include/Compare</b> their data with Previous Years by <b>Same Period Previous Years</b> option.</span>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement - Now user can view <b>Global Target</b>. line on their chart in Sub Group Case when grouped on Date type field.</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix: Odoo Export menu issue.</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix: configuration menu issue with Material/United Backend Theme.</span>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Add six tile in row.</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                         <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                5.3.4  <span style="font-size:12px;vertical-align: middle;">  </span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix: Chart rendering issue when changing chart type.</span>
+                                </li>
+                                </ul>
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                5.3.3  <span style="font-size:12px;vertical-align: middle;">  </span>
+                            </h5>
+                             <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Fix: Layout2 tile background color issue.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                5.3.2  <span style="font-size:12px;vertical-align: middle;">  </span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Performance Enhancement - We have skipped the aggregation over computed fields in record field for <b>Tile</b> and <b>KPI</b> item types to increase performance of item loading.</span>
+                                </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Enhancement: Viewing Dashboard item information should carry forward the date filter in Odoo list view</span>
+                                </li>
+
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <span>New Dashboard Item type<b> - Stacked bar chart</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <span>New Dashboard Item type <b> - Horizontal chart</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr" style="width:15px;margin-right:10px">
+                                    <span><b>Export and Import complete dashboards</b> between different databases</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr" style="width:15px;margin-right:10px">
+                                    <span>Added a field <b>Line Measure</b> that will show line in bar chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <span><b>Two list view type</b> Feature provided: Grouped, Ungrouped</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <span>Use of <b>%UID </b>in domain filter to filter logged in user data</span>
+                                </li>
+
+                                    <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Target feature provided to <b>set targets on Bar Chart, Area Chart, Line Chart, & Horizontal Chart</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature provided to consolidate data by <b>Group By</b> and <b>Sub Group By</b> for  <b>Chart items</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Ease to change parent menu of a particular Dashboard even after initial creation of the Dashboard. This is not applicable on default Dashboard</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrowr"
+                                         style="width:15px;margin-right:10px">
+                                    <span>A particular month’s comparison with the same month of last year using Sub Group By for <b>Chart items</b></span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>20 Date Filter options provided like <b>This Month, Last Year</b>, etc.</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature provided to <b>set Date Filter on Dashboard Items individually</b>. This overrides overall Dashboard Date Filter for that item</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Feature to make your Doughnut and Pie chart into <b>Semi-Doughnut and Semi-Pie</b> chart</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Moved Dashboard Manager under Configuration menu</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Added Dashboard Ninja module icon to the app docker</span>
+                                </li>
+                                <li class="d-flex align-items-baseline mb-2">
+                                    <img src="images/forward-arrow.svg" alt="arrow"
+                                         style="width:15px;margin-right:10px">
+                                    <span>Revamped the view of Dashboard Item creation window</span>
+                                </li>
+                                </ul>
+                        </div>
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                3.2.1  <span style="font-size:12px;vertical-align: middle;">  </span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Fix - Date filtering not working on dashboard</span>
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                            <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"
+                                                                                             alt="arrow"
+                                                                                             style="width:35px;margin-right:2px">
+                                3.2.0  <span style="font-size:12px;vertical-align: middle;">  </span>
+                            </h5>
+                            <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span><b>Auto refresh dashboard data</b> after configured period of time (None, 15 sec, 30 sec, 45 sec, 1 min, 2 min, 5 min, 10 min)</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Click <b>info icon on charts</b> or section of charts to see list view of data</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrowr" style="width:15px;margin-right:10px">
+                                        <span><b>Multi Company</b> support</span>
+                                    </li>
+
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Easily <b>resize and reposition items using drag and drop</b> from Edit layout button at top right of header</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>UI enhancement for <b>Add & Edit Layout button</b> in header along with some other minor UI updates</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Legends moved to bottom for Pie chart & Doughnut chart</span>
+                                    </li>
+                                </ul>
+                        </div>
+        </div>
+
+        <!-- Gif-->
+        <div class="text-center">
+            <div class="mt-1 mb-4">
+                <img src="images/app_screen/preview.gif" alt="arrow" style="width:70%;margin-right:2px">
+            </div>
+        </div>
+
+        <!-- Popular Apps -->
+        <div class="row  py-sm-5 px-1">
+            <h2 class="w-100 text-center mb-3">Ksolves Suggested Apps</h2>
+            <div class="text-center w-100 mb-1">
+                <img src="images/line.png" alt="ksolves">
+            </div>
+
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_list_view_manager" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/list_view_manager.gif" alt="Dashboard Ninja" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">List View Manager</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/11.0/ks_oneclick_sale_purchase/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/one_click_sale_purchase.png" alt="One Click Sale Purchase" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">One Click Sale/Purchase</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_instant_shop_filter/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/instant_shop_filter.gif" alt="Instant Shop Filter" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Ajax Shop Filter</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/themes/12.0/ks_theme_atractivo/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/theme_attractivo.png" alt="Theme Atractivo" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Theme Atractivo</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_sticky_pivot_view" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/sticky_pivot_view.jpg" alt="Sticky Pivot View" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Sticky Pivot View</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/13.0/ks_office365_calendar/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/office_365_calendar.gif" alt="Office 365 Calendar" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Office 365 Calendar</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/13.0/ks_office365_contacts/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/office_contact_banner.gif" alt="Office365 Contacts" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Office 365 Contacts</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/13.0/ks_woocommerce/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/woo-banner.gif" alt="Odoo Woocommerce" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Odoo Woocommerce</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/13.0/ks_product_variant_extra_price/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/product_variant_banner.gif" alt="Product Variant" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Product Variant</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        <!-- Ksolves Odoo Services -->
+        <div class="row py-sm-5 px-1 py-4">
+            <h2 class="w-100 text-center my-3">Ksolves Odoo Services</h2>
+            <div class="text-center w-100 mb-4">
+                <img src="images/line.png" alt="ksolves">
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/support.png" alt="support">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title" style="font-size: 19px;">Odoo Implementation</h5>
+                            <p class="card-text" style="font-size: 14px;">Have some implementation in mind,we have got
+                                you covered.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/apps.png" alt="apps">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title" style="font-size: 19px;">Odoo Community Apps</h5>
+                            <p class="card-text" style="font-size: 14px;">We have a diverse range of Odoo Apps to make
+                                your Odoo experience better than ever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/support2.png" alt="support2">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title" style="font-size: 19px;"> Odoo Support & Maintenance</h5>
+                            <p class="card-text" style="font-size: 14px;">We provide exceptional support and maintenance
+                                services for Odoo services.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/custom.png" alt="custom">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title" style="font-size: 19px;"> Odoo Customization</h5>
+                            <p class="card-text" style="font-size: 14px;">Your requirements, our customized
+                                implementation. Have something unique in mind, get in touch with us.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/integrated.png" alt="integrated">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title" style="font-size: 19px;"> Odoo Integration Services</h5>
+                            <p class="card-text" style="font-size: 14px;"> With our world-class web and API services in
+                                Odoo, our integration services are one of the best in the market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                <div class="card"
+                     style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                    <div class="d-lg-flex">
+                        <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                            <img src="images/develop.png" alt="develop">
+                        </div>
+                        <div class="card-body text-lg-left text-center">
+                            <h5 class="card-title " style="font-size: 19px;"> Odoo Developer Outsourcing</h5>
+                            <p class="card-text" style="font-size: 14px;">Need an experienced, talented Odoo developer?
+                                Our developers are the best when it comes to technical knowledge and communication
+                                skills.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ksolves Footer -->
+        <div>
+            <div class="row mx-0 justify-content-sm-between justify-content-center"
+                 style="border-top: 1px solid black;">
+                <div class="mb-sm-0 mb-3">
+                    <i class="fa fa-envelope fa-2x" style="
+                                                            margin-right: 10px;
+                                                            color: #333;
+                                                            transform: translateY(3px);"></i>
+                    <span style="font-size: 18px;">sales@ksolves.com</span>
+                </div>
+                <div class="d-none d-sm-block">
+                    <div class="bg-white" style="width: 50px;height: 1px;margin-top: -1px"></div>
+                    <div style="border-right: 1px solid black;height: 50px;transform: translateX(-50%);">
+                    </div>
+                </div>
+                <div>
+                    <i class="fa fa-mobile fa-2x"
+                       style="margin-right: 10px;color: #333;transform: translateY(4px) scale(1.2);"></i>
+                    <span style="font-size: 18px;">+91 120-4299799‬</span>
+                </div>
+            </div>
+            <div class="m-auto" style="max-width: 600px;">
+
+                <p style="line-height: 30px;text-align: center;margin-top: 20px;">
+                    Incepted in 2012, Ksolves has made its presence felt across various verticals, including Odoo
+                    implementation, cloud-based technologies like AWS and Salesforce cloud, Serverless application
+                    development, Hybrid and native mobile applications and Application architecture consulting etc.
+                </p>
+
+            </div>
+        </div>
+
+        <!-- container End -->
+<!--    </div>-->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

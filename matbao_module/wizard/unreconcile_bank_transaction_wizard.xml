@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_unreconcile_bank_transaction_form" model="ir.ui.view">
+            <field name="name">Unreconcile Bank Transactions</field>
+            <field name="model">unreconcile.bank.transaction.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Unreconcile bank transactions">
+                    <label string="All selected bank transactions will be unreconciled."/>
+                    <footer>
+                        <button string="Unreconcile" name="unreconcile_all" type="object" default_focus="1" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_unreconcile_bank_transactions" model="ir.actions.act_window">
+            <field name="name">Unreconcile Bank Transactions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">unreconcile.bank.transaction.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_unreconcile_bank_transaction_form"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will unreconcile all bank transactions.</field>
+        </record>
+
+        <record model="ir.values" id="unreconcile_bank_transactions">
+            <field name="model_id" ref="matbao_module.model_bank_transaction" />
+            <field name="name">Unreconcile Bank Transactions</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_unreconcile_bank_transactions'))" />
+            <field name="key">action</field>
+            <field name="model">bank.transaction</field>
+        </record>
+
+    </data>
+</odoo>

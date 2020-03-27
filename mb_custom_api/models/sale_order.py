@@ -261,6 +261,22 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.model
+    def cancel_so_agency(self, so_ids=[]):
+        code = 200
+        logging.info(so_ids)
+        messages = 'Successfully'
+        user_cancel_so = 1
+        date_cancel_so = datetime.now()
+        for so_id in so_ids:
+            order_id = self.browse(so_id)
+            order_id.date_cancel_so=date_cancel_so
+            order_id.user_cancel_so=user_cancel_so
+            order_id.action_cancel()
+        res = {'code': code, 'messages': messages}
+        return json.dumps(res)
+
+
+    @api.model
     def apply_coupon_text(self, so_id,coupon_text=''):
         code = 200
         messages = 'Successfully'
@@ -456,6 +472,7 @@ class SaleOrder(models.Model):
     @api.model
     def check_export_by_so(self, so_id):
         code = 200
+
         messages = 'Successfully'
         data=False
         for i_so in self.browse(so_id):

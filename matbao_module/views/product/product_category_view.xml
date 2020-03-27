@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_product_category_form_inherit">
+			<field name="name">view.product.category.form.inherit</field>
+			<field name="model">product.category</field>
+			<field name="inherit_id" ref="product.product_category_form_view" />
+			<field name="arch" type="xml">
+				<group name="first" position="before">
+					<group string="Config Time">
+						<group>
+							<field name="minimum_register_time"></field>
+						</group>
+						<group>
+							<field name="billing_cycle"></field>
+							<field name="to_be_renewed" />
+							<field name="uom_id"></field>
+						</group>
+						<group>
+							<field name="service_sequence_id"></field>
+						</group>
+					</group>
+				</group>
+				<field name="name" position="after">
+					<h2>
+						<field name="code" placeholder="Category Code"/>
+					</h2>
+				</field>
+				<field name="property_account_income_categ_id" position="attributes">
+					<attribute name="string">Register Taxed Income Account</attribute>
+				</field>
+				<field name="property_account_expense_categ_id" position="attributes">
+					<attribute name="string">Register Taxed Expense Account</attribute>
+				</field>
+				<field name="property_account_expense_categ_id" position="after">
+						<field name="property_renew_account_income_categ_id" />
+						<field name="property_renew_account_expense_categ_id" />	
+						<field name="property_register_untaxed_account_income_categ_id" />
+						<field name="property_register_untaxed_account_expense_categ_id" />
+						<field name="property_renew_untaxed_account_income_categ_id" />
+						<field name="property_renew_untaxed_account_expense_categ_id" />
+						<field name="register_analytic_income_acc_id" />
+						<field name="register_analytic_expense_acc_id" />
+						<field name="renew_analytic_income_account_id" />
+						<field name="renew_analytic_expense_account_id" />
+				</field>
+				
+			</field>
+		</record>
+	</data>
+</odoo>
+			

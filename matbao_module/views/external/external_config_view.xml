@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_external_config_form" model="ir.ui.view">
+            <field name="name">view.external.config.form</field>
+            <field name="model">external.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="External Config"> 
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="host_url"/>
+                                <field name="db_name"/>
+                                <field name="username"/>
+                                <field name="pwd"/>
+                            </group>
+                        </group>
+                        <group>
+                        	<field name="model_name"/>
+                        	<field name="func"/>
+                        	<field name="params"/>
+                        </group>
+                        <group>
+                        	<field name="msg" readonly="1" />
+                        </group>
+                        <footer>
+                            <button string='Go' name="go" type="object" class="btn-primary oe_highlight"/>     
+                            <button string="Close" special="cancel" class="btn-link" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>    
+        </record>
+        
+        <record id="view_external_config_tree" model="ir.ui.view">
+            <field name="name">view.external.config.tree</field>
+            <field name="model">external.config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree> 
+                    <field name="host_url"/>
+                    <field name="db_name"/>
+                    <field name="username"/>
+                    <field name="model_name"/>
+                    <field name="func"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_view_external_config" model="ir.actions.act_window">
+            <field name="name">External Config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">external.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,30 @@
+.ks_toggle_icon_input{
+    vertical-align: middle;
+}
+
+.ks_select_dashboard_item_toggle{
+    display: flex;
+}
+
+.ks_select_icon_div{
+    margin-right : 45px;
+}
+
+/* width */
+.ks_item_field_info::-webkit-scrollbar,
+.ks_dashboard_custom_srollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+.ks_item_field_info::-webkit-scrollbar-track,
+.ks_dashboard_custom_srollbar::-webkit-scrollbar-track,
+ {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.ks_item_field_info::-webkit-scrollbar-thumb,
+.ks_dashboard_custom_srollbar::-webkit-scrollbar-thumb {
+  background: #888;
+}

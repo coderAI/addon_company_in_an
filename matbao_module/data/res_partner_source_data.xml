@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<record id="partner_source_sale" model="res.partner.source">
+			<field name="name">Sale</field>
+			<field name="code">sale</field>
+		</record>
+
+		<record id="partner_source_matbao" model="res.partner.source">
+			<field name="name">Mat Bao</field>
+			<field name="code">MB</field>
+		</record>
+
+	</data>
+</odoo>

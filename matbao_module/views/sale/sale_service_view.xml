@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_service_form" model="ir.ui.view">
+            <field name="name">view.sale.service.form</field>
+            <field name="model">sale.service</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Sale Services" create="false">
+               		<header>
+               			<button string='START' name="start" type="object" class="btn-primary oe_highlight"/>     
+                        <button string="CLOSE" name="close" type="object" class="btn-link" />
+						<field name="status" widget="statusbar" statusbar_visible="draft,waiting,active,closed"/>
+					</header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                icon="fa-book"
+                                name="action_view_invoice"
+                                type="object"
+                                context="{'active_service_id': active_id}">
+                                <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                            	<field name="reference"/>
+                                <field name="product_id" domain="[('categ_id','=', product_category_id)]"/>
+                                <field name="product_category_id"/>                            	
+                                <field name="customer_id" domain="[('customer', '=', True)]"
+                                	options = "{'no_quick_create': True}"/>
+                                <field name="ip_hosting"/>
+                                <field name="ip_email"/>
+                            </group>
+                            <group>
+                                <field name="salesperson_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="parent_product_id"/>
+                                <field name="sales_order_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="ADD-ON LIST">
+                                <field name="addon_list_ids" mode="tree">
+                                    <tree string="ADD-ON LIST" create="false" edit="false">
+                                        <field name="product_category_id"/>
+                                        <field name="product_id" domain="[('categ_id','=', product_category_id)]"/>
+                                        <field name="description"/>
+                                        <field name="time"/>
+                                        <field name="uom_id"/>
+                                        <field name="sales_order_ids" widget="many2many_tags"/>
+                                    </tree>
+                                </field> 
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>    
+        </record>
+        
+        <record id="view_sale_service_tree" model="ir.ui.view">
+            <field name="name">view.sale.service.tree</field>
+            <field name="model">sale.service</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree colors="#21b799:(status=='active' and end_date &gt; current_date);gray:status=='closed';red:(status=='active' and end_date &lt; current_date);orange:(status=='active' and end_date == current_date)">
+                    <field name="reference"/>
+                    <field name="product_category_id"/>
+                    <field name="product_id"/>
+                    <field name="customer_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_service_search_view" model="ir.ui.view">
+            <field name="name">view.sale.service.search</field>
+            <field name="model">sale.service</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string ="Sale Services">
+                        <field name="reference"/>
+                        <field name="product_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>     
+                        <field name="customer_id"/>         
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_service" model="ir.actions.act_window">
+            <field name="name">Services</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.service</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!--<field name="auto_search">True</field>-->
+            <!--<field name="limit">20</field>-->
+        </record>
+    </data>
+</odoo>
+

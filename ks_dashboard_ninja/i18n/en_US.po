@@ -1,0 +1,1951 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ks_dashboard_ninja
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-20 12:34+0000\n"
+"PO-Revision-Date: 2019-11-20 12:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_relation_sub_groupby
+msgid " Sub Group By"
+msgstr " Sub Group By"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "1 minute"
+msgstr "1 minute"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "10 minute"
+msgstr "10 minute"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "15 Seconds"
+msgstr "15 Seconds"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "2 minute"
+msgstr "2 minute"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "30 Seconds"
+msgstr "30 Seconds"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "45 Seconds"
+msgstr "45 Seconds"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.board,ks_set_interval:0
+#: selection:ks_dashboard_ninja.item,ks_update_items_data:0
+msgid "5 minute"
+msgstr "5 minute"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:718
+#, python-format
+msgid "<p class=\"o_view_nocontent_smiling_face\">\n"
+"                                        You can find all items related to Dashboard Here.</p>\n"
+"                                    "
+msgstr "<p class=\"o_view_nocontent_smiling_face\">\n"
+"                                        You can find all items related to Dashboard Here.</p>\n"
+"                                    "
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_ks_action
+msgid "Action"
+msgstr "Action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_item_action_field
+msgid "Action Group By"
+msgstr "Action Group By"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_action_lines
+msgid "Action Lines"
+msgstr "Action Lines"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:2388
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:2395
+#, python-format
+msgid "Action field: {} cannot be aggregated by {}"
+msgstr "Action field: {} cannot be aggregated by {}"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_actions
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Actions"
+msgstr "Actions"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_active
+msgid "Active"
+msgstr "Active"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:107
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:695
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1359
+#, python-format
+msgid "Add"
+msgstr "Add"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:30
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:32
+#, python-format
+msgid "Add Item"
+msgstr "Add Item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "All Target Lines Changes Will be reflected on Chart after saving the record."
+msgstr "All Target Lines Changes Will be reflected on Chart after saving the record."
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:69
+#, python-format
+msgid "All Time"
+msgstr "All Time"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:91
+#, python-format
+msgid "Apply"
+msgstr "Apply"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_import_dashboard.js:50
+#, python-format
+msgid "Archive"
+msgstr "Archive"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1637
+#, python-format
+msgid "Are you sure you want to remove this item?"
+msgstr "Are you sure you want to remove this item?"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:135
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Area Chart"
+msgstr "Area Chart"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_sort_by_order:0
+msgid "Ascending"
+msgstr "Ascending"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_data_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type_2:0
+msgid "Average"
+msgstr "Average"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_background_color
+msgid "Background Color"
+msgstr "Background Color"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:120
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Bar Chart"
+msgstr "Bar Chart"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Below action will be performed at the end of the Drill Down Action"
+msgstr "Below action will be performed at the end of the Drill Down Action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_action
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:496
+#, python-format
+msgid "Cannot create target lines for Groupby field having aggregation time in  minute and hour"
+msgstr "Cannot create target lines for Groupby field having aggregation time in  minute and hour"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:2333
+#, python-format
+msgid "Cannot create target lines for Groupby field having aggregation time in minute and hour"
+msgstr "Cannot create target lines for Groupby field having aggregation time in minute and hour"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:444
+#, python-format
+msgid "Cannot set aggregation having Date time (Hour, Minute) when target lines are being used. To proceed this, first delete target lines"
+msgstr "Cannot set aggregation having Date time (Hour, Minute) when target lines are being used. To proceed this, first delete target lines"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:505
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:515
+#, python-format
+msgid "Cannot set aggregation having time, you currently have target line. To proceed first delete target lines"
+msgstr "Cannot set aggregation having time, you currently have target line. To proceed first delete target lines"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:469
+#, python-format
+msgid "Changing Layout midway will set the default icon colour and font colour for selected layout."
+msgstr "Changing Layout midway will set the default icon colour and font colour for selected layout."
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_item_color
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Chart Color Palette"
+msgstr "Chart Color Palette"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_data_count_type
+msgid "Chart Data Count Type"
+msgstr "Chart Data Count Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_data
+msgid "Chart Data in string form"
+msgstr "Chart Data in string form"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_chart_type
+msgid "Chart Type"
+msgstr "Chart Type"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:12
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:94
+#, python-format
+msgid "Clear"
+msgstr "Clear"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:56
+#, python-format
+msgid "Close"
+msgstr "Close"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:729
+#, python-format
+msgid "Color Palette"
+msgstr "Color Palette"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_company_id
+msgid "Company"
+msgstr "Company"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.menu,name:ks_dashboard_ninja.dashboard_menu_configuration
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_item_color:0
+msgid "Cool"
+msgstr "Cool"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_data_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type_2:0
+msgid "Count"
+msgstr "Count"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_create_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_create_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_create_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_create_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_create_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_create_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_create_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_create_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_create_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_create_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:355
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:365
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:391
+#, python-format
+msgid "Current Json File is not properly formatted according to Dashboard Ninja Model."
+msgstr "Current Json File is not properly formatted according to Dashboard Ninja Model."
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_unit_selection:0
+msgid "Custom"
+msgstr "Custom"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:116
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Custom Filter"
+msgstr "Custom Filter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:28
+#, python-format
+msgid "Customize Dashboard"
+msgstr "Customize Dashboard"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:98
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:152
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:170
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:223
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:259
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:295
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:236
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:330
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:386
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:478
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:551
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:624
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:673
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:778
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:911
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1089
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1189
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1289
+#, python-format
+msgid "Customize Item"
+msgstr "Customize Item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_dashboard_ninja_board_id
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.item
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_dashboard_item_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_ks_dashboard_item
+msgid "Dashboard Item"
+msgstr "Dashboard Item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_action
+msgid "Dashboard Item Action"
+msgstr "Dashboard Item Action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_date_groupby
+msgid "Dashboard Item Chart Group By Type"
+msgstr "Dashboard Item Chart Group By Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_dashboard_item_type
+msgid "Dashboard Item Type"
+msgstr "Dashboard Item Type"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:706
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_items_ids
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_ks_dashboard_item_ids
+#, python-format
+msgid "Dashboard Items"
+msgstr "Dashboard Items"
+
+#. module: ks_dashboard_ninja
+#: model:ir.actions.act_window,name:ks_dashboard_ninja.board_form_tree_action_window
+msgid "Dashboard Manager"
+msgstr "Dashboard Manager"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_name
+msgid "Dashboard Name"
+msgstr "Dashboard Name"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_dashboard_ninja_item_action
+msgid "Dashboard Ninja Items Action Lines"
+msgstr "Dashboard Ninja Items Action Lines"
+
+#. module: ks_dashboard_ninja
+#: model:ir.module.category,name:ks_dashboard_ninja.ks_dashboard_ninja_security_groups
+msgid "Dashboard Ninja Rights"
+msgstr "Dashboard Ninja Rights"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_default_template
+msgid "Dashboard Template"
+msgstr "Dashboard Template"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_ks_dashboard_ninja_id
+#: model:ir.ui.menu,name:ks_dashboard_ninja.dashboard_menu
+msgid "Dashboards"
+msgstr "Dashboards"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Data"
+msgstr "Data"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Data #2"
+msgstr "Data #2"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Data Calculation"
+msgstr "Data Calculation"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_kpi_type:0
+msgid "Data Comparison"
+msgstr "Data Comparison"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_data_comparison
+msgid "Data Type"
+msgstr "Data Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_ks_goal_date
+msgid "Date"
+msgstr "Date"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:96
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:62
+#, python-format
+msgid "Date Filter"
+msgstr "Date Filter"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_date_filter_field
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_date_filter_field_2
+msgid "Date Filter Field"
+msgstr "Date Filter Field"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_date_filter_selection
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_date_filter_selection_2
+msgid "Date Filter Selection"
+msgstr "Date Filter Selection"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Day"
+msgstr "Day"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_item_color:0
+msgid "Default"
+msgstr "Default"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_date_filter_selection
+msgid "Default Date Filter"
+msgstr "Default Date Filter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:8
+#, python-format
+msgid "Default Icons"
+msgstr "Default Icons"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_import_dashboard.js:52
+#, python-format
+msgid "Delete"
+msgstr "Delete"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_sort_by_order:0
+msgid "Descending"
+msgstr "Descending"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Deviation Field"
+msgstr "Deviation Field"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:183
+#, python-format
+msgid "Discard"
+msgstr "Discard"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:182
+#, python-format
+msgid "Discard Changes"
+msgstr "Discard Changes"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Display"
+msgstr "Display"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_display_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_display_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_display_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_display_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_display_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_import_dashboard.js:118
+#, python-format
+msgid "Do you really want to remove these records?"
+msgstr "Do you really want to remove these records?"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_domain
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_domain_2
+msgid "Domain"
+msgstr "Domain"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:145
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Doughnut Chart"
+msgstr "Doughnut Chart"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:713
+#, python-format
+msgid "Drill Up"
+msgstr "Drill Up"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:228
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:321
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:378
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:468
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:543
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:617
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:666
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:768
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:903
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1081
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1181
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1281
+#: model:ir.actions.server,name:ks_dashboard_ninja.ks_duplicate_dashboard
+#: selection:ks_ninja_dashboard.item_action,ks_action:0
+#, python-format
+msgid "Duplicate"
+msgstr "Duplicate"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:34
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:36
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:166
+#, python-format
+msgid "Edit Layout"
+msgstr "Edit Layout"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_goal_enable
+msgid "Enable Target"
+msgstr "Enable Target"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_end_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_item_end_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_item_end_date_2
+msgid "End Date"
+msgstr "End Date"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_unit
+msgid "Enter Unit"
+msgstr "Enter Unit"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:828
+#, python-format
+msgid "Export"
+msgstr "Export"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:789
+#, python-format
+msgid "Export Chart"
+msgstr "Export Chart"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_import_dashboard.js:49
+#, python-format
+msgid "Export Dashboard"
+msgstr "Export Dashboard"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:838
+#, python-format
+msgid "Export to CSV"
+msgstr "Export to CSV"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:833
+#, python-format
+msgid "Export to Excel"
+msgstr "Export to Excel"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:83
+#, python-format
+msgid "Fields Required : Name, Model, Icon (Default or Custom Upload), Layout"
+msgstr "Fields Required : Name, Model, Icon (Default or Custom Upload), Layout"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_view_fields
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Fields to show in list"
+msgstr "Fields to show in list"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Filter"
+msgstr "Filter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:44
+#, python-format
+msgid "Font Awesome 4.5.0 CheatSheet PDF"
+msgstr "Font Awesome 4.5.0 CheatSheet PDF"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_font_color
+msgid "Font Color"
+msgstr "Font Color"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Goal Lines"
+msgstr "Goal Lines"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_group_access
+msgid "Group Access"
+msgstr "Group Access"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_relation_groupby
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Group By"
+msgstr "Group By"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_item_action_date_groupby
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Group By Date"
+msgstr "Group By Date"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:495
+#, python-format
+msgid "Groupby Field aggregation"
+msgstr "Groupby Field aggregation"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:564
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:645
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:811
+#, python-format
+msgid "Groupby field: {} cannot be aggregated by {}"
+msgstr "Groupby field: {} cannot be aggregated by {}"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_list_view_type:0
+msgid "Grouped"
+msgstr "Grouped"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Groups/Dimensions"
+msgstr "Groups/Dimensions"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:125
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Horizontal Bar Chart"
+msgstr "Horizontal Bar Chart"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Hour"
+msgstr "Hour"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_id
+msgid "ID"
+msgstr "ID"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_default_icon
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_icon
+msgid "Icon"
+msgstr "Icon"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_default_icon_color
+msgid "Icon Color"
+msgstr "Icon Color"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_icon_select
+msgid "Icon Option"
+msgstr "Icon Option"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_import_list_view_template.xml:9
+#, python-format
+msgid "Import Dashboard"
+msgstr "Import Dashboard"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_compare_period
+msgid "Include Period"
+msgstr "Include Period"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Item Action"
+msgstr "Item Action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_gridstack_config
+msgid "Item Configurations"
+msgstr "Item Configurations"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1265
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1682
+#, python-format
+msgid "Item Duplicated"
+msgstr "Item Duplicated"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1738
+#, python-format
+msgid "Item Moved"
+msgstr "Item Moved"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_update_items_data
+msgid "Item Update Interval"
+msgstr "Item Update Interval"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:160
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#, python-format
+msgid "KPI"
+msgstr "KPI"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_kpi_data
+msgid "KPI Data"
+msgstr "KPI Data"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_count_2
+msgid "KPI Record Count"
+msgstr "KPI Record Count"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_kpi_type:0
+msgid "KPI With Target"
+msgstr "KPI With Target"
+
+#. module: ks_dashboard_ninja
+#: model:ir.actions.act_window,name:ks_dashboard_ninja.item_action_window
+msgid "Ks Dashboard item Action"
+msgstr "Ks Dashboard item Action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_groupby_type
+msgid "Ks chart groupby type"
+msgstr "Ks chart groupby type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_sub_groupby_type
+msgid "Ks chart sub groupby type"
+msgstr "Ks chart sub groupby type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_client_action_id
+msgid "Ks dashboard client action id"
+msgstr "Ks dashboard client action id"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_ks_dashboard_item
+msgid "Ks dashboard item"
+msgstr "Ks dashboard item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_menu_id
+msgid "Ks dashboard menu id"
+msgstr "Ks dashboard menu id"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_state
+msgid "Ks dashboard state"
+msgstr "Ks dashboard state"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_ks_gridstack_config
+msgid "Ks gridstack config"
+msgstr "Ks gridstack config"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_is_model_valid
+msgid "Ks is model valid"
+msgstr "Ks is model valid"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_isDateFilterApplied
+msgid "Ks isdatefilterapplied"
+msgstr "Ks isdatefilterapplied"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_item_action_field_type
+msgid "Ks item action field type"
+msgstr "Ks item action field type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_ks_item_count
+msgid "Ks item count"
+msgstr "Ks item count"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_many2many_field_ordering
+msgid "Ks many2many field ordering"
+msgstr "Ks many2many field ordering"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:113
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:115
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last 365 days"
+msgstr "Last 365 days"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:112
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last 7 days"
+msgstr "Last 7 days"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:114
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last 90 days"
+msgstr "Last 90 days"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:107
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last Day"
+msgstr "Last Day"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board___last_update
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template___last_update
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item___last_update
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action___last_update
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal___last_update
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action___last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:109
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last Month"
+msgstr "Last Month"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:110
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last Quarter"
+msgstr "Last Quarter"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_write_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_write_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_write_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_write_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_write_uid
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_write_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_write_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_write_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_write_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_write_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:108
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last Week"
+msgstr "Last Week"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:111
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Last Year"
+msgstr "Last Year"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_kpi_type
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_layout
+msgid "Layout"
+msgstr "Layout"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 1"
+msgstr "Layout 1"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 2"
+msgstr "Layout 2"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 3"
+msgstr "Layout 3"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 4"
+msgstr "Layout 4"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 5"
+msgstr "Layout 5"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_layout:0
+msgid "Layout 6"
+msgstr "Layout 6"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:681
+#, python-format
+msgid "Layout Coming Soon"
+msgstr "Layout Coming Soon"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:130
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Line Chart"
+msgstr "Line Chart"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_measure_field_2
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Line Measure"
+msgstr "Line Measure"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:155
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#, python-format
+msgid "List View"
+msgstr "List View"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_view_data
+msgid "List View Data in JSon"
+msgstr "List View Data in JSon"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_view_group_fields
+msgid "List View Grouped Fields"
+msgstr "List View Grouped Fields"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_view_preview
+msgid "List View Preview"
+msgstr "List View Preview"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_view_type
+msgid "List View Type"
+msgstr "List View Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,help:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_unit
+msgid "Maximum limit 5 characters, for ex: km, m"
+msgstr "Maximum limit 5 characters, for ex: km, m"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Measures"
+msgstr "Measures"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_menu_name
+msgid "Menu Name"
+msgstr "Menu Name"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_menu_sequence
+msgid "Menu Sequence"
+msgstr "Menu Sequence"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Minute"
+msgstr "Minute"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_ks_model_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_model_id
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_model_id_2
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_model_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_model_name_2
+msgid "Model"
+msgstr "Model"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_unit_selection:0
+msgid "Monetary"
+msgstr "Monetary"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Month"
+msgstr "Month"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:723
+#, python-format
+msgid "More Info"
+msgstr "More Info"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:231
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:324
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:381
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:471
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:546
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:620
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:669
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:772
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:906
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1084
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1184
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1284
+#: model:ir.actions.server,name:ks_dashboard_ninja.ks_move_dashboard
+#: selection:ks_ninja_dashboard.item_action,ks_action:0
+#, python-format
+msgid "Move"
+msgstr "Move"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:207
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:301
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:357
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:449
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:524
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:598
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:647
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:749
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:882
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1062
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1162
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1262
+#, python-format
+msgid "Move/Duplicate"
+msgstr "Move/Duplicate"
+
+#. module: ks_dashboard_ninja
+#: model:ir.actions.client,name:ks_dashboard_ninja.board_dashboard_action_window
+#: model:ir.ui.menu,name:ks_dashboard_ninja.board_menu_root
+#: model:ir.ui.menu,name:ks_dashboard_ninja.my_dashboard
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.board_form
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.board_tree
+msgid "My Dashboard"
+msgstr "My Dashboard"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_template_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_name
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_name
+msgid "Name"
+msgstr "Name"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_item_color:0
+msgid "Neon"
+msgstr "Neon"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:102
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Next Day"
+msgstr "Next Day"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:104
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Next Month"
+msgstr "Next Month"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:105
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Next Quarter"
+msgstr "Next Quarter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:103
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Next Week"
+msgstr "Next Week"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:106
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Next Year"
+msgstr "Next Year"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:968
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1013
+#, python-format
+msgid "No Data Present"
+msgstr "No Data Present"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:34
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_data_comparison:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "None"
+msgstr "None"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:469
+#, python-format
+msgid "Note :"
+msgstr "Note :"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:39
+#, python-format
+msgid "Note:"
+msgstr "Note:"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:20
+#: selection:ks_dashboard_ninja.item,ks_target_view:0
+#, python-format
+msgid "Number"
+msgstr "Number"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:49
+#: selection:ks_dashboard_ninja.item,ks_data_comparison:0
+#, python-format
+msgid "Percentage"
+msgstr "Percentage"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:140
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Pie Chart"
+msgstr "Pie Chart"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:396
+#, python-format
+msgid "Please Install the Module which contains the following Model : %s ks_model_id"
+msgstr "Please Install the Module which contains the following Model : %s ks_model_id"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1897
+#, python-format
+msgid "Please enter start date and end date"
+msgstr "Please enter start date and end date"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:39
+#, python-format
+msgid "Please use Font Awesome 4.5.0 icons only. E.g. 'fa-bell' or 'bell'.\n"
+"                                For more information you can use this cheatsheet"
+msgstr "Please use Font Awesome 4.5.0 icons only. E.g. 'fa-bell' or 'bell'.\n"
+"                                For more information you can use this cheatsheet"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:150
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#: selection:ks_dashboard_ninja.item_action,ks_chart_type:0
+#, python-format
+msgid "Polar Area Chart"
+msgstr "Polar Area Chart"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_graph_preview
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_kpi_preview
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_preview
+msgid "Preview"
+msgstr "Preview"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_previous_period
+msgid "Previous Period"
+msgstr "Previous Period"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:40
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:42
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:98
+#, python-format
+msgid "Print"
+msgstr "Print"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:25
+#: selection:ks_dashboard_ninja.item,ks_target_view:0
+#, python-format
+msgid "Progress Bar"
+msgstr "Progress Bar"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Quarter"
+msgstr "Quarter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:44
+#: selection:ks_dashboard_ninja.item,ks_data_comparison:0
+#, python-format
+msgid "Ratio"
+msgstr "Ratio"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_count
+msgid "Record Count"
+msgstr "Record Count"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_count_type
+msgid "Record Count Type"
+msgstr "Record Count Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_measure_field
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_field
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_field_2
+msgid "Record Field"
+msgstr "Record Field"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_data_limit
+msgid "Record Limit"
+msgstr "Record Limit"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_record_count_type_2
+msgid "Record Type"
+msgstr "Record Type"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Record Value"
+msgstr "Record Value"
+
+#. module: ks_dashboard_ninja
+#: model:ir.actions.server,name:ks_dashboard_ninja.ks_recover_old_items
+msgid "Recover Previous Data"
+msgstr "Recover Previous Data"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:101
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:155
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:173
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:226
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:262
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:298
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:239
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:333
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:389
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:482
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:554
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:627
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:676
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:781
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:914
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1092
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1192
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1292
+#, python-format
+msgid "Remove Item"
+msgstr "Remove Item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_year_period
+msgid "Same Period Previous Years"
+msgstr "Same Period Previous Years"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:177
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_action
+#, python-format
+msgid "Save"
+msgstr "Save"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:176
+#, python-format
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:848
+#, python-format
+msgid "Save as Image"
+msgstr "Save as Image"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:843
+#, python-format
+msgid "Save as PDF"
+msgstr "Save as PDF"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_item_search_view
+msgid "Search Items"
+msgstr "Search Items"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:32
+#, python-format
+msgid "Search fa-icon.."
+msgstr "Search fa-icon.."
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:58
+#, python-format
+msgid "Select"
+msgstr "Select"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:213
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:307
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:363
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:455
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:530
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:604
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:653
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:755
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:888
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1068
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1168
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1268
+#, python-format
+msgid "Select Dashboard"
+msgstr "Select Dashboard"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_ninja_dashboard_item_action_ks_dashboard_ninja_ids
+msgid "Select Dashboards"
+msgstr "Select Dashboards"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:25
+#, python-format
+msgid "Select Icon"
+msgstr "Select Icon"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:11
+#, python-format
+msgid "Select Icons"
+msgstr "Select Icons"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_unit_selection
+msgid "Select Unit Type"
+msgstr "Select Unit Type"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:89
+#, python-format
+msgid "Select at least one layout."
+msgstr "Select at least one layout."
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1266
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1683
+#, python-format
+msgid "Selected item is duplicated to  ."
+msgstr "Selected item is duplicated to  ."
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1739
+#, python-format
+msgid "Selected item is moved to  ."
+msgstr "Selected item is moved to  ."
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1277
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1751
+#, python-format
+msgid "Selected record"
+msgstr "Selected record"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_semi_circle_chart
+msgid "Semi Circle Chart"
+msgstr "Semi Circle Chart"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_action_sequence
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Set Update Interval"
+msgstr "Set Update Interval"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_unit
+msgid "Show Custom Unit"
+msgstr "Show Custom Unit"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_show_data_value
+msgid "Show Data Value"
+msgstr "Show Data Value"
+
+#. module: ks_dashboard_ninja
+#: model:res.groups,name:ks_dashboard_ninja.ks_dashboard_ninja_group_manager
+msgid "Show Full Dashboard Features"
+msgstr "Show Full Dashboard Features"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_goal_bar_line
+msgid "Show Target As Line"
+msgstr "Show Target As Line"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_top_menu_id
+msgid "Show Under Menu"
+msgstr "Show Under Menu"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,help:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_menu_sequence
+msgid "Smallest sequence give high priority and Highest sequence give low priority"
+msgstr "Smallest sequence give high priority and Highest sequence give low priority"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_sort_by_field
+msgid "Sort By Field"
+msgstr "Sort By Field"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_sort_by_order
+msgid "Sort Order"
+msgstr "Sort Order"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_bar_chart_stacked
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Stacked Bar Chart"
+msgstr "Stacked Bar Chart"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_standard_goal_value
+msgid "Standard Target"
+msgstr "Standard Target"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_dashboard_start_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_item_start_date
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_item_start_date_2
+msgid "Start Date"
+msgstr "Start Date"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:1894
+#, python-format
+msgid "Start date should be less than end date"
+msgstr "Start date should be less than end date"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_chart_date_sub_groupby
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Sub Group By Date"
+msgstr "Sub Group By Date"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:571
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja_items.py:808
+#, python-format
+msgid "Sub Groupby field: {} cannot be aggregated by {}"
+msgstr "Sub Groupby field: {} cannot be aggregated by {}"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:39
+#: selection:ks_dashboard_ninja.item,ks_chart_data_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_data_comparison:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type:0
+#: selection:ks_dashboard_ninja.item,ks_record_count_type_2:0
+#, python-format
+msgid "Sum"
+msgstr "Sum"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Target"
+msgstr "Target"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_goal_lines
+msgid "Target Lines"
+msgstr "Target Lines"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_dashboard_item_theme
+msgid "Theme"
+msgstr "Theme"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,help:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_actions
+msgid "This Action will be Performed at the end of Drill Down Action"
+msgstr "This Action will be Performed at the end of Drill Down Action"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:99
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "This Month"
+msgstr "This Month"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:100
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "This Quarter"
+msgstr "This Quarter"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:98
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "This Week"
+msgstr "This Week"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:101
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "This Year"
+msgstr "This Year"
+
+#. module: ks_dashboard_ninja
+#: code:addons/ks_dashboard_ninja/models/ks_dashboard_ninja.py:349
+#, python-format
+msgid "This file is not supported"
+msgstr "This file is not supported"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:115
+#: selection:ks_dashboard_ninja.item,ks_dashboard_item_type:0
+#, python-format
+msgid "Tile"
+msgstr "Tile"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:694
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1358
+#, python-format
+msgid "To add dashboard item, use"
+msgstr "To add dashboard item, use"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_dashboard_ninja.js:97
+#: selection:ks_dashboard_ninja.board,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection:0
+#: selection:ks_dashboard_ninja.item,ks_date_filter_selection_2:0
+#, python-format
+msgid "Today"
+msgstr "Today"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:72
+#, python-format
+msgid "Transparency:"
+msgstr "Transparency:"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.ks_dashboard_ninja_item_form_view
+msgid "Type"
+msgstr "Type"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_list_view_type:0
+msgid "Un-Grouped"
+msgstr "Un-Grouped"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/js/ks_import_dashboard.js:51
+#, python-format
+msgid "Unarchive"
+msgstr "Unarchive"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_board_ks_set_interval
+msgid "Update Interval"
+msgstr "Update Interval"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_widget_toggle.xml:12
+#, python-format
+msgid "Upload Icon"
+msgstr "Upload Icon"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:10
+#, python-format
+msgid "Uploading..."
+msgstr "Uploading..."
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_goal_ks_goal_value
+msgid "Value"
+msgstr "Value"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_target_view
+msgid "View"
+msgstr "View"
+
+#. module: ks_dashboard_ninja
+#: model:ir.ui.view,arch_db:ks_dashboard_ninja.board_tree
+msgid "View Items"
+msgstr "View Items"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_item_color:0
+msgid "Warm"
+msgstr "Warm"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Week"
+msgstr "Week"
+
+#. module: ks_dashboard_ninja
+#: selection:ks_dashboard_ninja.item,ks_chart_date_groupby:0
+#: selection:ks_dashboard_ninja.item,ks_chart_date_sub_groupby:0
+#: selection:ks_dashboard_ninja.item_action,ks_item_action_date_groupby:0
+msgid "Year"
+msgstr "Year"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:691
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1355
+#, python-format
+msgid "Your personal dashboard is empty"
+msgstr "Your personal dashboard is empty"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:695
+#, python-format
+msgid "button on top right corner"
+msgstr "button on top right corner"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1359
+#, python-format
+msgid "button on top right corner."
+msgstr "button on top right corner."
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_dashboard_ninja_board
+msgid "ks_dashboard_ninja.board"
+msgstr "ks_dashboard_ninja.board"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_dashboard_ninja_board_template
+msgid "ks_dashboard_ninja.board_template"
+msgstr "ks_dashboard_ninja.board_template"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_dashboard_ninja_item
+msgid "ks_dashboard_ninja.item"
+msgstr "ks_dashboard_ninja.item"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_dashboard_ninja_item_goal
+msgid "ks_dashboard_ninja.item_goal"
+msgstr "ks_dashboard_ninja.item_goal"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model,name:ks_dashboard_ninja.model_ks_ninja_dashboard_item_action
+msgid "ks_ninja_dashboard.item_action"
+msgstr "ks_ninja_dashboard.item_action"
+
+#. module: ks_dashboard_ninja
+#: model:ir.model.fields,field_description:ks_dashboard_ninja.field_ks_dashboard_ninja_item_ks_list_target_deviation_field
+msgid "list_field_id"
+msgstr "list_field_id"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:348
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:399
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1126
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1226
+#, python-format
+msgid "vs Prev"
+msgstr "vs Prev"
+
+#. module: ks_dashboard_ninja
+#. openerp-web
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:332
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_item_templates.xml:442
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1111
+#: code:addons/ks_dashboard_ninja/static/src/xml/ks_dashboard_ninja_templates.xml:1323
+#, python-format
+msgid "vs Target"
+msgstr "vs Target"
+

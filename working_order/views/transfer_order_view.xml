@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_transfer_order_tree" model="ir.ui.view">
+            <field name="name">transfer.order.tree</field>
+            <field name="model">transfer.order</field>
+            <field name="arch" type="xml">
+                <tree string="Trade Promotion">
+                    <field name="name"/>
+                    <field name="date_order"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="driver2_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_transfer_order_form" model="ir.ui.view">
+            <field name="name">transfer.order.form</field>
+            <field name="model">transfer.order</field>
+            <field name="arch" type="xml">
+                <form string="Trade Promotion">
+                    <header>
+                        <field name="state" widget="statusbar" readonly="1" />
+                        <button name="action_start" type="object" string="Next Step"/>
+                        <button name="action_get_map" type="object" string="Check Map"/>
+                        <button name="check_point_bt" type="object" string="Check Point" attrs="{'invisible':[('state', 'in', ('draft','done'))]}"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_order"/>
+                                <field name="vehicle_id"/>
+                            </group>
+                            <group>
+                                <field name="driver_id"/>
+                                <field name="driver2_id"/>
+<!--                                <field name="shift_time_ids"/>-->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Pickings">
+                                <group>
+                                    <field name="sale_oder_ids">
+<!--                                    domain="[('transfer_id','=',False),('shift_time_id','in',shift_time_ids)]">-->
+                                    <!--<field name="line_ids" nolabel="1">-->
+
+                                    <!--<form string="Lines">-->
+                                    <!--<group>-->
+                                    <!--<field name="name"/>-->
+                                    <!--<field name="level"/>-->
+                                    <!--<field name="target"/>-->
+                                    <!--<field name="other_target"/>-->
+                                    <!--<field name="promotion_id" invisible="1"/>-->
+                                    <!--</group>-->
+                                    <!--</form>-->
+
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_transfer_order" model="ir.actions.act_window">
+            <field name="name">Transfer Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transfer.order</field>
+            <field name="view_id" ref="view_transfer_order_tree"/>
+        </record>
+
+        <menuitem id="transfer_order_menu" name="Transfer Order"
+                  action="action_transfer_order"
+                  parent="menu_transfer"
+                  sequence="5"/>
+
+
+    </data>
+</odoo>
+

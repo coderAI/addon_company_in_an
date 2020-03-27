@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_sale_quotation_tree_inherit">
+			<field name="name">view.sale.quotation.tree.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree" />
+			<field name="arch" type="xml">
+				<field name="amount_total" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="state" position="after">
+					<field name="fully_paid" />
+					<field name="type" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_order_tree_inherit">
+			<field name="name">view.sale.order.tree.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_tree" />
+			<field name="arch" type="xml">
+				<field name="amount_total" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="invoice_status" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+				<field name="state" position="attributes">
+					<attribute name="invisible">0</attribute>
+				</field>
+				<field name="state" position="after">
+					<field name="fully_paid" />
+					<field name="type" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_order_form_inherit">
+			<field name="name">view.sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<button name= "%(sale.action_view_sale_advance_payment_inv)d" position="before">
+					<button name="update_price" string="Update Price" type="object"
+						states="not_received,draft" class="oe_highlight"/>
+					<button name="%(action_view_match_payment_wizard)d" string="Match Payment" type="action" class="btn-primary" 
+						context="{'order_id': active_id}"
+						attrs="{'invisible': ['|', '|', ('fully_paid', '=', True), ('invisible_match_payment', '=', True), ('state', '!=', 'sale')]}"/>
+				</button>
+
+				<button name="action_done" position="attributes">
+					<attribute name="string">Complete</attribute>
+					<attribute name="states">completed</attribute>
+				</button>
+				<button name="action_done" position="before">
+					<button name="button_completed" string="Complete" type="object"
+						states="sale" class="btn-primary" />
+				</button>
+				<button name="action_quotation_send" position="before">
+					<button name="button_got_it" string="Got it" type="object"
+						states="not_received" class="btn-primary" />
+				</button>
+				<field name="state" position="replace">
+					<field name="state" widget="statusbar"
+						statusbar_visible="not_received,draft,sent,sale,completed" />
+				</field>
+				<button name="action_cancel" position="attributes">
+					<attribute name="states">not_received,draft,sale</attribute>
+				</button>
+
+				<field name="user_id" position="replace" />
+				<field name="team_id" position="replace" />
+				<field name="partner_id" position="attributes">
+					<attribute name="options">{'no_quick_create': True}</attribute>
+					<attribute name="context">{'form_view_ref': 'matbao_module.view_res_partner_form_inherit'}</attribute>
+				</field>
+				<field name="partner_id" position="after">
+					<field name="user_id" />
+					<field name="team_id" />
+					<field name="invisible_match_payment" invisible="1"/>
+				</field>
+				<field name="confirmation_date" position="after">
+					<field name="coupon" />
+					<field name="fully_paid" />
+					<field name="type" />
+				</field>
+				<notebook position="inside">
+					<page string="PAYMENTS">
+						<field name="account_payment_ids" />
+					</page>
+				</notebook>
+				<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']"
+					position="before">
+					<field name="register_type" />
+					<field name="product_category_id" />
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']"
+					position="after">
+					<field name="parent_product_id" />
+					<field name="time" />
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']"
+					position="before">
+					<field name="register_untaxed_price" />
+					<field name="renew_untaxed_price" />
+					<field name="register_taxed_price" />
+					<field name="renew_taxed_price" />
+					<field name="register_taxed_amount"  invisible="1"/>
+					<field name="renew_taxed_amount" invisible="1"/>
+				</xpath>
+
+				<xpath
+					expr="//field[@name='order_line']/tree/field[@name='price_subtotal']"
+					position="after">
+					<field name="service_status" />
+					<field name="fully_paid" invisible="1"/>
+					<button string="Activate" name="activate" type="object" attrs="{'invisible': ['|', ('service_status', '!=', 'draft'), ('fully_paid', '!=', True)]}"/>
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree/field[@name='name']"
+					position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath
+					expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+					position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath
+					expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
+					position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath
+					expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']"
+					position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']"
+					position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']"
+					position="attributes">
+					<attribute name="readonly">1</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree/field[@name='product_id']"
+					position="attributes">
+					<attribute name="domain">[('categ_id','=', product_category_id)]
+					</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='order_line']/tree" position="attributes">
+					<attribute name="create">0</attribute>
+				</xpath>
+				<xpath expr="//notebook/page/field[@name='order_line']" position="before">
+					<header>
+						<button name="%(action_service_order_lines_wizard)d"
+							string="ADD SERVICES" type="action" class="oe_highlight"
+							context="{'type':'Add addon','sale_order_id':active_id}"
+							states="not_received,draft" />
+						<button name="%(action_addon_order_lines_wizard)d" string="ADD ADDONS"
+							type="action" class="oe_highlight"
+							context="{'type':'Add addon','sale_order_id':active_id}"
+							states="not_received,draft" />
+					</header>
+				</xpath>
+
+				<!-- Invisible field Payment Term -->
+				<field name="payment_term_id" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_quotation_search_inherit">
+			<field name="name">view.sale.quotation.search.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation" />
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='sales']" position="after">
+					<filter string="Open" name="filter_open"
+						domain="[('state','in', ('sale','completed'))]" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_sale_quotation_search_state_inherit">
+			<field name="name">view.sale.quotation.search.state.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_sales_order_filter" />
+			<field name="arch" type="xml">
+				<group expand="0" string="Group By">
+					<filter string="Status" name="group_state" domain="[]"
+						context="{'group_by':'state'} " />
+				</group>
+			</field>
+		</record>
+
+		<record id="sale_order_view_search_inherit_sale_inherit" model="ir.ui.view">
+			<field name="name">sale.order.search.inherit.sale.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale" />
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='sales']" position="after">
+					<filter string="Open" name="filter_open"
+						domain="[('state','in', ('sale','completed'))]" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="sale.action_orders" model="ir.actions.act_window">
+			<field name="context">{'search_default_group_state': True,
+				'search_default_filter_open': True}
+			</field>
+			<field name="domain">[('state', 'not in', ('not_received','draft', 'sent'))]</field>
+		</record>
+
+		<record id="sale.action_quotations" model="ir.actions.act_window">
+			<field name="domain">[('state', '=','draft')]</field>
+		</record>
+
+		<!-- Sale Order Not Receive -->
+		<record id="view_not_received_sale_order_form_inherit" model="ir.ui.view">
+			<field name="name">view.not.received.sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="attributes">
+					<attribute name="attrs">{'invisible': [('state', '=', 'not_received')]}</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_not_received_sale_order_tree" model="ir.ui.view">
+			<field name="name">view.not.received.sale.order.tree</field>
+			<field name="model">sale.order</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="state" invisible="1" />
+					<field name="name" string="Order Number" />
+					<field name="date_order" />
+					<field name="partner_id" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_view_not_received_sale_order" model="ir.actions.act_window">
+			<field name="name">Not Received Orders</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">sale.order</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_ids"
+				eval="[(5, 0, 0), 
+        (0, 0, {'view_mode': 'tree', 'view_id': ref('view_not_received_sale_order_tree')}), 
+        (0, 0, {'view_mode': 'form', 'view_id': ref('view_not_received_sale_order_form_inherit')}),
+        (0, 0, {'view_mode': 'kanban'})]" />
+			<field name="domain">[('state', '=', 'not_received')]</field>
+		</record>
+
+	</data>
+</odoo>

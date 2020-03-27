@@ -7,3 +7,10 @@ system_api_history_line_rule,system_api_history_line,model_system_api_history_li
 
 
 
+vnnic_customer_report_rule,vnnic_customer_report,model_vnnic_customer_report,,1,1,1,1
+vnnic_customer_report_line_rule,vnnic_customer_report_line,model_vnnic_customer_report_line,,1,1,1,1
+vnnic_customer_report_context_rule,vnnic_customer_report_context,model_vnnic_customer_report_context,,1,1,1,1
+support_vnnic_customer_report_data_rule,support_vnnic_customer_report_data,model_support_vnnic_customer_report_data,,1,1,1,1
+
+
+

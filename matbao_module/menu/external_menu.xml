@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="external_config_menu"
+            parent="sales_team.menu_sale_config"
+            sequence="1000"
+            action="action_view_external_config"
+            />
+    </data>
+</odoo>

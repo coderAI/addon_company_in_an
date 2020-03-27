@@ -63,7 +63,193 @@
 
 
 
-    <menuitem name="Vnnic" action="action_vnnic_customer" id="menu_vnnic_customer" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
+<!--    <menuitem name="Vnnic" action="action_vnnic_customer" id="menu_vnnic_customer" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>-->
+
+
+
+
+
+    <template>
+        <t t-name="templateReports.buttons">
+            <button type="button" class='btn btn-primary btn-sm o_account-widget-pdf'>PRINT PREVIEW</button>
+            <button type="button" class='btn btn-primary btn-sm o_account-widget-xlsx'>EXPORT (XLSX)</button>
+        </t>
+        <t t-name="templateReports.searchView">
+            <div class="o_dropdown o_template_reports_date-filter">
+                <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-calendar"/>
+                    <t t-if="!report_type.date_range">Date:</t>
+                    <t t-if="report_type.date_range">Period:</t>
+                    <t t-if="context.date_filter == 'today'">Today</t>
+                    <t t-if="context.date_filter == 'last_month'">Last Month</t>
+                    <t t-if="context.date_filter == 'last_quarter'">Last Quarter</t>
+                    <t t-if="context.date_filter == 'last_year'">Last Year</t>
+                    <t t-if="context.date_filter == 'this_year'">This Year</t>
+                    <t t-if="context.date_filter == 'this_quarter'">This Quarter</t>
+                    <t t-if="context.date_filter == 'this_month'">This Month</t>
+                    <t t-if="context.date_filter == 'custom'">Custom</t>
+                    <span class="caret"/>
+                </a>
+            </div>
+
+            <div class="o_dropdown o_template_reports_tags-filter" t-if="context.available_ids">
+                <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-folder-open"/> Filter
+                    <span class="caret"/>
+                </a>
+                <ul class="dropdown-menu o_filters_menu" role="menu">
+                    <li style='margin-left: 10px; margin-right: 10px;'>
+                        <label>Filter</label><br />
+                        <div class="form-group">
+                            <select class="o_template_reports_analytic_account_auto_complete" multiple="multiple" style="min-width: 300px;">
+                                <t t-foreach="context.available_ids" t-as="a">
+                                    <option t-att-value="a[0]"><t t-esc="a[1]" /></option>
+                                </t>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary o_template_reports_add_analytic_account_tag">Apply</button>
+                    </li>
+                </ul>
+            </div>
+        </t>
+    </template>
+
+
+    <template  id="report_template_vnnic_body">
+        <div class="table-responsive">
+            <style>
+                table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+
+                td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                }
+
+                tr:nth-child(even) {
+                background-color: #dddddd;
+                }
+            </style>
+            <table width="100%" class="o_template_reports_table table-striped">
+                <thead>
+                    <tr>
+                        <td t-att-class="tdclass">
+
+                        </td>
+                        <t t-foreach="date_list" t-as="time">
+                            <td t-att-class="tdclass" colspan="2">
+                                <font color="blue">
+                                    <b>
+                                        <t t-esc="time"/>
+                                    </b>
+                                </font>
+                            </td>
+                        </t>
+                    </tr>
+
+                    <tr>
+                        <td t-att-class="tdclass">
+                            <font color="blue">
+                                <b>
+                                    Company Name
+                                </b>
+                            </font>
+                        </td>
+                        <t t-foreach="date_list" t-as="time">
+                            <td t-att-class="tdclass"><font color="blue"><b>Quantity</b></font></td>
+                            <td t-att-class="tdclass"><font color="blue"><b>Percent</b></font></td>
+                        </t>
+                    </tr>
+
+
+                    <t t-foreach="product_category_id_list" t-as="company_name">
+                        <tr id="product_category">
+                            <td t-att-class="tdclass"><t t-esc="company_name"/></td>
+                            <t t-foreach="date_list" t-as="time">
+                                <t t-if="lines.get(time+company_name)">
+                                    <td t-att-class="tdclass" style="text-align: end;">
+                                        <t t-esc="lines.get(time+company_name).get('total')" style="text-align: end;"/>
+                                    </td>
+                                    <td t-att-class="tdclass">
+                                        <t t-esc="lines.get(time+company_name).get('count')"/>%
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td t-att-class="tdclass" style="text-align: end;">
+                                        0
+                                    </td>
+                                    <td t-att-class="tdclass">
+                                        0%
+                                    </td>
+                                </t>
+                            </t>
+                        </tr>
+                    </t>
+
+                </thead>
+            </table>
+        </div>
+    </template>
+
+            <template id="report_template_vnnic_letter">
+                <html>
+                    <head>
+                        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+                    </head>
+                    <body class="o_account_reports_body_print">
+                        <t t-call="mb_custom_api.report_template_vnnic_body"/>
+                    </body>
+                    <footer>
+                        (Note: The PDF can only contain up to 4 sets of information if you need more than 4 sets of information please use the Excell export feature)
+                    </footer>
+                </html>
+            </template>
+
+        <record id="action_vnnic_customer_report_from" model="ir.actions.act_window">
+            <field name="name">Vnnic Report</field>
+            <field name="res_model">vnnic.customer.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
+
+    <template id="report_vnnic">
+        <div name="report_vnnic" t-att-data-context="8"
+             class="container o_template_reports_page o_template_reports_widgets o_template_reports_no_print">
+            <h2>VNNIC</h2>
+            <t t-call="mb_custom_api.report_template_vnnic_body"/>
+        </div>
+    </template>
+
+
+    <template id="action_report_vnnic_backend" inherit_id="web.assets_backend" active="True">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/mb_custom_api/static/src/js/template_reports_widgets.js"/>
+            <script type="text/javascript" src="/mb_custom_api/static/src/js/vnnic_customer_report.js"/>
+        </xpath>
+    </template>
+
+    <record id="vnnic_report" model="vnnic.customer.report.line">
+        <field name="name">VNNIC</field>
+        <field name="report_type">date_range_analytic</field>
+    </record>
+
+    <record id="action_vnnic_customer_report" model="ir.actions.client">
+        <field name="name">VNNIC</field>
+        <field name="tag">vnnic_customer_report</field>
+        <field name="context"
+               eval="{'url': '/mb_custom_api/output_format/vnnic_customer_report/' + str(ref('vnnic_report')), 'model': 'vnnic.customer.report', 'id': ref('vnnic_report')}"/>
+    </record>
+
+
+
+    <menuitem name="VNNIC" action="action_vnnic_customer_report" id="menu_vnnic_customer_report" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
 
 
 </odoo>

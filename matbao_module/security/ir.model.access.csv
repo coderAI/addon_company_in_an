@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_service,sale.service,model_sale_service,base.group_user,1,0,0,0
+access_sale_service_account_user,sale.service.account user,model_sale_service,account.group_account_user,1,0,0,0
+access_sale_service_sale_salesman,sale.service.sale salesman,model_sale_service,sales_team.group_sale_salesman,1,0,0,0
+access_sale_service_purchase_user,sale.service.purchase user,model_sale_service,purchase.group_purchase_user,1,0,0,0
+access_sale_service_account_manager,sale.service.account manager,model_sale_service,account.group_account_manager,1,1,1,0
+access_sale_service_sale_manager,sale.service.sale manager,model_sale_service,sales_team.group_sale_manager,1,1,1,0
+access_sale_service_stock_manager,sale.service.stock manager,model_sale_service,stock.group_stock_manager,1,1,1,0
+access_sale_service_purchase_manager,sale.service.purchase manager,model_sale_service,purchase.group_purchase_manager,1,1,1,0
+access_external_config,access_external_config,model_external_config,,1,0,0,0
+access_account_payment,access_account_payment,account.model_account_payment,sales_team.group_sale_salesman,1,1,1,0
+access_bank_transaction,access_bank_transaction,model_bank_transaction,sales_team.group_sale_salesman,1,1,0,0
+access_res_partner_source,access_res_partner_source,model_res_partner_source,sales_team.group_sale_salesman,1,1,1,0

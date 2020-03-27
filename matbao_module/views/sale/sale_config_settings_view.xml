@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_sale_configuration_inherit">
+			<field name="name">view.sale.configuration.inherit</field>
+			<field name="model">sale.config.settings</field>
+			<field name="inherit_id" ref="sales_team.view_sale_config_settings" />
+			<field name="arch" type="xml">
+				<field name='group_product_variant' position="before">
+					<label for="days_to_renew" string="Default number of days to renew"></label>
+					<div name="days_to_renew" colspan="1">
+						<div>
+							<field name="days_to_renew" />
+						</div>
+					</div>
+					<label for="defaut_write_off_account_id" string="Default Write-off Account"></label>
+					<div name="defaut_write_off_account_id" colspan="1">
+						<div>
+							<field name="defaut_write_off_account_id" />
+						</div>
+					</div>
+					
+				</field>
+				<group name="quotations_sales" position="before">
+					<group string="URL">
+						<field name="url"/>
+					</group>
+					<group string="Bank Transaction">
+						<group>
+						<field name="partner_id"/>
+						</group>
+						<group></group>
+					</group>
+					
+				</group>
+			</field>
+		</record>
+
+	</data>
+</odoo>
+			

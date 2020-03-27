@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="view_bank_transaction_form" model="ir.ui.view">
+			<field name="name">view.bank.transaction.form</field>
+			<field name="model">bank.transaction</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Bank Transactions" create="false" edit="false" delete="false">
+					<header>
+						<button name="button_unreconcile" type="object" string="Unreconcile" class="oe_highlight" attrs="{'invisible': [('is_reconciled', '=', False)]}"/>
+					</header>
+					<sheet>
+						<group>
+							<group string="Transaction Infomation">
+								<field name="code" string="Transaction Code"/>
+								<field name="amount" sum="Total Amount"/>
+								<field name="journal_id" />
+								<field name="description" />
+							</group>
+							<group string="Payment Matching">
+								<field name="is_reconciled" />
+								<field name="order_id" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_bank_transaction_tree" model="ir.ui.view">
+			<field name="name">view.bank.transaction.tree</field>
+			<field name="model">bank.transaction</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree edit="false" delete="false">
+					<field name="code" />
+					<field name="amount" />
+					<field name="journal_id" />
+					<field name="description" />
+					<field name="is_reconciled" />
+					<field name="order_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_bank_transaction_search" model="ir.ui.view">
+			<field name="name">view.bank.transaction.search</field>
+			<field name="model">bank.transaction</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Bank Transactions">
+					<filter string="Is Reconciled" name="filter_is_reconciled" domain="[('is_reconciled', '=', True)]" />
+					<group expand="1" string="Group by">
+						<filter string="Payment Method" domain="[]" context="{'group_by':'journal_id'}" />
+					</group>
+					<group string="Field">
+						<field name="code" />
+						<field name="order_id" />
+						<field name="journal_id" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_view_bank_transaction" model="ir.actions.act_window">
+			<field name="name">Bank Transactions</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">bank.transaction</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</odoo>

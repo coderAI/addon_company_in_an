@@ -1,0 +1,73 @@
+.ks_dashboard_theme_input::before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+.ks_color_blue::before{
+    background: #337ab7;
+}
+.ks_color_white::before{
+    background: #ffffff;
+    border: 1px solid #bdbdbd;
+    color: black !important;
+}
+
+.ks_color_red::before{
+    background: #d9534f;
+}
+.ks_color_yellow::before{
+    background: #f0ad4e;
+}
+.ks_color_green::before{
+    background: #5cb85c;
+}
+.ks_dashboard_theme_view_render{
+    display: flex;
+}
+.ks_dashboard_theme_input:checked:before{
+    content: '✔';
+}
+
+.ks_dashboard_theme_input_container{
+        margin-right: 20px;
+}
+
+/*Kpi CSS here*/
+.ks_kpi_target_grey {
+    color: #777777;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+.mr-auto {
+    margin-right: auto;
+}
+
+.ks_dashboard_upper_icons {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.h-100 {
+    height :100%;
+}
+
+.ks-dashboard-onsides {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.ks-dashboard-onsides .col {
+    width: 100%;
+}
+
+.px-10 {
+    padding: 10px;
+}

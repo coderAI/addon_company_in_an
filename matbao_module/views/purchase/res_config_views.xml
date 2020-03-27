@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="view_purchase_configuration_inherit">
+			<field name="name">view.purchase.configuration.inherit</field>
+			<field name="model">purchase.config.settings</field>
+			<field name="inherit_id" ref="purchase.view_purchase_configuration" />
+			<field name="arch" type="xml">
+				<field name='group_product_variant' position="before">
+					<label for="default_vendor" string="Default Vendor"></label>
+					<div name="default_vendor">
+						<div>
+							<field name="partner_id" class="oe_inline" options="{'no_create': true, 'no_create_edit': true, 'no_delete': true}"/>
+						</div>
+					</div>
+				</field>
+			</field>
+		</record>
+
+	</data>
+</odoo>
+			

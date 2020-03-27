@@ -1,0 +1,18 @@
+
+.grid-stack > .grid-stack-item {
+@gridstack-columns: 36;
+min-width: (100% / @gridstack-columns);
+
+.generate-columns(36);
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+
+&[data-gs-width="@{i}"] {
+width: (@i * 100% / @n) !important;
+}
+&[data-gs-x='@{i}'] { left: (100% / @gridstack-columns) * @i !important; }
+&[data-gs-min-width='@{i}'] { min-width: (100% / @gridstack-columns) * @i !important; }
+&[data-gs-max-width='@{i}'] { max-width: (100% / @gridstack-columns) * @i !important; }
+
+.generate-columns(@n, (@i + 1));
+}
+}

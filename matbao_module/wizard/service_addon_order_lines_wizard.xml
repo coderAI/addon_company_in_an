@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="order_lines_wizard_view" model="ir.ui.view">
+		<field name="name">Sales order lines wizard</field>
+		<field name="model">service.addon.order.lines.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<field name="line_ids"
+						context="{'default_is_service': context.get('service',False), 'order_id': context.get('sale_order_id')}">
+						<tree editable="bottom">
+							<field name="register_type" />
+							<field name="is_service" invisible = "1" />
+							<field name="product_category_id"
+								options="{'no_create': true, 'no_create_edit': true, 'no_delete': true}"
+								context="{'in_service': 1, 'default_is_service': context.get('service',False), 'order_id': context.get('order_id')}"/>
+							<field name="parent_product_id" invisible="context.get('service',False)"
+								attrs="{'required':[('register_type','!=','renew'), ('is_service','=',False)]}"
+								context="{'in_service': 1, 'product_category_id': product_category_id,'register_type': register_type, 'is_parent': True, 'is_service': default_is_service, 'order_id': context.get('order_id')}"
+								options="{'no_create': true, 'no_create_edit': true, 'no_delete': true}"/>
+							<field name="product_id" 
+								options="{'no_create': true, 'no_create_edit': true, 'no_delete': true}"
+								context="{'in_service': 1, 'is_service': default_is_service, 'product_category_id': product_category_id, 'order_id': context.get('order_id')}"
+								attrs="{'required':[('register_type','=','renew')],'readonly':[('register_type','in',['register', 'transfer'])]}" />
+							<field name="product_name" invisible="context.get('addon',False)"
+								attrs="{'readonly':[('register_type','=','renew')],'required':[('is_service','=',True)] }" />
+							<field name="template"
+								   attrs="{'readonly':[('register_type','=','renew')]}" />
+							<field name="time"/>
+							<field name="product_uom_id" readonly="1"/>
+						</tree>
+					</field>
+					<footer>
+						<button name="write_service_orders" string="Add" type="object"
+							class="btn-primary" />
+						<button special="cancel" string="Cancel" type="object"
+							class="oe_link" />
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_service_order_lines_wizard" model="ir.actions.act_window">
+		<field name="name"> Add Services</field>
+		<field name="res_model">service.addon.order.lines.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="order_lines_wizard_view" />
+		<field name="context">{'service':True}</field>
+		<field name="target">new</field>
+	</record>
+
+	<record id="action_addon_order_lines_wizard" model="ir.actions.act_window">
+		<field name="name"> Add Addons</field>
+		<field name="res_model">service.addon.order.lines.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="order_lines_wizard_view" />
+		<field name="context">{'addon':True}</field>
+		<field name="target">new</field>
+	</record>
+</odoo>

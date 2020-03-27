@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="search_customer_wizard_view" model="ir.ui.view">
+		<field name="name">Search customer wizard</field>
+		<field name="model">search.customer.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<button name="search_customer" string="SEARCH" type="object"
+							class="btn-primary" />
+					</group>
+					<group>
+						<group>
+							<field name="customer_code" />
+							<field name="customer_name" />
+							
+						</group>
+						<group>
+							<field name="email" />
+							<field name="phone" />
+							<field name="mobile_phone" />
+						</group>
+					</group>
+					<field name="customer_ids" context="{'form_view_ref': 'matbao_module.view_res_partner_form_inherit'}">
+						<tree edit="false" create="false" delete="false">
+							<field name="ref" />
+							<field name="name" />
+							<field name="street" />
+							<field name="company_type" />
+							<field name="state" />
+							<button name="view_customer" type="object" icon="fa-pencil"/>
+						</tree>
+					</field>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_search_customer_wizard" model="ir.actions.act_window">
+		<field name="name"> Search customers</field>
+		<field name="res_model">search.customer.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="search_customer_wizard_view" />
+		<field name="target">inline</field>
+	</record>
+
+</odoo>

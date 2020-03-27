@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="ks_dashboard_ninja_action">
+            <field name="name">ks_dashboard_ninja_item action</field>
+            <field name="model">ks_ninja_dashboard.item_action</field>
+            <field name="arch" type="xml">
+                <form string="Dashboard Item Action">
+                    <group>
+                        <group>
+                            <field name="ks_dashboard_item_ids" invisible='1' required="1"/>
+                            <field name="ks_dashboard_ninja_id"
+                                   options="{'no_create': True, 'no_create_edit':True, 'no_open': True}" attrs="{'required' :[('ks_action','=','move')],'invisible':[('ks_action','=','duplicate')]}" />
+                            <field name="ks_dashboard_ninja_ids" options="{'no_create': True, 'no_create_edit':True, 'no_open': True}"  attrs="{'required' :[('ks_action','=','duplicate')],'invisible':[('ks_action','=','move')]}" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="ks_action" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string='Save' name="action_item_move_copy_action" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

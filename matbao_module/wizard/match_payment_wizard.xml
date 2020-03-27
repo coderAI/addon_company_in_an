@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="match_payment_wizard_view" model="ir.ui.view">
+		<field name="name">Match Payment</field>
+		<field name="model">match.payment.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<field name="bank_transaction_ids" domain="[('is_reconciled', '=', False)]">
+							<tree>
+								<field name="code" readonly="1"/>
+								<field name="amount" readonly="1" sum="Total Amount"/>
+								<field name="description" readonly="1"/>
+								<field name="journal_id" readonly="1"/>
+								<field name="is_reconciled" readonly="1"/>
+								<field name="order_id" readonly="1"/>
+							</tree>
+					</field>
+					<footer>
+						<button name="button_match_payment" string="Match Payment"
+							type="object" class="btn-primary" />
+						<button special="cancel" string="Cancel" type="object"
+							class="oe_link" />
+					</footer>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_view_match_payment_wizard" model="ir.actions.act_window">
+		<field name="name">Match Payment</field>
+		<field name="res_model">match.payment.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="match_payment_wizard_view" />
+		<field name="target">new</field>
+	</record>
+
+</odoo>

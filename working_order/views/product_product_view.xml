@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+
+		<record id="view_product_product_edit_minimun_tree" model="ir.ui.view">
+			<field name="name">view.product.product.form</field>
+			<field name="model">product.product</field>
+			<field name="arch" type="xml">
+				<tree string="Product List" editable="bottom">
+					<field name="minimum_quantity"/>
+					<field name="default_code" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="attribute_value_ids" widget="many2many_tags" readonly="1"/>
+                    <field name="lst_price" readonly="1"/>
+                    <field name="price" invisible="not context.get('pricelist',False)" readonly="1"/>
+                    <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom" readonly="1"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="action_product_edit_minimun" model="ir.actions.act_window">
+			<field name="name">Minimum Quantity Product</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.product</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_product_product_edit_minimun_tree"/>
+		</record>
+
+		<menuitem id="minimum_quantity_product_menu"
+				  name="Minimum Quantity Product"
+				  action="action_product_edit_minimun"
+				  parent="sale.product_menu_catalog"/>
+	</data>
+</openerp>
