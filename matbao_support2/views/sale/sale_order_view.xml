@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="view_sale_order_form_inherit_from_mb_support2" model="ir.ui.view" >
+			<field name="name">view.sale.order.form.inherit.from.mb.support2</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="matbao_module.view_sale_order_form_inherit" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="CALL HISTORY">
+						<field name="so_voice_line_ids">
+							<tree options="{'no_create_edit': 1}">
+								<field name="invoice_time"/>
+								<field name="mobile"/>
+								<field name="content"/>
+								<field name="result"/>
+							</tree>
+						</field>
+					</page>
+				</notebook>
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="context">{'form_view_ref': 'matbao_module.view_res_partner_form_inherit',
+											   'tree_view_ref': 'matbao_support.view_res_partner_tree_inherit_from_mb_support'}</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+	
+</odoo>

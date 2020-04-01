@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_quota_sale_configuration_inherit_from_mb_support2" model="ir.ui.view">
+			<field name="name">view.quota.sale.configuration.inherit.from.mb.support2</field>
+			<field name="model">sale.config.settings</field>
+			<field name="inherit_id" ref="matbao_module.view_sale_configuration_inherit" />
+			<field name="arch" type="xml">
+				<field name='partner_id' position="after">
+					<field name="split_bank_transaction"/>
+					<field name="upgrade_service"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>
+			

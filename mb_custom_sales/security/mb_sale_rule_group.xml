@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+
+
+        <record id="rule_sale_order_contract_for_sale_onlien_group" model="ir.rule">
+            <field name="name">Sale Contract SO for sale onlien group</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="groups" eval="[(4, ref('mb_sale_contract.group_sale_online_mb_sale_contract'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('user_id','!=',False)]</field>
+        </record>
+
+        <record id="rule_sale_order_contract_for_sale_onlien_group" model="ir.rule">
+            <field name="name">account payment SO for salesman all leads group</field>
+            <field name="model_id" ref="account.model_account_payment"/>
+            <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('user_id','!=',False)]</field>
+        </record>
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="sale_contract_mb_inherit" inherit_id="mb_sale_contract.sale_contract_mb">
+        <xpath expr="//t[@t-if='o.check_chili_service()']" position="after">
+
+
+
+            <t t-if="o.check_service_registry_lock()">
+<!--                check_REGISTRY_LOCK_service-->
+                <p style="page-break-after:always;"/>
+                <div class="row text-center" style="width:100%">
+                    <div class="col-xs-6" style="text-align:left">
+                        <strong><t t-esc="values['company_id'].name"/></strong>
+                        <br/>
+                        <!--SỐ <t t-foreach="values['contract_arr']" t-as="item"><t t-if="item != values['contract_arr'][-1]"><span style="border:1px solid #000;padding:0 3px 0 3px"><t t-esc="item"/></span></t><t t-if="item == values['contract_arr'][-1]"><t t-esc="item"/>_PL</t></t>-->
+                        Số HĐ: <strong><t t-esc="o.contract_id and o.contract_id.name or ''"/></strong>
+                    </div>
+                    <div class="col-xs-6">
+                        <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b>
+                        <br/><u>Độc lập - Tự do - Hạnh phúc</u>
+                        <br/><p style="text-align:right; margin-top: 10px;">ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/></p>
+                    </div>
+                </div>
+                <div class="row text-center" style="width:100%;">
+                    <h4><strong>PHỤ LỤC HỢP ĐỒNG CUNG CẤP DỊCH VỤ</strong></h4>
+                    <h4><strong>DỊCH VỤ BẢO  VỆ  TÊN MIỀN (REGISTRY LOCK)</strong></h4>
+                </div>
+                <div class="row text-left" style="width:100%; margin-top:10px">
+                    <p style="margin-bottom:0; margin-left:30px; text-align: justify;">
+                        Phụ lục hợp đồng này được ký kết ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/>, bởi và giữa:
+                    </p>
+                    <strong>Bên thuê dịch vụ (Bên A): <t t-if="values['customer'].company_type == 'person'"><t t-esc="values['customer'].title.name"/> </t><t t-esc="values['order_id'].partner_id.name"/></strong>
+                    <hr style="background-color:black; margin-top:-2px; margin-bottom:0; padding: 0 0 1px;"/>
+                    <hr style="background-color:black; margin-top:0; margin-bottom:0; padding: 0 0 1px;"/>
+                    <div style="margin-left:30px; font-size:13px">
+                        <t t-if="o.partner_id.company_type == 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số CMND/Hộ chiếu: </p></div>
+                                <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].indentify_number or ''"/></p></div>
+                            </div>
+                        </t>
+                        <t t-if="o.partner_id.company_type != 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><strong><p style="margin-bottom:0; padding-left: 30px;">Người đại diện: </p></strong></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.representative or ''"/></p></div>
+                                <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;">Chức vụ: <t t-esc="o.partner_id.function or ''"/></p></div>
+                            </div>
+                        </t>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Địa chỉ liên hệ: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].street or ''"/><t t-if="values['customer'].city">, <t t-esc="values['customer'].street"/></t><t t-if="values['customer'].country_id">, <t t-esc="values['customer'].country_id.name"/></t></p></div>
+                        </div>
+                        <t t-if="o.partner_id.company_type == 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Ngày sinh: </p></div>
+                                <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].date_of_birth or ''"/></p></div>
+                            </div>
+                        </t>
+                        <t t-if="o.partner_id.company_type != 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Điện thoại: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.phone or ''"/></p></div>
+                                <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;">Fax: <t t-esc="o.partner_id.fax or ''"/></p></div>
+                            </div>
+                        </t>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <t t-if="o.partner_id.company_type == 'person'">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số điện thoại: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].mobile or ''"/></p></div>
+                            </t>
+                            <t t-if="o.partner_id.company_type != 'person'">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Mã số doanh nghiệp: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.vat or ''"/></p></div>
+                            </t>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Email (bắt buộc): 	<t t-esc="values['customer'].email or ''"/></p></div>
+                        </div>
+                    </div>
+                    <strong style="display: inline-block;">Bên cung cấp dịch vụ (Bên B): <t t-esc="values['company_id'].name"/></strong>
+                    <hr style="background-color:black; margin-top:-2px; margin-bottom:0; padding: 0 0 1px;"/>
+                    <hr style="background-color:black; margin-top:0; margin-bottom:0; padding: 0 0 1px;"/>
+                    <div style="margin-left:30px; font-size:13px">
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0;"><strong><p style="margin-bottom:0; padding-left: 30px;">Người đại diện: </p></strong></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0; min-height:18px;"><b><p style="margin-bottom:0;"><t t-esc="values['company_id'].partner_id.representative or ''"/></p></b></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Chức vụ: <t t-esc="values['company_id'].partner_id.function or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Địa chỉ: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0; min-height:18px;"><p style="margin-bottom:0;"><t t-esc="values['company_id'].street or ''"/><t t-if="values['company_id'].state_id">, <t t-esc="values['company_id'].state_id.name"/></t><t t-if="values['company_id'].country_id">, <t t-esc="values['company_id'].country_id.name"/></t></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số điện thoại: </p></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0; min-height:18px;"><p style="margin-bottom:0;"><t t-esc="values['company_id'].phone or ''"/></p></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Fax: <t t-esc="values['company_id'].fax or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số tài khoản: </p></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0;"><t t-esc="values['company_id'].bank_account_id and values['company_id'].bank_account_id.acc_number or ''"/></p></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Mở tại: <t t-esc="values['company_id'].bank_id and values['company_id'].bank_id.name or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Mã số doanh nghiệp: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; height: 18px;"><t t-esc="values['company_id'].vat or ''"/></p></div>
+                        </div>
+                    </div>
+                    <b style="margin-left:30px; display: inline-block;"><i>Xét rằng:</i></b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0; text-align: left;">-</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><i>Tại Điều 1 Hợp đồng dịch vụ cung cấp tên miền và dịch vụ gia tăng  <b><t t-esc="values['contract_no']"/></b> ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/> (sau đây gọi tắt là “<b>Hợp Đồng</b>”), được ký kết giữa Bên A và Bên B, Bên B sẽ cung cấp cho Bên A <b>Dịch vụ Bảo vệ tên miền cấp cao nhất</b> (sau đây gọi tắt là <b>“Dịch vụ Locking domain”</b>).</i></p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0; text-align: left;">-</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><i>Nhằm mục đích thực hiện <b>Dịch vụ Locking domain,</b> hai Bên tiến hành ký kết Phụ lục hợp đồng này với các điều khoản quy định chi tiết và chỉ được áp dụng đối với dịch vụ này.</i></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b style="display: inline-block;">ĐIỀU 1: GIẢI THÍCH TỪ NGỮ</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">1.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><b><i>"Dịch vụ Bảo vệ tên miền cấp cao nhất"(hay Dịch vụ Locking domain) </i></b> là dịch vụ khóa tên miền ở cấp độ Registry. Đối với tên miền quốc tế (.com/ .net/ .tv/ .cc) là Verisign và tên miền Việt Nam (.vn, .com.vn, .net.vn, .edu.vn, ...) là VNNIC.
+                                    Dịch vụ khóa tên miền giúp bên A bảo vệ tên miền an toàn tuyệt đối, tránh bị mất quyền sở hữu hoặc bị can thiệp thay đổi thông số của tên miền. Các dịch vụ cụ thể được thể được thể hiện ở Điều 1 của Hợp đồng.
+                                </p></td>
+
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">1.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><b><i>"Verisign"</i></b> là đơn vị chủ quản tên miền quốc tế: .Com, .Net, .Cc và .Tv </p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">1.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><b><i>"VNNIC"</i></b> vlà viết tắt của Trung tâm Internet Việt Nam, đơn vị chủ quản tên miền Việt Nam: .vn, .com.vn, .net.vn, .edu.vn …</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b style="display: inline-block;">ĐIỀU 2: NỘI DUNG DỊCH VỤ</b><br/>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td><p style="margin-bottom:0;">Bên B cung cấp dịch vụ Locking domain với các thông tin liên quan đến dịch vụ được quy định cụ thể tại Điều 1 của Hợp Đồng.</p></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 3: THỜI HẠN CỦA PHỤ LỤC</b><br/>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">3.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này có hiệu lực kể từ thời điểm có đầy đủ chữ ký và con dấu (nếu có) của các bên và Bên A đã thanh toán cho Bên B theo Điều 4.1 Phụ lục hợp đồng này. Phụ lục sẽ chấm dứt hiệu lực theo quy định tại Điều 6 Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">3.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thời hạn của Phụ lục hợp đồng này tùy thuộc vào thời hạn của gói dịch vụ mà Bên A đăng ký sử dụng với Bên B đã được quy định tại Hợp Đồng.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 4: QUYỀN VÀ NGHĨA VỤ CỦA BÊN A</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"/>
+                                <td>
+                                    <p style="margin-bottom:0; text-aligin: justify;">
+                                        Ngoài các quyền và nghĩa vụ được quy định tại Điều 3 Hợp Đồng, Bên A còn có thêm các quyền và nghĩa vụ sau:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thanh toán 100% phí dịch vụ cho Bên B ngay sau khi các bên ký kết phụ lục hợp đồng này. Các khoản thanh toán này là không hoàn lại.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.2.</p></td>
+                                <td>
+                                    <p style="margin-bottom:0; text-align: justify;">Cung cấp đầy đủ các thông tin yêu cầu trong Bản đăng ký theo mẫu của Bên B.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.3.</p></td>
+                                <td>
+                                    <p style="margin-bottom:0; text-align: justify;">Thanh toán chi phí đăng ký và gia hạn cho Bên B đầy đủ và đúng thời hạn theo Điều 1 của hợp đồng này.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Nếu tên miền cần đăng ký dịch vụ Locking domain không phải quản lý bởi Nhà đăng ký bên B thì yêu cầu bên A trước khi đăng ký dịch vụ Locking domain phải chuyển toàn bộ tên miền về Bên B quản lý và thay đổi Name server của các tên miền này sang sử dụng Name server do Bên B cung cấp.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A hoàn toàn chịu trách nhiệm trước pháp luật về mục đích sử dụng dịch vụ. Tuân thủ theo đúng qui định sử dụng tại địa chỉ liên kết: https://www.matbao.net/thong-tin/thoa-thuan-su-dung.html</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.6.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Chủ động liên hệ Bên B cập nhật thông tin khi có sự thay đổi tên, địa chỉ, email, điện thoại, địa chỉ gửi hóa đơn thanh toán, số tài khoản.</p></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 5: QUYỀN VÀ NGHĨA VỤ CỦA BÊN B</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"/>
+                                <td>
+                                    <p style="margin-bottom:0; text-aligin: justify;">
+                                        Ngoài các quyền và nghĩa vụ được quy định tại Điều 4 Hợp Đồng, Bên B còn có thêm các quyền và nghĩa vụ sau:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Trường hợp Bên A có các khiếu nại liên quan đến chất lượng dịch vụ, trong phạm vi trách nhiệm đã thỏa thuận, Bên B phải giải quyết trong vòng hai mươi bốn (24) giờ kể từ thời điểm nhận được khiếu nại từ Bên A.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp cho Bên A hóa đơn tài chính sau khi Bên A thanh toán đầy đủ các chi phí dịch vụ theo đúng thỏa thuận tại Phụ lục hợp đồng này.</p></td>
+                            </tr>
+
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp dịch vụ theo đúng nội dung hợp đồng ở Điều 1.
+                                    Tên miền sau khi đăng ký bảo vệ, trạng thái phải được thể hiện khi whois là:
+                                </p>
+                                    <p style="margin-bottom:0; text-align: justify;"><b>Status:</b></p>
+                                    <p style="margin-bottom:0; text-align: justify;">•	serverDeleteProhibited,</p>
+                                    <p style="margin-bottom:0; text-align: justify;">•	serverTransferProhibited,</p>
+                                    <p style="margin-bottom:0; text-align: justify;">•	serverUpdateProhibited,</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp hóa đơn cho Bên A theo đúng nội dung đã thỏa thuận tại Điều 1 của hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B có quyền ngưng cung cấp dịch vụ mà không hoàn lại bất kỳ một chi phí nào cho Bên A trong trường hợp Bên A vi phạm qui định sử dụng tại địa chỉ liên kết: https://www.matbao.net/thong-tin/thoa-thuan-su-dung.html</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.6.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Hỗ trợ kỹ thuật cho Bên A theo các hình thức sau: Hỗ Trợ Trực Tuyến: (24/7). Hotline: 19001830</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 6: TẠM NGỪNG CUNG CẤP DỊCH VỤ</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các trường hợp Bên B được quyền tạm ngừng cung cấp dịch vụ mà không cần có sự chấp thuận từ Bên A:</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A không hoàn thành nghĩa vụ thanh toán mà không có bất kỳ văn bản giải trình lý do phù hợp cho Bên B.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Theo yêu cầu của cơ quan nhà nước có thẩm quyền và/hoặc từ phía Verisign hoặc VNNIC</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B chủ động gia hạn trước 10 ngày trước khi dịch vụ hết hạn. Sau ngày hết hạn dịch vụ sẽ bị ngưng.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Tùy thuộc vào yêu cầu theo quy định tại Điều 6.1.2 Phụ lục hợp đồng này, các Bên sẽ thỏa thuận về việc tiếp tục thực hiện hoặc chấm dứt Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Đối với các trường hợp quy định tại Điều 6.1 Phụ lục hợp đồng này, Bên B sẽ không đảm bảo an toàn dữ liệu cho Bên A.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 7: SỬA ĐỔI, CHẤM DỨT VÀ PHẠT VI PHẠM</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này có thể được sửa đổi theo thoả thuận bằng văn bản của các bên. Trong thời gian các bên tiến hành đàm phán, thương lượng về việc sửa đổi bổ sung, Phụ lục hợp đồng này vẫn tiếp tục giữ nguyên hiệu lực thi hành đến khi các bên đạt được một thỏa thuận khác. Mọi sự sửa đổi, bổ sung nội dung Phụ lục hợp đồng này đều phải được cả hai bên trao đổi, thống nhất bằng văn bản thì mới có giá trị ràng buộc.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này sẽ chấm dứt trong trường hợp sau.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.1</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này hết hạn mà không được gia hạn.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.2</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các Bên thỏa thuận chấm dứt Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Một trong các bên bị giải thể, thanh lý, phá sản hay thay đổi chủ sở hữu/thành viên/cổ đông làm ảnh hưởng đến việc thực hiện Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các trường hợp bất khả kháng xảy ra dẫn đến một Bên không thể tiếp tục thực hiện nghĩa vụ của mình trong thời gian ba mươi (30) ngày liên tục mặc dù đã áp dụng tất cả các biện pháp để khắc phục.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 8: ĐIỀU KHOẢN CHUNG</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này chỉ được áp dụng đối với dịch vụ Locking domain. Các dịch vụ khác vẫn được điều chỉnh theo các quy định của Hợp Đồng và các Thỏa thuận, Phụ lục khác kèm theo.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Hết thời hạn duy trì với dịch vụ Locking domain, Phụ lục hợp đồng này đương nhiên sẽ chấm dứt hiệu lực. Trường hợp tiếp tục gia hạn dịch vụ, Bên A phải ký xác nhận vào Phụ lục hợp đồng duy trì dịch vụ và thanh toán đầy đủ các khoản phí mà Bên B quy định trong Phụ lục hợp đồng đó.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Khi Phụ lục hợp đồng này bị chấm dứt hiệu lực và hai bên không có bất kỳ thỏa thuận nào khác bằng văn bản về việc thực hiện với dịch vụ khóa tên miền, thỏa thuận về công việc liên quan đến dịch vụ Locking domain tại Điều 1 Hợp Đồng sẽ chấm dứt mà không ảnh hưởng đến việc thực hiện các dịch vụ khác được ký kết giữa hai bên. Hai bên có trách nhiệm hoàn tất các quyền, nghĩa vụ đã phát sinh theo Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Mọi tranh chấp phát sinh trong quá trình thực hiện sẽ được hai Bên thương lượng giải quyết trên tinh thần hợp tác, tôn trọng lẫn nhau. Trường hợp hai Bên không thống nhất giải quyết thì vụ việc sẽ được chuyển đến Tòa án có thẩm quyền để giải quyết, phán quyết của Tòa án là quyết định cuối cùng buộc các Bên phải chấp hành.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Mọi tranh chấp phát sinh trong quá trình thực hiện sẽ được hai Bên thương lượng giải quyết trên tinh thần hợp tác, tôn trọng lẫn nhau. Trường hợp hai Bên không thống nhất giải quyết thì vụ việc sẽ được chuyển đến Tòa án có thẩm quyền để giải quyết, phán quyết của Tòa án là quyết định cuối cùng buộc các Bên phải chấp hành.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row text-center" style="width:100%; margin-top:10px">
+                    <div class="col-xs-6">
+                        <strong>ĐẠI DIỆN BÊN A<span style="color: white">$</span></strong>
+                        <br/><br/><br/><br/><br/><br/><br/><br/>
+                        <strong style="font-size:15px;">
+                            <t t-if="o.partner_id and o.partner_id.company_type == 'person'">
+                                <t t-esc="o.partner_id.name.upper()"/>
+                            </t>
+                            <t t-if="o.partner_id and o.partner_id.company_type != 'person'">
+                                <t t-esc="o.partner_id.representative and o.partner_id.representative.upper() or ''"/>
+                            </t>
+                        </strong>
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>ĐẠI DIỆN BÊN B</strong>
+                        <t t-if="o.contract_id and o.contract_id.state == 'return'">
+                            <br/><img src='/mb_sale_invoice/static/image/sign.jpg' height="150px"/><br/>
+                        </t>
+                        <t t-if="not o.contract_id  or o.contract_id and o.contract_id.state != 'return'">
+                            <br/><br/><br/><br/><br/><br/><br/><br/>
+                        </t>
+                        <strong style="font-size:15px;"><t t-esc="values['company_id'].ceo and values['company_id'].ceo.name.upper() or 'Nguyễn Quốc Vinh'"/></strong>
+                    </div>
+                </div>
+            </t>
+
+
+
+
+
+
+            <t t-if="o.check_service_hddt()">
+                <p style="page-break-after:always;"/>
+                <div class="row text-center" style="width:100%">
+                    <div class="col-xs-6" style="text-align:left">
+                        <strong><t t-esc="values['company_id'].name"/></strong>
+                        <br/>
+                        <!--SỐ <t t-foreach="values['contract_arr']" t-as="item"><t t-if="item != values['contract_arr'][-1]"><span style="border:1px solid #000;padding:0 3px 0 3px"><t t-esc="item"/></span></t><t t-if="item == values['contract_arr'][-1]"><t t-esc="item"/>_PL</t></t>-->
+                        Số HĐ: <strong><t t-esc="o.contract_id and o.contract_id.name or ''"/></strong>
+                    </div>
+                    <div class="col-xs-6">
+                        <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b>
+                        <br/><u>Độc lập - Tự do - Hạnh phúc</u>
+                        <br/><p style="text-align:right; margin-top: 10px;">ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/></p>
+                    </div>
+                </div>
+                <div class="row text-center" style="width:100%;">
+                    <h4><strong>PHỤ LỤC HỢP ĐỒNG CUNG CẤP DỊCH VỤ</strong></h4>
+                    <h4><strong>DỊCH VỤ HÓA ĐƠN ĐIỆN TỬ</strong></h4>
+                </div>
+                <div class="row text-left" style="width:100%; margin-top:10px">
+                    <p style="margin-bottom:0; margin-left:30px; text-align: justify;">
+                        Phụ lục hợp đồng này được ký kết ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/>, bởi và giữa:
+                    </p>
+                    <strong>Bên thuê dịch vụ (Bên A): <t t-if="values['customer'].company_type == 'person'"><t t-esc="values['customer'].title.name"/> </t><t t-esc="values['order_id'].partner_id.name"/></strong>
+                    <hr style="background-color:black; margin-top:-2px; margin-bottom:0; padding: 0 0 1px;"/>
+                    <hr style="background-color:black; margin-top:0; margin-bottom:0; padding: 0 0 1px;"/>
+                    <div style="margin-left:30px; font-size:13px">
+                        <t t-if="o.partner_id.company_type == 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số CMND/Hộ chiếu: </p></div>
+                                <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].indentify_number or ''"/></p></div>
+                            </div>
+                        </t>
+                        <t t-if="o.partner_id.company_type != 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><strong><p style="margin-bottom:0; padding-left: 30px;">Người đại diện: </p></strong></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.representative or ''"/></p></div>
+                                <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;">Chức vụ: <t t-esc="o.partner_id.function or ''"/></p></div>
+                            </div>
+                        </t>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Địa chỉ liên hệ: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].street or ''"/><t t-if="values['customer'].city">, <t t-esc="values['customer'].street"/></t><t t-if="values['customer'].country_id">, <t t-esc="values['customer'].country_id.name"/></t></p></div>
+                        </div>
+                        <t t-if="o.partner_id.company_type == 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Ngày sinh: </p></div>
+                                <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].date_of_birth or ''"/></p></div>
+                            </div>
+                        </t>
+                        <t t-if="o.partner_id.company_type != 'person'">
+                            <div class="col-md-12" style="min-height: 0;padding:0">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Điện thoại: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.phone or ''"/></p></div>
+                                <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;">Fax: <t t-esc="o.partner_id.fax or ''"/></p></div>
+                            </div>
+                        </t>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <t t-if="o.partner_id.company_type == 'person'">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số điện thoại: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="values['customer'].mobile or ''"/></p></div>
+                            </t>
+                            <t t-if="o.partner_id.company_type != 'person'">
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Mã số thuế: </p></div>
+                                <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; min-height:18px;"><t t-esc="o.partner_id.vat or ''"/></p></div>
+                            </t>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Email (bắt buộc): 	<t t-esc="values['customer'].email or ''"/></p></div>
+                        </div>
+                    </div>
+                    <strong style="display: inline-block;">Bên cung cấp dịch vụ (Bên B): <t t-esc="values['company_id'].name"/></strong>
+                    <hr style="background-color:black; margin-top:-2px; margin-bottom:0; padding: 0 0 1px;"/>
+                    <hr style="background-color:black; margin-top:0; margin-bottom:0; padding: 0 0 1px;"/>
+                    <div style="margin-left:30px; font-size:13px">
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0;"><strong><p style="margin-bottom:0; padding-left: 30px;">Người đại diện: </p></strong></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0; min-height:18px;"><b><p style="margin-bottom:0;"><t t-esc="values['company_id'].partner_id.representative or ''"/></p></b></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Chức vụ: <t t-esc="values['company_id'].partner_id.function or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Địa chỉ: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0; min-height:18px;"><p style="margin-bottom:0;"><t t-esc="values['company_id'].street or ''"/><t t-if="values['company_id'].state_id">, <t t-esc="values['company_id'].state_id.name"/></t><t t-if="values['company_id'].country_id">, <t t-esc="values['company_id'].country_id.name"/></t></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số điện thoại: </p></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0; min-height:18px;"><p style="margin-bottom:0;"><t t-esc="values['company_id'].phone or ''"/></p></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Fax: <t t-esc="values['company_id'].fax or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Số tài khoản: </p></div>
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0;"><t t-esc="values['company_id'].bank_account_id and values['company_id'].bank_account_id.acc_number or ''"/></p></div>
+                            <div class="col-xs-6" style="text-align:left; padding:0"><p style="margin-bottom:0;">Mở tại: <t t-esc="values['company_id'].bank_id and values['company_id'].bank_id.name or ''"/></p></div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 0;padding:0">
+                            <div class="col-xs-3" style="text-align:left; padding:0"><p style="margin-bottom:0; padding-left: 30px;">Mã số thuế: </p></div>
+                            <div class="col-xs-9" style="text-align:left; padding:0"><p style="margin-bottom:0; height: 18px;"><t t-esc="values['company_id'].vat or ''"/></p></div>
+                        </div>
+                    </div>
+                    <b style="margin-left:30px; display: inline-block;"><i>Xét rằng:</i></b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0; text-align: left;">-</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><i>Tại Điều 1 Hợp đồng dịch vụ cung cấp dịch vụ <b><t t-esc="values['contract_no']"/></b> ngày <t t-esc="values['day_cur']"/> tháng <t t-esc="values['month_cur']"/> năm <t t-esc="values['year_cur']"/> (sau đây gọi tắt là “<b>Hợp Đồng</b>”), được ký kết giữa Bên A và Bên B, Bên B sẽ cung cấp cho Bên A dịch vụ phần mềm hóa đơn điện tử (sau đây gọi tắt là “<b>Dịch Vụ Hóa đơn điện tử</b>”);</i></p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0; text-align: left;">-</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><i>Nhằm mục đích thực hiện Dịch Vụ Hóa đơn điện tử, hai Bên tiến hành ký kết Phụ lục hợp đồng này với các điều khoản quy định chi tiết và chỉ được áp dụng đối với dịch vụ này.</i></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b style="display: inline-block;">ĐIỀU 1: GIẢI THÍCH TỪ NGỮ</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">1.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;"><b><i>"Dịch Vụ Hóa đơn điện tử":</i></b> là tập hợp các dữ liệu điện tử về bán hàng, về cung ứng dịch vụ được doanh nghiệp lập, gửi cho khách hàng đồng thời lưu trữ và quản lý bằng các phương tiện điện tử và dựa trên Quyết định 1209/QĐ-BTC của Bộ Tài Chính và Quyết định 1445/QĐ-TCT của Tổng cục Thuế. Các gói cụ thể mà bên A đăng ký được thể hiện ở Điều 1 của Hợp đồng.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b style="display: inline-block;">ĐIỀU 2: NỘI DUNG DỊCH VỤ</b><br/>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B cung cấp dịch vụ hóa đơn điện tử với các thông tin liên quan đến dịch vụ được quy định cụ thể tại Điều 1 của Hợp Đồng.</p></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 3: THỜI HẠN CỦA PHỤ LỤC</b><br/>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">3.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này có hiệu lực kể từ thời điểm có đầy đủ chữ ký và con dấu (nếu có) của các bên và Bên A đã thanh toán cho Bên B theo Điều 4.1 Phụ lục hợp đồng này. Phụ lục sẽ chấm dứt hiệu lực theo quy định tại Điều 7.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">3.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thời hạn của Phụ lục hợp đồng này tùy thuộc vào thời hạn của gói dịch vụ mà Bên A đăng ký sử dụng với Bên B đã được quy định tại Hợp Đồng.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 4: QUYỀN VÀ NGHĨA VỤ CỦA BÊN A</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"/>
+                                <td>
+                                    <p style="margin-bottom:0; text-aligin: justify;">
+                                        Ngoài các quyền và nghĩa vụ được quy định tại Điều 3 Hợp Đồng, Bên A còn có thêm các quyền và nghĩa vụ sau:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thanh toán phí duy trì bản quyền cho Bên B ngay sau khi các bên ký kết Phụ lục hợp đồng này. Các khoản thanh toán này là không hoàn lại.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.2.</p></td>
+                                <td>
+                                    <p style="margin-bottom:0; text-align: justify;">Thanh toán 100% phí dịch vụ trong thời hạn bảy (07) ngày kể từ ngày các bên ký kết Phụ lục hợp đồng này.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.3.</p></td>
+                                <td>
+                                    <p style="margin-bottom:0; text-align: justify;">Chịu trách nhiệm xây dựng nội dung đào tạo, kế hoạch truyền thông, phương án triển khai hóa đơn điện tử.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Có trách nhiệm bảo mật quyền đăng nhập vào hệ thống, chịu trách nhiệm trước pháp luật các hành vi về việc phát hành, lưu trữ, sử dụng hóa đơn điện tử cũng như mọi thiệt hại xảy ra do lỗi của Bên A trong quá trình sử dụng, sử dụng dịch vụ.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp các thông tin khởi tạo hóa đơn một cách chính xác, trung thực. Tự chịu trách nhiệm bảo mật hóa đơn điện tử và thực hiện cơ chế sao lưu nội bộ nhằm đảm bảo an toàn dữ liệu của Bên A.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.6.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A có trách nhiệm thực hiện gửi Quyết định áp dụng hóa đơn điện tử đến cơ quan thuế quản lý trực tiếp bằng văn bản giấy hoặc bằng văn bản điện tử gửi thông qua cổng thông tin điện tử của cơ quan thuế và đảm bảo nhận được phản hồi đồng ý chấp nhận của cơ quan thuế.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.7.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Trong trường hợp phải tích hợp phần mềm hóa đơn điện tử với hệ thống phần mềm của bên thứ ba cung cấp, Bên A chịu trách nhiệm làm việc với đơn vị phát triển phần mềm trên để tích hợp với phần mềm hóa đơn điện tử của Bên B. Toàn bộ chi phí phát sinh sẽ do Bên A chịu trách nhiệm.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.8.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A có trách nhiệm lập Thông báo phát hành hóa đơn điện tử gửi cơ quan thuế quản lý trực tiếp có tên, chữ ký của người đại diện pháp luật và dấu của đơn vị (trường hợp gửi Thông báo phát hành tới cơ quan thuế bằng giấy); hoặc chữ ký điện tử của tổ chức phát hành (trường hợp gửi đến cơ quan thuế bằng đường điện tử thông qua cổng thông tin điện tử của cơ quan thuế). Đảm bảo tra cứu thông báo phát hành  hóa đơn có đủ thông tin hóa đơn, ngày phát hành, số thông báo và cơ quan thuế nhận thông báo phát hành.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.9.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Tuân thủ Thỏa thuận sử dụng: https://www.matbao.net/thong-tin/thoa-thuan-su-dung.html.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.10.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Không được sao chép, phân phối lại, chuyển nhượng hoặc chuyển giao lại bản quyền đã được Bên B cung cấp cho bên thứ ba.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.11.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Không được phép sửa đổi, phân tách, giải mã, biên dịch lại hoặc tạo tác phẩm phái sinh của sản phẩm bản quyền.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.12.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Không được sao chép sản phẩm bản quyền hoặc làm cho sản phẩm này có sẵn trên một mạng phân phối bên ngoài hay công cộng.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.13.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thanh toán đầy đủ và đúng hạn các khoản phí dịch vụ cho Bên B theo hóa đơn của từng đợt thanh toán, trước khi chuyển đổi dịch vụ hay chấm dứt việc sử dụng dịch vụ theo Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">4.14.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Thông báo cho Bên B về sự thay đổi tên, số tài khoản, địa chỉ giao dịch, địa chỉ nhận hóa đơn thanh toán</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 5: QUYỀN VÀ NGHĨA VỤ CỦA BÊN B</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"/>
+                                <td>
+                                    <p style="margin-bottom:0; text-aligin: justify;">
+                                        Ngoài các quyền và nghĩa vụ được quy định tại Điều 4 Hợp Đồng, Bên B còn có thêm các quyền và nghĩa vụ sau:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp phần mềm hóa đơn điện tử theo đúng nội dung đã thoả thuận trong Điều 1 của Hợp Đồng và phụ lục này, đảm bảo chất lượng theo đúng các quy định về tiêu chuẩn chất lượng dịch vụ. Cung cấp cho bên A các thông tin tài khoản cũng như tài liệu hướng dẫn của dịch vụ hóa đơn điện tử sau khi bên A đăng ký.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Trường hợp Bên A có các khiếu nại liên quan đến chất lượng dịch vụ, trong phạm vi trách nhiệm đã thỏa thuận, Bên B phải giải quyết trong vòng bốn mươi tám (48) giờ kể từ thời điểm nhận được khiếu nại từ Bên A.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Hướng dẫn Bên A thực hiện các quy trình khai thác, vận hành dịch vụ theo quy định pháp luật hiện hành.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Hỗ trợ kỹ thuật từ xa thông qua các phương tiện như điện thoại, phần mềm teamviewer, thư điện tử cho Bên A trong các trường hợp phát sinh lỗi kỹ thuật hoặc có vướng mắc về dịch vụ trong quá trình sử dụng mà Bên A không thể xử lý được.Với những trường hợp đòi hỏi kỹ thuật chuyên sâu, phải đến trực tiếp địa chỉ của Bên A để xử lý thì tùy thuộc mức độ khó khăn, Bên B sẽ phụ thu phí dịch vụ. Mức phí sẽ được thống nhất giữa hai bên tại thời điểm phát sinh nhu cầu. Hỗ trợ trực tuyến tại id.matbao.net và tổng đài 19001830.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B không chịu trách nhiệm về các thông tin, nội dung mà Bên A thông qua việc sử dụng dịch vụ của Bên B.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.6.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B không chịu trách nhiệm và không có nghĩa vụ bồi thường cho Bên A và/hoặc bên thứ ba đối với các thiệt hại trực tiếp, gián tiếp, vô ý, đặc biệt, vô hình, các thiệt hại về lợi nhuận, doanh thu, uy tín phát sinh từ việc sử dụng sản phẩm, dịch vụ.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.7.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Cung cấp cho Bên A hóa đơn tài chính sau khi Bên A thanh toán đầy đủ các chi phí dịch vụ theo đúng thỏa thuận tại Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.8.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B có trách nhiệm lưu trữ hóa đơn điện tử kể từ ngày phát hành là 10 năm cho bên A.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">5.9.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B có trách nhiệm duy trì không giới hạn về thời gian sử dụng hóa đơn điện tử cho bên A.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 6: TẠM NGỪNG CUNG CẤP DỊCH VỤ</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các trường hợp Bên B được quyền tạm ngừng cung cấp dịch vụ mà không cần có sự chấp thuận từ Bên A:</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Quá năm (05) ngày so với thời hạn quy định, Bên A không hoàn thành nghĩa vụ thanh toán mà không có bất kỳ văn bản giải trình lý do phù hợp cho Bên B.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.1.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Theo yêu cầu của cơ quan nhà nước có thẩm quyền.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Trước ít nhất hai (02) ngày kể từ ngày dự kiến tạm ngừng cung cấp dịch vụ theo quy định tại Điều 6.1.1 Phụ lục hợp đồng này, Bên B sẽ gửi văn bản thông báo cho Bên A về việc tạm ngừng và yêu cầu Bên A thực hiện nghĩa vụ thanh toán trong vòng năm (05) ngày kể từ ngày nhận được thông báo. Quá thời hạn nêu trên mà Bên A vẫn không hoàn thành nghĩa vụ thanh toán thì Bên B có quyền đơn phương chấm dứt Phụ lục hợp đồng. </p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Tùy thuộc vào yêu cầu theo quy định tại Điều 6.1.2 Phụ lục hợp đồng này, các Bên sẽ thỏa thuận về việc tiếp tục thực hiện hoặc chấm dứt Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">6.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Đối với các trường hợp quy định tại Điều 6.1 Phụ lục hợp đồng này, Bên B sẽ không đảm bảo an toàn dữ liệu cho Bên A.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 7: SỬA ĐỔI, CHẤM DỨT VÀ PHẠT VI PHẠM</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này có thể được sửa đổi theo thoả thuận bằng văn bản của các bên. Trong thời gian các bên tiến hành đàm phán, thương lượng về việc sửa đổi bổ sung, Phụ lục hợp đồng này vẫn tiếp tục giữ nguyên hiệu lực thi hành đến khi các bên đạt được một thỏa thuận khác. Mọi sự sửa đổi, bổ sung nội dung Phụ lục hợp đồng này đều phải được cả hai bên trao đổi, thống nhất bằng văn bản thì mới có giá trị ràng buộc.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này sẽ chấm dứt trong trường hợp sau:</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này hết hạn mà không được gia hạn.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các Bên thỏa thuận chấm dứt Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Một trong các bên bị giải thể, thanh lý, phá sản hay thay đổi chủ sở hữu/thành viên/cổ đông làm ảnh hưởng đến việc thực hiện Phụ lục hợp đồng này. </p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.2.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Các trường hợp bất khả kháng xảy ra dẫn đến một Bên không thể tiếp tục thực hiện nghĩa vụ của mình trong thời gian ba mươi (30) ngày liên tục mặc dù đã áp dụng tất cả các biện pháp để khắc phục. </p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên B có quyền đơn phương chấm dứt phụ lục hợp đồng ngay lập tức mà không phải bồi thường bất kỳ khoản chi phí nào nếu Bên A có một hoặc các hành vi vi phạm sau:</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A sử dụng dịch vụ không theo đúng các cam kết trong Phụ lục hợp đồng này.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A sử dụng sản phẩm bản quyền vào bất kì mục đích/hình thức nào mà các mục đích/ hình thức này vi phạm quy định pháp luật Việt Nam</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A gửi, tạo liên kết hoặc trung chuyển các dữ liệu mang tính chất bất hợp pháp, đe dọa, lừa dối, xuyên tạc, gây thù hằn, nói xấu, khiêu dâm, xúc phạm danh dự, nhân phẩm của cá nhân, tổ chức khác...</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.4.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A lưu trữ, truyền bá các dữ liệu chứa đựng hoặc khuyến khích các hình thức phạm tội; các dữ liệu mang tính vi phạm pháp luật liên quan đến sáng chế, nhãn hiệu, quyền thiết kế, bản quyền hay bất kì quyền sở hữu trí tuệ của các cá nhân, tổ chức khác.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.5.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A sử dụng dịch vụ liên quan đến sản phẩm bản quyền vào mục đích vi phạm pháp luật.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.6.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Bên A không tuân thủ Thỏa thuận sử dụng của bên B .</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">7.3.7.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Theo quy định tại Điều 6.2 Phụ lục hợp đồng này.</p></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <b>ĐIỀU 8:  ĐIỀU KHOẢN CHUNG</b>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.1.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Hết thời hạn duy trì với dịch vụ, Phụ lục hợp đồng này đương nhiên sẽ chấm dứt hiệu lực. Trường hợp tiếp tục gia hạn dịch vụ, Bên A phải ký xác nhận vào Phụ lục hợp đồng duy trì dịch vụ và thanh toán đầy đủ các khoản phí mà Bên B quy định trong Phụ lục hợp đồng đó.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.2.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Mọi tranh chấp phát sinh trong quá trình thực hiện sẽ được hai Bên thương lượng giải quyết trên tinh thần hợp tác, tôn trọng lẫn nhau. Trường hợp hai Bên không thống nhất giải quyết thì vụ việc sẽ được chuyển đến Tòa án có thẩm quyền để giải quyết, phán quyết của Tòa án là quyết định cuối cùng buộc các Bên phải chấp hành.</p></td>
+                            </tr>
+                            <tr>
+                                <td width="30px" valign="top"><p style="margin-bottom:0;">8.3.</p></td>
+                                <td><p style="margin-bottom:0; text-align: justify;">Phụ lục hợp đồng này được lập thành hai (02) bản tiếng Việt, có giá trị pháp lý như nhau và là một phần không tách rời với Hợp Đồng. Mỗi bên giữ một (01) bản để thực hiện.</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row text-center" style="width:100%; margin-top:10px">
+                    <div class="col-xs-6">
+                        <strong>ĐẠI DIỆN BÊN A<span style="color: white">$</span></strong>
+                        <br/><br/><br/><br/><br/><br/><br/><br/>
+                        <strong style="font-size:15px;">
+                            <t t-if="o.partner_id and o.partner_id.company_type == 'person'">
+                                <t t-esc="o.partner_id.name.upper()"/>
+                            </t>
+                            <t t-if="o.partner_id and o.partner_id.company_type != 'person'">
+                                <t t-esc="o.partner_id.representative and o.partner_id.representative.upper() or ''"/>
+                            </t>
+                        </strong>
+                    </div>
+                    <div class="col-xs-6">
+                        <strong>ĐẠI DIỆN BÊN B</strong>
+                        <t t-if="o.contract_id and o.contract_id.state == 'return'">
+                            <br/><img src='/mb_sale_invoice/static/image/sign.jpg' height="150px"/><br/>
+                        </t>
+                        <t t-if="not o.contract_id  or o.contract_id and o.contract_id.state != 'return'">
+                            <br/><br/><br/><br/><br/><br/><br/><br/>
+                        </t>
+                        <strong style="font-size:15px;"><t t-esc="values['company_id'].ceo and values['company_id'].ceo.name.upper() or 'Nguyễn Quốc Vinh'"/></strong>
+                    </div>
+                </div>
+            </t>
+
+        </xpath>
+    </template>
+</odoo>

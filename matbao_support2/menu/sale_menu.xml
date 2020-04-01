@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- View Customer -->
+		<menuitem id="view_customer_report_menu" parent="sales_team.menu_sale_report"
+			sequence="110" action="action_view_list_res_partner_history" groups="base.group_system,sales_team.group_sale_manager"/>
+	</data>
+</odoo>

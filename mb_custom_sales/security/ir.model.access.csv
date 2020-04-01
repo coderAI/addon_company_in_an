@@ -1,0 +1,30 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+email_config_setting_rule,email_config mb_custom_sales,model_email_config,base.group_system,1,1,1,1
+add_product_category_config_rule,add_product_category_config mb_custom_sales,model_add_product_category_config,,1,1,1,0
+renew_reason_rule_all,renew_reason_all mb_custom_sales,model_renew_reason,,1,0,0,0
+renew_reason_rule_sale_manager,renew_reason_sale_manager mb_custom_sales,model_renew_reason,sales_team.group_sale_manager,1,1,1,0
+renew_reason_rule_system,renew_reason_system mb_custom_sales,model_renew_reason,base.group_system,1,1,1,1
+crm_rating_rule_all,crm_rating_all mb_custom_sales,model_crm_rating,,1,0,0,0
+crm_rating_rule_sale_manager,crm_rating_sale_manager mb_custom_sales,model_crm_rating,sales_team.group_sale_manager,1,1,1,0
+crm_rating_rule_system,crm_rating_system mb_custom_sales,model_crm_rating,base.group_system,1,1,1,1
+
+crm_lead_rating_history_all,crm_lead_rating_history_all mb_custom_sales,model_crm_lead_rating_history,,1,1,1,1
+
+
+crm_lead_rating_all,crm_lead_rating_all mb_custom_sales,model_crm_lead_rating,,1,1,1,1
+
+
+
+tmp_reason_cancel_so_update_data,tmp_reason_cancel_so_update_data mb_custom_sales,model_tmp_reason_cancel_so_update_data,,1,1,1,1
+
+
+customer_point_history_note,customer_point_history_note mb_custom_sales,model_customer_point_history_note,,1,1,1,1
+action_change_gift_note,action_change_gift_note mb_custom_sales,model_action_change_gift_note,,1,1,1,1
+
+
+name_ss_forecast_renew_service_report_line,id_ss_forecast_renew_service_report_line mb_custom_sales,model_ss_forecast_renew_service_report_line,,1,1,1,1
+ss_forecast_renew_service_report_context,ss_forecast_renew_service_report_context mb_custom_sales,model_ss_forecast_renew_service_report_context,,1,1,1,1
+support_report_data,support_report_data mb_custom_sales,model_support_report_data,,1,1,1,1
+
+
+

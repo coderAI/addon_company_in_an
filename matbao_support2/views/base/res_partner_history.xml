@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_partner_history_tree" model="ir.ui.view">
+            <field name="name">view.res.partner.history.tree</field>
+            <field name="model">res.partner.history</field>
+            <field name="arch" type="xml">
+                <tree string="View Customers" create="false">
+                    <field name="time_view"/>
+                    <field name="user_id"/>
+                    <field name="customer_id"/>
+                    <field name="info_view"/>
+                    <field name="type_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record id="view_res_partner_history_filter" model="ir.ui.view">
+            <field name="name">view.res.partner.history.filter</field>
+            <field name="model">res.partner.history</field>
+            <field name="arch" type="xml">
+                <search string="Search View Customers">
+                   <field name="customer_id"/>
+                   <field name="user_id"/>
+                   <field name="type_id"/>
+                   <filter string="Today" domain="[('time_view','&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59))), ('time_view','&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" help="Today History"/>
+                   <group expand="0" name="group_by" string="Group By">
+                       <filter name="salesperson" string="Salesperson" domain="[]" context="{'group_by' : 'user_id'}" />
+                       <filter name="customer" string="Customer" domain="[]" context="{'group_by' : 'customer_id'}" />
+                       <filter name="type" string="Type" domain="[]" context="{'group_by' : 'type_id'}" />
+                   </group>
+               </search>
+            </field>
+        </record>
+        
+        <record id="action_view_list_res_partner_history" model="ir.actions.act_window">
+            <field name="name">View Customers</field>
+            <field name="res_model">res.partner.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

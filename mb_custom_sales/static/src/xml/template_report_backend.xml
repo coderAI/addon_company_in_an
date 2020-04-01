@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="templateReports.buttons">
+        <!--            <button type="button" class='btn btn-primary btn-sm o_account-widget-pdf'>PRINT PREVIEW</button>-->
+        <!--            <button type="button" class='btn btn-primary btn-sm o_account-widget-xlsx'>EXPORT (XLSX)</button>-->
+    </t>
+    <t t-name="templateReportsHR.searchView">
+        <div class="o_dropdown o_template_reports_date-filter">
+
+            <ul class="dropdown-menu o_filters_menu" role="menu">
+                <t t-if="!report_type.date_range">
+                    <li title="Today" data-value="today" t-att-class="'o_template_reports_one-filter ' + (context.date_filter == 'today' and 'selected' or '')"><a>Today</a></li>
+                    <li title="End of Last Month" data-value="last_month" t-att-class="'o_template_reports_one-filter ' + (context.date_filter == 'last_month' and 'selected' or '')"><a>End of Last Month</a></li>
+                    <li title="End of Last Quarter" data-value="last_quarter" t-att-class="'o_template_reports_one-filter ' + (context.date_filter == 'last_quarter' and 'selected' or '')"><a>End of Last Quarter</a></li>
+                    <li title="End of Last Financial Year" data-value="last_year" t-att-class="'o_template_reports_one-filter ' + (context.date_filter == 'last_year' and 'selected' or '')"><a>End of Last Financial Year</a></li>
+                </t>
+
+                <li class="divider"></li>
+                <li t-att-class="'o_template_reports_use-custom ' + (context.date_filter == 'custom' and 'o_open_menu' or 'o_closed_menu')"><a>Custom</a></li>
+                <li class="o_template_reports_custom-dates" data-value='custom' style='margin-left: 10px; margin-right: 10px;'>
+                    <label class="custom-date" t-if="report_type.date_range" for="date_from">Date From:</label>
+                    <div t-if="report_type.date_range" class="form-group custom-date">
+                        <div class='o_datepicker date o_template_reports_datetimepicker' t-att-data-default-value="context.date_from">
+                            <input type='text' class="o_datepicker_input" name="date_from" />
+                            <span class="o_datepicker_button"/>
+                        </div>
+                    </div>
+                    <label class="custom-date" for="date_to" t-if="report_type.date_range">Date To:</label>
+                    <label class="custom-date" for="date_to" t-if="!report_type.date_range">Date :</label>
+                    <div class="form-group custom-date">
+                        <div class='o_datepicker date o_template_reports_datetimepicker' t-att-data-default-value="context.date_to">
+                            <input type='text' class="o_datepicker_input" name="date_to" />
+                            <span class="o_datepicker_button"/>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary o_template_reports_one-filter">Apply</button>
+                </li>
+            </ul>
+        </div>
+        <div class="o_dropdown o_template_reports_date-filter-cmp" t-if="report_type.comparison">
+            <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="fa fa-bar-chart"/> Comparison
+                <span class="caret"/>
+            </a>
+            <ul class="dropdown-menu o_filters_menu" role="menu">
+                <li title="No Comparison" data-value="no_comparison" t-att-class="'o_template_reports_one-filter-cmp ' + (context.date_filter_cmp == 'no_comparison' and 'selected' or '')"><a>No Comparison</a></li>
+                <li class="divider"></li>
+                <li t-att-class="'o_template_reports_use-custom-cmp ' + (context.date_filter_cmp == 'custom' and 'o_open_menu' or 'o_closed_menu')"><a>Custom</a></li>
+                <li class="o_template_reports_custom-cmp" data-value='custom' style='margin-left: 10px; margin-right: 10px;'>
+                    <label class="custom-date" t-if="report_type.date_range" for="date_from_cmp">Start Date :</label>
+                    <div t-if="report_type.date_range" class="form-group custom-date">
+                        <div class='o_datepicker date o_template_reports_datetimepicker' t-att-data-default-value="context.date_from_cmp">
+                            <input type='text' class="o_datepicker_input" name="date_from_cmp" />
+                            <span class="o_datepicker_button"/>
+                        </div>
+                    </div>
+                    <label class="custom-date" for="date_to_cmp" t-if="report_type.date_range">End Date :</label>
+                    <label class="custom-date" for="date_to_cmp" t-if="!report_type.date_range">Date :</label>
+                    <div class="form-group custom-date">
+                        <div class='o_datepicker date o_template_reports_datetimepicker' t-att-data-default-value="context.date_to_cmp">
+                            <input type='text' class="o_datepicker_input" name="date_to_cmp" />
+                            <span class="o_datepicker_button"/>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary o_template_reports_one-filter-cmp">Apply</button>
+                </li>
+            </ul>
+        </div>
+        <div class="o_dropdown o_template_reports_date-filter-multi-department">
+            <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="fa fa-filter"/>Department: <span class="caret"/>
+            </a>
+            <ul class="dropdown-menu o_filters_menu" role="menu">
+                <t t-foreach="context.available_department" t-as="c">
+                    <li t-att-title="c[1]" t-att-data-value="c[0]" t-att-class="'o_template_reports_one-department ' + ((context.department_id.indexOf(c[0]) !== -1) and 'selected' or '')"><a><t t-esc='c[1]'/></a></li>
+                </t>
+            </ul>
+        </div>
+
+        <div class="o_dropdown o_template_reports_date-filter-multi-company">
+            <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="fa fa-filter"/>Companies: <span class="caret"/>
+            </a>
+            <ul class="dropdown-menu o_filters_menu" role="menu">
+                <t t-foreach="context.available_companies" t-as="c">
+                    <li t-att-title="c[1]" t-att-data-value="c[0]" t-att-class="'o_template_reports_one-company ' + ((context.company_ids.indexOf(c[0]) !== -1) and 'selected' or '')"><a><t t-esc='c[1]'/></a></li>
+                </t>
+            </ul>
+        </div>
+
+
+    </t>
+</templates>

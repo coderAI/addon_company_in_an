@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+id_sale_target_all,sale_target_all,model_sale_target,,1,0,0,0
+id_sale_target_sale_manager,sale_target_sale_manager,model_sale_target,sales_team.group_sale_manager,1,1,1,1
+id_sale_target_sale_salesman,sale_target_sale_salesman,model_sale_target,sales_team.group_sale_salesman,1,1,1,0
+
+
+
+id_sale_target_all,sale_target_all,model_sale_target,,1,0,0,0
+id_sale_target_sale_manager,sale_target_sale_manager,model_sale_target,sales_team.group_sale_manager,1,1,1,1
+id_sale_target_sale_salesman,sale_target_sale_salesman,model_sale_target,sales_team.group_sale_salesman,1,1,1,0

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_history,res.partner.history,model_res_partner_history,base.group_user,1,1,1,0
+access_sale_order_voice,sale.order.voice,model_sale_order_voice,base.group_user,1,1,1,0

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+        <record id="view_crm_rating_tree" model="ir.ui.view">
+            <field name="name">CRM Rating</field>
+            <field name="model">crm.rating</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" required="1"/>
+                    <field name="description"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="view_crm_lead_rating_history_tree" model="ir.ui.view">
+            <field name="name">CRM Lead Rating History</field>
+            <field name="model">crm.lead.rating.history</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number_lock"/>
+                    <field name="lead_id"/>
+                    <field name="team_id"/>
+                    <field name="user_id"/>
+                    <field name="rating_id"/>
+                    <field name="date_lock"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_crm_lead_rating_tree" model="ir.ui.view">
+            <field name="name">CRM Lead Rating</field>
+            <field name="model">crm.lead.rating</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--                    <field name="number_lock"/>-->
+                    <field name="lead_id" string="Pipeline"/>
+                    <field name="team_id" string ='Sale Team'/>
+                    <field name="user_id" string="Salesperson"/>
+                    <field name="rating_id" string="Rating"/>
+                    <field name="date_lock" string ='Date'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_count_search_service_seniority_tree" model="ir.ui.view">
+            <field name="name">Count Search Service Seniority</field>
+            <field name="model">count.search.service.seniority</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="service_id"/>
+                    <field name="count_search"/>
+                    <field name="seniority"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="action_count_search_service_seniority">
+            <field name="name">Count Search Service Seniority</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">count.search.service.seniority</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_crm_lead_rating">
+            <field name="name">Views CRM Lead Rating</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm.lead.rating</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+
+        <record id="crm_rating_form" model="ir.ui.view">
+            <field name="name">crm.rating.form</field>
+            <field name="model">crm.rating</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <field name="description"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_crm_rating">
+            <field name="name">Views Crm Rating</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm.rating</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_crm_rating_tree"/>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="view_mb_crm_lead_tags_form_inherit">
+            <field name="name">view.mb.crm.lead.tags.form.inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="replace">
+
+
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" attrs="{'invisible': [('active', '=', True), ('probability', '&lt;', 100)]}" modifiers="{'invisible': [['active', '=', true], ['probability', '&lt;', 100]]}">
+                                <field name="active" widget="boolean_button" options="{'terminology': 'archive'}" modifiers="{}"/>
+                            </button>
+                            <button class="oe_stat_button" type="object" context="{'partner_id': partner_id}" name="action_schedule_meeting" icon="fa-calendar">
+                                <div class="o_stat_info">
+                                    <field name="meeting_count" class="o_stat_value" modifiers="{'readonly': true}"/>
+                                    <span class="o_stat_text" attrs="{'invisible': [('meeting_count', '&lt;', 2)]}" modifiers="{'invisible': [['meeting_count', '&lt;', 2]]}">
+
+                                        Meetings
+
+                                    </span>
+                                    <span class="o_stat_text" attrs="{'invisible': [('meeting_count', '&gt;', 1)]}" modifiers="{'invisible': [['meeting_count', '&gt;', 1]]}">
+
+                                        Meeting
+
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" type="action" name="326" icon="fa-pencil-square-o" context="{'default_partner_id': partner_id, 'search_default_draft': 1}">
+                                <div class="o_stat_info">
+                                    <field name="sale_number" class="o_stat_value" modifiers="{'readonly': true}"/>
+                                    <span class="o_stat_text">
+
+                                        Quote(s)
+
+                                    </span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" type="action" attrs="{'invisible': [('sale_amount_total', '=', 0)]}" name="326" icon="fa-usd" context="{'search_default_partner_id': partner_id, 'default_partner_id': partner_id, 'search_default_sales': 1}" modifiers="{'invisible': [['sale_amount_total', '=', 0]]}">
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="sale_amount_total" widget="monetary" options="{'currency_field': 'company_currency'}" modifiers="{'readonly': true}"/>
+                                    </span>
+                                    <span class="o_stat_text">
+
+                                        Orders
+
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="label label-danger pull-right" attrs="{'invisible': [('probability', '&gt;', 0)]}" modifiers="{'invisible': [['probability', '&gt;', 0]]}">
+
+                            Lost
+
+                        </div>
+                        <div class="label label-success pull-right" attrs="{'invisible': [('probability', '&lt;', 100)]}" modifiers="{'invisible': [['probability', '&lt;', 100]]}">
+
+                            Won
+
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Product Pricing" modifiers="{'required': true}"/>
+                            </h1>
+                            <h2 class="o_row">
+                                <div>
+                                    <label for="planned_revenue" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="company_currency" invisible="1" can_create="true" can_write="true" modifiers="{'invisible': true, 'readonly': true}"/>
+                                        <field name="planned_revenue" widget="monetary" options="{'currency_field': 'company_currency'}" modifiers="{}"/>
+                                        <span class="oe_grey">
+
+                                            at
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="probability" class="oe_edit_only"/>
+                                    <div class="o_row">
+                                        <field name="probability" widget="integer" modifiers="{}"/>
+                                        <span>
+
+                                            %
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" string="Customer" domain="[('customer', '=', True)]" context="{'form_view_ref': 'matbao_module.view_res_partner_form_inherit'}" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="customer_source" attrs="{'required': [('type', '=', 'opportunity')]}" options="{'no_quick_create': True, 'no_create': True, 'no_open': True}" can_create="true" can_write="true" modifiers="{'required': [['type', '=', 'opportunity']]}"/>
+                                <field name="email_from" string="Email" widget="email" modifiers="{}"/>
+                                <field name="phone" widget="phone" modifiers="{}"/>
+                            </group>
+                            <group>
+                                <label for="next_activity_id"/>
+                                <div>
+                                    <div class="o_row mr16">
+                                        <field name="next_activity_id" options="{'no_create': True, 'no_open': True}" domain="['|',('team_id','=',False),('team_id','=',team_id)]" attrs="{'required': [('type', '=', 'opportunity')]}" on_change="1" can_create="true" can_write="true" modifiers="{'required': [['type', '=', 'opportunity']]}"/>
+                                        <span class="oe_form_field" attrs="{'invisible': ['|', ('next_activity_id', '=', False), ('date_action', '=', False)]}" modifiers="{'invisible': ['|', ['next_activity_id', '=', false], ['date_action', '=', false]]}">
+
+                                            on
+
+                                        </span>
+                                        <field name="date_action" attrs="{'invisible': [('next_activity_id', '=', False)]}" placeholder="Choose a date..." modifiers="{'invisible': [['next_activity_id', '=', false]]}"/>
+                                    </div>
+                                    <div>
+                                        <field name="title_action" placeholder="e.g. Discuss proposal" attrs="{'invisible': [('next_activity_id', '=', False)]}" modifiers="{'invisible': [['next_activity_id', '=', false]]}"/>
+                                    </div>
+                                </div>
+                                <field name="date_deadline" modifiers="{}"/>
+                            </group>
+                            <group>
+								<field name="user_id" context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'sales_team.group_sale_salesman_all_leads'], 'team_id': team_id}"
+								domain="[('share', '=', False),('sale_team_id','=',team_id)]" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+								<field name="team_id" widget="selection" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                <field name="priority" widget="priority" modifiers="{}"/>
+                            </group>
+                            <group>
+                                <field name="tag_ids" widget="many2many_tags" options="{'no_quick_create': True, 'no_create': True, 'no_open': True}" attrs="{'required': [('type', '=', 'opportunity')]}" can_create="true" can_write="true" modifiers="{'required': [['type', '=', 'opportunity']]}"/>
+                                <field name="lost_reason" attrs="{'invisible': [('active', '=', True)]}" can_create="true" can_write="true" modifiers="{'invisible': [['active', '=', true]]}"/>
+                                <field name="date_conversion" invisible="1" modifiers="{'invisible': true, 'readonly': true}"/>
+                            </group>
+                        </group>
+                        <field name="crm_rating_ids" widget="many2many_checkboxes" on_change="1" can_create="true" can_write="true" modifiers="{'required': true}"/>
+                        <field name="rating_check" invisible="1" modifiers="{'invisible': true, 'required': true}"/>
+                        <field name="description_rating" modifiers="{}"/>
+                        <notebook colspan="4">
+                            <page string="Internal Notes">
+                                <field name="description" modifiers="{}"/>
+                            </page>
+                            <page name="lead" string="Contact Information">
+                                <group>
+                                    <group>
+                                        <field name="partner_name" modifiers="{}"/>
+                                        <label for="street" string="Address"/>
+                                        <div class="o_address_format">
+                                            <field name="street" placeholder="Street..." class="o_address_street" modifiers="{}"/>
+                                            <field name="street2" placeholder="Street 2..." class="o_address_street" modifiers="{}"/>
+                                            <field name="city" placeholder="City" class="o_address_city" modifiers="{}"/>
+                                            <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True}" on_change="1" can_create="true" can_write="true" modifiers="{}"/>
+                                            <field name="zip" placeholder="ZIP" class="o_address_zip" modifiers="{}"/>
+                                            <field name="country_id" placeholder="Country" class="o_address_country" options="{'no_open': True, 'no_create': True}" can_create="true" can_write="true" modifiers="{}"/>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="contact_name"/>
+                                        <div class="o_row">
+                                            <field name="contact_name" modifiers="{}"/>
+                                            <field name="title" placeholder="Title" domain="[]" options="{'no_open': True}" can_create="true" can_write="true" modifiers="{}"/>
+                                        </div>
+                                        <field name="function" modifiers="{}"/>
+                                        <field name="mobile" modifiers="{}"/>
+                                        <field name="fax" modifiers="{}"/>
+                                        <field name="opt_out" modifiers="{}"/>
+                                    </group>
+                                    <group string="Marketing">
+                                        <field name="campaign_id" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="medium_id" can_create="true" can_write="true" modifiers="{}"/>
+                                        <field name="source_id" can_create="true" can_write="true" modifiers="{}"/>
+                                    </group>
+                                    <group string="Misc" name="Misc">
+                                        <field name="day_open" modifiers="{'readonly': true}"/>
+                                        <field name="day_close" modifiers="{'readonly': true}"/>
+                                        <field name="referred" modifiers="{}"/>
+                                        <field name="type" invisible="1" modifiers="{'invisible': true, 'required': true}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="History Feedback and Rating Notes">
+                                <field name="crm_lead_rating_history_ids" readonly="1" modifiers="{'readonly': true}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+        <record model="ir.ui.view" id="view_mb_crm_lead_form_inherit">
+            <field name="name">view.mb.crm.lead.form.inherit1</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="replace">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="Opportunity Title" placeholder="e.g. Customer Deal"/>
+                                <field name="partner_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="email_from" invisible="1"/>
+                                <field name="team_id" invisible="1"/>
+                                <field name="type" invisible="1" modifiers="{'invisible': true, 'required': true}"/>
+                                <field name="phone" invisible="1"/>
+                                <field name="type" invisible="1"/>
+                                <field name="probability" widget="integer"/>
+                                <field name="tag_ids" widget="many2many_tags" options="{'no_quick_create': True, 'no_create': True, 'no_open': True}" attrs="{'required': [('type', '=', 'opportunity')]}" can_create="true" can_write="true" modifiers="{'required': [['type', '=', 'opportunity']]}"/>
+                                <field name="customer_source" options="{'no_create': True, 'no_open': True}"/>
+                                <label for="planned_revenue"/>
+                                <div class="o_row">
+                                    <field name="planned_revenue"/>
+                                    <field name="company_currency" options="{'no_create': True, 'no_open': True}"/>
+                                </div>
+                            </group>
+                            <label for="next_activity_id"/>
+                            <div>
+                                <div class="o_row mr16">
+                                    <field name="next_activity_id" options="{'no_create': True, 'no_open': True}" domain="['|',('team_id','=',False),('team_id','=',team_id)]" attrs="{'required': [('type', '=', 'opportunity')]}"/>
+                                    <span class="oe_form_field" attrs="{'invisible': ['|', ('next_activity_id', '=', False), ('date_action', '=', False)]}"> on </span>
+                                    <field name="date_action" attrs="{'invisible': [('next_activity_id', '=', False)]}" placeholder="Choose a date..."/>
+                                </div>
+                                <div>
+                                    <field name="title_action" placeholder="e.g. Discuss proposal" attrs="{'invisible': [('next_activity_id', '=', False)]}"/>
+                                </div>
+                            </div>
+                            <field name="priority" widget="priority"/>
+                            <field name="rating_check" invisible="1"/>
+                            <field name="crm_rating_ids" widget="many2many_checkboxes"/>
+                            <field name="description_rating"/>
+                        </group>
+                        <footer>
+                            <button string="Create" name="close_dialog" type="object" class="btn-primary"/>
+                            <button string="Discard" class="btn-default" special="cancel"/>
+                        </footer>
+                    </sheet>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

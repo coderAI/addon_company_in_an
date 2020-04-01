@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--    <record model="ir.ui.view" id="view_mb_account_invoice_form_inherit1">-->
+    <!--        <field name="name">view.mb.account.invoice.form.inherit</field>-->
+    <!--        <field name="model">account.invoice</field>-->
+    <!--        <field name="inherit_id" ref="account.invoice_form"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <xpath expr="//button[@name='220']" position="before">-->
+    <!--                <button name="unreconcile" string="Unreconcile" type="object"-->
+    <!--                        class="oe_highlight"/>-->
+    <!--            </xpath>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <record id="view_mb_invoice_form_inherit_hp_inherit" model="ir.ui.view">
+        <field name="name">view.mb.account.invoice.view.inherit.hp.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="mb_outsource_hp.view_invoice_form_inherit_hp"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_refund']" position="before">
+                <button name="open_payment" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                    <field name="payment_move_line_ids" widget="statinfo" string="Open Payment"
+                           modifiers="{'readonly': true}"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_reports.account_reports_journal_dashboard_kanban_view_account_manager" model="ir.ui.view">
+        <field name="groups_id" eval="[(4,ref('account.group_account_user'))]"/>
+    </record>
+
+    <record id="mb_view_account_invoice_form" model="ir.ui.view">
+        <field name="name">mb.account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page/group/group/field[@name='account_id']" position="replace">
+                <field domain="[('company_id', '=', company_id),('internal_type','=', 'receivable'), ('deprecated', '=', False)]" name="account_id"/>
+            </xpath>
+            <xpath expr="//sheet/notebook/page/group/group/field[@name='date_due']" position="replace">
+                <field name="date_due"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_mb_account_invoice_hide_field_form_inherit">
+        <field name="name">view.mb.account.invoice.form.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payments_widget']" position="replace">
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_account_partial_reconcile_form">
+        <field name="name">view.account.partial.reconcile.form</field>
+        <field name="model">account.partial.reconcile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="credit_move_id" string="Credit"/>
+                    <field name="amount"/>
+                    <field name="debit_move_id" string="Debit"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="account.account_reports_legal_statements_menu" name="Legal Statements" parent="account.menu_finance_reports" sequence="1" groups="base.group_no_one"/>
+    <menuitem id="account.menu_finance_entries" name="Adviser" parent="account.menu_finance" sequence="4" groups="account.group_account_user"/>
+
+</odoo>

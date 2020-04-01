@@ -1849,6 +1849,7 @@ class ExternalSO(models.AbstractModel):
                         '"product_code"': '\"' + (line.product_id and line.product_id.default_code or '') + '\"',
                         '"product"': '\"' + (line.product_id and line.product_id.name or '') + '\"',
                         '"product_category_id"': line.product_category_id and line.product_category_id.id or '""',
+                        '"can_be_renew"': line.product_category_id and line.product_category_id.can_be_renew and '"True"' or '"False"',
                         '"product_category_code"': '\"' + (
                                     line.product_category_id and line.product_category_id.code or '') + '\"',
                         '"product_category"': '\"' + (
@@ -1871,6 +1872,7 @@ class ExternalSO(models.AbstractModel):
                         '"reseller"': '\"' + (line.reseller or '') + '\"',
                         '"end_date"': '\"' + (line.end_date or '') + '\"',
                         '"start_date"': '\"' + (service_id and service_id.start_date or '') + '\"',
+                        '"is_stop"': service_id and service_id.is_stop and '"True"' or '"False"',
                         '"service_type"': '\"' + service_type + '\"',
                     })
                     order_line.append(so_line)

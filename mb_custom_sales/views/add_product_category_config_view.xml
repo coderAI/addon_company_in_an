@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_add_product_category_config_form" model="ir.ui.view">
+            <field name="name">view.add.product.category.config.form</field>
+            <field name="model">add.product.category.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="email Config">
+                    <sheet>
+                        <group>
+                            <field name="product_category_id"/>
+
+                        </group>
+                        <group>
+                            <field name="product_category_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_add_product_category_config_tree" model="ir.ui.view">
+            <field name="name">view.add.product.category.config.tree</field>
+            <field name="model">add.product.category.config</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_category_id"/>
+                    <field name="product_category_ids"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_add_product_category_config" model="ir.actions.act_window">
+            <field name="name">Add Product Category Config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">add.product.category.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

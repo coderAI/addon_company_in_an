@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mb_get_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">Get Sale Order</field>
+            <field name="model">get.sale.order</field>
+            <field name="inherit_id" ref="mb_fix_milestone4.mb_get_sale_order_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reason']" position="replace">
+                    <field name="renew_reason_id" required="1" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"/>
+                    <field name="reason" string='Reason Detail' required="1" placeholder="Các bạn phải nhập mã yêu cầu trên helpdesk, địa chỉ email khách hàng xác nhận gia hạn, hoặc số điện thoại KH alo đến hoặc line nội bộ. Đây là bằng chứng đối chiếu sau này"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_mb_sale_order_check_coupon_form_inherit">
+            <field name="name">view.mb.sale.order.pipeline.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="matbao_module.view_sale_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='update_price']" position="after">
+                    <button name="btn_check_condition_with_this_order"  string="Check Coupon Condition" type="object" class="btn-primary" groups="base.group_no_one"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mb_hp_contract_reason_form_viewinherit" model="ir.ui.view">
+            <field name="name">Reason</field>
+            <field name="model">mb.contract.reason.wizard</field>
+            <field name="inherit_id" ref="mb_outsource_hp.mb_hp_contract_reason_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="check_send_to_customer"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mb_get_sale_order_tree_view_inherit">
+            <field name="name">Get Sale Order</field>
+            <field name="model">get.sale.order</field>
+            <field name="inherit_id" ref="mb_fix_milestone4.mb_get_sale_order_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='create_date']" position="after">
+                    <field name="renew_reason_id" readonly="1"/>
+                    <field name="reason" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+        <record id="view_sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">mb.sale.order.overdue.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="mb_cs_bugs.mb_view_mb_sale_order_form_inherit2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="renew_reason_id" style="background: lightgrey;" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True}"/>
+                    <field name="renew_reason_description" string='Reason Detail' attrs="{'required':[('renew_reason_id','!=',False)] ,
+                                                                    'invisible':[('renew_reason_id','=', False)]}" placeholder="Các bạn phải nhập mã yêu cầu trên helpdesk, địa chỉ email khách hàng xác nhận gia hạn, hoặc số điện thoại KH alo đến hoặc line nội bộ. Đây là bằng chứng đối chiếu sau này"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_sale_order_kanban_inherit" model="ir.ui.view">
+            <field name="name">view.sale.order.kanban.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//t[@t-name='kanban-box']" position="replace">
+
+
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <strong><span><t t-esc="record.name.value"/></span></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-muted">
+                                    <span> <t t-esc="record.date_order.value"/></span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="pull-right text-right">
+                                        <field name="state" widget="kanban_label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default','done': 'success'}}"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="order_lines_wizard_view_inherits">
+            <field name="name">view.service.addon.order.lines.wizard.form.inherit</field>
+            <field name="model">service.addon.order.lines.wizard</field>
+            <field name="inherit_id" ref="matbao_module.order_lines_wizard_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='template']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('register_type','=','renew')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_renew_reason_sale_order_tree" model="ir.ui.view">
+            <field name="name">Renew sale order list</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false" default_order="date_order asc, order_partner_id asc, product_name asc">
+                    <field name="order_id"/>
+                    <field name="salesman_id"/>
+                    <field name="sale_order_team_id"/>
+                    <field name="sale_order_renew_reason_id"/>
+                    <field name="sale_order_renew_reason_description"/>
+                    <field name="sale_order_date_received"/>
+                    <field name="sale_order_create_date"/>
+                    <field name="state"/>
+                    <field name="register_type"/>
+                    <field name="product_category_id"/>
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="action_renew_reason_order_lines" model="ir.actions.act_window">
+            <field name="name">Renew sale order list</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_renew_reason_sale_order_tree"/>
+            <field name="context">{'search_renew_reason_order_lines':1}</field>
+        </record>
+
+
+
+
+
+        <template  id="report_template_ss_forecast_renew_service_body">
+            <h4><t t-esc="res_company.name"/></h4>
+            <div class="table-responsive">
+                <style>
+                    table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+
+                    td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                    }
+
+                    tr:nth-child(even) {
+                    background-color: #dddddd;
+                    }
+                </style>
+                <table width="100%" class="o_template_reports_table table-striped">
+                    <thead>
+                        <tr>
+                            <td t-att-class="tdclass">
+
+                            </td>
+                            <t t-foreach="date_list" t-as="time">
+                                <td t-att-class="tdclass" colspan="2">
+                                    <font color="blue">
+                                        <b>
+                                            <t t-esc="time"/>
+                                        </b>
+                                    </font>
+                                </td>
+                            </t>
+                        </tr>
+
+                        <tr>
+                            <td t-att-class="tdclass">
+                                <font color="blue">
+                                    <b>
+                                        Product Category
+                                    </b>
+                                </font>
+                            </td>
+                            <t t-foreach="date_list" t-as="time">
+                                <td t-att-class="tdclass"><font color="blue"><b>Forecast Revenue</b></font></td>
+                                <td t-att-class="tdclass"><font color="blue"><b>Total Service</b></font></td>
+                            </t>
+                        </tr>
+
+
+                        <t t-foreach="product_category_id_list" t-as="product_category">
+                            <tr id="product_category">
+                                <td t-att-class="tdclass"><t t-esc="product_category[1]"/></td>
+                                <t t-foreach="date_list" t-as="time">
+                                    <t t-if="lines.get(time+str(product_category[0]))">
+                                        <td t-att-class="tdclass" style="text-align: end;">
+                                            <t t-esc="lines.get(time+str(product_category[0])).get('total')" style="text-align: end;"/>
+                                        </td>
+                                        <td t-att-class="tdclass">
+                                            <t t-esc="lines.get(time+str(product_category[0])).get('count')"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td t-att-class="tdclass" style="text-align: end;">
+                                            0
+                                        </td>
+                                        <td t-att-class="tdclass">
+                                            0
+                                        </td>
+                                    </t>
+                                </t>
+                            </tr>
+                        </t>
+
+                    </thead>
+                </table>
+            </div>
+        </template>
+
+        <template id="report_ss_forecast_renew_service_letter">
+            <html>
+                <head>
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+                </head>
+                <body class="o_account_reports_body_print">
+                    <t t-call="mb_custom_sales.report_ss_forecast_renew_service"/>
+                </body>
+                <footer>
+                    (Note: The PDF can only contain up to 4 sets of information if you need more than 4 sets of information please use the Excell export feature)
+                </footer>
+            </html>
+        </template>
+
+        <template id="action_ss_forecast_renew_service_report_backend" inherit_id="web.assets_backend" active="True">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/mb_custom_sales/data/src/js/template_reports_widgets.js"/>
+                <script type="text/javascript" src="/mb_custom_sales/data/src/js/ss_forecast_renew_service_report.js"/>
+            </xpath>
+        </template>
+
+        <template id="report_ss_forecast_renew_service">
+            <div name="ss_forecast_renew_service" t-att-data-context="8"
+                 class="container o_template_reports_page o_template_reports_widgets o_template_reports_no_print">
+                <h2>Forecast Renew Service Revenue</h2>
+                <t t-call="mb_custom_sales.report_template_ss_forecast_renew_service_body"/>
+            </div>
+        </template>
+
+        <record id="ss_forecast_renew_service_report" model="ss.forecast.renew.service.report.line">
+            <field name="name">Forecast Renew Service Revenue</field>
+            <field name="report_type">date_range_analytic</field>
+        </record>
+        <record id="density_ss_report_total_quantity" model="ss.forecast.renew.service.report.line">
+            <field name="name">TOTAL QUANTITY</field>
+            <field name="code">TOTAL</field>
+            <field name="service_report_id" ref="ss_forecast_renew_service_report"/>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="0"/>
+        </record>
+
+        <record id="density_ss_report_dp_quantity" model="ss.forecast.renew.service.report.line">
+            <field name="name">Department</field>
+            <field name="code">dp</field>
+            <field name="formulas">quantity = dp.quantity</field>
+            <field name="parent_id" ref='density_ss_report_total_quantity'/>
+            <field name="sequence" eval="1"/>
+            <field name="level" eval="1"/>
+        </record>
+
+        <record id="action_ss_forecast_renew_service_report" model="ir.actions.client">
+            <field name="name">Forecast Renew Service Revenue</field>
+            <field name="tag">ss_forecast_renew_service_report_tag</field>
+            <field name="context"
+                   eval="{'url': '/mb_custom_sales/output_format/service_report/' + str(ref('ss_forecast_renew_service_report')), 'model': 'ss.forecast.renew.service.report', 'id': ref('ss_forecast_renew_service_report')}"/>
+        </record>
+
+
+    </data>
+</odoo>

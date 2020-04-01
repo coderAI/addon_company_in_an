@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_mb_receive_money_form" model="ir.ui.view">
+            <field name="name">mb.receive.money.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="mb_receive_money.view_mb_receive_money_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='amount_div']" position="after">
+
+
+                    <field name="read_only_checking" invisible="1"/>
+                    <field name="user_id" attrs="{'readonly': [('read_only_checking','!=',True)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='communication']" position="after">
+
+                    <field name="team_id" attrs="{'readonly': [('read_only_checking','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="view_account_payment_tree_inherit">
+            <field name="name">account.payment.tree</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_type" position="after">
+                    <field name="user_id"/>
+                    <field name="team_id"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

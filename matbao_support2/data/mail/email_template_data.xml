@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Split Bank Transactio Email template -->
+        <record id="split_bank_transaction_template" model="mail.template">
+            <field name="name">Split Bank Transaction Email</field>
+            <field name="email_from">info@matbao.com</field>
+            <field name="subject">Split Bank Transaction [${object.name}] </field>
+            <field name="model_id" ref="matbao_support2.model_split_bank_transaction"/>
+            <field name="body_html"><![CDATA[
+				<p>Bạn vừa nhận được yêu cầu duyệt Split Bank Transaction : 
+				<a href="/mail/view?model=split.bank.transaction&amp;res_id=${object.id}">[${object.name}]</a>.</p>
+				]]>
+			</field>
+        </record>
+        
+        <!-- Upgrade Service Email template -->
+        <record id="upgrade_service_template" model="mail.template">
+            <field name="name">Upgrade Service Email</field>
+            <field name="email_from">info@matbao.com</field>
+            <field name="subject">Upgrade Service [${object.name}] </field>
+            <field name="model_id" ref="matbao_support2.model_mb_upgrade_service"/>
+            <field name="body_html"><![CDATA[
+				<p>Bạn vừa nhận được yêu cầu duyệt Upgrade Service : 
+				<a href="/mail/view?model=mb.upgrade.service&amp;res_id=${object.id}">[${object.name}]</a>.</p>
+				]]>
+			</field>
+        </record>
+    </data>
+</odoo>

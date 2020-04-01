@@ -468,6 +468,34 @@ class SaleOrder(models.Model):
         res = {'code': code, 'messages': messages, 'data':data}
         return json.dumps(res)
 
+    @api.model
+    def get_so_check_update_renenew_list(self, so_id):
+        code = 200
+        messages = 'Successfully'
+        data=[]
+        ss_obj = self.env['sale.service']
+        for i_so in self.browse(so_id):
+            for i_soline in i_so.order_line:
+                is_stop= False
+                can_be_renew= False
+                if i_soline.product_id:
+                    if i_soline.product_id.categ_id.can_be_renew:
+                        can_be_renew = i_soline.product_id.categ_id.can_be_renew or False
+                        for i_ss in ss_obj.search([('product_id','=',i_soline.product_id.id)]):
+                            if i_ss.is_stop:
+                                is_stop = i_ss.is_stop
+                                break
+                data.append({
+                    'sale_order_line':i_soline.id,
+                    'product_id':i_soline.product_id and i_soline.product_id.id or '',
+                    'is_stop':is_stop,
+                    'can_be_renew':can_be_renew,
+                })
+
+
+
+        res = {'code': code, 'messages': messages, 'data':data}
+        return json.dumps(res)
 
     @api.model
     def check_export_by_so(self, so_id):

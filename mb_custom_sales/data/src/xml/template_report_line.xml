@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <t t-name="report_template_line">
+        <t t-set="column" t-value="0" />
+        <t t-set="domainClass" t-value="'o_template_reports_domain_line_2'"/>
+        <t t-if="!(_.isUndefined(l.level))">
+            <t t-if="l.level == 1">
+                <t t-set="domainClass" t-value="'o_template_reports_domain_line_1'"/>
+            </t>
+            <t t-if="l.level == 3">
+                <t t-set="domainClass" t-value="'o_template_reports_domain_line_3'"/>
+            </t>
+            <t t-if="l.level == 0">
+                <t t-set="domainClass" t-value="'o_template_reports_domain_line_0'"/>
+            </t>
+        </t>
+
+    </t>
+    <div t-name='paymentDateForm'>
+        <form role="form">
+            <label for="expectedDate">Expected Payment Date</label>
+            <div class='o_template_reports_payment_date_picker' />
+            <label for='internalNote'>Note</label>
+            <textarea name="internalNote" id="internalNote" rows='4' placeholder="Insert note here"></textarea>
+            <input type='hidden' id='target_id' t-att-value='target_id' />
+        </form>
+    </div>
+    <div t-name='nextActionForm'>
+        <div class='btn-group'>
+            <a type="button" data-time='one-week' class="btn btn-default o_template_reports_followup_next_action_date_button">One week</a>
+            <a type="button" data-time='two-weeks' class="btn btn-default o_template_reports_followup_next_action_date_button">Two weeks</a>
+            <a type="button" data-time='one-month' class="btn btn-default o_template_reports_followup_next_action_date_button">One month</a>
+            <a type="button" data-time='two-months' class="btn btn-default o_template_reports_followup_next_action_date_button">Two months</a>
+        </div>
+        <form role="form">
+            <label for="nextActionDate">Don't follow-up before :</label>
+            <div class='o_template_reports_next_action_date_picker' />
+            <label for='o_template_reports_next_action_note'>Note</label>
+            <textarea name="o_template_reports_next_action_note" rows='4' class="o_template_reports_next_action_note" placeholder="Insert note here"></textarea>
+            <input type='hidden' id='target_id' t-att-value='target_id' />
+        </form>
+    </div>
+    <div t-name='footnoteForm'>
+        <form role="form">
+            <textarea name="note" rows='4' class="o_template_reports_footnote_note" placeholder="Insert foot note here"></textarea>
+            <input type='hidden' class='o_template_reports_footnote_type' t-att-value='type' />
+            <input type='hidden' class='o_template_reports_footnote_target_id' t-att-value='target_id' />
+            <input type='hidden' class='o_template_reports_footnote_column' t-att-value='column' />
+        </form>
+    </div>
+</templates>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<template id="matbao_support.organization_res_partner_template">
+		    <t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="page">
+						<style type="text/css">
+                            div#wrap {
+							    text-align: center;
+							    width: 100%;
+							    float: left;
+							    font-family:Arial,Arial Unicode MS;
+							    font-size: 18px;
+							}
+							#content_header {
+							    width: 100%;
+							    float: left;
+							}
+							#header_first {
+								font-weight: bold;
+							}
+							#header_second {
+								font-weight: bold;
+							}
+							#header_third {
+								border-bottom: 1px solid #000;
+							    width: 200px;
+							    margin: auto;
+							}
+							#title_header {
+								font-weight: bold;
+								margin-top: 40px;
+							}
+							#title_header_child_1 {
+								font-style: italic;
+							}
+							#title_header_child_2 {
+								margin-top: 38px;
+							}
+							#title_header_child_3 {
+								text-align: justify;
+								margin-top: 10px;
+							}
+							
+							#content_center {
+							    width: 100%;
+							    float: left;
+							}
+							
+							#tb_content {
+							    border-collapse: collapse;
+							    width: 100%;
+							    font-size: 18px;
+							}
+							
+							#tb_content tr.line, #tb_content tr.line td {
+							    border-top: 1px solid #000;
+							    border-left: 1px solid #000;
+							    border-right: 1px solid #000;
+							    padding-left: 10px;
+							}
+						  
+						    #tb_content tr.no_top_line, #tb_content tr.no_top_line td{
+							    border-left: 1px solid #000;
+							    border-right: 1px solid #000;
+							    padding-left: 15px;
+						    }
+						    
+						    #tb_content tr td.tb_label_first {
+							    padding-left: 40px;
+							}
+							
+							#tb_content tr td.tb_label_first.first-child {
+							    padding-top: 10px;
+							}
+							
+							#tb_content tr td.tb_label_first.last-child {
+							    padding-bottom: 10px;
+							}
+							
+							#tb_content tr.no_top_line td.tb_label.last-child,
+							#tb_content tr.no_top_line td.tb_content.last-child {
+						    	padding-bottom: 10px;
+						    }
+						    
+						    #tb_content tr:last-child {
+						  		border-bottom: 1px solid #000;
+						  	}
+							
+							.table_content {
+							    text-align: left;
+							}
+							
+							.dot_line_content {
+							    width: 90%;
+							    float: left;
+							}
+							
+							#content_footer
+							{
+							    width: 100%;
+							    float: left;
+							    text-align: justify;
+							}
+							#note, #warrant {
+							    width: 100%;
+							    float: left;
+							    text-align: left;
+				                font-weight: bold;
+				                margin-top: 5px;
+							}
+							#warrant_content {
+								width: 95%;
+							    float: right;
+							}
+							#title_sign_line {
+							    width: 100%;
+							    float: left;
+							}
+							.left_sign_line {}
+							.right_title_sign_line {
+							    width: 42%;
+							    float: right;
+							}
+							
+							#explain_sign_line {
+							    width: 100%;
+							}
+							.left_sign_line {}
+							.right_explain_sign_line {
+							    font-style: italic;
+							    float: right;
+							}
+                        </style>
+						<div id="wrap">
+							<!-- Header Content-->
+							<div id="content_header">
+								<div id="header_first">CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+								<div id="header_second">Độc lập - Tự do - Hạnh phúc</div>
+								<div id="header_third"/>
+
+								<div id="title_header">ĐƠN ĐỀ NGHỊ THAY ĐỔI THÔNG TIN TÀI KHOẢN KHÁCH HÀNG</div>
+								<div id="title_header_child_1">(Dành cho cơ quan, tổ chức, doanh nghiệp)</div>
+
+								<div id="title_header_child_2">Kính gửi: Công ty Cổ phần Mắt Bão</div>
+
+								<div id="title_header_child_3">Chúng tôi là <span t-esc="o.name or ''"/> làm đơn đề nghị Mắt Bão xem xét và thay đổi thông tin tài khoản tại Mắt Bão, cụ thể như sau:</div>
+							</div>
+
+							<!-- Center Content-->
+							<div id="content_center">
+								<div class="table_content">
+									<div class="row">
+										<t t-set="contacts" t-value="data['form']['child_ids']"/>
+										<t t-if="data['form']['contact_ids']">
+											<t t-set="contacts" t-value="data['form']['contact_ids']"/>
+										</t>
+										<div class="col-md-12">
+											<table id="tb_content" >
+												<col width="24%" />
+												<col width="76%" />
+												<!-- 1. Info-->
+												<tr class="line">
+													<td class="tb_label_first first-child">1.	Mã khách hàng</td>
+													<td class="tb_content" style="padding: 10px 0px 0px 14px;"><span t-esc="o.ref or ''"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label_first last-child">2.	Tên miền VN</td>
+													<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 5px 20px 0px -2px;"/></td>
+												</tr>
+												<!-- 2. Info-->
+												<tr class="line">
+													<td class="tb_label">2.Thông tin chủ thể</td>
+													<td class="tb_content"/>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tên chủ thể</td>
+													<td class="tb_content"><span t-esc="o.name or ''"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tên giao dịch Quốc tế</td>
+													<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">và tên viết tắt</td>
+													<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Địa chỉ *</td>
+													<td class="tb_content">
+														<t t-if="o.street and o.street2">
+			                                            	<span t-esc="o.street"/><span> - </span><span t-esc="o.street2"/>
+			                                            </t>
+			                                            <t t-if="not o.street and o.street2">
+			                                            	<span t-esc="o.street2"/>
+			                                            </t>
+			                                            <t t-if="o.street and not o.street2">
+			                                            	<span t-esc="o.street"/>
+			                                            </t>
+			                                            <t t-if="not o.street and not o.street2">
+			                                            	<div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"/>
+			                                            </t>
+			                                            <t t-if="o.city">
+			                                            	<span> - </span><span t-esc="o.city"/>
+			                                            </t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tỉnh/thành phố *</td>
+													<td class="tb_content"><t t-if="o.state_id"><span t-esc="o.state_id and o.state_id.name or ''"/></t><t t-if="not o.state_id"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Quốc gia*</td>
+													<td class="tb_content"><t t-if="o.country_id"><span t-esc="o.country_id and o.country_id.name  or ''"/></t><t t-if="not o.country_id"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số điện thoại *</td>
+													<td class="tb_content">
+														<span t-esc="o.phone or o.mobile"/>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Fax</td>
+													<td class="tb_content">
+														<t t-if="o.fax"><span t-esc="o.fax"/></t>
+														<t t-if="not o.fax"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"/></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Email</td>
+													<td class="tb_content"><span t-esc="o.email or ''"/>
+														<t t-if="o.email"><span t-esc="o.email"/></t>
+														<t t-if="not o.email"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"/></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label last-child">Postcode:</td>
+													<td class="tb_content last-child">
+														<t t-if="o.zip"><span t-esc="o.zip or ''"/></t>
+														<t t-if="not o.zip"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 10px 20px 0px 0px;"/></t>
+													</td>
+												</tr>
+
+												<!-- 3. Info-->
+												<tr class="line">
+													<td class="tb_label">3.Thông tin người quản lý tên miền</td>
+													<td class="tb_content"/>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Họ và tên/Chức vụ *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['domain_manager']['name']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số CMND*</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['domain_manager']['indentify_number']"><span t-esc="get_payment_info(contacts)['domain_manager']['indentify_number']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['indentify_number']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Địa chỉ *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['domain_manager']['address']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tỉnh/thành phố *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['domain_manager']['province']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Quốc gia*</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['domain_manager']['country']"><span t-esc="get_payment_info(contacts)['domain_manager']['country']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['country']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số điện thoại *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['domain_manager']['mobile']"><span t-esc="get_payment_info(contacts)['domain_manager']['mobile']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['mobile']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số Fax</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['domain_manager']['fax']"><span t-esc="get_payment_info(contacts)['domain_manager']['fax']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['fax']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Email *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['domain_manager']['email']"><span t-esc="get_payment_info(contacts)['domain_manager']['email']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['email']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label last-child">Postcode:</td>
+													<td class="tb_content last-child">
+														<t t-if="get_payment_info(contacts)['domain_manager']['postcode']"><span t-esc="get_payment_info(contacts)['domain_manager']['postcode']"/></t>
+														<t t-if="not get_payment_info(contacts)['domain_manager']['postcode']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 10px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+
+												<!-- 4. Info-->
+												<tr class="line">
+													<td class="tb_label">4. Thông tin người quản lý kỹ thuật</td>
+													<td class="tb_content"></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Họ và tên/Chức vụ *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['technical_manager']['name']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Địa chỉ *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['technical_manager']['address']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tỉnh/thành phố *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['technical_manager']['province']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Quốc gia*</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['technical_manager']['country']"><span t-esc="get_payment_info(contacts)['technical_manager']['country']"/></t>
+														<t t-if="not get_payment_info(contacts)['technical_manager']['country']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số điện thoại *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['technical_manager']['mobile']"><span t-esc="get_payment_info(contacts)['technical_manager']['mobile']"/></t>
+														<t t-if="not get_payment_info(contacts)['technical_manager']['mobile']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Fax</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['technical_manager']['fax']"><span t-esc="get_payment_info(contacts)['technical_manager']['fax']"/></t>
+														<t t-if="not get_payment_info(contacts)['technical_manager']['fax']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Email *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['technical_manager']['email']"><span t-esc="get_payment_info(contacts)['technical_manager']['email']"/></t>
+														<t t-if="not get_payment_info(contacts)['technical_manager']['email']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label last-child">Postcode:</td>
+													<td class="tb_content last-child">
+														<t t-if="get_payment_info(contacts)['technical_manager']['postcode']"><span t-esc="get_payment_info(contacts)['technical_manager']['postcode']"/></t>
+														<t t-if="not get_payment_info(contacts)['technical_manager']['postcode']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 10px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+
+												<!-- 5. Info-->
+												<tr class="line">
+													<td class="tb_label">5. Thông tin thanh toán</td>
+													<td class="tb_content"></td>
+												</tr>
+												<t t-if="get_payment_info(contacts)">
+													<tr class="no_top_line">
+														<td class="tb_label">Tên cơ quan thanh toán  *</td>
+														<td class="tb_content">
+															<span t-esc="get_payment_info(contacts)['payment_manager']['name']"/>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Người chịu trách nhiệm thanh toán: *</td>
+														<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Địa chỉ *</td>
+														<td class="tb_content">
+															<span t-esc="get_payment_info(contacts)['payment_manager']['address']"/>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Tỉnh/thành phố *</td>
+														<td class="tb_content"><span t-esc="get_payment_info(contacts)['payment_manager']['province']"/></td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Quốc gia*</td>
+														<td class="tb_content">
+															<t t-if="get_payment_info(contacts)['payment_manager']['country']"><span t-esc="get_payment_info(contacts)['payment_manager']['country']"/></t>
+															<t t-if="not get_payment_info(contacts)['payment_manager']['country']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Số điện thoại *</td>
+														<td class="tb_content">
+															<t t-if="get_payment_info(contacts)['payment_manager']['mobile']"><span t-esc="get_payment_info(contacts)['technical_manager']['mobile']"/></t>
+															<t t-if="not get_payment_info(contacts)['payment_manager']['mobile']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Fax</td>
+														<td class="tb_content">
+															<t t-if="get_payment_info(contacts)['payment_manager']['fax']"><span t-esc="get_payment_info(contacts)['payment_manager']['fax']"/></t>
+															<t t-if="not get_payment_info(contacts)['payment_manager']['fax']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label">Email *</td>
+														<td class="tb_content">
+															<t t-if="get_payment_info(contacts)['payment_manager']['email']"><span t-esc="get_payment_info(contacts)['payment_manager']['email']"/></t>
+															<t t-if="not get_payment_info(contacts)['payment_manager']['email']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+														</td>
+													</tr>
+													<tr class="no_top_line">
+														<td class="tb_label last-child">Postcode:</td>
+														<td class="tb_content last-child">
+															<t t-if="get_payment_info(contacts)['payment_manager']['postcode']"><span t-esc="get_payment_info(contacts)['payment_manager']['postcode']"/></t>
+															<t t-if="not get_payment_info(contacts)['payment_manager']['postcode']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 10px 20px 0px 0px;"></div></t>
+														</td>
+													</tr>
+												</t>
+
+												<!-- 6. Info-->
+												<tr class="line">
+													<td class="tb_label">6. Người thay mặt cơ quan làm thủ tục thay đổi tên chủ thể tên miền</td>
+													<td class="tb_content"></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Họ và tên *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['contact']['name']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số CMND/Hộ chiếu</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['contact']['indentify_number']"><span t-esc="get_payment_info(contacts)['contact']['indentify_number']"/></t>
+														<t t-if="not get_payment_info(contacts)['contact']['indentify_number']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">(đối với cá nhân </td>
+													<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">người nước ngoài) *</td>
+													<td class="tb_content"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Địa chỉ *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['contact']['address']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Tỉnh/thành phố *</td>
+													<td class="tb_content"><span t-esc="get_payment_info(contacts)['contact']['province']"/></td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Quốc gia (nếu không phải là Việt Nam)*</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['contact']['country']"><span t-esc="get_payment_info(contacts)['contact']['country']"/></t>
+														<t t-if="not get_payment_info(contacts)['contact']['country']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Số điện thoại *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['contact']['mobile']"><span t-esc="get_payment_info(contacts)['contact']['mobile']"/></t>
+														<t t-if="not get_payment_info(contacts)['contact']['mobile']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label">Email *</td>
+													<td class="tb_content">
+														<t t-if="get_payment_info(contacts)['contact']['email']"><span t-esc="get_payment_info(contacts)['contact']['email']"/></t>
+														<t t-if="not get_payment_info(contacts)['contact']['email']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 20px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+												<tr class="no_top_line">
+													<td class="tb_label last-child">Postcode</td>
+													<td class="tb_content last-child">
+														<t t-if="get_payment_info(contacts)['contact']['postcode']"><span t-esc="get_payment_info(contacts)['contact']['postcode']"/></t>
+														<t t-if="not get_payment_info(contacts)['contact']['postcode']"><div class="dot_line_content" style="border-bottom: 1px dotted #000; margin: 10px 20px 0px 0px;"></div></t>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Footer Content -->
+							<div id="content_footer">
+								<div id="note">Lưu ý: Các thông tin có dấu (*) là bắt buộc</div>
+								<div id="warrant">Cam kết của chủ thể đăng ký</div>
+								<div id="warrant_content">
+									<ol>
+									  <li>Chịu trách nhiệm trước pháp luật về tính chính xác về thông tin do mình cung cấp. Thông báo bằng văn bản cho Mắt Bão khi có sự thay đổi nội dung những thông tin đăng ký ở trên.</li>
+									  <li>Đồng ý thông tin trên được sử dụng vào “Bản khai đăng ký tên miền” để làm thủ tục đăng ký, duy trì tên miền theo quy định của pháp luật và đăng ký sử dụng các dịch vụ do Mắt Bão cung cấp</li>
+									  <li>Tuân thủ quyền và nghĩa vụ của Chủ thể đăng ký sử dụng tên miền theo quy định của pháp luật về quản lý và sử dụng tài nguyên Internet.</li>
+									</ol>
+								</div>
+
+
+								<div id="title_sign_line">
+									<div class="left_sign_line"></div>
+									<div class="right_title_sign_line">Xác nhận của Khách hàng</div>
+								</div>
+
+								<div id="explain_sign_line">
+									<div class="left_sign_line"></div>
+									<div class="right_explain_sign_line">(Người đại diện theo pháp luật ký ghi rõ họ tên và đóng dấu)</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</t>
+		    </t>
+		</template>
+    </data>
+</odoo>

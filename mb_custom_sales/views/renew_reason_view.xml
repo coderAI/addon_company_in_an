@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+
+        <record id="view_renew_reason_tree" model="ir.ui.view">
+            <field name="name">Renew Reason</field>
+            <field name="model">renew.reason</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" required="1"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="renew_reason_form" model="ir.ui.view">
+            <field name="name">renew.reason.form</field>
+            <field name="model">renew.reason</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <field name="description"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_renew_reason_customer">
+            <field name="name">Views renew reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">renew.reason</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_renew_reason_tree"/>
+        </record>
+
+
+
+
+
+
+        <record id="cancel_so_update_data_tree" model="ir.ui.view">
+            <field name="name">Cancel Reason Update Data</field>
+            <field name="model">tmp.reason.cancel.so.update.data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="reason_cancel_so_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cancel_so_update_data_form" model="ir.ui.view">
+            <field name="name">Cancel Reason Update Data</field>
+            <field name="model">tmp.reason.cancel.so.update.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="reason_cancel_so_id"/>
+                            </group>
+                            <footer>
+                                <button name="btn_udpate_id" string="Update" type="object" class="btn-primary"/>
+                                <button string="Cancel" class="btn-default" special="cancel"/>
+                            </footer>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_cancel_so_update_data">
+            <field name="name">Update reason cancel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tmp.reason.cancel.so.update.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

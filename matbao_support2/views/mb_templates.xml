@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<!-- include javascript assets -->
+        <template id="matbao_support2_modules_assets_backend" name="matbao_support2_modules_assets_backend" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" 
+                    href="/matbao_support2/static/src/css/mb_support.css" />
+                    <script type="text/javascript" src="/matbao_support2/static/src/js/res_partner.js"/>
+                <script type="text/javascript" src="/matbao_support2/static/src/js/button_partner_form.js"/>
+	        </xpath>
+        </template>
+    </data>
+</odoo>

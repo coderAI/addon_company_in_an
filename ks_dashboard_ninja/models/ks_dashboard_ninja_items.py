@@ -473,8 +473,10 @@ class KsDashboardNinjaItems(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        if self.env.user.sale_team_id or self.env.user.id != SUPERUSER_ID or not self.user_has_groups('base.group_system'):
-            args += [('employee_type','in',['all',self.env.user.sale_team_id.type])]
+        if self.env.user.id != SUPERUSER_ID:
+            if not self.user_has_groups('base.group_system'):
+                if self.env.user.sale_team_id:
+                    args += [('employee_type','in',['all',self.env.user.sale_team_id.type])]
 
         return super(KsDashboardNinjaItems, self).search(args, offset=offset, limit=limit, order=order, count=count)
 
@@ -1231,6 +1233,98 @@ class KsDashboardNinjaItems(models.Model):
 
                 rec.ks_chart_data = json.dumps(ks_chart_data)
 
+    def convert_domain_date(self,rec):
+        ks_date_domain = []
+        if rec.ks_merger_date_filter_field_2:
+            if not rec.ks_date_filter_selection or rec.ks_date_filter_selection == "l_none":
+                selected_start_date = self._context.get('ksDateFilterStartDate', False)
+                selected_end_date = self._context.get('ksDateFilterEndDate', False)
+                if selected_end_date and not selected_start_date:
+                    ks_date_domain = [
+                        (rec.ks_merger_date_filter_field_2.name, "<=",
+                         selected_end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
+                elif selected_start_date and not selected_end_date:
+                    ks_date_domain = [
+                        (rec.ks_merger_date_filter_field_2.name, ">=",
+                         selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
+                else:
+                    if selected_end_date and selected_start_date:
+                        ks_date_domain = [
+                            (rec.ks_merger_date_filter_field_2.name, ">=",
+                             selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)),
+                            (rec.ks_merger_date_filter_field_2.name, "<=",
+                             selected_end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))
+                        ]
+
+            else:
+                if rec.ks_date_filter_selection and rec.ks_date_filter_selection != 'l_custom':
+                    ks_date_data = ks_get_date(rec.ks_date_filter_selection)
+                    selected_start_date = ks_date_data["selected_start_date"]
+                    selected_end_date = ks_date_data["selected_end_date"]
+                else:
+                    if rec.ks_item_start_date or rec.ks_item_end_date:
+                        selected_start_date = rec.ks_item_start_date
+                        selected_end_date = rec.ks_item_end_date
+
+                if selected_start_date and selected_end_date:
+                    if rec.ks_compare_period:
+                        selected_start_date = fields.datetime.strptime(rec.ks_item_start_date,
+                                                                       DEFAULT_SERVER_DATETIME_FORMAT)
+                        selected_end_date = fields.datetime.strptime(rec.ks_item_end_date,
+                                                                     DEFAULT_SERVER_DATETIME_FORMAT)
+                        ks_compare_period = abs(rec.ks_compare_period)
+                        if ks_compare_period > 100:
+                            ks_compare_period = 100
+                        if rec.ks_compare_period > 0:
+                            selected_end_date = selected_end_date + (
+                                    selected_end_date - selected_start_date) * ks_compare_period
+                        elif rec.ks_compare_period < 0:
+                            selected_start_date = selected_start_date - (
+                                    selected_end_date - selected_start_date) * ks_compare_period
+
+                    if rec.ks_year_period and rec.ks_year_period != 0 and rec.ks_dashboard_item_type:
+                        abs_year_period = abs(rec.ks_year_period)
+                        sign_yp = rec.ks_year_period / abs_year_period
+                        if abs_year_period > 10:
+                            abs_year_period = 10
+                        date_field_name = rec.ks_merger_date_filter_field_2.name
+
+                        ks_date_domain = ['&', (date_field_name, ">=",
+                                                fields.datetime.strftime(selected_start_date,
+                                                                         DEFAULT_SERVER_DATETIME_FORMAT)),
+                                          (date_field_name, "<=",
+                                           fields.datetime.strftime(selected_end_date, DEFAULT_SERVER_DATETIME_FORMAT))]
+
+                        for p in range(1, abs_year_period + 1):
+                            ks_date_domain.insert(0, '|')
+                            ks_date_domain.extend(['&', (date_field_name, ">=", fields.datetime.strftime(
+                                selected_start_date - dateutil.relativedelta.relativedelta(years=p) * sign_yp,
+                                DEFAULT_SERVER_DATETIME_FORMAT)),
+                                                   (date_field_name, "<=", fields.datetime.strftime(
+                                                       selected_end_date - dateutil.relativedelta.relativedelta(years=p)
+                                                       * sign_yp, DEFAULT_SERVER_DATETIME_FORMAT))])
+                    else:
+                        selected_start_date = fields.datetime.strftime(selected_start_date,
+                                                                       DEFAULT_SERVER_DATETIME_FORMAT) if \
+                            type(selected_start_date).__name__ == 'datetime' else selected_start_date
+                        selected_end_date = fields.datetime.strftime(selected_end_date, DEFAULT_SERVER_DATETIME_FORMAT) \
+                            if type(selected_end_date).__name__ == 'datetime' else selected_end_date
+                        ks_date_domain = [(rec.ks_merger_date_filter_field_2.name, ">=", selected_start_date),
+                                          (rec.ks_merger_date_filter_field_2.name, "<=", selected_end_date)]
+                elif selected_start_date and not selected_end_date:
+                    selected_start_date = fields.datetime.strftime(selected_start_date, DEFAULT_SERVER_DATETIME_FORMAT) \
+                        if type(selected_start_date).__name__ == 'datetime' else selected_start_date
+                    ks_date_domain = [(rec.ks_merger_date_filter_field_2.name, ">=", selected_start_date)]
+                elif selected_end_date and not selected_start_date:
+                    selected_end_date = fields.datetime.strftime(selected_end_date, DEFAULT_SERVER_DATETIME_FORMAT) \
+                        if type(selected_end_date).__name__ == 'datetime' else selected_end_date
+                    ks_date_domain = [(rec.ks_merger_date_filter_field_2.name, "<=", selected_end_date)]
+        else:
+            ks_date_domain = []
+        return ks_date_domain
+
+
+
     @api.model
     def ks_fetch_chart_data(self, ks_model_name, ks_chart_domain, ks_chart_measure_field, ks_chart_measure_field_2,
                             ks_chart_groupby_relation_field, ks_chart_date_groupby, ks_chart_groupby_type, orderby,
@@ -1333,7 +1427,15 @@ class KsDashboardNinjaItems(models.Model):
                 total_add = 0
                 if i_rec.get(ks_merger_record_field_mapping_2.name):
                     data_checking = i_rec.get(ks_merger_record_field_mapping_2.name)
-                    merger_data = merger_model_obj.search([(ks_merger_record_field_mapping_2.name,'=',data_checking[0])])
+                    mapping_domain= (ks_merger_record_field_mapping_2.name,'=',data_checking[0])
+                    _logger.info(mapping_domain)
+                    _logger.info(ks_chart_domain)
+                    _logger.info(self.convert_domain_date(self))
+                    covert_domain_date=self.convert_domain_date(self)
+                    if ks_chart_domain:
+
+                        merger_data = merger_model_obj.search([(ks_merger_record_field_mapping_2.name,'=',data_checking[0])]+covert_domain_date)
+
                     if merger_data:
                         for i_merger_data in merger_data:
                             total_add =total_add+ i_merger_data.read([ks_merger_record_field_2.name])[0].get(ks_merger_record_field_2.name)
@@ -2140,6 +2242,9 @@ class KsDashboardNinjaItems(models.Model):
 
     @api.constrains('ks_domain_2')
     def ks_onchange_check_domain_2(self):
+        _logger.info("-----------")
+        _logger.info(self.ks_domain_2)
+        _logger.info("---------")
         if self.ks_domain_2:
 
             proper_domain_2 = []
@@ -2147,10 +2252,14 @@ class KsDashboardNinjaItems(models.Model):
                 ks_domain_2 = self.ks_domain_2
                 if "%UID" in ks_domain_2:
                     ks_domain_2 = ks_domain_2.replace("%UID", str(self.env.user.id))
+                if "%TEAMID" in ks_domain_2:
+                    ks_domain_2 = ks_domain_2.replace("%TEAMID", str(self.env.user.sale_team_id.id))
                 if "%MYCOMPANY" in ks_domain_2:
                     ks_domain_2 = ks_domain_2.replace("%MYCOMPANY", str(self.env.user.company_id.id))
                 ks_domain_2 = safe_eval(ks_domain_2)
-
+                _logger.info("-----------")
+                _logger.info(ks_domain_2)
+                _logger.info("---------")
                 for element in ks_domain_2:
                     proper_domain_2.append(element) if type(element) != list else proper_domain_2.append(tuple(element))
                 self.env[self.ks_model_name_2].search_count(proper_domain_2)
@@ -2167,9 +2276,14 @@ class KsDashboardNinjaItems(models.Model):
                 ks_domain_2 = self.ks_domain_2
                 if "%UID" in ks_domain_2:
                     ks_domain_2 = ks_domain_2.replace("%UID", str(self.env.user.id))
+                if "%TEAMID" in ks_domain_2:
+                    ks_domain_2 = ks_domain_2.replace("%TEAMID", str(self.env.user.sale_team_id.id))
                 if "%MYCOMPANY" in ks_domain_2:
                     ks_domain_2 = ks_domain_2.replace("%MYCOMPANY", str(self.env.user.company_id.id))
                 ks_domain_2 = safe_eval(ks_domain_2)
+                _logger.info("-----------")
+                _logger.info(ks_domain_2)
+                _logger.info("---------")
                 for element in ks_domain_2:
                     proper_domain_2.append(element) if type(element) != list else proper_domain_2.append(tuple(element))
                 self.env[self.ks_model_name_2].search_count(proper_domain_2)
@@ -2188,6 +2302,9 @@ class KsDashboardNinjaItems(models.Model):
                 ks_domain = safe_eval(ks_domain)
                 if "%MYCOMPANY" in ks_domain:
                     ks_domain = ks_domain.replace("%MYCOMPANY", str(self.env.user.company_id.id))
+                if ks_domain and "%TEAMID" in ks_domain:
+                    ks_domain = ks_domain.replace("%TEAMID", str(self.env.user.sale_team_id.id))
+
                 for element in ks_domain:
                     proper_domain.append(element) if type(element) != list else proper_domain.append(tuple(element))
                 self.env[self.ks_model_name].search_count(proper_domain)
@@ -2205,6 +2322,9 @@ class KsDashboardNinjaItems(models.Model):
                     ks_domain = ks_domain.replace("%UID", str(self.env.user.id))
                 if "%MYCOMPANY" in ks_domain:
                     ks_domain = ks_domain.replace("%MYCOMPANY", str(self.env.user.company_id.id))
+                if "%TEAMID" in ks_domain:
+                    ks_domain = ks_domain.replace("%TEAMID", str(self.env.user.sale_team_id.id))
+
                 ks_domain = safe_eval(ks_domain)
 
                 for element in ks_domain:
@@ -2221,6 +2341,8 @@ class KsDashboardNinjaItems(models.Model):
 
         if ks_domain and "%MYCOMPANY" in ks_domain:
             ks_domain = ks_domain.replace("%MYCOMPANY", str(self.env.user.company_id.id))
+        if ks_domain and "%TEAMID" in ks_domain:
+            ks_domain = ks_domain.replace("%TEAMID", str(self.env.user.sale_team_id.id))
 
         ks_date_domain = False
         if rec.ks_date_filter_field:
@@ -2424,6 +2546,10 @@ class KsDashboardNinjaItems(models.Model):
                     ks_kpi_data_model_1['previous_period'] = ks_previous_period_data
 
                 if rec.ks_model_id_2 and rec.ks_record_count_type_2:
+                    _logger.info("---------------")
+                    _logger.info(rec.ks_domain_2)
+                    _logger.info(rec.ks_domain_2)
+                    _logger.info("---------------")
                     ks_kpi_data_model_2 = rec.ks_get_model_2_data(rec.ks_model_name_2, rec.ks_record_count_type_2,
                                                                   rec.ks_record_field_2, rec.ks_domain_2, rec)
                     ks_kpi_data.append(ks_kpi_data_model_2)
@@ -2588,26 +2714,30 @@ class KsDashboardNinjaItems(models.Model):
             ks_domain_2 = ks_domain_2.replace("%UID", str(self.env.user.id))
         if ks_domain_2 and "%MYCOMPANY" in ks_domain_2:
             ks_domain_2 = str(safe_eval(ks_domain_2)).replace("'%MYCOMPANY'", str(self.env.user.company_id.id))
-
+        if ks_domain_2 and "%TEAMID" in ks_domain_2:
+            ks_domain_2 = ks_domain_2.replace("%TEAMID", str(self.env.user.sale_team_id.id))
         ks_date_domain = False
         if not rec.ks_date_filter_selection_2 or rec.ks_date_filter_selection_2 == "l_none":
+
             selected_start_date = self._context.get('ksDateFilterStartDate', False)
             selected_end_date = self._context.get('ksDateFilterEndDate', False)
             ksDateFilterSelection = self._context.get('ksDateFilterSelection')
-            if selected_start_date and rec.ks_date_filter_field_2.name:
-                if ksDateFilterSelection == "l_custom":
-                    ks_date_domain = [(rec.ks_date_filter_field_2.name, ">=",
-                                       selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
-            elif selected_end_date and rec.ks_date_filter_field_2.name:
-                ks_date_domain = [
-                    (rec.ks_date_filter_field_2.name, "<=",
-                     str(datetime.strptime(str(selected_end_date), DEFAULT_SERVER_DATETIME_FORMAT)))]
-            else:
-                if selected_start_date and selected_end_date:
-                    ks_date_domain = [(rec.ks_date_filter_field_2.name, ">=",
-                                       selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)),
-                                      (rec.ks_date_filter_field_2.name, "<=",
-                                       selected_end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
+
+            # if selected_start_date and rec.ks_date_filter_field_2.name:
+            #     # if ksDateFilterSelection == "l_custom":
+            #         ks_date_domain = [(rec.ks_date_filter_field_2.name, ">=",
+            #                            selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
+            # elif selected_end_date and rec.ks_date_filter_field_2.name:
+            #     ks_date_domain = [
+            #         (rec.ks_date_filter_field_2.name, "<=",
+            #          str(datetime.strptime(str(selected_end_date), DEFAULT_SERVER_DATETIME_FORMAT)))]
+            # else:
+            if selected_start_date and selected_end_date and rec.ks_date_filter_field_2 and rec.ks_date_filter_field_2.name:
+                ks_date_domain = [(rec.ks_date_filter_field_2.name, ">=",
+                                   selected_start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)),
+                                  (rec.ks_date_filter_field_2.name, "<=",
+                                   selected_end_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT))]
+            _logger.info(ks_date_domain)
         else:
             if rec.ks_date_filter_selection_2 and rec.ks_date_filter_selection_2 != 'l_custom':
                 ks_date_data = ks_get_date(rec.ks_date_filter_selection_2)
@@ -2673,7 +2803,10 @@ class KsDashboardNinjaItems(models.Model):
         proper_domain = safe_eval(ks_domain_2) if ks_domain_2 else []
         if ks_date_domain:
             proper_domain.extend(ks_date_domain)
-
+        _logger.info("------------snow-----------")
+        _logger.info(proper_domain)
+        _logger.info(proper_domain)
+        _logger.info("------------snow-----------")
         return proper_domain
 
     @api.model

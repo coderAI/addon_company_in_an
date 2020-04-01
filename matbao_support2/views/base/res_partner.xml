@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id='view_res_partner_form_inherit_from_support_mb2' model="ir.ui.view">
+            <field name="name">view.res.partner.form.inherit.from.support.mb</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="matbao_support.view_res_partner_form_inherit_from_support_mb"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='mobile']" position="before">
+                	<field name="id" invisible="1" />
+                </xpath>
+            	<xpath expr="//field[@name='mobile']" position="replace">
+            		<field name="mobile" password="True" class="hidden_mobile_form_res_partner_form" attrs="{'invisible': [('id','=',False)], 'required': [('id','!=',False)]}"/>
+            	</xpath>
+            	<xpath expr="//field[@name='mobile']" position="after">
+            		<field name="mobile_show" password="False" class="showed_mobile_form_res_partner_form" attrs="{'invisible': [('id','!=',False)], 'required':[('id','=',False)]}"/>
+            		<div class="div_control_btn_show_hide_mobile" colspan="2" attrs="{'invisible': [('id','=',False)]}">
+	               		<button name="show_mobile" custom="click_show_mobile" class="btn btn-primary btn-sm btn_show_mobile_from_support" string="Show Mobile" attrs="{'invisible': [('mobile','=',False)]}"/>
+	               		<button name="hide_mobile" custom="click_hide_mobile" class="btn btn-primary btn-sm btn_hide_mobile_from_support" string="Hide Mobile" invisible="1"/>
+	             	</div>
+                </xpath>
+                
+                <xpath expr="//field[@name='email']" position="replace">
+            		<field name="email" password="True" class="hidden_email_form_res_partner_form" attrs="{'invisible': [('id','=',False)],'required': [('id','!=',False)]}"/>
+            	</xpath>
+            	
+                 <xpath expr="//field[@name='email']" position="after">
+            		<field name="email_show" password="False" class="showed_email_form_res_partner_form" attrs="{'invisible': [('id','!=',False)], 'required': [('id','=',False)]}"/>
+					<div class="div_control_btn_show_hide_email" colspan="2" attrs="{'invisible': [('id','=',False)]}">
+                		<button name="show_email" custom="click_show_email" class="btn btn-primary btn-sm btn_show_email_from_support" string="Show Email" attrs="{'invisible': [('email','=',False)]}"/>
+                		<button name="hide_email" custom="click_hide_email" class="btn btn-primary btn-sm btn_hide_email_from_support" string="Hide Email" invisible="1"/>
+              		</div>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record id='view_mb_res_partner_form_trobz_inherit_from_mb_support2' model="ir.ui.view">
+            <field name="name">view.mb.res.partner.form.trobz.inherit.from.mb.support2</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="mb_fix_milestone.view_mb_res_partner_form_trobz_inherit"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//page/field[@name='child_ids']/form//field[@name='mobile']" position="replace">
+            		<field name="mobile" password="True" class="hidden_mobile_form_res_partner_form_wizard" attrs="{'readonly':[('parent_id_customer','=','True'),('parent_id_state','=','approved'),('type','not in',('contact','invoice'))],'invisible': [('id','=',False)]}"/>
+            	</xpath>
+            	
+            	<xpath expr="//page/field[@name='child_ids']/form//field[@name='mobile']" position="after">
+            		<field name="mobile_show" password="False" class="showed_mobile_form_res_partner_form_wizard" attrs="{'readonly':[('parent_id_customer','=','True'),('parent_id_state','=','approved'),('type','not in',('contact','invoice'))],'invisible': [('id','!=',False)]}"/>
+            		<div class="div_control_btn_show_hide_mobile" colspan="2" attrs="{'invisible': [('id','=',False)]}">
+	               		<button name="show_mobile_wizard" custom="click_show_mobile_wizard" class="btn btn-primary btn-sm btn_show_mobile_from_support_wizard" string="Show Mobile"/>
+		                <button name="hide_mobile_wizard" custom="click_hide_mobile_wizard" class="btn btn-primary btn-sm btn_hide_mobile_from_support_wizard" string="Hide Mobile" invisible="1"/>
+	             	</div>
+                </xpath>
+                
+                <xpath expr="//page/field[@name='child_ids']/form//field[@name='email']" position="replace">
+            		<field name="email" password="True" class="hidden_email_form_res_partner_form_wizard" attrs="{'readonly':[('parent_id_customer','=','True'),('parent_id_state','=','approved'),('type','not in',('contact','invoice'))], 'invisible': [('id','=',False)]}"/>
+            	</xpath>
+            	
+                <xpath expr="//page/field[@name='child_ids']/form//field[@name='email']" position="after">
+                	<field name="email_show" password="False" class="showed_email_form_res_partner_form_wizard" attrs="{'readonly':[('parent_id_customer','=','True'),('parent_id_state','=','approved'),('type','not in',('contact','invoice'))], 'invisible': [('id','!=',False)]}"/>
+                	<div class="div_control_btn_show_hide_email" colspan="2" attrs="{'invisible': [('id','=',False)]}">
+                		<button name="show_email_wizard" custom="click_show_email_wizard" class="btn btn-primary btn-sm btn_show_email_from_support_wizard" string="Show Email"/>
+                		<button name="hide_email_wizard" custom="click_hide_email_wizard" class="btn btn-primary btn-sm btn_hide_email_from_support_wizard" string="Hide Email" invisible="1"/>
+                	</div>
+                </xpath>
+                
+                 <xpath expr="//page/field[@name='child_ids']/form//field[@name='mobile']" position="after">
+                	<field name="id" invisible="True" />
+                </xpath>
+                
+                <xpath expr="//div[@t-if='record.email.raw_value']/field['email']" position="attributes">
+                	<attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//div[@t-if='record.mobile.raw_value']/field['mobile']" position="attributes">
+                	<attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//div[@t-if='record.email.raw_value']/field['email']" position="after">
+                	<span>********</span>
+                </xpath>
+                <xpath expr="//div[@t-if='record.mobile.raw_value']/field['mobile']" position="after">
+                	<span>********</span>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

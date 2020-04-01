@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- External Config menu -->
+		<menuitem id="email_config_menu"
+				  sequence="1000" action="action_view_email_config" parent="base.menu_email"
+				  groups="base.group_system"/>
+
+		<menuitem name="Renew Reason" action="action_renew_reason_customer" id="menu_renew_reason" parent="sales_team.menu_sale_config" sequence="10" groups="sales_team.group_sale_manager"/>
+		<menuitem name="CRM Rating" action="action_crm_rating" id="menu_crm_rating" parent="sales_team.menu_sale_config" sequence="10" groups="sales_team.group_sale_manager"/>
+
+		<menuitem name="Renew sale order list" action="action_renew_reason_order_lines" id="menu_renew_reason_order_lines"
+				  parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+
+		<menuitem name="Update Data Cancel SOL" action="action_cancel_so_update_data" id="menu_cancel_so_update_data"
+				  parent="sales_team.menu_sale_config" sequence="10" groups="sales_team.group_sale_manager"/>
+
+
+
+
+		<menuitem id="action_view_add_product_category_config_menu"
+				  sequence="1000" action="action_view_add_product_category_config" parent="sales_team.menu_config_address_book"
+				  groups="sales_team.group_sale_manager"  />
+
+
+		<menuitem name="Forecast Renew Service Revenue" action="action_ss_forecast_renew_service_report" id="menu_action_ss_forecast_renew_service_report" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
+		<menuitem name="CRM Lead Rating" action="action_crm_lead_rating" id="menu_action_crm_lead_rating" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
+
+		<menuitem name="Count Search and Seniority Service" action="action_count_search_service_seniority" id="menu_action_count_search_service_seniority" parent="sales_team.menu_sale_report" sequence="10" groups="sales_team.group_sale_manager"/>
+
+
+
+
+
+
+	</data>
+</odoo>

@@ -1,0 +1,45 @@
+{
+    'name': 'MB Custom Sales',
+    'category': 'matbao',
+    'author': 'Huy Snow',
+    'description': 'Add new config support send mail action',
+    'depends': [
+        'base',
+        'account',
+        'hr',
+        'sale',
+        'crm',
+        'web',
+        'sales_team',
+        'matbao_module',
+        'mb_sale_contract',
+        'mb_receive_money',
+        'mb_fix_milestone',
+        'mb_fix_milestone4',
+        'mb_fix_milestone5',
+        'mb_outsource_hp',
+        'mb_sale_invoice',
+        'mb_customer_level',
+        'mb_service_review',
+        'mb_customer_promotion',
+
+    ],
+    'data': [
+        'views/email_config_view.xml',
+        'views/sale_views.xml',
+        'views/add_product_category_config_view.xml',
+        'views/account_payment_view.xml',
+        'views/renew_reason_view.xml',
+        'views/crm_rating_view.xml',
+        'views/customer_point_history_note_view.xml',
+
+        'views/menu_view.xml',
+        'reports/contract_e_invoice_mb.xml',
+
+        'security/ir.model.access.csv',
+        'security/mb_sale_rule_group.xml',
+        
+        'data/mail/info2_template_data.xml',
+    ],
+    'installable': True,
+}
