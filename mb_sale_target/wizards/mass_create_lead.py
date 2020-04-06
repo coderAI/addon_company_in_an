@@ -37,14 +37,14 @@ class mass_create_lead(models.TransientModel):
     @api.multi
     def btn_get_customer(self):
         sql='''
-        select rp.id,count(ss.id)
+        select max(rp.id),count(ss.id)
         from res_partner rp
         left join sale_service ss on rp.id = ss.customer_id and ss.end_date <= '%s'
         where
         		rp.company_type in ('person','company')
 			    and rp.parent_id is Null
 			    and rp.company_id = %s
-			group by rp.id
+			group by rp.email
 			having count(ss.id) %s %s
         '''%(datetime.now(),str(self.env.user.company_id.id),self.compare,self.quantity)
         logging.info(sql)
@@ -126,9 +126,9 @@ class mass_create_lead(models.TransientModel):
                      str(i.display_name).replace("'",' ') if "'" in str(i.display_name) else i.display_name,
                      str(i.name).replace("'",' ') if "'" in str(i.name) else i.name,
                      i.email,i.mobile,i.phone,
-                     str(i.street).replace("'", ' ') if "'" in str(i.street) else i.street,
-                     str(i.street2).replace("'", ' ') if "'" in str(i.street2) else i.street2,
-                     i.city,
+                     str(i.street).replace("'", ' ') if "'" in str(i.street) else i.street or ' ',
+                     str(i.street2).replace("'", ' ') if "'" in str(i.street2) else i.street2 or ' ',
+                     i.city or ' ',
                      i.state_id and i.state_id.id or 'null',
                      i.country_id and i.country_id.id or 'null',str(i.id),str(company_id),str(team_id))
             sql =sql+sql_tmp

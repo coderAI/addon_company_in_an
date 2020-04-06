@@ -8,21 +8,69 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="matbao_module.view_res_partner_form_inherit"/>
         <field name="arch" type="xml">
-
-
-            <xpath expr="//field[@name='company_type']" position="after">
-                <field name="mb_verify_contract" readonly="1"/>
-            </xpath>
             <xpath expr="//field[@name='indentify_number']" position="after">
-                <field name="vn_indentify_number_date"/>
+                <field name="vn_indentify_number_date" string="Date of Identity/Passport"/>
             </xpath>
-            <xpath expr="//button[@name='button_submit_to_operation']" position="after">
-<!--                 modifiers="{'invisible': [['mb_verify_contract', '=', true]]}"-->
+            <xpath expr="//button[@name='button_submit_to_operation']" position="before">
                 <button name="button_verify_contract" string="Verify" type="object" class="oe_highlight"
-
-                        groups="mb_sale_contract.group_operator_mb_sale_contract"/>
+                        groups="mb_sale_contract.group_operator_mb_sale_contract"
+                        attrs="{'invisible': [('mb_verify_contract', '=', True)]}"/>
+                <button name="button_unverify_contract" string="UnVerify" type="object" class="oe_highlight"
+                        groups="mb_sale_contract.group_operator_mb_sale_contract"
+                        attrs="{'invisible': [('mb_verify_contract', '!=', True)]}"/>
             </xpath>
         </field>
     </record>
+    <record id="view_mb_res_partner_form_trobz_inherit_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mb_fix_milestone.view_mb_res_partner_form_trobz_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="before">
+                <field name="mb_verify_contract" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_partner_customer_contact_form_inherit_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mb_customer_contact.view_res_partner_customer_contact_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[@class='div_control_fill_infor_for_customer_wizard']" position="replace">
+            </xpath>
+            <xpath expr="//notebook/page//field[@name='indentify_number']" position="before">
+                <field name="vn_indentify_number_date" string="Date of Identity/Passport"/>
+            </xpath>
+            <xpath expr="//field[@name='supplier']" position="before">
+                <field name="parent_id" invisible="1"/>
+                <field name="id" invisible="1"/>
+                <group>
+                    <field name="update_mass_contacts" options="{'no_quick_create': True, 'no_create': True, 'no_create_edit': True, 'no_open': True}" domain="[('id','!=',id),('parent_id','=',parent_id)]" string ="Copy data to:">
+                        <tree>
+                            <field name="name"/>
+                            <field name="contact_type"/>
+                            <field name="phone"/>
+                            <field name="email"/>
 
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id='view_customer_contact_tree_inherit' model="ir.ui.view">
+        <field name="name">customer.contact.tree</field>
+        <field name="model">customer.contact</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Contacts">
+                <field name="name"/>
+                <field name="contact_type"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
 </odoo>
