@@ -1,0 +1,13 @@
+<odoo>
+    <record id='view_sale_service_form_inherit' model="ir.ui.view">
+        <field name="name">sale.service.form.inherit</field>
+        <field name="model">sale.service</field>
+        <field name="inherit_id" ref="matbao_module.view_sale_service_form"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='end_date']" position="after">
+                <field name="subscription_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

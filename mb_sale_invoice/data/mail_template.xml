@@ -1,0 +1,209 @@
+<odoo>
+    <record id="email_template_send_receipt" model="mail.template">
+        <field name="name">Mail Account Receipt Template</field>
+        <field name="subject">Thông tin thanh toán của [${object.name}]</field>
+        <field name="email_from">info@matbao.com</field>
+        <field name="partner_to">${object.partner_id.id}</field>
+        <field name="email_cc">${object.user_id.login}</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="lang">${object.partner_id and object.partner_id.lang or ''}</field>
+        <field name="user_signature" eval="False"/>
+        <field name="report_template" ref="report_account_receipt"/>
+        <field name="report_name">Phiếu thu cho đơn hàng [${object.name}]</field>
+        <field name="body_html"><![CDATA[
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <!--header------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <tbody>
+        <tr>
+            <td height="50" bgcolor="#363636">
+                <table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td width="30%" height="50">
+                                <img src="http://design.matbao.net/mail/logo.png" alt="logo Mắt Bão"/>
+                            </td>
+                            <td width="50%">
+                                <div>
+                                    <p style="font-family:tahoma; font-size:12px; color:#b8b8b8; text-align:right;">
+                                        Kinh doanh TP Hồ Chí Minh :<br />
+                                        Kinh doanh TP Hà Nội :<br />
+                                        Mã khách hàng :
+                                    </p>
+                                </div>
+                            </td>
+                            <td width="20%" style="border-left:5px #363636 solid;">
+                                <div>
+                                    <p style="font-family:tahoma; font-size:12px; color:#ffffff; text-align:left;">
+                                        (028) 3622 9999<br />
+                                        (024) 35 123456<br />
+                                        ${object.partner_id.ref}
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <!--titel------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+            <td bgcolor="#e42a2a" style="border-top: #b62424 2px solid;">
+                <table width="800" border="0" cellspacing="0" cellpadding="0" align="center" style="border-top: #e42a2a 10px solid; border-bottom: #e42a2a 10px solid;">
+                <tbody>
+                <tr>
+                    <td>
+                        <h1 style="font-family:tahoma; color:#ffffff; font-size:24px;margin: 5px 0;">Thông tin thanh toán của mã đơn hàng: [${object.name}]</h1>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+            </td>
+        </tr>
+        <!--content----------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <tr>
+	        <td bgcolor="#efefef">
+                <table style="border-bottom: 20px #efefef solid;" width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td height="18" valign="top">
+                                <img src="http://design.matbao.net/mail/arrowdown.png" alt="arrow down"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="18" valign="top">
+                                <p style="font-family:tahoma; font-size:12pt; font-weight:700; color:#363636; margin:5px 0;">
+                                     Kính chào ${object.partner_id.name}
+                                </p>
+                                <p style="font-family:tahoma; font-size:12px; color:#363636; line-height:18px; margin:5px 0;">
+                                    Mắt Bão xin gửi lời cám ơn đến Quý khách đã tin tưởng sử dụng dịch vụ của chúng tôi. Sau đây Mắt Bão xin gửi phiếu thu mà Quý Khách <span style="color:red">đã thanh toán thành công</span> cho đơn hàng [${object.name}]. Ngày thanh toán: [${object.date_order}]
+                                </p>
+                                <p style="font-family:tahoma; font-size:12px; color:#363636; line-height:18px; margin:5px 0;">
+                                    Quý Khách vui lòng xem chi tiết ở file đính kèm.
+                                </p>
+                                <p style="font-family:tahoma; font-size:12px; color:#363636; line-height:18px; margin:5px 0;">
+                                    Mắt Bão chân thành cám ơn Quý khách
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <!--footer------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+        <tr>
+            <td bgcolor="#363636" align="center">
+                <table width="800" border="0" cellspacing="0" cellpadding="0" align="center" style="border-top:#727272 1px solid; border-bottom: #363636 10px solid;">
+                    <tbody>
+                        <tr>
+                            <td height="30" colspan="6">
+                                <p style="font-family:tahoma; font-size:14px; font-weight:bold; color:#dedede;">
+                                     Công ty Mắt Bão
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="56%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td height="25" colspan="2">
+                                                <p style="font-family:tahoma; font-size:12px; color:#dedede; margin:0px; font-weight:bold;margin: 5px 0;">
+                                                     Kinh Doanh TP. Hồ Chí Minh
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30" valign="top">
+                                                <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                                     Add<br/>
+
+                                                    <br/>
+                                                     Tell
+                                                </p>
+                                            </td>
+                                            <td valign="top">
+                                                <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                                     M1-05 Chung cư Carillon, 171A Hoàng Hoa Thám, phường 13, Q. Tân Bình, TP. HCM<br/>
+                                                     (028) 3622 9999<br/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="4%">
+                                 &nbsp;
+                            </td>
+                            <td width="40%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td height="25" colspan="2">
+                                        <p style="font-family:tahoma; font-size:12px; color:#dedede; margin:0px; font-weight:bold;margin: 5px 0;">
+                                             Kinh Doanh TP. Hà Nội
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="30" valign="top">
+                                        <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                             Add<br/>
+
+                                            <br/>
+                                             Tell
+                                        </p>
+                                    </td>
+                                    <td valign="top">
+                                        <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                             Tầng 8, Tòa nhà 381 Đội Cấn, Ba Đình, Hà Nội<br/>
+
+                                            <br/>
+                                             (024) 35 123456<br/>
+                                        </p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="56%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td height="25" colspan="2">
+                                                <p style="font-family:tahoma; font-size:12px; color:#dedede; margin:0px; font-weight:bold;margin: 5px 0;">
+                                                     Trung tâm hỗ trợ khách hàng
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30" valign="top">
+                                                <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                                     Add<br/> Tell
+                                                </p>
+                                            </td>
+                                            <td valign="top">
+                                                <p style="font-family:tahoma; font-size:12px; color:#b8b8b8;line-height:18px;margin: 5px 0;">
+                                                     171A Hoàng Hoa Thám, Phường 13, Quận Tân Bình, TP.HCM<br/>1900 1830<br/>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td width="44%" colspan="2">
+                                 &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+]]></field>
+    </record>
+</odoo>

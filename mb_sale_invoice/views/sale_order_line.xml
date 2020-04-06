@@ -1,0 +1,109 @@
+<odoo>
+    <record id="mb_view_invoice_notation_form" model="ir.ui.view">
+        <field name="name">Sale Order Lines</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <form create="false" delete="false" edit="false">
+                <header>
+                    <field name="service_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h2>
+                        <field name="product_id"/>
+                    </h2>
+                    <group col="2">
+                        <group colspan="1">
+                            <field name="order_id"/>
+                            <field name="order_partner_id"/>
+                            <field name="salesman_id"/>
+                            <field name="product_category_id"/>
+                            <field name="company_id"/>
+                            <field name="date_active"/>
+                            <field name="end_date"/>
+                            <field name="state"/>
+                            <field name="invoice_status"/>
+                            <field name="register_type"/>
+                            <field name="fully_paid"/>
+                            <field name="time"/>
+                            <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                            <field name="license"/>
+                        </group>
+                        <group colspan="1">
+                            <field name="register_untaxed_price" sum="Total Register Untaxed"/>
+                            <field name="renew_untaxed_price" sum="Total Renew Untaxed"/>
+                            <field name="register_taxed_price" sum="Total Register Tax"/>
+                            <field name="renew_taxed_price" sum="Total Renew Tax"/>
+                            <field name="tax_id" widget="many2many_tags"/>
+                            <field name="up_price"/>
+                            <field name="up_price_wt"/>
+                            <field name="price_reduce"/>
+                            <field name="price_tax"/>
+                            <field name="price_reduce_taxexcl"/>
+                            <field name="price_reduce_taxinc"/>
+                            <field name="price_total"/>
+                            <field name="price_subtotal"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Invoice Lines" name="invoice_lines">
+                            <field name="invoice_lines" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="name">Sale Order Lines</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" default_order='date_order asc, order_partner_id asc, product_name asc'>
+                <field name="product_id" invisible="1"/>
+                <field name="order_id"/>
+                <field name="order_partner_id"/>
+                <field name="register_type"/>
+                <field name="product_category_id"/>
+                <field name="product_id"/>
+                <field name="salesman_id"/>
+                <field name="team_id"/>
+                <field name="time"/>
+                <field name="license"/>
+                <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                <field name="register_untaxed_price" sum="Total Register Untaxed"/>
+                <field name="renew_untaxed_price" sum="Total Renew Untaxed"/>
+                <field name="register_taxed_price" sum="Total Register Tax"/>
+                <field name="renew_taxed_price" sum="Total Renew Tax"/>
+                <field name="tax_id" widget="many2many_tags"/>
+                <field name="discount"/>
+                <field name="service_status"/>
+                <field name="date_active"/>
+                <field name="price_subtotal" widget="monetary" sum="Total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter_inherit" model="ir.ui.view">
+        <field name="name">mb.sale.order.line.select.inherit</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='salesman_id']" position="after">
+                <filter string="Not assign" name="no_assign" domain="[('salesman_id', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_order_lines" model="ir.actions.act_window">
+        <field name="name">Sale Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="matbao_support.view_sale_order_form_inherit_inherit" model="ir.ui.view">
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

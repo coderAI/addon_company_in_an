@@ -1,0 +1,36 @@
+<odoo>
+    <record id="mb_sale_order_receipt_from" model="ir.ui.view">
+        <field name="name">Print or Send mail Receipt</field>
+        <field name="model">sale.order.receipt.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <h2 style="margin-left: 20px">Do you want to print Receipt or send receipt to customer via mail?</h2>
+                <sheet>
+                    <group>
+                        <field name="print_selection"/>
+                    </group>
+                    <div attrs="{'invisible': [('print_selection', '=', 'receipt')]}">
+                        <label for="send_mail_receipt_a4" string="If selected, system'll sent mail to customer" style="color:red;"/>
+                        <field name="send_mail_receipt_a4" nolable="1"/>
+                    </div>
+                    <group>
+                        <field name="mail_to" attrs="{'invisible': [('send_mail_receipt_a4', '=', False)]}" placeholder="Comma-separated recipient addresses"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="handle_selection" type="object" class="btn-primary oe_read_only" string="Print / Send mail"/>
+                    <button string="Close" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="mb_sale_order_receipt_wizard" model="ir.actions.act_window">
+        <field name="name">Print or Send mail Receipt</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.receipt.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+		<field name="target">new</field>
+    </record>
+</odoo>

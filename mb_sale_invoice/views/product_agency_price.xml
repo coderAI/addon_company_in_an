@@ -1,0 +1,41 @@
+<odoo>
+    <record id="agency_price_search" model="ir.ui.view">
+        <field name="name">Agency Price</field>
+        <field name="model">product.agency.price</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="categ_id"/>
+                <field name="level_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="agency_price_tree" model="ir.ui.view">
+        <field name="name">Agency Price</field>
+        <field name="model">product.agency.price</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="categ_id" invisible="1"/>
+                <field name="code" invisible="1"/>
+                <field name="erm_code" invisible="1"/>
+                <field name="level_id" options="{'no_create_edit': True, 'no_open': True}"/>
+                <field name="setup_price_vendor"/>
+                <field name="setup_price_mb"/>
+                <field name="renew_price_vendor"/>
+                <field name="renew_price_mb"/>
+                <field name="transfer_price_mb"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="agency_price_action" model="ir.actions.act_window">
+        <field name="name">Agency Price</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.agency.price</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="agency_price_tree"/>
+        <field name="search_view_id" ref="agency_price_search"/>
+        <field name="domain">[('categ_id','=',active_id)]</field>
+    </record>
+</odoo>

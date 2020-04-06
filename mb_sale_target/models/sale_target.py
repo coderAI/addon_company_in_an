@@ -12,9 +12,9 @@ _logger = logging.getLogger(__name__)
 class sale_target(models.Model):
     _name = "sale.target"
 
-    team_id = fields.Many2one('crm.team', String='Team Name')
+    team_id = fields.Many2one('crm.team', String='Sales Team')
     user_id = fields.Many2one('res.users', String='Saleperson')
-    company_id = fields.Many2one('res.company', String='Saleperson')
+    company_id = fields.Many2one('res.company', String='Company Name')
     date_from = fields.Date(string="Date", default=lambda *a: time.strftime('%Y-%m-01'))
 
 

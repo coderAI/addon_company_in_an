@@ -1,0 +1,4 @@
+<odoo>
+    <menuitem id="menu_sale_order_line" parent="sales_team.menu_sales" action="action_order_lines" string="Sale Order Lines" sequence="12" groups="base.group_system,sales_team.group_sale_manager"/>
+    <menuitem id="menu_phone_history" parent="sales_team.menu_sales" action="action_phone_history" string="Phone History" sequence="100" groups="base.group_system"/>
+</odoo>

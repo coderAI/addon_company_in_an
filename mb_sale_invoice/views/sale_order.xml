@@ -1,0 +1,34 @@
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.print_receipt</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_quotation_send']" position="after">
+                <button name="%(mb_sale_invoice.mb_sale_order_receipt_wizard)d" string="Print Receipt" type="action" attrs="{'invisible':[('state', 'not in', ['sale', 'paid', 'completed'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mb_view_order_form_inherit" model="ir.ui.view">
+        <field name="name">mb_sale.order.form.print_receipt</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="mb_account_report.mb_sale_order_form_inherited"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='print_receipt_report']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_mb_sale_order_form_inherited" model="ir.ui.view">
+        <field name="name">mb_sale.order.form.print_receipt_2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="mb_fix_milestone.view_mb_sale_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='sent_to_collection']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

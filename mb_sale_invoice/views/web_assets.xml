@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_one2many_selectable" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/mb_sale_invoice/static/src/js/audio_field.js"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

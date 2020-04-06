@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_receipt_wizard_user,sale_order_receipt_wizard user,model_sale_order_receipt_wizard,,1,1,1,1
+access_product_agency_price_user,product_agency_price user,model_product_agency_price,,1,1,1,1
+access_sale_phone_history_user,sale_phone_history user,model_sale_phone_history,,1,1,1,1

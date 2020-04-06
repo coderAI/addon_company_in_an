@@ -1,0 +1,12 @@
+<odoo>
+    <record id="mb_sale_contract_form_inherit" model="ir.ui.view">
+		    <field name="name">mb.sale.contract.form.inherit</field>
+		    <field name="model">mb.sale.contract</field>
+		    <field name="inherit_id" ref="mb_contract_custom.mb_view_sale_contract_form_inherit1"/>
+		    <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_approve']" position="attributes">
+                    <attribute name="groups">mb_sale_contract.group_operator_mb_sale_contract</attribute>
+                </xpath>
+            </field>
+    </record>
+</odoo>

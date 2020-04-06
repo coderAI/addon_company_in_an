@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_product_pivot_inherit" model="ir.ui.view">
+        <field name="name">sale.report.pivot.inherit</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="mb_fix_milestone2.mb_view_sale_report_pivot_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="up_price_total"]' position='after'>
+                <field name="untaxed_revenue" type="measure"/>
+                <field name="revenue" type="measure"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

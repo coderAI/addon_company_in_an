@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AudioField" >
+        <span class="o_form_field">
+            <audio controls="controls" preload="metadata">
+                <source src="url_field" type="audio/mpeg"/>
+            </audio>
+        </span>
+    </t>
+</templates>

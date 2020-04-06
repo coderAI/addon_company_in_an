@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+            <record id="view_product_category_form_inherit" model="ir.ui.view">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="mb_sale_invoice.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='minimum_register_time']" position="after">
+                    <field name="maximum_register_time"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

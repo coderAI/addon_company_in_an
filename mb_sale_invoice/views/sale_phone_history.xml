@@ -1,0 +1,71 @@
+<odoo>
+    <record id="phone_history_form" model="ir.ui.view">
+        <field name="name">Phone History Form</field>
+        <field name="model">sale.phone.history</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="stt"/>
+                            <field name="key"/>
+                            <field name="call_date"/>
+                            <field name="phone_from"/>
+                            <field name="ext_phone"/>
+                            <field name="phone_to"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="call_time"/>
+                            <field name="call_real_time"/>
+                            <field name="link_file" invisible="1"/>
+                            <field name="link_file_in_mb" widget="char_audio_field"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="phone_history_tree" model="ir.ui.view">
+        <field name="name">Phone History Tree</field>
+        <field name="model">sale.phone.history</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="stt"/>
+                <field name="key"/>
+                <field name="call_date"/>
+                <field name="phone_from"/>
+                <field name="ext_phone"/>
+                <field name="phone_to"/>
+                <field name="status"/>
+                <field name="call_time"/>
+                <field name="call_real_time"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="phone_history_search" model="ir.ui.view">
+        <field name="name">Phone History Search</field>
+        <field name="model">sale.phone.history</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="stt"/>
+                <field name="key"/>
+                <field name="call_date"/>
+                <field name="phone_from"/>
+                <field name="ext_phone"/>
+                <field name="phone_to"/>
+                <field name="status"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_phone_history" model="ir.actions.act_window">
+        <field name="name">Phone History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.phone.history</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

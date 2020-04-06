@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="account_receipt_template_report">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                <div class="page" style="font-size:15px;">
+                    <style type="text/css">
+                        .border-black {
+                            vertical-align:middle;
+                        }
+                    </style>
+                    <div class="row" style="height:50px; border: 2px solid white;">
+                        <div class="col-xs-7" style="padding: 0;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px;">
+                                <tr>
+                                    <td rowspan="8" width="5px" valign="top">
+                                        <img src='/mb_sale_invoice/static/src/img/logo.png' style="width: 19px; margin: 0 5px 0 20px;"/>
+                                    </td>
+                                    <td colspan="2" style="padding: 1.5px 0;">
+                                        <b>
+                                            <u>Trụ sở:</u>
+                                        </b>
+                                        Tầng 3, Tòa nhà Anna, CVPM Quang Trung, Quận 12, TP.HCM
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1.5px 0;" width="50%">ĐT: (028) 3622 9999</td>
+                                    <td style="padding: 1.5px 0;">Fax: (028) 3868 0083</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 1.5px 0;">
+                                        <b>
+                                            <u>VPKD TP.HCM:</u>
+                                        </b>o
+                                        Chung cư Carillon 171A Hoàng Hoa Thám, P.13, Q.Tân Bình, TP.HCM
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1.5px 0;">ĐT: (028) 3622 9999</td>
+                                    <td style="padding: 1.5px 0;">Fax: (028) 3842 6651</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding: 1.5px 0;">
+                                        <b>
+                                            <u>VPKD Hà Nội:</u>
+                                        </b>
+                                        Tầng 8, Tòa nhà 381 Đội Cấn, Ba Đình, Hà Nội
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1.5px 0;">ĐT: (028) 3512 3456</td>
+                                    <td style="padding: 1.5px 0;">Fax: (028) 3812 2689</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-5 text-center" style="font-size:12px; padding: 0">
+                            <p style="margin: 2px 0; font-size:15px">
+                                <b>
+                                    <u>
+                                        Trung tâm hỗ trợ khách hàng
+                                    </u>
+                                </b>
+                            </p>
+                            <p style="margin: 2px 0; word-spacing: -1px;">
+                                54 Đường C1, Phường 13, Quận Tân Bình, TP.HCM
+                            </p>
+                            <p style="margin: 2px 0;">
+                                ĐT: 1900 1830 - (028) 3622 9999
+                            </p>
+                            <p style="margin: 2px 0;">
+                                Fax: (028) 3842 6651
+                            </p>
+                            <p style="margin: 2px 0;">
+                                Email: Support@matbao.com
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h1 class="text-center" style="margin: 25px 0 5px"><strong>PHIẾU THU</strong></h1>
+                        <p class="text-center" style="margin: 2px 0;">
+                            Mã phiếu: <span t-esc="o.name"/>
+                            (ngày <span style="padding: 0 2.5px" t-esc="datetime.datetime.now().day"/>
+                            tháng <span style="padding: 0 2.5px" t-esc="datetime.datetime.now().month"/>
+                            năm <span style="padding: 0 2.5px;" t-esc="datetime.datetime.now().year"/>)
+                        </p>
+                    </div>
+                    <p style="margin: 8px 0; font-size:18px;">
+                        <b>Khách hàng:</b> <span t-esc="o.partner_id.name"/>
+                    </p>
+                    <p style="margin: 8px 0; font-size:18px;">
+                        <b>Địa chỉ:</b> <span t-esc="o.partner_id.street"/>
+                    </p>
+                    <t t-set="count" t-value="0"/>
+                    <table class="table table-bordered" width="100%">
+                        <tr>
+                            <th class="col-xs-1 text-center border-black">STT</th>
+                            <th class="col-xs-7 text-center border-black">Nội dung thu</th>
+                            <th class="col-xs-4 text-center border-black">Số tiền (VND)</th>
+                        </tr>
+                        <tr t-foreach="o.order_line" t-as="line">
+                            <t t-set="count" t-value="count+1"/>
+                            <td class="text-center border-black" style="padding:3px"><span t-esc="count"/></td>
+                            <td class="border-black">
+                                <t t-if="line.register_type == 'register'">
+                                    <span>Đăng ký</span>
+                                </t>
+                                <t t-if="line.register_type == 'renew'">
+                                    <span>Gia hạn</span>
+                                </t>
+                                <t t-if="line.register_type == 'transfer'">
+                                    <span>Chuyển đổi</span>
+                                </t>
+                                <span t-esc="line.product_category_id.name"/>
+                                <span t-esc="line.product_id.name"/>
+                                <span t-esc="line.time"/>
+                                <span t-esc="line.product_uom.name"/>
+                            </td>
+                            <td class="text-right border-black">
+                                <span style="padding-right: 15px;" t-esc="o.convert_type(line.price_subtotal)"/>
+                            </td>
+                        </tr>
+                        <tr t-if="o.amount_tax > 0">
+                            <t t-set="count" t-value="count+1"/>
+                            <td class="text-center border-black" style="padding:3px">
+                                <span t-esc="count"/>
+                            </td>
+                            <td class="border-black">
+                                VAT
+                            </td>
+                            <td class="text-right border-black">
+                                <span style="padding-right: 15px;" t-esc="o.convert_type(o.amount_tax)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-right border-black" style="padding-right: 20px">
+                                TỔNG THANH TOÁN
+                            </td>
+                            <td class="text-right border-black">
+                                <span style="padding-right: 15px;" t-esc="o.convert_type(o.amount_total)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border-black">
+                                Số tiền bằng chữ: <t t-esc="o.convert_money_to_string(o.amount_total)"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="border-black">
+                                Kèm theo:
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-xs-3 text-center" style="padding: 0;">
+                            <b>Nhân viên lập phiếu</b>
+                            <br/><br/><br/><br/><br/><br/><br/>
+                            <span t-field="o.user_id.name"/>
+                        </div>
+                        <div class="col-xs-3 text-center" style="padding: 0;">
+                            <b>Duyệt chứng từ</b>
+                        </div>
+                        <div class="col-xs-3 text-center" style="padding: 0;">
+                            <b>Thủ quỹ</b>
+                        </div>
+                        <div class="col-xs-3 text-center" style="padding: 0;">
+                            <b>Khách hàng</b>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <div class="footer" style="font-size:11px;">
+                <p class="text-center" style="border-top: 1px solid black; margin: 2px 0; padding-top: 5px">
+                    <i>Phiếu thu này không có giá trị thay thế hóa đơn GTGT. Khách hàng cần đối chiếu với hóa đơn GTGT khi nhận phiếu. In theo mẫu hồ sơ số 013/MB-DOC</i>
+                </p>
+                <p class="text-center">
+                    <i>Bạn đồng ý với Thỏa thuận sử dụng của chúng tôi được nêu tại địa chỉ <a href="https://www.matbao.net/Thong-tin/Thoa-thuan-su-dung.html">https://www.matbao.net/Thong-tin/Thoa-thuan-su-dung.html</a></i>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <record id="mb_sale_invoice.paperformat_portrait_mb" model="report.paperformat">
+        <field name="name">Account Receipt Report Portrait A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_line" eval="False"/>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="report_account_receipt"
+            string="Phieu thu A4"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="mb_sale_invoice.account_receipt_template_report"
+            name="mb_sale_invoice.account_receipt_template_report"
+            menu="False"/>
+
+    <record id="report_account_receipt" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="mb_sale_invoice.paperformat_portrait_mb"/>
+    </record>
+</odoo>

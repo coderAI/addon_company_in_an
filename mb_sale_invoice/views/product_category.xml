@@ -1,0 +1,132 @@
+<odoo>
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+            <form class="oe_form_configuration">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="%(agency_price_action)d"
+                            icon="fa-money" type="action" context="{'default_categ_id': active_id}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text"> Agency Price</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button"
+                            name="%(product.product_template_action_all)d"
+                            icon="fa-th-list"
+                            type="action"
+                            context="{'search_default_categ_id': active_id}">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="product_count"/></span>
+                                <span class="o_stat_text"> Products</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Category name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="e.g. Lamps"/></h1>
+                    </div>
+                    <group name="header">
+                        <group>
+                            <field name="code" string="Code"/>
+                            <field name="erm_code"/>
+                            <field name="uom_id"/>
+                        </group>
+                        <group>
+                            <field name="parent_id"/>
+                            <field name="service_sequence_id"/>
+                            <field name="sold"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Price" name="price">
+                            <group>
+                                <group>
+                                    <field name="setup_price_vendor"/>
+                                    <field name="setup_price_mb"/>
+                                    <field name="renew_price_vendor"/>
+                                    <field name="renew_price_mb"/>
+                                    <field name="transfer_price_mb"/>
+                                </group>
+                                <group>
+                                    <field name="setup_price_vendor_tax_id"/>
+                                    <field name="setup_price_mb_tax_id"/>
+                                    <field name="renew_price_vendor_tax_id"/>
+                                    <field name="renew_price_mb_tax_id"/>
+                                    <field name="transfer_price_mb_tax_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Accounting" name="accounting">
+                            <group>
+                                <group>
+                                    <field name="property_account_income_categ_id" string="Register Taxed Income Account"/>
+                                    <field name="property_account_expense_categ_id" string="Register Taxed Expense Account"/>
+                                    <field name="property_register_untaxed_account_income_categ_id"/>
+                                    <field name="property_register_untaxed_account_expense_categ_id"/>
+                                    <field name="register_analytic_income_acc_id"/>
+                                    <field name="register_analytic_expense_acc_id"/>
+                                </group>
+                                <group>
+                                    <field name="property_renew_account_income_categ_id"/>
+                                    <field name="property_renew_account_expense_categ_id"/>
+                                    <field name="property_renew_untaxed_account_income_categ_id"/>
+                                    <field name="property_renew_untaxed_account_expense_categ_id"/>
+                                    <field name="renew_analytic_income_account_id"/>
+                                    <field name="renew_analytic_expense_account_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Config" name="config">
+                            <group>
+                                <group>
+                                    <field name="minimum_register_time"/>
+                                    <field name="billing_cycle"/>
+                                    <field name="renewal_period"/>
+                                    <field name="allow_ugrade"/>
+                                    <field name="mb_product_category_ids" widget="many2many_tags" attrs="{'invisible': [('allow_ugrade','=',False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="to_be_renewed"/>
+                                    <field name="is_addons"/>
+                                    <field name="manual_active"/>
+                                    <field name="auto_active_po"/>
+                                    <field name="require_contract"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Other" name="other">
+                            <group>
+                                <group>
+                                    <field name="type"/>
+                                    <field name="property_cost_method" groups="stock_account.group_inventory_valuation"/>
+                                    <field name="property_valuation"/>
+                                </group>
+                                <group>
+                                    <field name="property_stock_account_input_categ_id" domain="[('deprecated', '=', False)]" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}" />
+                                    <field name="property_stock_account_output_categ_id" domain="[('deprecated', '=', False)]" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}" />
+                                    <field name="property_stock_valuation_account_id" domain="[('deprecated', '=', False)]" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}"/>
+                                    <field name="property_stock_journal"/>
+                                </group>
+                                <group string="Logistics">
+                                    <field name="route_ids" widget="many2many_tags"/>
+                                    <div colspan="2" attrs="{'invisible': [('parent_id', '=', False)]}">
+                                        The following routes will apply to the products in this category taking into account parent categories:
+                                        <field name="total_route_ids" nolabel="1" widget="many2many_tags"/>
+                                    </div>
+                                    <field name="removal_strategy_id" options="{'no_create': True}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

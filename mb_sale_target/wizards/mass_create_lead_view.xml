@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mass_create_lead_from" model="ir.ui.view">
+            <field name="name">Create Lead From Customer</field>
+            <field name="model">mass.create.lead</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <from>
+                    <header class="oe_fixed_top">
+                        <button name="btn_get_customer" string="Get Customer" type="object" class="oe_highlight"/>
+
+                        <button name="btn_create_lead" string="Create Lead" type="object"  class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <label for="product_qty" string="Service Quantity"/>
+                            <div>
+                                <div>
+                                    <field name="compare" class="oe_inline" required="1"/>
+                                    <field name="quantity" class="oe_inline" required="1"/>
+                                </div>
+                            </div>
+<!--                            <label for="date_from" string="From Date, To date :"/>-->
+<!--                            <div>-->
+<!--                                <field name="date_from" class="oe_inline"/>-->
+<!--                                - -->
+<!--                                <field name="date_to" class="oe_inline"/>-->
+<!--                            </div>-->
+                        </group>
+                        <notebook>
+                            <page string='Customer'>
+
+                                <field name="partner_ids" >
+                                    <tree string="Partners">
+                                        <field name="ref"/>
+                                        <field name="display_name"/>
+                                        <field name="company_type"/>
+                                        <field name="email"/>
+                                        <field name="phone"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <field name="description"/>
+                    </sheet>
+                </from>
+            </field>
+        </record>
+
+        <record id="action_mass_create_lead_wizard" model="ir.actions.act_window">
+            <field name="name">Create Lead From Customer</field>
+            <field name="res_model">mass.create.lead</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_mass_create_lead_from"/>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="mass_create_lead_menu" string ="Create Lead From Customer" parent="sales_team.menu_sales"
+                  groups="base.group_system,sales_team.group_sale_manager"
+                  sequence="10" action="action_mass_create_lead_wizard" />
+
+
+
+
+    </data>
+</odoo>
+

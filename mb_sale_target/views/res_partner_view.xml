@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="matbao_module.view_res_partner_form_inherit"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//field[@name='company_type']" position="after">
+                <field name="mb_verify_contract" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='indentify_number']" position="after">
+                <field name="vn_indentify_number_date"/>
+            </xpath>
+            <xpath expr="//button[@name='button_submit_to_operation']" position="after">
+<!--                 modifiers="{'invisible': [['mb_verify_contract', '=', true]]}"-->
+                <button name="button_verify_contract" string="Verify" type="object" class="oe_highlight"
+
+                        groups="mb_sale_contract.group_operator_mb_sale_contract"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

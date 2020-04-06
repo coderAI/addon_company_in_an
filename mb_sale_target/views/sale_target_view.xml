@@ -11,7 +11,7 @@
             <tree string="sale target">
                 <field name="user_id" string="Saleperson"/>
                 <field name="company_id" string="Company Name"/>
-                <field name="team_id" string="Team Name"/>
+                <field name="team_id" string="Sales Team"/>
                 <field name="date_from"/>
                 <field name="total_target"/>
             </tree>
@@ -26,9 +26,9 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="team_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" required="1" string="Team Name"/>
+                            <field name="team_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" required="1" string="Sales Team"/>
                             <field name="user_id" domain="[('sale_team_id','=',team_id)]" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" required="1" string="Saleperson"/>
-                            <field name="company_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" required="1" string="Saleperson"/>
+                            <field name="company_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" required="1" string="Compnay Name"/>
                         </group>
                         <group>
                             <field name="date_from" required="1"/>

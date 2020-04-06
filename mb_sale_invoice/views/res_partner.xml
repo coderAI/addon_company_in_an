@@ -1,0 +1,57 @@
+<odoo>
+    <record id='view_res_partner_form_inherit' model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="matbao_module.view_res_partner_form_inherit"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_submit_to_operation']" position="attributes">
+                <attribute name="states">draft,edited</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id='view_partner_form_inherit' model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lang']" position="after">
+                <field name="microsoft_customer_id"/>
+            </xpath>
+            <notebook>
+                <page name="call_history" string="Call History">
+                    <field name="phone_history_ids" nolabel="1" readonly="1">
+                        <tree create="false" edit="false">
+                            <field name="call_date"/>
+                            <field name="phone_from"/>
+                            <field name="phone_to"/>
+                            <field name="status"/>
+                            <field name="call_time"/>
+                            <field name="call_real_time"/>
+                        </tree>
+                        <form create="false" edit="false">
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="call_date"/>
+                                        <field name="phone_from"/>
+                                        <field name="ext_phone"/>
+                                        <field name="phone_to"/>
+                                    </group>
+                                    <group>
+                                        <field name="status"/>
+                                        <field name="call_time"/>
+                                        <field name="call_real_time"/>
+                                        <field name="link_file" invisible="1"/>
+                                        <field name="link_file_in_mb" widget="char_audio_field"/>
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

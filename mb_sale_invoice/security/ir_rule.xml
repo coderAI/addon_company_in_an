@@ -1,0 +1,5 @@
+<odoo>
+    <record id="mb_fix_milestone.rule_partner_user_state_wfa" model="ir.rule">
+        <field name="domain_force">[('state','in',('edited', 'waiting_for_approval', 'approved'))]</field>
+    </record>
+</odoo>
