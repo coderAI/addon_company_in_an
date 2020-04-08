@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+id_account_refund_all,account_refund_all,model_account_refund,,1,0,0,0
+id_account_refund_account_manager,account_refund_account_manager,model_account_refund,account.group_account_manager,1,1,1,1

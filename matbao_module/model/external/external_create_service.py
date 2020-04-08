@@ -994,6 +994,7 @@ class ExternalActiveService(models.AbstractModel):
                     '"customer_code"': '\"' + (service.customer_id.ref or '') + '\"',
                     '"customer_type"': '\"' + (service.customer_id.company_type or '') + '\"',
                     '"sub_email_1"': '\"' + (service.customer_id.sub_email_1 or '') + '\"',
+                    '"company_id"': '\"' + (str(service.customer_id.company_id.id) or '') + '\"',
                     '"customer"': '\"' + (service.customer_id.name or '') + '\"',
                     '"email"': '\"' + (service.customer_id.email or '') + '\"',
                     '"mobile"': '\"' + (service.customer_id.mobile or service.customer_id.phone or '') + '\"',
