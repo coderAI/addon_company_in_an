@@ -1,0 +1,128 @@
+    <odoo>
+  <data>
+     <report
+            id="report_sale_affiliate"
+            menu="False"
+            string="Quotation / Order"
+            model="chili.affiliate.report"
+            report_type="qweb-pdf"
+            file="chili.affiliate.report"
+            name="chili.affiliate.report"
+            attachment_use="False"
+        />
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="chili_affiliate_report.list">
+      <field name="name">chili_affiliate_report list</field>
+      <field name="model">chili_affiliate_report.chili_affiliate_report</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="chili_affiliate_report.action_window">
+      <field name="name">chili_affiliate_report window</field>
+      <field name="res_model">chili_affiliate_report.chili_affiliate_report</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="chili_affiliate_report.action_server">
+      <field name="name">chili_affiliate_report server</field>
+      <field name="model_id" ref="model_chili_affiliate_report_chili_affiliate_report"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="chili_affiliate_report" id="chili_affiliate_report.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="chili_affiliate_report.menu_1" parent="chili_affiliate_report.menu_root"/>
+    <menuitem name="Menu 2" id="chili_affiliate_report.menu_2" parent="chili_affiliate_report.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="chili_affiliate_report.menu_1_list" parent="chili_affiliate_report.menu_1"
+              action="chili_affiliate_report.action_window"/>
+    <menuitem name="Server to list" id="chili_affiliate_report" parent="chili_affiliate_report.menu_2"
+              action="chili_affiliate_report.action_server"/>
+    -->
+
+    <record id="view_affiliate_product_pivot" model="ir.ui.view">
+         <field name="name">chili.affiliate.report.pivot</field>
+         <field name="model">chili.affiliate.report</field>
+        <field name="arch" type="xml">
+             <pivot string="Sales Affiliate Analysis" disable_linking="True">
+                <field name="afu_id" type="row"/>
+                <field name="product_uom_qty" type="measure"/>
+                <field name="price_subtotal" type="measure"/>
+                <field name="price_total" type="measure"/>
+                <field name="aff_price_subtotal" type="measure"/>
+             </pivot>
+        </field>
+    </record>
+    <record id="view_affiliate_product_graph" model="ir.ui.view">
+         <field name="name">chili.affiliate.report.graph</field>
+         <field name="model">chili.affiliate.report</field>
+         <field name="arch" type="xml">
+             <graph string="Sales Analysis">
+
+                <field name="afu_id" type="row"/>
+                <field name="product_uom_qty" type="measure"/>
+                <field name="price_subtotal" type="measure"/>
+                <field name="price_total" type="measure"/>
+                <field name="aff_price_subtotal" type="measure"/>
+             </graph>
+         </field>
+    </record>
+
+    <record id="view_affiliate_product_search" model="ir.ui.view">
+        <field name="name">chili.affiliate.report.search</field>
+        <field name="model">chili.affiliate.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='Sales']" position="attributes">
+                <attribute name="domain">[('state','not in',('not_received', 'draft', 'cancel', 'sent', 'sale'))]</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='year']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='year']" position="before">
+                <filter string="This Month" name="this_month" domain="[('date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                <filter string="Last Month" domain="[('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%Y-%m-01')),('date','&lt;',time.strftime('%Y-%m-01'))]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_affiliate_order_report_all" model="ir.actions.act_window">
+        <field name="name">Sales Affiliate Analysis</field>
+        <field name="res_model">chili.affiliate.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="search_view_id" ref="view_affiliate_product_search"/>
+        <field name="context">{'search_default_this_month': 1, 'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+    <menuitem name="Sale Affiliate" action="action_affiliate_order_report_all" id="menu_affiliate_report_product_all" parent="chili_affiliate.chili_affiliate_report" sequence="11" />
+
+  </data>
+</odoo>

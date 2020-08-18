@@ -6,6 +6,7 @@
     'depends': [
         'product',
         'resource',
+        'mb_transaction',
         'mb_customer_promotion',
         'mb_change_order_processing',
         'mb_document_custom',

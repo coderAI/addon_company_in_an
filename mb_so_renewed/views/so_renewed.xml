@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="mb_view_so_renewed_tree" model="ir.ui.view">
+            <field name="name">mb.so.renewed.tree</field>
+            <field name="model">mb.so.renewed</field>
+            <field name="arch" type="xml">
+                <tree string="SO Renewed">
+                    <field name="date"/>
+                    <field name="days_to_renew"/>
+                    <field name="count"/>
+                    <field name="cus_count"/>
+                    <field name="order_count"/>
+                </tree>
+            </field>
+        </record>
+        <record id="mb_view_so_renewed_form" model="ir.ui.view">
+            <field name="name">mb.so.renewed.form</field>
+            <field name="model">mb.so.renewed</field>
+            <field name="arch" type="xml">
+                <form string="SO Renewed">
+                    <header>
+                        <button name="get_service" string="Get Services" type="object" class="btn-primary"/>
+                        <button name="check_order" string="Check Order" type="object" class="btn-primary"/>
+                        <button name="create_order_renewed" string="Create Renew Order" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group col="2">
+                            <group colspan="1">
+                                <field name="date" required="1" readonly="1"/>
+                                <field name="count" readonly="1"/>
+                            </group>
+                            <group colspan="1">
+                                <field name="days_to_renew" required="1"/>
+                                <field name="cus_count" readonly="1"/>
+                                <field name="order_count" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Services">
+                                <field name="service_line_ids">
+                                    <tree string="Service">
+                                        <field name="service_id"/>
+                                        <field name="customer_id"/>
+                                        <field name="product_id"/>
+                                        <field name="product_category_id"/>
+                                        <field name="end_date"/>
+                                        <field name="order_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mb_view_so_renewed" model="ir.actions.act_window">
+            <field name="name">Manage SO Renewed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mb.so.renewed</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create.
+                </p>
+            </field>
+        </record>
+        <menuitem id="mb_view_so_renewed_menu" parent="sales_team.menu_sales" action="action_mb_view_so_renewed" groups="sales_team.group_sale_manager"/>
+    </data>
+</odoo>

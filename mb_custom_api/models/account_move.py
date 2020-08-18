@@ -35,43 +35,55 @@ _logger = logging.getLogger(__name__)
 
 
 
+
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-
-    @api.model
-    def get_discount_amount(self, customer_code = 'MBxxxxxxx'):
-        code=200
-        messages='Successfully'
-        data= False
-        res_partner = self.env['res.partner'].search([('ref','=',customer_code)],limit=1)
-        company =  res_partner[0].company_id
-
+    def caculate_discount_amount(self,customer,so_id):
+        res_partner = self.env['res.partner'].search([('ref', '=', customer)], limit=1)
+        company = res_partner[0].company_id
+        messages = 'successfully'
         if company.account_journal_id:
             journal_id = company.account_journal_id.id
         else:
             messages = 'Do not have data journal in this company data'
 
         if company.account_receivable_id:
-            account_id =  company.account_receivable_id.id
+            account_id = company.account_receivable_id.id
         else:
             messages = 'Do not have data account id in this company data'
 
-
-        sql='''
-        SELECT sum(credit_cash_basis)-sum(debit_cash_basis) As sum_data from account_move_line aml
-            LEFT JOIN account_move am on aml.move_id = am.id
-            where aml.partner_id = %s
-                        and aml.journal_id = %s 
-                        
-                        and aml.company_id = %s
-                        
-                        and aml.account_id = %s
-                                        
-                        and am.state= 'posted'
-                        '''%(res_partner.id,journal_id,company.id,account_id)
+        sql = '''
+                SELECT  (SELECT COALESCE(
+						    (SELECT sum(credit_cash_basis) - sum(debit_cash_basis) As sum_data from account_move_line aml
+                                            LEFT JOIN account_move am on aml.move_id = am.id
+                                            where aml.partner_id = %s
+                                                        and aml.journal_id = %s 
+                                                        and aml.company_id = %s
+                                                        and aml.account_id = %s
+                                                        and am.state= 'posted')
+                                            ,0))                      
+                       -(SELECT COALESCE(
+												 (SELECT sum(amount_untaxed) As sum_data from sale_order so																		
+																		where so.id <> %s
+																		      and so.partner_id = %s   
+																			  and so.state in ('draft','sale'))
+												 
+												 ,0))
+                        ''' % (res_partner.id, journal_id, company.id, account_id,so_id, res_partner.id)
         logging.info(sql)
         self.env.cr.execute(sql)
         data = self.env.cr.fetchall()
-        res = {'code': code, 'messages':messages,'data':data[0][0] or 0}
+        data = data[0][0]
+
+        return data,messages
+
+    @api.model
+    def get_discount_amount(self, customer_code = 'MBxxxxxxx',so_id = -1232):
+        code=200
+        messages='Successfully'
+        data= False
+        data,messages = self.caculate_discount_amount(customer_code,so_id)
+
+        res = {'code': code, 'messages':messages,'data':data or 0}
         return json.dumps(res)

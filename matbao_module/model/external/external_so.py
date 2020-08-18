@@ -189,6 +189,8 @@ class ExternalSO(models.AbstractModel):
         order_lines = []
         line_num = 1
 
+        mbn_product_parent_id = {}
+
         required_arguments = [
             'register_type', 'categ_code', 'product_code', 'product_name',
             'qty', 'uom', 'reg_price_wot', 'reg_price_wt', 'reg_tax_amount',
@@ -305,6 +307,19 @@ class ExternalSO(models.AbstractModel):
                 }
                 product_ids = ProductProduct.create(new_product_vals)
 
+                if line.get('mbn_parent_id') == 0:
+                    mbn_product_parent_id.update({
+                        line.get('mbn_id'): product_ids
+                    })
+
+                if line.get('mbn_parent_id') and line.get('mbn_id'):
+                    if line.get('mbn_parent_id') == 0:
+                        pass
+
+                    else:
+
+                        parent_product = mbn_product_parent_id.get(line.get('mbn_parent_id'))
+
             # Create oder lines
             if product_ids and not error_msg:
                 new_line_vals = {
@@ -325,7 +340,6 @@ class ExternalSO(models.AbstractModel):
                     'company_id': line_vals['company_id'],
                     'reseller': line_vals['reseller'] or '',
                     'template': line_vals['template'] or '',
-
                     'product_uom': product_uom.id,
                 }
 
@@ -356,7 +370,7 @@ class ExternalSO(models.AbstractModel):
 
     @api.model
     def create_so(self, name, coupon, date_order, saleteam_code, order_type, customer, status, company_id, lines=[],
-                  mobile='', payment_method='', money_transfer=0, source=''):
+                  mobile='', payment_method='', money_transfer=0, source='',overdue = False):
         """
         TO DO:
             - Create New Sale Order and Customer in Odoo
@@ -453,9 +467,11 @@ class ExternalSO(models.AbstractModel):
                        'money_transfer': money_transfer or 0,
                        }
             so = SaleOrder.with_context(force_company=company_id).create(so_vals)
+
             so.write({
                 'original_subtotal': so.amount_untaxed,
                 'original_total': so.amount_total,
+                'overdue': overdue,
             })
             if so.state not in ('not_received', 'draft', 'cancel'):
                 so.order_line.write({'price_updated': True})
@@ -1114,6 +1130,7 @@ class ExternalSO(models.AbstractModel):
                 '"product_code"': '\"' + (line.product_id and line.product_id.default_code or '') + '\"',
                 '"product"': '\"' + (line.product_id and line.product_id.name or '') + '\"',
                 '"product_category_id"': line.product_category_id and line.product_category_id.id or '""',
+                '"maximum_register_time"': line.product_category_id and line.product_category_id.maximum_register_time or 0,
                 '"product_category_code"': '\"' + (
                             line.product_category_id and line.product_category_id.code or '') + '\"',
                 '"product_category"': '\"' + (

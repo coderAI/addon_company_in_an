@@ -196,7 +196,9 @@ class SaleOrderLine(models.Model):
     def create_service(self):
         SaleService = self.env['sale.service'].with_context(company_id=self.order_id.company_id.id, force_company=self.order_id.partner_id.company_id.id)
         for record in self:
-            reseller_id = self.env['reseller.customer'].search([('code', '=', record.reseller)], limit=1)
+            reseller_id = False
+            if record.reseller:
+                reseller_id = self.env['reseller.customer'].search([('code', '=', record.reseller)], limit=1)
             data = {
                 'customer_id': record.order_id.partner_id.id,
                 'product_category_id': record.product_category_id.id,

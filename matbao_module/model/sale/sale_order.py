@@ -27,8 +27,8 @@ from lxml import etree
 import urllib2
 import urllib
 import json
-
-
+import logging
+_logger = logging.getLogger(__name__)
 STATES = [('not_received', 'Not Received'),
           ('draft', 'Quotation'),
           ('sent', 'Sent'),
@@ -315,7 +315,7 @@ class SaleOrder(models.Model):
 
         doc = etree.XML(result['arch'])
 
-        except_fields = ['attachments', 'date_order', 'note', 'contract_note', 'tracking_number', 'vendor', 'payment_method_contract', 'req_inv_date']
+        except_fields = ['attachments', 'date_order','requests_cancel_user_id', 'note', 'contract_note', 'tracking_number', 'vendor', 'payment_method_contract', 'req_inv_date']
         except_specail_fields = ['partner_id']
 
         button_add_service = str(self.env.ref(
@@ -328,6 +328,7 @@ class SaleOrder(models.Model):
         if check_state:
             args = ('state', 'in', ('sale', 'completed', 'done', 'cancel', 'not_received'))
             args_specail = ('state', 'in', ('sale', 'paid', 'completed', 'done', 'cancel', 'not_received'))
+
             fields_to_readonly = doc.xpath("//field")
             for node in fields_to_readonly:
                 if node.get('name') == 'state' or \
@@ -498,6 +499,120 @@ class SaleOrder(models.Model):
                 Fist= self._create_invoice_lines(i.get('invoice_line'), create_i, Fist)
 
         invoice.compute_taxes()
+        invoices = self.env['account.invoice'].browse(invoice_ids)
+        for inv in invoices.filtered(lambda i: i.state == 'draft'):
+            for line in inv.invoice_line_ids.filtered(lambda l: l.register_type == 'upgrade'):
+                # if not line.invoice_line_tax_ids:
+                #     continue
+                if line.mapped('sale_line_ids') and line.mapped('sale_line_ids')[0].refund_amount <= 0:
+                    continue
+                other_lines = inv.invoice_line_ids.filtered(lambda l: l.register_type == 'renew')
+                other_lines_update = inv.invoice_line_ids.filtered(lambda l: l.register_type == 'upgrade')
+                _logger.info("---------------------------------------")
+                _logger.info("---------------------------------------")
+                _logger.info("---------------------------------------")
+                _logger.info("---------------------------------------")
+                _logger.info(other_lines_update)
+                _logger.info(other_lines_update)
+                _logger.info(other_lines_update.product_id)
+                _logger.info(other_lines)
+                _logger.info(other_lines.mapped('product_id'))
+                _logger.info(line)
+                _logger.info(line.product_id)
+                #
+                # if other_lines_update:
+                #     line.write({
+                #         # 'price_unit': order_line.renew_taxed_price + order_line.up_price + order_line.refund_amount,
+                #         'product_category_id': other_lines_update.product_category_id and
+                #                                other_lines_update.product_category_id.id or False,
+                #         'account_id': other_lines_update.product_category_id.property_renew_account_income_categ_id and
+                #                       other_lines_update.product_category_id.property_renew_account_income_categ_id.id,
+                #         'account_analytic_id': other_lines_update.product_category_id.renew_analytic_income_account_id and
+                #                                other_lines_update.product_category_id.renew_analytic_income_account_id.id
+                #     })
+                if not other_lines or line.product_id not in other_lines.mapped('product_id'):
+                    order_line = line.mapped('sale_line_ids')
+                    if not order_line:
+                        order_line = line.invoice_id.invoice_line_ids.mapped('sale_line_ids').filtered(
+                            lambda l: l.register_type == 'upgrade' and l.product_id == line.product_id)
+                    # line.price_unit = order_line.price_new_category + order_line.up_price
+                    _logger.info("---------------------------------------")
+                    _logger.info("---------------------------------------")
+                    _logger.info("---------------------------------------")
+                    _logger.info("---------------------------------------")
+                    _logger.info(order_line)
+                    _logger.info(order_line.product_category_id)
+                    line.write({
+                        # 'price_unit': order_line.renew_taxed_price + order_line.up_price + order_line.refund_amount,
+                        'product_category_id': order_line.product_category_id and
+                                               order_line.product_category_id.id or False,
+                        'account_id': order_line.product_category_id.property_renew_account_income_categ_id and
+                                      order_line.product_category_id.property_renew_account_income_categ_id.id,
+                        'account_analytic_id': order_line.product_category_id.renew_analytic_income_account_id and
+                                               order_line.product_category_id.renew_analytic_income_account_id.id
+                    })
+                    if order_line.promotion_back_amount:
+                        company_so = inv.company_id
+
+                        sale_order_line_data = self.sudo().env['sale.order.line'].search(
+                            [('order_partner_id', '=', order_line.order_partner_id.id),
+                             ('product_id', '=', order_line.product_id.id),
+                             ('service_status', '=', 'done'),
+                             ('fully_paid', '=', True),
+                             ], order='create_date DESC', limit=1)
+                        if sale_order_line_data.id:
+                            invoice_line_tax_ids = order_line.tax_id and [(6, 0, [order_line.tax_id.id])] or []
+                        else:
+                            invoice_line_tax_ids = []
+
+                        self.env['account.invoice.line'].create(vals={
+                            'origin': order_line.order_id.name,
+                            'invoice_id': inv.id,
+                            'register_type': 'renew',
+                            'product_id': company_so.product_id and company_so.product_id.id,
+                            'product_category_id': company_so.product_id and company_so.product_id.categ_id and
+                                                   company_so.product_id.categ_id.id or False,
+                            'quantity': 1,
+                            'time': 1,
+                            'uom_id': company_so.product_id and company_so.product_id.uom_id and
+                                      company_so.product_id.uom_id.id or False,
+                            'price_unit': order_line.promotion_back_amount,
+
+                            'invoice_line_tax_ids': invoice_line_tax_ids,
+
+                            'name': company_so.product_id and company_so.product_id.partner_ref or '',
+                            'account_id': 147,
+                            'company_id': inv.company_id.id,
+
+                        })
+
+                    if order_line.refund_amount:
+                        new_line = self.env['account.invoice.line'].create({
+                            'origin': order_line.order_id.name,
+                            'invoice_id': inv.id,
+                            'register_type': 'renew',
+                            'product_id': line.product_id and line.product_id.id,
+                            # 'product_category_id': order_line.old_category_id and order_line.old_category_id.id,
+                            'product_category_id': order_line.product_id and order_line.product_id.categ_id and
+                                                   order_line.product_id.categ_id.id or False,
+                            'quantity': 1,
+                            'time': 1,
+                            'uom_id': line.product_id and line.product_id.uom_id.id or False,
+                            'price_unit': order_line.refund_amount * -1,
+                            'name': line.product_id and line.product_id.partner_ref or '',
+                            'account_id': order_line.product_id.categ_id.property_renew_account_income_categ_id
+                                          and order_line.product_id.categ_id.property_renew_account_income_categ_id.id,
+                            'invoice_line_tax_ids': order_line.tax_id and [(6, 0, [order_line.tax_id.id])] or [],
+                            'account_analytic_id': order_line.product_id.categ_id.renew_analytic_income_account_id and
+                                                   order_line.product_id.categ_id.renew_analytic_income_account_id.id,
+                            'company_id': inv.company_id.id
+                        })
+                        new_line.write({
+                            'account_id': order_line.product_id.categ_id.property_renew_account_income_categ_id and
+                                          order_line.product_id.categ_id.property_renew_account_income_categ_id.id,
+                            'account_analytic_id': order_line.product_id.categ_id.renew_analytic_income_account_id and
+                                                   order_line.product_id.categ_id.renew_analytic_income_account_id.id
+                        })
         return invoice_ids
 
     @api.multi

@@ -45,6 +45,28 @@ class ProductProduct(models.Model):
             'res_id': self.product_tmpl_id.id
         }
 
+    @api.model
+    def check_domain_running(self,domain):
+        data='false'
+        res={'"code"': 200, '"messages"': '"Successfully"'}
+
+        product_category_obj = self.env['product.category']
+        sale_serviec_obj = self.env['sale.service']
+        product_category_data = product_category_obj.sudo().search([('name', '=', NAME)], limit=1)
+        if product_category_data.id:
+            product_category_list=[]
+            product_category_list_first = product_category_obj.sudo().search([('parent_id', '=', product_category_data.id)]).ids
+            product_category_list_second = product_category_obj.sudo().search([('parent_id','in', product_category_list_first)]).ids
+            product_category_list.extend(product_category_list_first)
+            product_category_list.extend(product_category_list_second)
+            product_category_list.append(product_category_data.id)
+            product_data = self.sudo().search([('name', '=', domain),('categ_id','in',product_category_list)], limit=1)
+            if product_data.id:
+                sale_serviec_list = sale_serviec_obj.search([('product_id', '=', product_data.id),('status','=','active')], limit=1)
+                if sale_serviec_list.id:
+                    data = 'true'
+        res.update({'"data"':data})
+        return res
 
     @api.model
     def check_domain_sale(self,domain):
@@ -261,6 +283,19 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.model
+    def check_ready_payment(self, so_id):
+        code = 200
+        messages = 'Successfully'
+        so = self.browse(so_id)
+        for so_item in so:
+            for i_inv in so_item.invoice_ids:
+                if so_item.amount_total != i_inv.amount_total and i_inv.state != 'cancel':
+                    code = 304
+        res = {'code': code, 'messages': messages}
+        return json.dumps(res)
+
+
+    @api.model
     def cancel_so_agency(self, so_ids=[]):
         code = 200
         logging.info(so_ids)
@@ -277,11 +312,62 @@ class SaleOrder(models.Model):
 
 
     @api.model
+    def cancel_so_person(self, so_ids=[]):
+        code = 200
+        logging.info(so_ids)
+        messages = 'Successfully'
+        user_cancel_so = 1
+        date_cancel_so = datetime.now()
+        not_update = False
+        for so_id in so_ids:
+            order_id = self.browse(so_id)
+            if order_id.type != 'id':
+                code=304
+                not_update = True
+            if order_id.temp_approve:
+                code=302
+                not_update = True
+            if order_id.invoice_ids:
+                for inv in order_id.invoice_ids:
+                    if inv.state not in ('draft','cancel'):
+                        code=303
+                        not_update = True
+            if  order_id.contract_id and order_id.contract_id.state not in ('new','cancel'):
+                code=301
+                not_update = True
+
+            if not_update:
+                messages = order_id.name
+                break
+
+
+        if not_update:
+            pass
+
+        else:
+            for so_id in so_ids:
+                order_id = self.browse(so_id)
+                order_id.date_cancel_so = date_cancel_so
+                order_id.user_cancel_so = user_cancel_so
+                order_id.action_cancel()
+        res = {'code': code, 'messages': messages}
+        return json.dumps(res)
+
+
+    @api.model
     def apply_coupon_text(self, so_id,coupon_text=''):
         code = 200
         messages = 'Successfully'
         so = self.browse(so_id)
+        if so.state in ('paid','done','completed'):
+            res = {'code': code, 'messages': 'This sale order can not using cuopon'}
+            return json.dumps(res)
         so.coupon = coupon_text
+        so.invoice_ids.filtered(lambda inv: inv.state in ('draft', 'cancel')).unlink()
+        so.update_price_by_odoo()
+        if so.state != 'sale':
+            so.action_confirm()
+        so.with_context(force_company=so.partner_id.company_id.id).action_invoice_create()
         res = {'code': code, 'messages': messages}
         return json.dumps(res)
 
@@ -431,23 +517,30 @@ class SaleOrder(models.Model):
     def check_cannot_renew_product(self, so_id):
         code = 200
         messages = 'Successfully'
-        data=''
+        product_code=''
+        time=0.0
+
         pp_obj = self.env['product.product']
         ss_obj = self.env['sale.service']
 
         for i_so in self.browse(so_id):
-            if data == True:
-                break
             for i_soline in i_so.order_line:
                 if i_soline.product_id:
-                    if i_soline.product_id.categ_id.can_be_renew:
-                        for i_ss in ss_obj.search([('product_id','=',i_soline.product_id.id)]):
-                            if i_ss.is_stop:
-                                if i_ss.is_stop ==True:
-                                    data = i_soline.product_id.default_code
-                    else:
-                        data = i_soline.product_id.default_code
-        res = {'code': code, 'messages': messages, 'data':data}
+                    if i_soline.product_id.categ_id.maximum_register_time != 0.0 and \
+                            i_soline.time > i_soline.product_id.categ_id.maximum_register_time:
+                        product_code = i_soline.product_id.default_code
+                        time = i_soline.product_id.categ_id.maximum_register_time
+                    elif i_soline.register_type == 'renew':
+                        if i_soline.product_id.categ_id.can_be_renew:
+                            for i_ss in ss_obj.search([('product_id','=',i_soline.product_id.id)]):
+                                if i_ss.is_stop:
+                                    if i_ss.is_stop == True:
+                                        product_code = i_soline.product_id.default_code
+
+                    if product_code != '':
+                        break
+        res = {'code': code, 'messages': messages, 'data':{'product_code':product_code,
+                                                           'time':time}}
         return json.dumps(res)
 
 

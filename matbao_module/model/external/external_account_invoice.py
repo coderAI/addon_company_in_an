@@ -302,6 +302,29 @@ class ExternalAccountPayment(models.AbstractModel):
             return {'"code"': 0, '"msg"': '"Get data error: %s"' % (e.message or repr(e))}
 
     @api.model
+    def get_move_line_check_mb(self, id,ref):
+        AccountMoveLine = self.env['account.move.line']
+        if not id:
+            return {'"code"': 0, '"msg"': '"ID could be not empty"'}
+        move_line_id = AccountMoveLine.browse(id)
+        try:
+            if move_line_id.partner_id.ref == ref:
+                data = [{
+                    '"id"': move_line_id.id,
+                    '"journal"': '\"' + (move_line_id.move_id and move_line_id.move_id.name or '') + '\"',
+                    '"debit"': move_line_id.debit or 0,
+                    '"credit"': move_line_id.credit or 0,
+                    '"date"': '\"' + (move_line_id.move_id and move_line_id.move_id.date or '') + '\"',
+                    '"description"': '\"' + (move_line_id.name or '') + '\"',
+                    '"order_name"': '\"' + (move_line_id.invoice_id and move_line_id.invoice_id.origin or '') + '\"'
+                }]
+                return {'"code"': 1, '"msg"': '"Successfully"', '"data"': data}
+            else:
+                return {'"code"': 0, '"msg"': '"ID could be not empty"'}
+        except Exception as e:
+            return {'"code"': 0, '"msg"': '"Get data error: %s"' % (e.message or repr(e))}
+
+    @api.model
     def get_transaction(self, code):
         res = {'"code"': 0, '"msg"': '', '"data"': []}
         ResPartner = self.env['res.partner']

@@ -19,7 +19,7 @@
 ##############################################################################
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-
+from odoo.exceptions import Warning
 
 class BankTransaction(models.Model):
     _name = 'bank.transaction'

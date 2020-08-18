@@ -240,6 +240,29 @@ class HelpdeskTicket(models.Model):
         return json.dumps(res)
 
 
+    @api.model
+    def create_ticket_full_data(self,data):
+        messages = 'Successful'
+        code=200
+        if 'tag_ids' in data.keys():
+            data.update({
+                'tag_ids':[(6,0,data.get('tag_ids'))]
+            })
+        ticket_creaeted = self.create(data)
+        if ticket_creaeted:
+            ticket_creaeted.write({'display': False,})
+            ticket_id =ticket_creaeted.id
+
+            data={
+                'ticket_id':ticket_id
+            }
+        else:
+            code = 401
+            messages = 'Error service code can not map data'
+
+        res = {'code': code, 'messages': messages, 'data': data}
+        return json.dumps(res)
+
 
     @api.model
     def create_ticket_by_smart_api(self,customer_code='',id_ticket_type=225,service_code='',description=''):

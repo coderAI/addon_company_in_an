@@ -33,6 +33,37 @@ FIELDS_PRODUCT_CATEGORY_DATA= ['id','name','reference','ip_hosting','ip_email','
 import logging
 _logger = logging.getLogger(__name__)
 
+class bank_transaction(models.Model):
+    _inherit = 'bank.transaction'
+
+    account_name = fields.Char(string='Account Name')
+    account_number = fields.Char(string='Account Number')
+
+class mb_money_transfer(models.Model):
+    _inherit = 'mb.money.transfer'
+
+    account_name = fields.Char(string='Account Name')
+    account_number = fields.Char(string='Account Number')
+
+
+
+    @api.model
+    def create_money_transfer(self, obj):
+        code=200
+        messages='Successfully'
+        transfer_count = self.search_count([('journal_id','=',obj.get('journal_id')),('code','=',obj.get('code'))])
+        if transfer_count > 0:
+            code= 300
+            messages = 'Create Fail Duplicate data'
+        else:
+            self.create(obj)
+
+        res = {'code': code, 'messages':messages}
+        return json.dumps(res)
+
+
+
+
 
 class product_template(models.Model):
     _inherit = "product.template"
@@ -42,6 +73,10 @@ class SaleService(models.Model):
     _inherit = 'sale.service'
 
     license = fields.Char(string='License')
+
+
+
+
 
     def caculate_refund_amount(self, sale_service_data, sale_order_line=None,new_oder_line_price=0):
 

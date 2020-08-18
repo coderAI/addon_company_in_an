@@ -293,9 +293,10 @@ class ExternalAccountInvoice(models.AbstractModel):
                                                                                       inv.type == 'out_refund'):
                 continue
             if not order_id:
-                inv = line.invoice_id.invoice_line_ids.filtered(lambda inv: inv.product_category_id == line.product_category_id
-                                                                                and inv.product_id == line.product_id
-                                                                                and inv.mapped('sale_line_ids'))
+                for i_tmp in line.invoice_id.invoice_line_ids:
+                    if i_tmp.id != line.id and i_tmp.product_id.id == line.product_id.id:
+                        inv = i_tmp
+
             inv_line.update({
                 '"id"': line.id or '""',
                 '"register_type"': '\"' + (line.register_type or '') + '\"',
@@ -311,7 +312,7 @@ class ExternalAccountInvoice(models.AbstractModel):
                 '"price_unit"': line.price_unit or 0,
                 '"taxes_amount"': line.taxes_amount or 0,
                 '"price_subtotal"': line.price_subtotal or 0,
-                '"order_id"': order_id and order_id[0].id or (inv and inv.mapped('sale_line_ids')[0].id or '""')
+                '"order_id"': order_id and order_id[0].id or '""'#(inv and inv.mapped('sale_line_ids')[0].id or '""')
             })
             invoice_arr.append(inv_line)
         vat_dict.update({
@@ -320,8 +321,9 @@ class ExternalAccountInvoice(models.AbstractModel):
         if invoice_lines:
             order_line = []
             for line in invoice_lines.mapped('sale_line_ids'):
-                if line.order_id.invoice_ids.filtered(lambda inv: inv.state == 'paid' and
-                                                                                          inv.type == 'out_refund'):
+                if line.order_id.invoice_ids.filtered(lambda inv: inv.state == 'paid' and inv.type == 'out_refund'):
+                    continue
+                if line.service_status != 'done':
                     continue
                 item = {}
                 item.update({
@@ -334,10 +336,8 @@ class ExternalAccountInvoice(models.AbstractModel):
                     '"product_uom"': line.product_uom and line.product_uom.id or '""',
                     '"uom"': '\"' + (line.product_uom and line.product_uom.name or '') + '\"',
                     '"product_category_id"': line.product_category_id and line.product_category_id.id or '""',
-                    '"product_category_code"': '\"' + (
-                    line.product_category_id and line.product_category_id.code or '') + '\"',
-                    '"product_category"': '\"' + (
-                    line.product_category_id and line.product_category_id.display_name or '') + '\"',
+                    '"product_category_code"': '\"' + (line.product_category_id and line.product_category_id.code or '') + '\"',
+                    '"product_category"': '\"' + (line.product_category_id and line.product_category_id.display_name or '') + '\"',
                     '"time"': line.time or 0,
                     '"register_untaxed_price"': line.register_untaxed_price or 0,
                     '"register_taxed_price"': line.register_taxed_price or 0,

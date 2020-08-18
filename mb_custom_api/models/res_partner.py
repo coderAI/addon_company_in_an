@@ -9,25 +9,25 @@ class MBSaleContract(models.Model):
     _inherit = 'mb.sale.contract'
 
     @api.model
-    def api_get_contract_signed(self, contract_id):
+    def api_get_contract_signed(self, contract_id, ref):
         data=[]
         messages='Successfully'
         code=200
         contract = self.browse(contract_id)
-        if not contract:
+        if not contract or contract.partner_id.ref != ref:
             messages = 'Contract is not exist'
             code=402
-        for i in contract.attachments:
-            data.append({
-                'name':i.name,
-                'type':i.type,
-                'mimetype':i.mimetype,
-                'data':i.datas,
-             })
-            break
+        else:
+            for i in contract.attachments:
+                data.append({
+                    'name':i.name,
+                    'type':i.type,
+                    'mimetype':i.mimetype,
+                    'data':i.datas,
+                 })
+                break
         res = {'code': code, 'messages':messages,'data':data}
         return json.dumps(res)
-
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 

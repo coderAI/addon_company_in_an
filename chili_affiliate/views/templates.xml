@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="chili_affiliate_assets_backend" name="chili affiliate assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/chili_affiliate/static/src/js/chili_affiliate.js"/>-
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -384,6 +384,8 @@ class ExternalActiveService(models.AbstractModel):
                             '"start_date"': '\"' + (service.start_date or '') + '\"',
                             '"end_date"': '\"' + (service.end_date or '') + '\"',
                             '"write_date"': '\"' + (service.write_date or '') + '\"',
+                            '"is_stop_manual"': service.is_stop_manual and '"True"' or '"False"',
+                            '"date_stop"': '\"' + (service.date_stop or '') + '\"',
                             '"is_stop"': '\"' + (service.is_stop and 'True' or 'False') + '\"',
                             '"temp_stop_date"': '\"' + (service.temp_stop_date or '') + '\"',
                             '"temp_un_stop_date"': '\"' + (service.temp_un_stop_date or '') + '\"',
@@ -399,6 +401,7 @@ class ExternalActiveService(models.AbstractModel):
                             '"uom"': '\"' + (service.product_category_id and service.product_category_id.uom_id and service.product_category_id.uom_id.name or (service.uom_id and service.uom_id.name or '')) + '\"',
                             '"id_domain_floor"': '\"' + (service.id_domain_floor or '') + '\"',
                             '"is_active"': '\"' + (service.is_active and 'True' or 'False') + '\"',
+                            '"is_auto_renew"': '\"' + (service.is_auto_renew and 'True' or 'False') + '\"',
                             '"order_ssl_id"': service.order_ssl_id or 0,
                             '"price"': service.price or 0,
                             '"vps_code"': '\"' + (service.vps_code or '') + '\"',
@@ -429,6 +432,8 @@ class ExternalActiveService(models.AbstractModel):
                             '"start_date"': '\"' + (service.start_date or '') + '\"',
                             '"end_date"': '\"' + (service.end_date or '') + '\"',
                             '"is_stop"': '\"' + (service.is_stop and 'True' or 'False') + '\"',
+                            '"is_stop_manual"': service.is_stop_manual and '"True"' or '"False"',
+                            '"date_stop"': '\"' + (service.date_stop or '') + '\"',
                             '"temp_stop_date"': '\"' + (service.temp_stop_date or '') + '\"',
                             '"temp_un_stop_date"': '\"' + (service.temp_un_stop_date or '') + '\"',
                             '"write_date"': '\"' + (service.write_date or '') + '\"',
@@ -449,6 +454,7 @@ class ExternalActiveService(models.AbstractModel):
                                              (service.uom_id and service.uom_id.name or '')) + '\"',
                             '"id_domain_floor"': '\"' + (service.id_domain_floor or '') + '\"',
                             '"is_active"': '\"' + (service.is_active and 'True' or 'False') + '\"',
+                            '"is_auto_renew"': '\"' + (service.is_auto_renew and 'True' or 'False') + '\"',
                             '"order_ssl_id"': service.order_ssl_id or 0,
                             '"price"': service.price or 0,
                             '"vps_code"': '\"' + (service.vps_code or '') + '\"',
@@ -498,8 +504,10 @@ class ExternalActiveService(models.AbstractModel):
                                          (service.uom_id and service.uom_id.name or '')) + '\"',
                         '"id_domain_floor"': '\"' + (service.id_domain_floor or '') + '\"',
                         '"is_active"': '\"' + (service.is_active and 'True' or 'False') + '\"',
+                        '"is_auto_renew"': '\"' + (service.is_auto_renew and 'True' or 'False') + '\"',
                         '"is_stop"': '\"' + (service.is_stop and 'True' or 'False') + '\"',
-
+                        '"is_stop_manual"': service.is_stop_manual and '"True"' or '"False"',
+                        '"date_stop"': '\"' + (service.date_stop or '') + '\"',
                         '"order_ssl_id"': service.order_ssl_id or 0,
                         '"price"': service.price or 0,
                         '"vps_code"': '\"' + (service.vps_code or '') + '\"',
@@ -543,14 +551,6 @@ class ExternalActiveService(models.AbstractModel):
             # Parse data
             order_line_id = self.env['sale.order.line'].search([('product_id', '=', service.product_id.id),
                                                                 ('service_status', '=', 'done')], order='id desc', limit =1)
-            # is_protect = 0
-            # if service.product_category_id.code and service.product_category_id.code[:1] == '.':
-            #     id_protect_category = ProductCategory.search([('code', '=', 'HP20070907103139')], limit=1)
-            #     if id_protect_category:
-            #         is_protect = SaleService.search_count([('product_id.name', '=', service.product_id.name),
-            #                                                ('product_category_id', '=', id_protect_category.id),
-            #                                                ('end_date', '>=', datetime.now().date()),
-            #                                                ('status', '=', 'active')])
             data.update({
                 '"id"': service.id,
                 '"name"': '\"' + service.name + '\"',
@@ -572,6 +572,8 @@ class ExternalActiveService(models.AbstractModel):
                 '"reseller_code"': '\"' + (service.reseller_id and service.reseller_id.code or '') + '\"',
                 '"billing_cycle"': service.product_category_id and service.product_category_id.billing_cycle or 0,
                 '"sold"': service.product_category_id and service.product_category_id.sold and '"True"' or '"False"',
+                '"is_stop_manual"': service.is_stop_manual and '"True"' or '"False"',
+                '"date_stop"': '\"' + (service.date_stop or '') + '\"',
                 '"can_be_renew"': service.product_category_id and service.product_category_id.can_be_renew and '"True"' or '"False"',
                 '"uom"': '\"' + (service.product_category_id and
                                  service.product_category_id.uom_id and
@@ -584,15 +586,16 @@ class ExternalActiveService(models.AbstractModel):
                 '"temp_un_stop_date"': '\"' + (service.temp_un_stop_date or '') + '\"',
 
                 '"is_active"': service and service.is_active and '"True"' or '"False"',
+                '"is_auto_renew"': service and service.is_auto_renew and '"True"' or '"False"',
                 '"order_ssl_id"': service.order_ssl_id or 0,
                 '"price"': service.price or 0,
+                '"license"': '\"' + (service.license or '') + '\"',
                 '"vps_code"': '\"' + (service.vps_code or '') + '\"',
                 '"os_template"': '\"' + (service.os_template or '') + '\"',
                 '"open"': '\"' + (service.open and 'True' or 'False') + '\"',
                 '"temp_open_date"': '\"' + (service.temp_open_date or '') + '\"',
                 '"is_addons"': '\"' + (service.product_category_id and service.product_category_id.is_addons
                                        and 'True' or 'False') + '\"',
-                # '"is_protect"': is_protect and '"True"' or '"False"',
             })
             res.update({'"code"': 1, '"msg"': '"Successfully"', '"data"': data})
         except:
@@ -646,11 +649,15 @@ class ExternalActiveService(models.AbstractModel):
             data.update({
                 '"id"': service.id,
                 '"name"': '\"' + service.name + '\"',
+                '"partner_id"': service.customer_id.id or 0,
                 '"customer_id"': '\"' + (service.customer_id.ref or '') + '\"',
+                '"customer_name"': '\"' + (service.customer_id.name or '') + '\"',
                 '"reference"': '\"' + (service.reference or '') + '\"',
                 '"product_id"': '\"' + (service.product_id and service.product_id.default_code or '') + '\"',
+                '"product_name"': '\"' + (service.product_id and service.product_id.name or '') + '\"',
                 '"product_category_id"': service.product_category_id.id,
                 '"product_category_code"': '\"' + (service.product_category_id.code or '') + '\"',
+                '"product_category_name"': '\"' + (service.product_category_id.name or '') + '\"',
                 '"ip_hosting"': '\"' + (service.ip_hosting or '') + '\"',
                 '"ip_email"': '\"' + (service.ip_email or '') + '\"',
                 '"start_date"': '\"' + (service.start_date or '') + '\"',

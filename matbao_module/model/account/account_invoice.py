@@ -64,6 +64,66 @@ class AccountInvoice(models.Model):
                         order.write({
                             'fully_paid': True
                         })
+
+                        import logging
+                        logging.info("------------------------------------------------")
+                        logging.info("check")
+                        logging.info("------------------------------------------------")
+                        logging.info("------------------------------------------------")
+
+
+                        if sale_ids.opportunity_id and self.type == 'out_invoice':
+                            aff_program = sale_ids.opportunity_id.aff_user_id.aff_program_id
+                            if aff_program:
+                                company_account_obj = self.env['affilicate.company.account']
+                                refund_account_tmp = company_account_obj.search(
+                                    [('company_id', '=', sale_ids.partner_id.company_id.id)], limit=1)
+                                if refund_account_tmp:
+                                    refund_account_id = refund_account_tmp.account_id.id
+                                else:
+                                    raise Warning(_(
+                                        "Refund account is not config for this company " + sale_ids.partner_id.company_id.name + "!!!"))
+                                # Create Account Invoice Refunds
+
+                                so_line = self.env['sale.order.line'].search([('order_id', '=', sale_ids.id)])
+                                refund_inv_line = self.env['account.invoice.line']
+                                invoice_line_ids = []
+                                for soline in so_line:
+                                    if soline.product_category_id.id in aff_program.product_category_ids.ids:
+                                        invoice_line_ids.append((0, 0, {
+                                            'product_id': soline.product_id.id,
+                                            'quantity': soline.product_uom_qty,
+                                            'price_unit': soline.aff_refunds,
+                                            'company_id': sale_ids.partner_id.company_id.id,
+                                            'name': 'Affiliate Refund - ' + sale_ids.name + ' - ' + sale_ids.opportunity_id.aff_user_id.name,
+                                            'account_id': soline.product_category_id.property_renew_account_income_categ_id and
+                                                          soline.product_category_id.property_renew_account_income_categ_id.id,
+                                            'account_analytic_id': soline.product_category_id.renew_analytic_income_account_id and
+                                                                   soline.product_category_id.renew_analytic_income_account_id.id,
+                                            'origin': sale_ids.name,
+                                            'register_type': 'renew',
+                                            'type': 'out_refund',
+                                            'state': 'draft'
+                                        }))
+
+                                refund_inv = self.env['account.invoice'].create({
+                                    'partner_id': sale_ids.opportunity_id.aff_user_id.partner_id.id,
+                                    'reference_type': 'none',
+                                    'name': 'Affiliate Refund - ' + sale_ids.name + ' - ' + sale_ids.opportunity_id.aff_user_id.name,
+                                    'type': 'out_refund',
+                                    'account_id': refund_account_id,
+                                    'company_id': sale_ids.partner_id.company_id.id,
+                                    'user_id': sale_ids.user_id.id,
+                                    'team_id': sale_ids.team_id.id,
+                                    'refund_invoice_id': self.id,
+                                    'invoice_line_ids': invoice_line_ids,
+                                    'state': 'draft',
+                                    'date_invoice': datetime.now().date(),
+                                    'date_due': datetime.now().date(),
+                                    'origin': sale_ids.name
+                                })
+
+
                         if not order.order_line.filtered(lambda line: line.service_status == 'draft'):
                             order.write({
                                 'state': 'completed'

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_chili_affiliate_chili_affiliate,chili_affiliate,model_chili_affiliate,,1,0,0,0
+access_affilicate_company_account,affilicate_company_account,model_affilicate_company_account,,1,0,0,0
+access_chili_affiliate_user,chili_affiliate_user,model_chili_affiliate_user,,1,0,0,0
+access_chili_affiliate_program,chili_affiliate_program,model_chili_affiliate_program,,1,0,0,0
+access_affilicate_company_account_all,affilicate_company_account,model_affilicate_company_account,,1,0,0,0
+access_affilicate_company_account,affilicate_company_account,model_affilicate_company_account,base.group_system,1,1,1,1

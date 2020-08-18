@@ -1,0 +1,247 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="chili_affiliate_list">
+      <field name="name">Customers</field>
+      <field name="model">chili.affiliate</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="date"/>
+          <field name="name"/>
+          <field name="address"/>
+          <field name="email"/>
+          <field name="phone"/>
+          <field name="referrer_name"/>
+          <field name="lead_id"/>
+          <field name="aff_user_id"/>
+          <field name="description" />
+        </tree>
+      </field>
+    </record>
+    <record id="chili_affiliate_view_from" model="ir.ui.view">
+        <field name="name">Customers</field>
+        <field name="model">chili.affiliate</field>
+        <field name="arch" type="xml">
+            <form string="Affiliate">
+                <sheet>
+                    <group>
+                      <group>
+                        <field name="name"/>
+                        <field name="address" />
+                        <field name="email"/>
+                        <field name="phone" />
+                      </group>
+                      <group>
+                        <field name="referrer_name"/>
+                        <field name="lead_id"/>
+                        <field name="aff_user_id"/>
+                      </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="chili_affiliate_action_window">
+      <field name="name">Customers</field>
+      <field name="res_model">chili.affiliate</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="chili_affiliate_program_list">
+      <field name="name">Affiliate Program </field>
+      <field name="model">chili.affiliate.program</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="matrix_type"/>
+          <field name="amount"/>
+        </tree>
+      </field>
+    </record>
+    <record id="chili_affiliate_program_view_from" model="ir.ui.view">
+        <field name="name">Program</field>
+        <field name="model">chili.affiliate.program</field>
+        <field name="arch" type="xml">
+            <form string="Affiliate">
+                <sheet>
+                    <group>
+
+                        <field name="name"/>
+                        <field name="matrix_type" />
+                        <field name="amount"/>
+                        <field name="product_category_ids"/>
+
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="chili_affiliate_program_action_window">
+      <field name="name">Program</field>
+      <field name="res_model">chili.affiliate.program</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="chili_affiliate_users_list">
+      <field name="name">Users</field>
+      <field name="model">chili.affiliate.user</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="login"/>
+          <field name="last_logon"/>
+          <field name="state"/>
+          <field name="partner_id"/>
+          <field name="aff_key"/>
+          <field name="aff_link"/>
+          <field name="aff_program_id"/>
+        </tree>
+      </field>
+    </record>
+    <record id="chili_affiliate_user_view_from" model="ir.ui.view">
+        <field name="name">Affiliate Users</field>
+        <field name="model">chili.affiliate.user</field>
+        <field name="arch" type="xml">
+            <form string="Affiliate">
+                <sheet>
+                    <group>
+                      <group>
+                        <field name="name"/>
+                        <field name="login" />
+                        <field name="password" password="True"/>
+                        <field name="partner_id"/>
+                      </group>
+                       <group>
+                         <field name="state"/>
+                        <field name="aff_program_id"/>
+                        <field name="aff_key"/>
+                        <field name="aff_link" />
+                      </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="chili_affiliate_user_action_window">
+      <field name="name">Affiliates</field>
+      <field name="res_model">chili.affiliate.user</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="chili_affiliate.action_server">
+      <field name="name">chili_affiliate server</field>
+      <field name="model_id" ref="model_chili_affiliate_chili_affiliate"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="chili_affiliate" id="chili_affiliate.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="chili_affiliate.menu_1" parent="chili_affiliate.menu_root"/>
+    <menuitem name="Menu 2" id="chili_affiliate.menu_2" parent="chili_affiliate.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="chili_affiliate.menu_1_list" parent="chili_affiliate.menu_1"
+              action="chili_affiliate.action_window"/>
+    <menuitem name="Server to list" id="chili_affiliate" parent="chili_affiliate.menu_2"
+              action="chili_affiliate.action_server"/>
+    -->
+      <record id="chili_affiliate_settings" model="ir.ui.view">
+        <field name="name">Affiliate configuration</field>
+        <field name="model">affiliate.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="Affiliate configuration" class="oe_form_configuration">
+                <header>
+                    <button string="Save" type="object"
+                        name="execute" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" type="object"
+                        name="cancel" class="oe_link"/>
+                </header>
+                <group string="Affiliate configuration">
+                    <div>
+                        <div>
+                            <label for="setting_account_id"/>
+                            <field name="setting_account_id"/>
+                        </div>
+                        <div>
+                            <label for="setting_aff_url"/>
+                            <field name="setting_aff_url"/>
+                        </div>
+                    </div>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="chili_affiliate_settings_action" model="ir.actions.act_window">
+        <field name="name">Affiliate configuration</field>
+        <field name="res_model">affiliate.config.settings</field>
+        <field name="view_id" ref="chili_affiliate_settings"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+
+    <record id="affilicate_company_account_tree" model="ir.ui.view">
+        <field name="name">affilicate.company.account.tree</field>
+        <field name="model">affilicate.company.account</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="company_id"/>
+                <field name="account_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_affilicate_company_account" model="ir.actions.act_window">
+        <field name="name">Affilicate Company Account</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">affilicate.company.account</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+
+
+
+
+    <menuitem name="Affiliate" id="chili_affiliate_menu_root" web_icon="chili_affiliate,static/description/affiliate.png" action="chili_affiliate_action_window"/>
+    <menuitem name="Customers"  sequence="1" id="chili_affiliate" parent="chili_affiliate.chili_affiliate_menu_root" action="chili_affiliate_action_window"/>
+    <menuitem name="Affiliates" sequence="2" id="chili_affiliate_user" parent="chili_affiliate.chili_affiliate_menu_root" action="chili_affiliate_user_action_window"/>
+    <menuitem name="Programs" sequence="3" id="chili_affiliate_program" parent="chili_affiliate.chili_affiliate_menu_root" action="chili_affiliate_program_action_window"/>
+    <menuitem name="Reports" sequence="4" id="chili_affiliate_report" parent="chili_affiliate.chili_affiliate_menu_root"/>
+    <menuitem id="chili_affiliate_configuration_menu" name="Configuration" parent="chili_affiliate.chili_affiliate_menu_root"/>
+    <menuitem id="chili_affiliate_settings_menu" name="Settings" parent="chili_affiliate.chili_affiliate_configuration_menu" action="chili_affiliate_settings_action"/>
+    <menuitem id="affilicate_company_account_settings_menu" name="Company Account" parent="chili_affiliate.chili_affiliate_configuration_menu" action="action_affilicate_company_account"/>
+
+  </data>
+</odoo>
