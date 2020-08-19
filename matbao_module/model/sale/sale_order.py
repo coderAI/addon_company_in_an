@@ -508,17 +508,6 @@ class SaleOrder(models.Model):
                     continue
                 other_lines = inv.invoice_line_ids.filtered(lambda l: l.register_type == 'renew')
                 other_lines_update = inv.invoice_line_ids.filtered(lambda l: l.register_type == 'upgrade')
-                _logger.info("---------------------------------------")
-                _logger.info("---------------------------------------")
-                _logger.info("---------------------------------------")
-                _logger.info("---------------------------------------")
-                _logger.info(other_lines_update)
-                _logger.info(other_lines_update)
-                _logger.info(other_lines_update.product_id)
-                _logger.info(other_lines)
-                _logger.info(other_lines.mapped('product_id'))
-                _logger.info(line)
-                _logger.info(line.product_id)
                 #
                 # if other_lines_update:
                 #     line.write({
@@ -536,12 +525,6 @@ class SaleOrder(models.Model):
                         order_line = line.invoice_id.invoice_line_ids.mapped('sale_line_ids').filtered(
                             lambda l: l.register_type == 'upgrade' and l.product_id == line.product_id)
                     # line.price_unit = order_line.price_new_category + order_line.up_price
-                    _logger.info("---------------------------------------")
-                    _logger.info("---------------------------------------")
-                    _logger.info("---------------------------------------")
-                    _logger.info("---------------------------------------")
-                    _logger.info(order_line)
-                    _logger.info(order_line.product_category_id)
                     line.write({
                         # 'price_unit': order_line.renew_taxed_price + order_line.up_price + order_line.refund_amount,
                         'product_category_id': order_line.product_category_id and
