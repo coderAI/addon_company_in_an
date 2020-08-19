@@ -36,7 +36,7 @@ class MBSORenewed(models.Model):
                         LEFT JOIN product_uom pu ON pu.id = pc.uom_id
                         WHERE sale_service.end_date = now()::date + INTERVAL %s
                           AND pc.to_be_renewed = TRUE
-                          AND pu.to_be_renewed = TRUE
+                          AND (sale_service.is_auto_renew is NULL OR sale_service.is_auto_renew = FALSE)
                           AND sale_service.status = 'active'
                           AND res_partner.company_type <> 'agency'""",
                    (self.env.user.id, self.env.user.id, self.id, days))
@@ -107,7 +107,8 @@ class MBSORenewed(models.Model):
                 'time': time,
                 'product_uom': service.product_category_id.uom_id.id,
                 'service_status': 'draft',
-                'company_id': service.customer_id.company_id.id
+                'company_id': service.customer_id.company_id.id,
+                # 'license': service.license and int(service.license) or 1
             }
             if service.product_category_id.parent_id and service.product_category_id.parent_id.code in ['MICROSOFT','License']:
                 vals.update({
