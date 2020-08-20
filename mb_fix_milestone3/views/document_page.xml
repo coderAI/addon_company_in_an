@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_mb_document_page_form_inherit">
+			<field name="name">view.mb.document.page.form.inherit</field>
+			<field name="model">document.page</field>
+			<field name="inherit_id" ref="document_page.view_wiki_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//group[1]" position="after">
+					<separator string="Summary"/>
+                    <field name="summary"/>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

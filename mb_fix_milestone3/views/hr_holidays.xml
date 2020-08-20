@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_mb_holidays_form_inherit">
+        <field name="name">view.mb.holidays.form.inherit</field>
+        <field name="model">hr.holidays</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_approve']" position="attributes">
+                <attribute name="groups">base.group_user</attribute>
+                <attribute name="attrs">{'invisible': [('approve', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='payslip_status']" position="after">
+                <field name="approve" invisible="1"/>
+                <field name="approver" invisible="1" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

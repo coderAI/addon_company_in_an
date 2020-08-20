@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_search_sales" name="Searches" parent="sales_team.menu_base_partner" sequence="5"/>
+        <menuitem
+            id="search_service_wizard_menu"
+            parent="menu_search_sales"
+            sequence="18"
+            action="action_search_service_wizard"
+            />
+        <menuitem id="matbao_module.search_customer_menu" parent="menu_search_sales"
+            sequence="19" action="matbao_module.action_search_customer_wizard"/>
+        <menuitem id="mb_fix_milestone.search_order_menu" parent="menu_search_sales"
+            sequence="19" action="mb_fix_milestone.action_search_order_wizard"/>
+        <menuitem id="mb_outsource_hp.action_search_contract_wizard_menu" parent="menu_search_sales"
+            action="mb_outsource_hp.action_search_contract_wizard" name= "Search Contract" sequence="19"/>
+        <menuitem id="mb_fix_milestone.bank_transaction_sale_menu" parent="menu_search_sales"
+            sequence="23" action="mb_fix_milestone.action_view_bank_transaction_sale"/>
+        <menuitem id="mb_internet_banking.internet_banking_menu" parent="menu_search_sales"
+            sequence="23" action="mb_internet_banking.action_view_internet_banking"/>
+
+    <menuitem action="mb_send_money.action_mb_send_money"
+              id="mb_send_money.menu_action_account_payments_send_money"
+              parent="sales_team.menu_sales" sequence="20"
+              groups="mb_sale_contract.group_operator_mb_sale_contract"/>
+    <menuitem id="mb_fix_milestone2.get_sale_order_menu" parent="sales_team.menu_sales"
+              sequence="20" action="mb_fix_milestone2.action_order_update_team_wizard"
+              groups="sales_team.group_sale_salesman_all_leads"/>
+</odoo>

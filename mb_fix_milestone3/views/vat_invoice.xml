@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="mb_view_invoice_no_line_tree_invisible_inherit" model="ir.ui.view">
+            <field name="name">mb.invoice.no.line.invisible.tree.inherit</field>
+            <field name="model">mb.invoice.no.line</field>
+            <field name="inherit_id" ref="mb_custom.mb_view_invoice_no_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='used_user']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='cancel_user']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

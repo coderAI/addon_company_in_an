@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--<record id="mb_cost_price_domain_view" model="ir.ui.view">-->
+		<!--<field name="name">Rollback Renew PO VN</field>-->
+		<!--<field name="model">cost.price.domain</field>-->
+		<!--<field name="arch" type="xml">-->
+            <!--<form>-->
+                <!--<header>-->
+                    <!--<button name="get_po_run_cost_price" string="Get" type="object" class="btn-primary"/>-->
+                    <!--<button name="rollback_run_po" string="Run" type="object" class="btn-primary"/>-->
+                <!--</header>-->
+                <!--<sheet>-->
+                    <!--<group>-->
+                        <!--<group>-->
+                            <!--<field name="date" required="1"/>-->
+                        <!--</group>-->
+                        <!--<group>-->
+                            <!--<field name="date_to" required="1"/>-->
+                        <!--</group>-->
+                    <!--</group>-->
+                    <!--<group name="Rollback Renew PO VN">-->
+                        <!--<field name="line_ids" nolabel="1" readonly="1">-->
+                            <!--<tree string="Detail">-->
+                                <!--<field name="order"/>-->
+                                <!--<field name="company_id"/>-->
+                                <!--<field name="bill"/>-->
+                                <!--<field name="invoice"/>-->
+                            <!--</tree>-->
+                        <!--</field>-->
+                    <!--</group>-->
+				<!--</sheet>-->
+            <!--</form>-->
+		<!--</field>-->
+	<!--</record>-->
+
+	<!--<record id="action_cost_price_domain" model="ir.actions.act_window">-->
+		<!--<field name="name">Rollback Renew PO VN</field>-->
+		<!--<field name="res_model">cost.price.domain</field>-->
+		<!--<field name="type">ir.actions.act_window</field>-->
+		<!--<field name="view_type">form</field>-->
+		<!--<field name="view_mode">form</field>-->
+		<!--<field name="view_id" ref="mb_cost_price_domain_view"/>-->
+		<!--<field name="target">current</field>-->
+	<!--</record>-->
+
+    <!--<menuitem id="cost_price_domain_menu" parent="purchase.menu_purchase_config"-->
+        <!--sequence="20" action="action_cost_price_domain" groups="base.group_system"/>-->
+</odoo>

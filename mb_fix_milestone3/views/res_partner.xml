@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_partner_no_sms_auto_call_form_inherit">
+        <field name="name">view.res.partner.no_sms.no_autocall.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="matbao_module.view_res_partner_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='accounting_ref']" position="after">
+                <field name="no_sms" readonly="1"/>
+                <field name="no_auto_call" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

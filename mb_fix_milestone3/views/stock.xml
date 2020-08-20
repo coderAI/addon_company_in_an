@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_mb_stock_inventory_form_inherit">
+			<field name="name">view.mb.stock.inventory.form.inherit</field>
+			<field name="model">stock.inventory</field>
+			<field name="inherit_id" ref="stock.view_inventory_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//header" position="inside">
+					<button name="update_lot_serial_number" states="confirm" string="Update Lot" type="object"/>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

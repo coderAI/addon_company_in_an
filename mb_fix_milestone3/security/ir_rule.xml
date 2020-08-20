@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="hr_holidays.property_rule_holidays_employee" model="ir.rule">
+        <field name="domain_force">['|', ('employee_id.user_id','=',user.id), ('employee_id.holidays_approvers.approver.user_id', 'in', [user.id])]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

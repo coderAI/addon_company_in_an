@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="search_service_wizard_view" model="ir.ui.view">
+		<field name="name">Search service wizard</field>
+		<field name="model">search.service.wizard</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<button name="search_service" string="SEARCH" type="object"
+							class="btn-primary" />
+					</group>
+					<group>
+						<group>
+							<field name="name" placeholder="DO0123456789 or DO0123456789 - matbao.net"/>
+							<field name="customer" placeholder="MB123456 or Công ty Cổ Phần Mắt Bão"/>
+							<field name="status" invisible="1"/>
+						</group>
+						<group>
+							<field name="product" placeholder="ERP123456 or matbao.net"/>
+							<field name="product_category" options="{'no_open': True, 'no_create': True}"
+								   domain="[('child_id', '=', False)]" invisible="1"/>
+						</group>
+					</group>
+					<field name="service_ids" context="{'form_view_ref': 'matbao_module.view_sale_service_form'}">
+						<tree edit="false" create="false" delete="false"  colors="#21b799:(status=='active' and end_date &gt; current_date);gray:status=='closed';red:(status=='active' and end_date &lt; current_date);orange:(status=='active' and end_date == current_date)">
+							<field name="reference"/>
+                            <field name="product_category_id"/>
+                            <field name="product_id"/>
+                            <field name="customer_id"/>
+                            <field name="create_uid"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="status"/>
+							<button name="view_service" type="object" icon="fa-pencil"/>
+						</tree>
+					</field>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_search_service_wizard" model="ir.actions.act_window">
+		<field name="name"> Search Services</field>
+		<field name="res_model">search.service.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="search_service_wizard_view" />
+		<field name="target">inline</field>
+	</record>
+
+    <!--<menuitem-->
+            <!--id="search_service_wizard_menu"-->
+            <!--parent="sales_team.menu_sales"-->
+            <!--sequence="18"-->
+            <!--action="action_search_service_wizard"-->
+            <!--/>-->
+</odoo>

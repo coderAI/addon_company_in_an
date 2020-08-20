@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_mb_project_task_account_id_form_inherit">
+			<field name="name">view.mb.project.task.account.id.form.inherit</field>
+			<field name="model">project.task</field>
+			<field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='timesheet_ids']/tree/field[@name='user_id']" position="after">
+					<field name="account_id" readonly="1" groups="base.group_system"/>
+				</xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

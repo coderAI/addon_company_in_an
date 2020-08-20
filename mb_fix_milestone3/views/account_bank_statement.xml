@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mb_view_bank_statement_update_statement_id_form_inherit">
+			<field name="name">view.account.bank.statement.update.statement.id.form.inherit</field>
+			<field name="model">account.bank.statement</field>
+			<field name="inherit_id" ref="mb_fix_milestone2.mb_view_bank_statement_form_inherit"/>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='%(mb_fix_milestone2.action_mb_account_bank_statement_wizard_wizard)d']" position="after">
+					<button name="action_update_statement_id" states="open" string="Update Statement" type="object"/>
+                </xpath>
+			</field>
+		</record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_mb_sale_service_form_inherit_id_domain_floor">
+			<field name="name">view.mb.sale.service.form.inherit.id.domain.floor</field>
+			<field name="model">sale.service</field>
+			<field name="inherit_id" ref="mb_fix_milestone2.view_mb_sale_service_form_inherit1"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='premium']" position="after">
+					<field name="is_active" readonly="1"/>
+					<field name="id_domain_floor" readonly="1"/>
+				</xpath>
+            </field>
+        </record>
+
+		<menuitem
+            id="matbao_module.service_menu"
+			name="Services"
+            parent="sales_team.menu_sales"
+            sequence="18"
+            action="matbao_module.action_view_service"
+			groups="base.group_system,sales_team.group_sale_manager"
+            />
+    </data>
+</odoo>

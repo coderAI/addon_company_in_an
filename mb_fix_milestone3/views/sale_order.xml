@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_mb_sale_order_auto_renewal_form_inherit">
+			<field name="name">view.mb.sale.order.auto.renewal.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//group[@name='sale_pay']" position="inside">
+					<field name="payment_method_so" readonly="1"/>
+				</xpath>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="view_mb_sale_order_check_coupon_form_inherit">
+			<field name="name">view.mb.sale.order.check.coupon.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="matbao_module.view_sale_order_form_inherit"/>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='update_price']" position="before">
+                    <button name="check_coupon_and_update_price" string="Update Price" type="object"
+						states="not_received,draft" class="oe_highlight"/>
+                </xpath>
+				<xpath expr="//button[@name='update_price']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+			</field>
+		</record>
+
+		<!--<record model="ir.ui.view" id="view_sale_quotation_search_inherit_today">-->
+			<!--<field name="name">view.sale.quotation.search.inherit.today</field>-->
+			<!--<field name="model">sale.order</field>-->
+			<!--<field name="inherit_id" ref="matbao_module.view_sale_quotation_search_inherit"/>-->
+			<!--<field name="arch" type="xml">-->
+				<!--<xpath expr="//filter[@name='filter_open']" position="after">-->
+					<!--<separator/>-->
+					<!--<filter string="Create Today" name="create_today" groups="sales_team.group_sale_manager"-->
+							<!--domain="[('create_date','&gt;=',(datetime.date.today()).strftime('%Y-%m-%d')),-->
+									<!--('create_date','&lt;=', (datetime.date.today()).strftime('%Y-%m-%d'))]"/>-->
+				<!--</xpath>-->
+			<!--</field>-->
+		<!--</record>-->
+
+		<record model="ir.ui.view" id="view_sale_order_search_inherit_today">
+			<field name="name">view.sale.order.search.inherit.today</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="mb_fix_milestone.view_mb_sale_quotation_search_state_inherit3"/>
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='group_inv_status']" position="after">
+					<filter string="Create Date" domain="[]" context="{'group_by': 'create_date:day'}" />
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_mb_sale_order_original_subtotal_tree_inherit">
+			<field name="name">view.mb.sale.order.original.tree.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_tree"/>
+			<field name="arch" type="xml">
+				<field name="amount_total" position="after">
+                    <field name="original_subtotal" sum="Total Original Untaxed" widget="monetary"/>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_mb_sale_quotation_original_subtotal_tree_inherit">
+			<field name="name">view.mb.sale.quotation.original.tree.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_quotation_tree"/>
+			<field name="arch" type="xml">
+				<field name="amount_total" position="after">
+                    <field name="original_subtotal" sum="Total Original Untaxed" widget="monetary"/>
+				</field>
+			</field>
+		</record>
+
+    </data>
+</odoo>
